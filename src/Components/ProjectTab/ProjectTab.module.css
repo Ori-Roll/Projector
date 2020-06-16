@@ -1,0 +1,31 @@
+.project-tab {
+	margin: 10px;
+	display: inline-flex;
+}
+.project-tab-content {
+	background-color: rgb(226, 226, 226);
+	border-radius: 10px;
+	color: rgb(0, 0, 0);
+	padding: 5px;
+}
+
+.SomeContent {
+	background-color: white;
+	margin: 5px;
+	border-radius: 5px;
+}
+
+/* .project-tab-content::before {
+	content: "";
+	background-color: red;
+	border-radius: 5px 0 0 5px;
+	width: 0px;
+	padding: 5px;
+} */
+
+.tab-size-handle {
+	width: 10px;
+	background-color: rgba(255, 0, 0, 0.856);
+	cursor: col-resize;
+	margin-left: 1px;
+}
