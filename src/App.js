@@ -1,13 +1,14 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import ProjectTab from "./Components/ProjectTab/ProjectTab";
+import Project from "./Components/Project/Project";
 
 function App() {
 	return (
 		<div className='App'>
 			<header className='App-header'></header>
-			<ProjectTab />
+
+			<Project />
 		</div>
 	);
 }
