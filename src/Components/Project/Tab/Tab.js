@@ -32,13 +32,13 @@ function Tab() {
 		tasks: [
 			{
 				key: "a",
-				"001": { data: "a001" },
-				"002": { data: "a002" },
+				"001": { content: "text for a001" },
+				"002": { content: "text for a002" },
 			},
 			{
 				key: "b",
-				"001": { data: "b001" },
-				"002": { data: "b002" },
+				"001": { content: "text for b001" },
+				"002": { content: "text for b002" },
 			},
 		],
 	});

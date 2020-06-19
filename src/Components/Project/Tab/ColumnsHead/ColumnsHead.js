@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
+import defaults from "../../../defaults/";
 import style from "./ColumnsHead.module.css";
 
 function ColumnsHead({ columns, setTabData }) {
@@ -27,7 +28,8 @@ function ColumnsHead({ columns, setTabData }) {
 								setTabData((oldData) => {
 									let newData = { ...oldData };
 									console.log(newData.columns);
-									newData.columns.find((colItem) => colItem.key === column.key).spacer = 20;
+									newData.columns.find((colItem) => colItem.key === column.key).spacer =
+										defaults.SPACER_WIDTH_ON_HOVER;
 									return newData;
 								});
 							}}
@@ -35,13 +37,14 @@ function ColumnsHead({ columns, setTabData }) {
 								setTabData((oldData) => {
 									let newData = { ...oldData };
 									console.log(newData.columns);
-									newData.columns.find((colItem) => colItem.key === column.key).spacer = 10;
+									newData.columns.find((colItem) => colItem.key === column.key).spacer =
+										defaults.SPACER_WIDTH;
 									return newData;
 								});
 							}}
 							draggable='true'
 							onDragStart={(e) => onDragStart(e, column.key)}>
-							&#x205E;&#x205E;
+							&#x205E;
 						</div>
 					</div>
 				);
