@@ -1,0 +1,11 @@
+.tab-arrow {
+	color: rgb(21, 184, 0);
+	font-size: x-large;
+	cursor: pointer;
+	transition: ease 150ms;
+	transform-origin: 42%;
+}
+
+.tab-arrow-holder {
+	margin: 2px 8px;
+}

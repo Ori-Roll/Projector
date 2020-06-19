@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+
 import style from "./Tab.module.css";
 import defaults from "../../defaults/";
+
 import Task from "./Task/Task";
-import TabHead from "./TabHead/TabHead";
+import ColumnsHead from "./ColumnsHead/ColumnsHead";
+import TabHeader from "./TabHeader/TabHeader";
+import TabArrow from "./TabArrow/TabArrow";
 
 function Tab() {
+	const [tabIsOpen, setTabIsOpen] = useState(false); // this needs to initially come from backend
+
 	const [tabData, setTabData] = useState({
 		columns: [
 			{
@@ -39,14 +45,23 @@ function Tab() {
 
 	return (
 		<div className={style.tab}>
-			<>
-				<TabHead columns={tabData.columns} />
-			</>
-			<>
+			<div className={style["tab-side-holder"]}>
+				<TabArrow tabIsOpen={tabIsOpen} setTabIsOpen={setTabIsOpen} />
+			</div>
+			<div className={style["tab-header-holder"]}>
+				<TabHeader />
+			</div>
+
+			<div
+				className={style["tab-content-holder"]}
+				style={!tabIsOpen ? { backgroundColor: "red", display: "none" } : {}}>
+				<ColumnsHead columns={tabData.columns} setTabData={setTabData} />
 				{tabData.tasks.map((task) => {
-					return <Task key={task.key} task={task} columns={tabData.columns} />;
+					return (
+						<Task key={task.key} task={task} columns={tabData.columns} setTabData={setTabData} />
+					);
 				})}
-			</>
+			</div>
 		</div>
 	);
 }

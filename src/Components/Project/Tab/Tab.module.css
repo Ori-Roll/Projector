@@ -1,5 +1,23 @@
 .tab {
-	border: red 3px solid;
+	border: rgb(236, 236, 236) 5px solid;
 	border-radius: 23px;
 	padding: 8px;
+	display: grid;
+	grid-template-columns: 40px auto;
+	grid-template-rows: 40px auto;
+	grid-template-areas:
+		"tab-side-holder tab-header-holder"
+		"tab-side-holder tab-content-holder";
+}
+
+.tab-side-holder {
+	grid-area: tab-side-holder;
+}
+
+.tab-content-holder {
+	grid-area: tab-content-holder;
+}
+
+.tab-header-holder {
+	grid-area: tab-header-holder;
 }

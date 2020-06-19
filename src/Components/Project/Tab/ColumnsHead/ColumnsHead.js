@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import style from "./TabHead.module.css";
+import style from "./ColumnsHead.module.css";
 
-function TabHead({ columns }) {
+function ColumnsHead({ columns, setTabData }) {
 	function onDragStart(e, columnKey) {
 		/* e.preventDefault(); */
 		console.log(columnKey);
@@ -23,6 +23,22 @@ function TabHead({ columns }) {
 							/* key={`${column.key}spacer`} */
 							className={style["column-spacer-handle"]}
 							style={{ width: column.spacer }}
+							onMouseOver={() => {
+								setTabData((oldData) => {
+									let newData = { ...oldData };
+									console.log(newData.columns);
+									newData.columns.find((colItem) => colItem.key === column.key).spacer = 20;
+									return newData;
+								});
+							}}
+							onMouseLeave={() => {
+								setTabData((oldData) => {
+									let newData = { ...oldData };
+									console.log(newData.columns);
+									newData.columns.find((colItem) => colItem.key === column.key).spacer = 10;
+									return newData;
+								});
+							}}
 							draggable='true'
 							onDragStart={(e) => onDragStart(e, column.key)}>
 							&#x205E;&#x205E;
@@ -34,6 +50,6 @@ function TabHead({ columns }) {
 	);
 }
 
-TabHead.propTypes = {};
+ColumnsHead.propTypes = {};
 
-export default TabHead;
+export default ColumnsHead;

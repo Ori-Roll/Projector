@@ -16,6 +16,7 @@
 
 .column-spacer {
 	width: 10px;
+	transition: ease 200ms;
 }
 
 /* .project-tab {

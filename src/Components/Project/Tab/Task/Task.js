@@ -15,8 +15,6 @@ const Task = ({ task, columns }) => {
 					</div>
 				);
 			})}
-			{/* <div className={styles["project-tab-content"]} style={{ width: thisWidth }}></div>
-			<div className={styles["tab-size-handle"]} /> */}
 		</div>
 	);
 };
