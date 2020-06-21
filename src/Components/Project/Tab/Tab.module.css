@@ -1,21 +1,25 @@
 .tab {
-	border: rgb(236, 236, 236) 5px solid;
-	border-radius: 23px;
-	padding: 8px;
+	padding: 20px;
 	display: grid;
 	grid-template-columns: 40px auto;
-	grid-template-rows: 40px auto;
+	grid-template-rows: 50px auto;
 	grid-template-areas:
-		"tab-side-holder tab-header-holder"
-		"tab-side-holder tab-content-holder";
+		"tab-side-holder    tab-header-holder"
+		"tab-content-holder tab-content-holder";
+	background-color: white;
 }
 
 .tab-side-holder {
 	grid-area: tab-side-holder;
 }
 
-.tab-content-holder {
+.tab-content-holder-opened {
 	grid-area: tab-content-holder;
+	display: block;
+}
+
+.tab-content-holder-closed {
+	display: none;
 }
 
 .tab-header-holder {

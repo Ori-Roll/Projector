@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import style from "./Project.module.css";
+
 import Tab from "./Tab/Tab";
+
+import style from "./Project.module.css"; // TODO: change from style to: import classes from '..';
 
 function Project(props) {
 	return (

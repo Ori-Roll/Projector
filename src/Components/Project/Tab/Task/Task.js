@@ -1,36 +1,28 @@
 import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
+import { CellOfType, TextCell, NumberCell } from "./Cells/CellTypes/CellTypes";
 import style from "./Task.module.css";
-import TextCell from "./Cells/TextCell/TextCell";
-import NumberCell from "./Cells/NumberCell/NumberCell";
 
-const Task = ({ task, columns }) => {
-	const cellComponentTypes = {
-		text: (data) => <TextCell data={data} />,
-		number: (data) => <NumberCell data={data} />,
-	};
-
+function Task({ task, columns }) {
 	return (
-		<div className={style["task"]}>
+		<div className={style["task"]} key={Math.random()}>
 			{columns.map((column) => {
 				return (
-					<>
-						<div
-							key={`${column.key}_${task.key}`}
-							className={style["cell-holder"]}
-							style={{ width: column.width }}>
-							{/* <div className={style["data-item"]} style={{ width: column.width }}>
-							{task[column.dataId].data}
-						</div> */}
-							{[cellComponentTypes[column.type](task[column.dataId])]}
+					<div key={Math.random()} className={style["cell-holder"]}>
+						<div key={Math.random()} style={{ width: column.width }}>
+							{/*                IS THIS CLEAR?                   */}
+							{[CellOfType[column.type](task[column.dataId])]}
 						</div>
-						<div className={style["column-spacer"]} style={{ width: column.spacer }}></div>
-					</>
+						<div
+							key={Math.random()}
+							className={style["column-spacer"]}
+							style={{ width: column.spacer }}></div>
+					</div>
 				);
 			})}
 		</div>
 	);
-};
+}
 
 Task.propTypes = {};
 

@@ -5,6 +5,7 @@ import style from "./ColumnsHead.module.css";
 
 function ColumnsHead({ columns, setTabData }) {
 	function onDragStart(e, columnKey) {
+		// TODO: pick package and use it
 		/* e.preventDefault(); */
 		console.log(columnKey);
 	}
@@ -17,17 +18,20 @@ function ColumnsHead({ columns, setTabData }) {
 						<div
 							/* key={`${column.key}tab-head`} */
 							className={style["tab-head-item"]}
-							style={{ width: column.width }}>
+							style={{
+								width: column.width,
+								backgroundColor: column.color ? column.color : {},
+							}}>
 							{column.dataId}
 						</div>
 						<div
 							/* key={`${column.key}spacer`} */
 							className={style["column-spacer-handle"]}
 							style={{ width: column.spacer }}
+							// TODO: pick and use resizable package
 							onMouseOver={() => {
 								setTabData((oldData) => {
 									let newData = { ...oldData };
-									console.log(newData.columns);
 									newData.columns.find((colItem) => colItem.key === column.key).spacer =
 										defaults.SPACER_WIDTH_ON_HOVER;
 									return newData;
@@ -36,7 +40,6 @@ function ColumnsHead({ columns, setTabData }) {
 							onMouseLeave={() => {
 								setTabData((oldData) => {
 									let newData = { ...oldData };
-									console.log(newData.columns);
 									newData.columns.find((colItem) => colItem.key === column.key).spacer =
 										defaults.SPACER_WIDTH;
 									return newData;
