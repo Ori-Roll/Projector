@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import _ from "lodash";
 
 import defaults from "../../defaults/";
+import { makeKey } from "../../misc/";
 
 import Task from "./Task/Task";
 import ColumnsHead from "./ColumnsHead/ColumnsHead";
@@ -50,10 +51,20 @@ function Tab({ tabItem }) {
 
 	useEffect(() => {
 		changeTabData({
-			newTask: { id: "a", "001": { content: "asdfkhdsbgkf" }, "002": { content: 5 } },
+			newTask: { id: "a", "001": { content: "changed Task" }, "002": { content: 5 } },
 			type: "CHANGE_TASK",
 		});
+		changeTabData({ newTask: newTask(tabData), type: "ADD_NEW_TASK" });
 	}, []);
+
+	function newTask(tabData) {
+		// This should use the "new" keyword and be a method
+		const newTask = { id: makeKey() };
+		tabData.columns.forEach((column) => {
+			newTask[column.id] = { content: defaults.CONTENT_FOR_CELL_TYPE[column.type] };
+		});
+		return newTask;
+	}
 
 	// TODO: choose drag and drop package, consider this: https://github.com/atlassian/react-beautiful-dnd
 	return (
