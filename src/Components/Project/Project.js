@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import defaults from "../defaults";
+import { makeKey } from "../misc";
 import Tab from "./Tab/Tab";
-
 import style from "./Project.module.css"; // TODO: change from style to: import classes from '..';
 
 function Project(props) {
@@ -21,7 +21,7 @@ function Project(props) {
 
 	const [projectData, setProjectData] = useState([
 		{
-			id: "abc_123",
+			id: makeKey(),
 			name: "Project A",
 			columns: [
 				{
