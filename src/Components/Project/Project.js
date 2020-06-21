@@ -12,10 +12,9 @@ function Project(props) {
 		// type check (string and of known types)
 		// maybe there will be a function that checks that the type exist on types of cells+ types of coumns+ext...
 		
-		const key = "2",
+        const id = "002",
 		const type = "number",
 		const width = defaults.WIDTH_OF_COLUMN[type],
-		const dataId = "002",
 		const spacer = defaults.SPACER_WIDTH,
 		const color = "#8b51bd",
 	} */
@@ -26,47 +25,44 @@ function Project(props) {
 			name: "Project A",
 			columns: [
 				{
-					key: /* newColumnKey() */ "1",
+					id: "001",
 					type: "text",
 					width: 150, // TODO: what defines min-width
-					dataId: /* newColumnDataId("text"), */ "001",
-					spacer: defaults.SPACER_WIDTH, // TODO: don't think you need this
+					spacer: defaults.SPACER_WIDTH,
 					// TODO: assume all/some columns will have "settings" prop
 				},
 				{
-					key: "2",
+					id: "002",
 					type: "number",
 					width: 300,
-					dataId: "002",
 					spacer: defaults.SPACER_WIDTH,
 					color: "#8b51bd",
 				},
 				{
 					// TODO: id: 'alfjhasl234234',
-					key: "3", // TODO: no need
+					id: "003", // TODO: no need
 					type: "stars",
 					width: 300,
-					dataId: "003", // TODO: no need
 					spacer: defaults.SPACER_WIDTH,
 					color: "rgb(64, 109, 255)",
 				},
 			],
 			tasks: [
 				{
-					key: "a", // is key id? I would consider changing this to id
+					id: "a",
 					"001": { content: "text for a001" },
 					"002": { content: "text for a002" },
 					"003": { content: 3 },
 					// "alfjhasl234234 (column id)": { content: 3 },
 				},
 				{
-					key: "b",
+					id: "b",
 					"001": { content: "text for b001" },
 					"002": { content: "text for b002" },
 					"003": { content: 3 },
 				},
 				{
-					key: "empty",
+					id: "empty",
 				},
 			],
 		},

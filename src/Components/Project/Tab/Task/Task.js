@@ -5,9 +5,7 @@ import style from "./Task.module.css";
 
 function Task({ task, columns }) {
 	function createCell(column) {
-		return task[column.dataId]
-			? CellOfType[column.type](task[column.dataId])
-			: CellOfType[column.type]();
+		return task[column.id] ? CellOfType[column.type](task[column.id]) : CellOfType[column.type]();
 	}
 
 	return (
@@ -15,13 +13,8 @@ function Task({ task, columns }) {
 			{columns.map((column) => {
 				return (
 					<div key={Math.random()} className={style["cell-holder"]}>
-						<div key={Math.random()} style={{ width: column.width }}>
-							{createCell(column)}
-						</div>
-						<div
-							key={Math.random()}
-							className={style["column-spacer"]}
-							style={{ width: column.spacer }}></div>
+						<div style={{ width: column.width }}>{createCell(column)}</div>
+						<div className={style["column-spacer"]} style={{ width: column.spacer }}></div>
 					</div>
 				);
 			})}

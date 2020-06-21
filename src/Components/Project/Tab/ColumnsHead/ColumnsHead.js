@@ -8,20 +8,16 @@ function ColumnsHead({ columns }) {
 		<div className={style["tab-head"]}>
 			{columns.map((column) => {
 				return (
-					<div className={style["item-container"]} key={`head-cont${column.key}`}>
+					<div className={style["item-container"]} key={`head-cont${column.id}`}>
 						<div
-							/* key={`${column.key}tab-head`} */
 							className={style["tab-head-item"]}
 							style={{
 								width: column.width,
 								backgroundColor: column.color ? column.color : {},
 							}}>
-							{column.dataId}
+							{column.id}
 						</div>
-						<div
-							/* key={`${column.key}spacer`} */
-							className={style["column-spacer-handle"]}
-							style={{ width: column.spacer }}>
+						<div className={style["column-spacer-handle"]} style={{ width: column.spacer }}>
 							&#x205E;
 						</div>
 					</div>

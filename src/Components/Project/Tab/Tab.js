@@ -15,8 +15,8 @@ import style from "./Tab.module.css"; // TODO: rename file to lowercase, in my p
 function tabDataReducer(oldData, action) {
 	const data = _.cloneDeep(oldData);
 
-	function indexForTaskId(key) {
-		return oldData.tasks.findIndex((task) => task.key === key);
+	function indexForTaskId(id) {
+		return oldData.tasks.findIndex((task) => task.id === id);
 	}
 
 	switch (action.type) {
@@ -24,13 +24,16 @@ function tabDataReducer(oldData, action) {
 			data.tasks.push(action.newTask);
 			return data;
 		case "CHANGE_TASK":
-			data.tasks[indexForTaskId(action.newTask.key)] = {
-				...data.tasks[indexForTaskId(action.newTask.key)],
+			if (!action.newTask) throw new Error("CHANGE_TASK - no newTask provided");
+			data.tasks[indexForTaskId(action.newTask.id)] = {
+				...data.tasks[indexForTaskId(action.newTask.id)],
 				...action.newTask,
 			};
 			return data;
+		case "DELETE_TASK":
+
 		default:
-			console.error("No action!?");
+			console.error("No action provided");
 	}
 }
 
@@ -47,7 +50,7 @@ function Tab({ tabItem }) {
 
 	useEffect(() => {
 		changeTabData({
-			newTask: { key: "a", "001": { content: "asdfkhdsbgkf" }, "002": { content: 5 } },
+			newTask: { id: "a", "001": { content: "asdfkhdsbgkf" }, "002": { content: 5 } },
 			type: "CHANGE_TASK",
 		});
 	}, []);
@@ -73,7 +76,7 @@ function Tab({ tabItem }) {
 				{/* TODO use class open */}
 				<ColumnsHead columns={tabData.columns} />
 				{tabData.tasks.map((task) => {
-					return <Task key={task.key} task={task} columns={tabData.columns} />;
+					return <Task key={task.id} task={task} columns={tabData.columns} />;
 				})}
 			</div>
 		</div>
