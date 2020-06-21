@@ -65,14 +65,17 @@ function Project(props) {
 					"002": { content: "text for b002" },
 					"003": { content: 3 },
 				},
+				{
+					key: "empty",
+				},
 			],
 		},
 	]);
 
 	return (
 		<div className={style.project}>
-			{projectData.map((tab) => (
-				<Tab key={tab.id} tab={tab} setProjectData={setProjectData} />
+			{projectData.map((tabItem) => (
+				<Tab key={tabItem.id} tabItem={tabItem} setProjectData={setProjectData} />
 			))}
 		</div>
 	);
