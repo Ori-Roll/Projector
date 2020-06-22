@@ -16,25 +16,36 @@ import style from "./Tab.module.css"; // TODO: rename file to lowercase, in my p
 function tabDataReducer(oldData, action) {
 	const data = _.cloneDeep(oldData);
 
-	function indexForTaskId(id) {
-		return oldData.tasks.findIndex((task) => task.id === id);
+	function indexOfTask(id) {
+		let index = oldData.tasks.findIndex((t) => {
+			return t.id === id;
+		});
+		if (index === -1) {
+			throw new Error("No matching task");
+		}
+		return index;
 	}
 
 	switch (action.type) {
 		case "ADD_NEW_TASK":
 			data.tasks.push(action.newTask);
 			return data;
-		case "CHANGE_TASK":
-			if (!action.newTask) throw new Error("CHANGE_TASK - no newTask provided");
-			data.tasks[indexForTaskId(action.newTask.id)] = {
-				...data.tasks[indexForTaskId(action.newTask.id)],
+		case "EDIT_TASK":
+			if (!action.newTask) throw new Error("EDIT_TASK - no newTask provided");
+			data.tasks[indexOfTask(action.newTask.id)] = {
+				...data.tasks[indexOfTask(action.newTask.id)],
 				...action.newTask,
 			};
 			return data;
 		case "DELETE_TASK":
-
+			if (action.task || action.id) {
+				data.tasks.splice(indexOfTask(action.id ? action.id : action.task.id), 1);
+			} else {
+				throw new Error("DELETE_TASK - no Task or id provided");
+			}
+			return data;
 		default:
-			console.error("No action provided");
+			throw new Error("REDUCER: No action provided");
 	}
 }
 
@@ -52,9 +63,13 @@ function Tab({ tabItem }) {
 	useEffect(() => {
 		changeTabData({
 			newTask: { id: "a", "001": { content: "changed Task" }, "002": { content: 5 } },
-			type: "CHANGE_TASK",
+			type: "EDIT_TASK",
 		});
 		changeTabData({ newTask: newTask(tabData), type: "ADD_NEW_TASK" });
+		changeTabData({
+			id: "b",
+			type: "DELETE_TASK",
+		});
 	}, []);
 
 	function newTask(tabData) {
