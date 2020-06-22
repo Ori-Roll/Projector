@@ -19,54 +19,67 @@ function Project(props) {
 		const color = "#8b51bd",
 	} */
 
-	const [projectData, setProjectData] = useState([
-		{
-			id: makeKey(),
-			name: "Project A",
-			columns: [
-				{
-					id: "001",
-					type: "text",
-					width: 150, // TODO: what defines min-width
-					spacer: defaults.SPACER_WIDTH,
-					// TODO: assume all/some columns will have "settings" prop
-				},
-				{
-					id: "002",
-					type: "number",
-					width: 300,
-					spacer: defaults.SPACER_WIDTH,
-					color: "#8b51bd",
-				},
-				{
-					// TODO: id: 'alfjhasl234234',
-					id: "003", // TODO: no need
-					type: "stars",
-					width: 300,
-					spacer: defaults.SPACER_WIDTH,
-					color: "rgb(64, 109, 255)",
-				},
-			],
-			tasks: [
-				{
-					id: "a",
-					"001": { content: "text for a001" },
-					"002": { content: "text for a002" },
-					"003": { content: 3 },
-					// "alfjhasl234234 (column id)": { content: 3 },
-				},
-				{
-					id: "b",
-					"001": { content: "text for b001" },
-					"002": { content: "text for b002" },
-					"003": { content: 3 },
-				},
-				{
-					id: "empty",
-				},
-			],
-		},
-	]);
+	const [projectData, setProjectData] = useState({
+		id: "someProjId",
+		name: "someProjName",
+		users: [
+			{ id: "user1Id", permission: "viewer" }, // can only view things
+			{ id: "user2Is", permission: "user" }, // can change and add things
+            { id: "user3Id", permission: "boss" }, // at least one has to be boss, can change settings and delete project
+             //users have a list of projects too, need valedations from projects when getting projects
+		],
+		tabs: [
+			{
+				id: makeKey(),
+				name: "Project A",
+				columns: [
+					{
+						id: "001",
+						type: "text",
+						width: 150, // TODO: what defines min-width
+						spacer: defaults.SPACER_WIDTH,
+						// TODO: assume all/some columns will have "settings" prop
+					},
+					{
+						id: "002",
+						type: "number",
+						width: 300,
+						spacer: defaults.SPACER_WIDTH,
+						color: "#8b51bd",
+					},
+					{
+						// TODO: id: 'alfjhasl234234',
+						id: "003", // TODO: no need
+						type: "stars",
+						width: 300,
+						spacer: defaults.SPACER_WIDTH,
+						color: "rgb(64, 109, 255)",
+					},
+				],
+				tasks: [
+					{
+						id: "a",
+						"001": { content: "text for a001" },
+						"002": { content: "text for a002" },
+                        "003": { content: 3 },
+                        dateCreated: new Date();
+						// "alfjhasl234234 (column id)": { content: 3 },
+					},
+					{
+						id: "b",
+						"001": { content: "text for b001" },
+						"002": { content: "text for b002" },
+                        "003": { content: 3 },
+                        dateCreated: new Date();
+					},
+					{
+                        id: "empty",
+                        dateCreated: new Date();
+					},
+				],
+			},
+		],
+	});
 
 	return (
 		<div className={style.project}>
