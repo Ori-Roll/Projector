@@ -51,7 +51,7 @@ function tabDataReducer(oldData, action) {
 
 function Tab({ tabItem }) {
 	/* TODO: (Ori) Neads to be a reducer with the ability to update the original data from the source after it updetes it one*/
-	const [tabData, changeTabData] = useReducer(tabDataReducer, tabItem);
+	const [tabData, changeTabData] = useReducer(tabDataReducer, _.cloneDeep(tabItem));
 
 	// TODO: I would rename this
 	const [tabIsOpen, setTabIsOpen] = useState(true); // TODO: (Ori) this needs to initially come from backend
