@@ -6,14 +6,6 @@
 	display: flex;
 }
 
-.tab-head-item {
-	text-align: center;
-	color: rgb(255, 255, 255);
-	padding: 5px 5px 10px;
-	margin: 2px;
-	background-color: #9fa5ab;
-}
-
 .column-spacer-handle {
 	height: 30px;
 	margin: auto 0;

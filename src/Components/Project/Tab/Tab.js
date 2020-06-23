@@ -6,7 +6,7 @@ import defaults from "../../defaults/";
 import { makeKey } from "../../misc/";
 
 import Task from "./Task/Task";
-import ColumnsHead from "./ColumnsHead/ColumnsHead";
+import ColumnsHeadWrapper from "./ColumnsHeadWrapper/ColumnsHeadWrapper";
 import TabHeader from "./TabHeader/TabHeader";
 import TabArrow from "./TabArrow/TabArrow";
 
@@ -100,7 +100,7 @@ function Tab({ tabItem }) {
 				style={!tabIsOpen ? { backgroundColor: "red", display: "none" } : {}}>
 				{" "}
 				{/* TODO use class open */}
-				<ColumnsHead columns={tabData.columns} />
+				<ColumnsHeadWrapper columns={tabData.columns} />
 				{tabData.tasks.map((task) => {
 					return <Task key={task.id} task={task} columns={tabData.columns} />;
 				})}
