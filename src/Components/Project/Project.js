@@ -4,6 +4,7 @@ import defaults from "../defaults";
 import { makeKey } from "../misc";
 import Tab from "./Tab/Tab";
 import style from "./Project.module.css"; // TODO: change from style to: import classes from '..';
+import { forEach } from "lodash";
 
 function Project(props) {
 	/* 
@@ -25,8 +26,8 @@ function Project(props) {
 		users: [
 			{ id: "user1Id", permission: "viewer" }, // can only view things
 			{ id: "user2Is", permission: "user" }, // can change and add things
-            { id: "user3Id", permission: "boss" }, // at least one has to be boss, can change settings and delete project
-             //users have a list of projects too, need valedations from projects when getting projects
+			{ id: "user3Id", permission: "boss" }, // at least one has to be boss, can change settings and delete project
+			//users have a list of projects too, need valedations from projects when getting projects
 		],
 		tabs: [
 			{
@@ -56,36 +57,61 @@ function Project(props) {
 						color: "rgb(64, 109, 255)",
 					},
 				],
-				tasks: [
-					{
-						id: "a",
-						"001": { content: "text for a001" },
-						"002": { content: "text for a002" },
-                        "003": { content: 3 },
-                        dateCreated: new Date();
-						// "alfjhasl234234 (column id)": { content: 3 },
-					},
-					{
-						id: "b",
-						"001": { content: "text for b001" },
-						"002": { content: "text for b002" },
-                        "003": { content: 3 },
-                        dateCreated: new Date();
-					},
-					{
-                        id: "empty",
-                        dateCreated: new Date();
-					},
-				],
+				tasksQuerie: ["a", "b", "empty"],
+			},
+		],
+		tasks: [
+			{
+				id: "a",
+				"001": { content: "text for a001" },
+				"002": { content: "text for a002" },
+				"003": { content: 3 },
+				dateCreated: new Date(),
+				// "alfjhasl234234 (column id)": { content: 3 },
+			},
+			{
+				id: "b",
+				"001": { content: "text for b001" },
+				"002": { content: "text for b002" },
+				"003": { content: 3 },
+				dateCreated: new Date(),
+			},
+			{
+				id: "empty",
+				dateCreated: new Date(),
 			},
 		],
 	});
 
+	function taskOfIdInList(id, listOfTasks) {
+		// correct this mess
+		let index = listOfTasks.findIndex((task) => {
+			// bad "t" in original find in reducer
+			return task.id === id;
+		});
+		if (index === -1) {
+			throw new Error("No matching task");
+		}
+		return index;
+	}
 	return (
 		<div className={style.project}>
-			{projectData.map((tabItem) => (
-				<Tab key={tabItem.id} tabItem={tabItem} setProjectData={setProjectData} />
-			))}
+			{projectData.tabs.map((tabItem) => {
+				//!!!!!!!!!!!!DO I DO THISSSSSS ???????
+				let tasks = [];
+				tabItem.tasksQuerie.forEach((querie) =>
+					tasks.push(projectData.tasks[taskOfIdInList(querie, projectData.tasks)])
+				);
+				tabItem.tasks = tasks;
+				return (
+					<Tab
+						key={tabItem.id}
+						tabItem={tabItem}
+						setProjectData={setProjectData}
+						projectData={projectData}
+					/>
+				);
+			})}
 		</div>
 	);
 }
