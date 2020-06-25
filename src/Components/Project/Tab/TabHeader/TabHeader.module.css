@@ -5,3 +5,7 @@
 	color: rgb(3, 184, 63);
 	cursor: pointer;
 }
+
+.tab-header-holder {
+	display: flex;
+}

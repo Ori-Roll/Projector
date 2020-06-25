@@ -39,14 +39,19 @@ function Project(props) {
 						type: "text",
 						width: 150, // TODO: what defines min-width
 						spacer: defaults.SPACER_WIDTH,
+						color: "#9b51bd",
+						isDragged: false,
+						prefrences: {},
 						// TODO: assume all/some columns will have "settings" prop
 					},
 					{
 						id: "002",
 						type: "number",
-						width: 300,
+						width: 190,
 						spacer: defaults.SPACER_WIDTH,
 						color: "#8b51bd",
+						isDragged: false,
+						prefrences: {},
 					},
 					{
 						// TODO: id: 'alfjhasl234234',
@@ -55,6 +60,22 @@ function Project(props) {
 						width: 300,
 						spacer: defaults.SPACER_WIDTH,
 						color: "rgb(64, 109, 255)",
+						isDragged: false,
+						prefrences: {},
+					},
+					{
+						id: "004", // TODO: no need
+						type: "status",
+						width: 100,
+						spacer: defaults.SPACER_WIDTH,
+						color: "rgb(164, 109, 255)",
+						isDragged: false,
+						prefrences: {
+							colors: {
+								done: "green",
+								working: "yellow",
+							},
+						},
 					},
 				],
 				tasksQuerie: ["a", "b", "empty"],

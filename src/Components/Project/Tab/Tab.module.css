@@ -1,18 +1,18 @@
 .tab {
 	padding: 20px;
 	display: grid;
-	grid-template-columns: 40px auto;
+	/* grid-template-columns: 40px auto; */
 	grid-template-rows: 50px auto;
 	grid-template-areas:
-		"tab-side-holder    tab-header-holder"
-		"tab-content-holder tab-content-holder";
+		"tab-header-holder"
+		"tab-content-holder";
 	background-color: white;
 }
-
+/* 
 .tab-side-holder {
 	grid-area: tab-side-holder;
 }
-
+ */
 .tab-content-holder-opened {
 	grid-area: tab-content-holder;
 	display: block;
