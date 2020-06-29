@@ -41,7 +41,7 @@ function Project(props) {
 						spacer: defaults.SPACER_WIDTH,
 						color: "#9b51bd",
 						isDragged: false,
-						prefrences: {},
+						preferences: {},
 						// TODO: assume all/some columns will have "settings" prop
 					},
 					{
@@ -51,7 +51,7 @@ function Project(props) {
 						spacer: defaults.SPACER_WIDTH,
 						color: "#8b51bd",
 						isDragged: false,
-						prefrences: {},
+						preferences: {},
 					},
 					{
 						// TODO: id: 'alfjhasl234234',
@@ -61,7 +61,7 @@ function Project(props) {
 						spacer: defaults.SPACER_WIDTH,
 						color: "rgb(64, 109, 255)",
 						isDragged: false,
-						prefrences: {},
+						preferences: {},
 					},
 					{
 						id: "004", // TODO: no need
@@ -70,10 +70,10 @@ function Project(props) {
 						spacer: defaults.SPACER_WIDTH,
 						color: "rgb(164, 109, 255)",
 						isDragged: false,
-						prefrences: {
-							colors: {
-								done: "green",
-								working: "yellow",
+						preferences: {
+							selectables: {
+								done: { color: "green", text: "DONE" },
+								working: { color: "yellow", text: "WORKING" },
 							},
 						},
 					},
@@ -87,6 +87,7 @@ function Project(props) {
 				"001": { content: "text for a001" },
 				"002": { content: "text for a002" },
 				"003": { content: 3 },
+				"004": { content: "done" },
 				dateCreated: new Date(),
 				// "alfjhasl234234 (column id)": { content: 3 },
 			},

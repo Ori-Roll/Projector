@@ -16,11 +16,14 @@ function ColumnSpacerHeader({ column, changeTabData, columnIsDragged }) {
 		}
 	}
 
+	function onMouseUp() {}
+
 	return (
 		<div
 			className={style["head-spacer-handle"]}
 			onMouseOver={() => toggleMouseOver(true)}
 			onMouseLeave={() => toggleMouseOver(false)}
+			onMouseUp={() => onMouseUp()}
 			style={{ width: column.spacer }}>
 			{columnIsDragged ? <div className={style["head-spacer-hover-area"]}></div> : null}
 		</div>

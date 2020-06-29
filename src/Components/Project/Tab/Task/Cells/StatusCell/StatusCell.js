@@ -2,13 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import style from "./StatusCell.module.css";
 
-function StatusCell({ cellData = { status: "done" }, column }) {
-	const status = {
-		working: <div className={style["status-cell"]}>WORKING</div>,
-		done: <div className={style["status-cell"]}>DONE</div>,
-	};
+function StatusCell({ cellData = { content: "done" }, column = {} }) {
+	console.log(column);
+
 	console.log(cellData);
-	return status[cellData.status];
+	return <div></div>;
 }
 
 StatusCell.propTypes = {};

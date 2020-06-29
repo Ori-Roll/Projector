@@ -67,6 +67,13 @@ function tabDataReducer(oldData, action) {
 				data.columns[i] = { ...element, ...action.newData };
 			});
 			return data;
+		/* case "MOVE_COLUMN_AFTER":
+			if (!action.column)
+				throw new Error("MOVE_COLUMN_AFTER - no column to move - missing: column");
+			if (!action.moveAfter)
+				throw new Error("MOVE_COLUMN_AFTER - no column to move after -  missing: moveAfter");
+			data.splice(indexOfColumn(moveAfter.id) + 1, 0, column).splice(indexOfColumn(column.id), 1);
+			return data; */
 		default:
 			throw new Error("tabDataReducer: No action provided");
 	}
@@ -91,7 +98,8 @@ function Tab({ tabItem }) {
 		return newTask;
 	}
 
-	const [columnIsDragged, setColumnIsDragged] = useState(false);
+	const [columnIsDragged, setColumnIsDragged] = useState(false); // ???
+	const [draggedColumn, setDraggedColumn] = useState(null);
 	const [mouseXposition, setMouseXposition] = useState(0);
 
 	// TODO: choose drag and drop package, consider this: https://github.com/atlassian/react-beautiful-dnd

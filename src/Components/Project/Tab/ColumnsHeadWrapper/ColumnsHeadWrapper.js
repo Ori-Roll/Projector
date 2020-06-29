@@ -14,16 +14,18 @@ function ColumnsHeadWrapper({
 }) {
 	return (
 		<div className={style["tab-head"]}>
+			{columnIsDragged ? (
+				<div style={{ width: 0 }}>
+					<div
+						className={style["floating-column"]}
+						style={columnIsDragged ? { left: mouseXposition - 70 } : { display: "none" }}>
+						-
+					</div>
+				</div>
+			) : null}
 			{columns.map((column) => {
 				return (
 					<div className={style["item-container"]} key={`head-cont${column.id}`}>
-						{columnIsDragged ? (
-							<div
-								className={style["floating-column"]}
-								style={columnIsDragged ? { left: mouseXposition - 70 } : { display: "none" }}
-							/>
-						) : null}
-
 						<ColumnHead
 							column={column}
 							columnIsDragged={columnIsDragged}
