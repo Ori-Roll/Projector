@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import style from "./ColumnHead.module.css";
 import defaults from "../../../../defaults";
 
-function ColumnSpacerHeader({ column, changeTabData, columnIsDragged }) {
+function ColumnHeadSpacer({ column, changeTabData, draggedColumn }) {
 	function toggleMouseOver(mouseIsOver) {
-		if (columnIsDragged) {
+		if (draggedColumn) {
 			changeTabData({
 				newColumn: {
 					id: column.id,
@@ -16,7 +16,15 @@ function ColumnSpacerHeader({ column, changeTabData, columnIsDragged }) {
 		}
 	}
 
-	function onMouseUp() {}
+	function onMouseUp() {
+		// move draggedColumn after column
+		console.log("mouseUp");
+		changeTabData({
+			column: draggedColumn,
+			moveAfter: column,
+			type: "MOVE_COLUMN_AFTER",
+		});
+	}
 
 	return (
 		<div
@@ -25,13 +33,13 @@ function ColumnSpacerHeader({ column, changeTabData, columnIsDragged }) {
 			onMouseLeave={() => toggleMouseOver(false)}
 			onMouseUp={() => onMouseUp()}
 			style={{ width: column.spacer }}>
-			{columnIsDragged ? <div className={style["head-spacer-hover-area"]}></div> : null}
+			{draggedColumn ? <div className={style["head-spacer-hover-area"]}></div> : null}
 		</div>
 	);
 }
 
-ColumnSpacerHeader.propTypes = {};
+ColumnHeadSpacer.propTypes = {};
 
-export default ColumnSpacerHeader;
+export default ColumnHeadSpacer;
 
 //&#x205E;

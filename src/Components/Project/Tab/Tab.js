@@ -67,13 +67,20 @@ function tabDataReducer(oldData, action) {
 				data.columns[i] = { ...element, ...action.newData };
 			});
 			return data;
-		/* case "MOVE_COLUMN_AFTER":
+		case "MOVE_COLUMN_AFTER":
 			if (!action.column)
 				throw new Error("MOVE_COLUMN_AFTER - no column to move - missing: column");
 			if (!action.moveAfter)
 				throw new Error("MOVE_COLUMN_AFTER - no column to move after -  missing: moveAfter");
-			data.splice(indexOfColumn(moveAfter.id) + 1, 0, column).splice(indexOfColumn(column.id), 1);
-			return data; */
+
+			data.columns.splice(indexOfColumn(action.column.id), 1);
+
+			if (indexOfColumn(action.moveAfter.id) > indexOfColumn(action.column.id)) {
+				data.columns.splice(indexOfColumn(action.moveAfter.id), 0, action.column);
+			} else {
+				data.columns.splice(indexOfColumn(action.moveAfter.id) + 1, 0, action.column);
+			}
+			return data;
 		default:
 			throw new Error("tabDataReducer: No action provided");
 	}
@@ -88,7 +95,7 @@ function Tab({ tabItem }) {
 	function toggleTabIsOpen() {
 		setTabIsOpen(!tabIsOpen);
 	}
-
+	console.log(tabData);
 	function newTask(tabData) {
 		// This should use the "new" keyword and be a method
 		const newTask = { id: makeKey() };
@@ -98,16 +105,15 @@ function Tab({ tabItem }) {
 		return newTask;
 	}
 
-	const [columnIsDragged, setColumnIsDragged] = useState(false); // ???
 	const [draggedColumn, setDraggedColumn] = useState(null);
 	const [mouseXposition, setMouseXposition] = useState(0);
 
 	// TODO: choose drag and drop package, consider this: https://github.com/atlassian/react-beautiful-dnd
 	return (
 		<MouseMoveWrapper
-			columnIsDragged={columnIsDragged}
+			draggedColumn={draggedColumn}
+			setDraggedColumn={setDraggedColumn}
 			setMouseXposition={setMouseXposition}
-			setColumnIsDragged={setColumnIsDragged}
 			changeTabData={changeTabData}>
 			<div className={style.tab}>
 				{/* change holder to wrapper, consider removing this */}
@@ -124,8 +130,8 @@ function Tab({ tabItem }) {
 						columns={tabData.columns}
 						changeTabData={changeTabData}
 						mouseXposition={mouseXposition}
-						columnIsDragged={columnIsDragged}
-						setColumnIsDragged={setColumnIsDragged}
+						draggedColumn={draggedColumn}
+						setDraggedColumn={setDraggedColumn}
 					/>
 					{tabData.tasks.map((task) => {
 						return <Task key={task.id} task={task} columns={tabData.columns} />;

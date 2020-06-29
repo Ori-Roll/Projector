@@ -5,12 +5,12 @@ import Spacer from "./Spacer/Spacer";
 import style from "./Task.module.css";
 
 function Task({ task, columns }) {
-	function createCell(column) {
-		return task[column.id]
-			? CellOfType[column.type](task[column.id], column)
-			: CellOfType[column.type](null, column);
+	function createCell(column = () => console.error("no column for cell")) {
+		if (!column.type) throw new Error("No column.type for cell");
+		/* console.log("column", column);
+		console.log("task", task); */
+		return CellOfType[column.type](task[column.id], column);
 	}
-
 	return (
 		<div className={style["task"]} key={Math.random()}>
 			{columns.map((column) => {

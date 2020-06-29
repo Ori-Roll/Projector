@@ -4,24 +4,26 @@ import PropTypes from "prop-types";
 import defaults from "../defaults";
 
 function MouseMoveWrapper({
-	columnIsDragged,
+	draggedColumn,
+	setDraggedColumn,
 	setMouseXposition,
-	setColumnIsDragged,
 	changeTabData,
 	...props
 }) {
 	const onMouseMove = (e) => {
-		if (columnIsDragged) {
+		if (draggedColumn) {
 			setMouseXposition(e.clientX);
 		}
 	};
 	const onMouseUp = () => {
-		if (columnIsDragged) {
+		if (draggedColumn) {
 			changeTabData({
+				// this can have an issue with spacer having no "isDragged" to know what column gose there
 				newData: { isDragged: false, spacer: defaults.SPACER_WIDTH },
 				type: "EDIT_ALL_COLUMNS",
 			});
-			setColumnIsDragged(false);
+
+			setDraggedColumn(null);
 		}
 	};
 

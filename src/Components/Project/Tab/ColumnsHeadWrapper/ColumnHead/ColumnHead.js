@@ -3,11 +3,12 @@ import PropTypes from "prop-types";
 
 import style from "./ColumnHead.module.css";
 
-function ColumnHead({ column, columnIsDragged, setColumnIsDragged, changeTabData }) {
+function ColumnHead({ column, setDraggedColumn, changeTabData }) {
 	function onMouseDown(e) {
-		setColumnIsDragged(true);
+		setDraggedColumn(column);
 		changeTabData({
 			newColumn: {
+				//newColumn need to be renamed changedColumn or maby just column
 				id: column.id,
 				isDragged: true,
 			},

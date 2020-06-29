@@ -9,16 +9,14 @@ function ColumnsHeadWrapper({
 	columns,
 	changeTabData,
 	mouseXposition,
-	columnIsDragged,
-	setColumnIsDragged,
+	draggedColumn,
+	setDraggedColumn,
 }) {
 	return (
 		<div className={style["tab-head"]}>
-			{columnIsDragged ? (
+			{draggedColumn ? (
 				<div style={{ width: 0 }}>
-					<div
-						className={style["floating-column"]}
-						style={columnIsDragged ? { left: mouseXposition - 70 } : { display: "none" }}>
+					<div className={style["floating-column"]} style={{ left: mouseXposition - 70 }}>
 						-
 					</div>
 				</div>
@@ -28,14 +26,14 @@ function ColumnsHeadWrapper({
 					<div className={style["item-container"]} key={`head-cont${column.id}`}>
 						<ColumnHead
 							column={column}
-							columnIsDragged={columnIsDragged}
-							setColumnIsDragged={setColumnIsDragged}
+							draggedColumn={draggedColumn}
+							setDraggedColumn={setDraggedColumn}
 							changeTabData={changeTabData}
 						/>
 						<ColumnHeadSpacer
 							column={column}
 							changeTabData={changeTabData}
-							columnIsDragged={columnIsDragged}
+							draggedColumn={draggedColumn}
 						/>
 					</div>
 				);
