@@ -1,6 +1,7 @@
 .task {
 	display: flex;
 	height: 26px;
+	margin-bottom: 2px;
 }
 
 .cell-wrapper {
