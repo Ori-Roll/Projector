@@ -1,27 +1,93 @@
+.column-head-wrapper {
+	position: relative;
+}
+
+.column-content-wrapper {
+	position: relative;
+	background-color: rgb(255, 255, 255);
+	border: rgb(191, 192, 201) 1.2px dashed;
+	border-radius: 2px;
+	/* margin: 0 0 2px 0; */
+	padding: 2px 0 0px;
+	z-index: 3;
+}
+
 .column-head-item {
 	text-align: center;
-	color: rgb(255, 255, 255);
-	padding: 5px 5px 10px;
-	margin: 2px;
-	background-color: #9fa5ab;
+	background-color: rgb(255, 255, 255);
+	color: rgb(105, 105, 105);
+	padding: 5px 8px 5px;
+	width: 100%;
+	border: none;
+	z-index: 3;
+}
+
+.column-head-popup {
+	position: absolute;
+	top: 0px;
+	left: -10px;
+	width: calc(100% + 20px);
+	height: 35px;
+	padding: 0;
+	border-radius: 20px 20px 0 0;
+	z-index: 4;
+	transition: ease 150ms 300ms;
+}
+
+.column-head-drag-handle {
+	position: absolute;
+	right: 15px;
+	top: -10px;
+	width: 30px;
+	height: 30px;
+	background-color: rgb(255, 255, 255);
+	color: rgb(54, 54, 54);
+	box-shadow: rgb(194, 194, 194) 1px 1px 10px;
+	border-radius: 10px;
+	text-align: center;
+	padding: 2px 0;
+	cursor: grab;
+	transition: ease 200ms;
+}
+
+.column-head-setup-btn {
+	position: absolute;
+	left: 15px;
+	top: -10px;
+	width: 30px;
+	height: 30px;
+	background-color: rgb(255, 255, 255);
+	color: rgb(54, 54, 54);
+	box-shadow: rgb(194, 194, 194) 1px 1px 10px;
+	border-radius: 10px;
+	text-align: center;
+	font-size: larger;
+	cursor: pointer;
+	/* transition: ease 200ms; */
 }
 
 .head-spacer-handle {
 	height: 30px;
-	/* margin: auto 0;
-	padding: 2px 0;
-	overflow: hidden;
-	text-align: center;
-	border-radius: 5px;
-	background-color: rgb(230, 230, 230);
-	color: rgb(192, 192, 192); */
 	cursor: col-resize;
-	/* transition: ease 2000ms; */
+	transition: ease 100ms;
+	border-radius: 10px;
 }
 
 .head-spacer-hover-area {
+	position: relative;
+	top: -30px;
+	right: 20px;
+	width: 70px;
+	height: 90px;
+	z-index: 5;
+	opacity: 0;
+}
+
+.head-spacer-hover-resize-area {
 	position: absolute;
-	width: 40px;
-	height: 50px;
+	width: 15px;
+	height: 40px;
+	z-index: 5;
+	transform: translateX(-3px);
 	opacity: 0;
 }

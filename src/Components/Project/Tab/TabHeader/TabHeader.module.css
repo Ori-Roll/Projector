@@ -1,3 +1,7 @@
+.tab-header-wrapper {
+	display: flex;
+}
+
 .tab-header {
 	padding: 7px;
 	font-size: large;
@@ -6,6 +10,10 @@
 	cursor: pointer;
 }
 
-.tab-header-holder {
-	display: flex;
+.tab-header-right-menu {
+	text-align: right;
+	color: burlywood;
+	background-color: rgb(211, 211, 211);
+	border-radius: 10px;
+	width: 40px;
 }

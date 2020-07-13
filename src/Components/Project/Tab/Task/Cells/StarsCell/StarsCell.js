@@ -2,9 +2,9 @@ import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import style from "./StarsCell.module.css";
 
-function StarsCell({ cellData = { content: 0 } }) {
-	const [starsOnSet, setStarsOnSet] = useState(cellData.content);
-	const [starsOn, setStarsOn] = useState(cellData.content);
+function StarsCell({ id, content, doCellContentChange }) {
+	const [starsOnSet, setStarsOnSet] = useState(content);
+	const [starsOn, setStarsOn] = useState(content);
 	let allStars = new Array(5);
 
 	return (

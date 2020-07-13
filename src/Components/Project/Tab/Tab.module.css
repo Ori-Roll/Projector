@@ -1,27 +1,60 @@
 .tab {
-	padding: 20px;
+	padding: 0 5px;
+	margin: 0 0 10px;
+	border-bottom: rgb(221, 221, 221) 1px dashed;
 	display: grid;
-	/* grid-template-columns: 40px auto; */
-	grid-template-rows: 50px auto;
+	grid-template-columns: max-content 80px auto auto;
+	grid-template-rows: 80px auto 20px;
 	grid-template-areas:
-		"tab-header-holder"
-		"tab-content-holder";
-	background-color: white;
+		"tab-header-wrapper  tab-header-wrapper . tab-scroll-end-gradiant"
+		"tab-content-wrapper tab-right-control	. tab-scroll-end-gradiant"
+		". 					 .					. .";
+	overflow-x: auto;
 }
+
 /* 
-.tab-side-holder {
-	grid-area: tab-side-holder;
+.tab-side-wrapper {
+	grid-area: tab-side-wrapper;
 }
  */
-.tab-content-holder-opened {
-	grid-area: tab-content-holder;
+
+.tab-content-wrapper {
+	grid-area: tab-content-wrapper;
 	display: block;
 }
 
-.tab-content-holder-closed {
+.tab-content-wrapper-closed {
 	display: none;
 }
 
-.tab-header-holder {
-	grid-area: tab-header-holder;
+.tab-header-wrapper {
+	grid-area: tab-header-wrapper;
+}
+
+.tab-right-control-wrapper {
+	grid-area: tab-right-control;
+}
+
+.tab::-webkit-scrollbar {
+	width: 12px;
+	height: 12px;
+}
+
+.tab::-webkit-scrollbar-track {
+	margin: 10px;
+	border-bottom: white 10px solid;
+}
+.tab::-webkit-scrollbar-thumb {
+	background-color: rgb(221, 221, 221);
+	border-radius: 10px;
+}
+
+.tab-scroll-end-gradiant {
+	grid-area: tab-scroll-end-gradiant;
+	position: sticky;
+	top: 0;
+	right: -5px;
+	width: 50px;
+	background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgb(255, 255, 255));
+	z-index: 5;
 }

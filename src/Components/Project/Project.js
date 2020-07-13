@@ -1,25 +1,11 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import defaults from "../defaults";
-import { makeKey } from "../misc";
 import Tab from "./Tab/Tab";
+import { NewTab } from "../misc/NewDataMakers";
 import style from "./Project.module.css"; // TODO: change from style to: import classes from '..';
-import { forEach } from "lodash";
 
 function Project(props) {
-	/* 
-	function newColumn(type){
-		
-		// type check (string and of known types)
-		// maybe there will be a function that checks that the type exist on types of cells+ types of coumns+ext...
-		
-        const id = "002",
-		const type = "number",
-		const width = defaults.WIDTH_OF_COLUMN[type],
-		const spacer = defaults.SPACER_WIDTH,
-		const color = "#8b51bd",
-	} */
-
 	const [projectData, setProjectData] = useState({
 		id: "someProjId",
 		name: "someProjName",
@@ -29,84 +15,12 @@ function Project(props) {
 			{ id: "user3Id", permission: "boss" }, // at least one has to be boss, can change settings and delete project
 			//users have a list of projects too, need valedations from projects when getting projects
 		],
-		tabs: [
-			{
-				id: makeKey(),
-				name: "Project A",
-				columns: [
-					{
-						id: "001",
-						type: "text",
-						width: 150, // TODO: what defines min-width
-						spacer: defaults.SPACER_WIDTH,
-						color: "#9b51bd",
-						isDragged: false,
-						preferences: {},
-						// TODO: assume all/some columns will have "settings" prop
-					},
-					{
-						id: "002",
-						type: "number",
-						width: 190,
-						spacer: defaults.SPACER_WIDTH,
-						color: "#8b51bd",
-						isDragged: false,
-						preferences: {},
-					},
-					{
-						// TODO: id: 'alfjhasl234234',
-						id: "003", // TODO: no need
-						type: "stars",
-						width: 300,
-						spacer: defaults.SPACER_WIDTH,
-						color: "rgb(64, 109, 255)",
-						isDragged: false,
-						preferences: {},
-					},
-					{
-						id: "004", // TODO: no need
-						type: "status",
-						width: 100,
-						spacer: defaults.SPACER_WIDTH,
-						color: "rgb(164, 109, 255)",
-						isDragged: false,
-						preferences: {
-							selectables: {
-								done: { color: "green", text: "DONE" },
-								working: { color: "yellow", text: "WORKING" },
-							},
-						},
-					},
-				],
-				tasksQuerie: ["a", "b", "empty"],
-			},
-		],
-		tasks: [
-			{
-				id: "a",
-				"001": { content: "text for a001" },
-				"002": { content: "text for a002" },
-				"003": { content: 3 },
-				"004": { content: "done" },
-				dateCreated: new Date(),
-				// "alfjhasl234234 (column id)": { content: 3 },
-			},
-			{
-				id: "b",
-				"001": { content: "text for b001" },
-				"002": { content: "text for b002" },
-				"003": { content: 3 },
-				dateCreated: new Date(),
-			},
-			{
-				id: "empty",
-				dateCreated: new Date(),
-			},
-		],
+		tabs: [],
+		tasks: [],
 	});
 
 	function taskOfIdInList(id, listOfTasks) {
-		// correct this mess
+		// fix this mess
 		let index = listOfTasks.findIndex((task) => {
 			// bad "t" in original find in reducer
 			return task.id === id;
@@ -116,15 +30,20 @@ function Project(props) {
 		}
 		return index;
 	}
+
+	projectData.tabs.push(NewTab(null, projectData));
+
 	return (
 		<div className={style.project}>
 			{projectData.tabs.map((tabItem) => {
-				//!!!!!!!!!!!!DO I DO THISSSSSS ???????
+				// DO I DO THIS ???????
 				let tasks = [];
 				tabItem.tasksQuerie.forEach((querie) =>
 					tasks.push(projectData.tasks[taskOfIdInList(querie, projectData.tasks)])
 				);
-				tabItem.tasks = tasks;
+
+				tabItem.tasks ? tabItem.tasks.push(...tasks) : (tabItem.tasks = [...tasks]);
+
 				return (
 					<Tab
 						key={tabItem.id}
@@ -141,3 +60,92 @@ function Project(props) {
 Project.propTypes = {};
 
 export default Project;
+
+/*
+tabs: [
+		{
+		id: makeKey(),
+		name: "Tab A",
+		columns: [
+			{
+				id: "001",
+				type: "text",
+				name: "SomeText001",
+				width: 150, // TODO: what defines min-width
+				spacer: defaults.SPACER_WIDTH,
+				color: "#9b51bd",
+				isDragged: false,
+				preferences: {},
+				// TODO: assume all/some columns will have "settings" prop
+			},
+			{
+				id: "002",
+				type: "number",
+				name: "THIS number",
+				width: 190,
+				spacer: defaults.SPACER_WIDTH,
+				color: "#8b51bd",
+				isDragged: false,
+				preferences: {},
+			},
+			{
+				// TODO: id: 'alfjhasl234234',
+				id: "003", // TODO: no need
+				type: "stars",
+				name: "stars raiting 3",
+				width: 300,
+				spacer: defaults.SPACER_WIDTH,
+				color: "rgb(64, 109, 255)",
+				isDragged: false,
+				preferences: {},
+			},
+			{
+				id: "004", // TODO: no need
+				type: "status",
+				name: "status 004",
+				width: 100,
+				spacer: defaults.SPACER_WIDTH,
+				color: "rgb(164, 109, 255)",
+				isDragged: false,
+				preferences: {
+					selectables: {
+						done: { color: "green", text: "DONE" },
+						working: { color: "yellow", text: "WORKING" },
+					},
+				},
+			},
+		],
+		tasksQuerie: ["a", "b", "empty", "last"],
+	}, 
+],
+tasks: [
+	 {
+		id: "a",
+		isMock: false,
+		"001": { id: "001", content: "text for a001" },
+		"002": { id: "002", content: "text for a002" },
+		"003": { id: "003", content: 3 },
+		"004": { id: "004", content: "done" },
+		dateCreated: new Date(),
+		// "alfjhasl234234 (column id)": { content: 3 },
+	},
+	{
+		id: "b",
+		isMock: false,
+		"001": { id: "001", content: "text for b001" },
+		"002": { id: "002", content: "text for b002" },
+		"003": { id: "003", content: 3 },
+		dateCreated: new Date(),
+	},
+	{
+		id: "empty",
+		isMock: false,
+		dateCreated: new Date(),
+	},
+	{
+		id: "last",
+		isMock: true,
+		dateCreated: new Date(),
+	}, 
+],
+});*/

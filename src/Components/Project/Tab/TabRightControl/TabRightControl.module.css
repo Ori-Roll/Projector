@@ -1,0 +1,15 @@
+.tab-right-control {
+	height: 100%;
+	border: lightgray 2px dashed;
+	border-radius: 10px;
+	background-color: white;
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	margin-right: 30px;
+	cursor: pointer;
+}
+.tab-right-control * {
+	padding: 0;
+	text-align: center;
+}

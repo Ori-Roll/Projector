@@ -16,7 +16,7 @@ function TabArrow({ tabIsOpen, toggleTabIsOpen }) {
 	};
 
 	return (
-		<div className={style["tab-arrow-holder"]}>
+		<div className={style["tab-arrow-wrapper"]}>
 			<div
 				className={style["tab-arrow"]}
 				onClick={onArrowClick}

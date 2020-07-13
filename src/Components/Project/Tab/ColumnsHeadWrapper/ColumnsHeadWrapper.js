@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import defaults from "../../../defaults";
 import ColumnHead from "./ColumnHead/ColumnHead";
@@ -6,22 +6,19 @@ import ColumnHeadSpacer from "./ColumnHead/ColumnHeadSpacer";
 import style from "./ColumnsHeadWrapper.module.css";
 
 function ColumnsHeadWrapper({
-	columns,
+	tabData,
 	changeTabData,
-	mouseXposition,
 	draggedColumn,
 	setDraggedColumn,
+	setResizedColumn,
 }) {
+	useEffect(() => {
+		console.log("%c ColumnHeadWrapper Mount!", "font-weight: bold; font-size: 15px; color: red;");
+	}, []);
+
 	return (
 		<div className={style["tab-head"]}>
-			{draggedColumn ? (
-				<div style={{ width: 0 }}>
-					<div className={style["floating-column"]} style={{ left: mouseXposition - 70 }}>
-						-
-					</div>
-				</div>
-			) : null}
-			{columns.map((column) => {
+			{tabData.columns.map((column) => {
 				return (
 					<div className={style["item-container"]} key={`head-cont${column.id}`}>
 						<ColumnHead
@@ -32,8 +29,10 @@ function ColumnsHeadWrapper({
 						/>
 						<ColumnHeadSpacer
 							column={column}
+							tabData={tabData}
 							changeTabData={changeTabData}
 							draggedColumn={draggedColumn}
+							setResizedColumn={setResizedColumn}
 						/>
 					</div>
 				);

@@ -1,0 +1,10 @@
+.floating-column {
+	position: absolute;
+	pointer-events: none;
+	height: 30px;
+	width: 80px;
+	top: 150px;
+	border: rgba(207, 207, 207, 0.705) 2px dashed;
+	background-color: rgba(202, 203, 238, 0.514);
+	z-index: 15;
+}
