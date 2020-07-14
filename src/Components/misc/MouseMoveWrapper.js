@@ -59,13 +59,6 @@ function MouseMoveWrapper({
 		} else if (resizedColumn) {
 			setResizeDelta(0);
 			setResizedColumn(null);
-			changeTabData({
-				editedColumn: {
-					...resizedColumn,
-					width: resizedColumn.width + resizeDelta,
-				},
-				type: "EDIT_COLUMN",
-			});
 		}
 	};
 
