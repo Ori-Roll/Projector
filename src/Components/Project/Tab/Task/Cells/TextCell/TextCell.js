@@ -14,7 +14,7 @@ function TextCell({ id, content, doCellContentChange }) {
 
 	function onInputChange(text) {
 		setCellText(text);
-		doCellContentChange(id, text, false);
+		doCellContentChange(id, text, true);
 	}
 
 	function onBlur() {
