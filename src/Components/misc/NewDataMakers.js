@@ -10,8 +10,20 @@ function NewColumn(type) {
 
 function NewTab(type, project) {
 	// TODO: This needs a type that changes its behaviour!
-	const newTab = { id: project.id, name: project.name, columns: [], tasks: [], tasksQuerie: [] };
-	const normalTabColumnsTMP = ["description", "text", "status", "number", "stars"]; // this needs to be according to tab type
+	const newTab = { id: makeKey(), name: "", columns: [], tasks: [], tasksQuerie: [] };
+	const normalTabColumnsTMP = [
+		/* "description", */ "text",
+		"text",
+		"text",
+		"text",
+		"text",
+		"text",
+		"text",
+		"text",
+		"text",
+		"text",
+		"text" /* , "status", "number", "stars" */,
+	]; // this needs to be according to tab type
 	//TODO: Issue here: theres a problame with spacing when only one Cell exists
 	normalTabColumnsTMP.forEach((ofType) => {
 		newTab.columns.push(NewColumn(ofType));

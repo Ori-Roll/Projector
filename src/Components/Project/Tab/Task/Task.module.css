@@ -1,12 +1,13 @@
 .task {
 	display: flex;
 	height: 26px;
-	margin-bottom: 2px;
+	border-bottom: white 1px solid;
 }
 
 .cell-wrapper {
-	display: flex;
 	background: none;
+	transition: ease 100ms;
+	border-right: white 1px solid;
 }
 
 .pseudo-task {

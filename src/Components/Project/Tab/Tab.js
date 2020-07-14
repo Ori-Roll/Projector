@@ -1,6 +1,6 @@
 import React, { useState, useReducer, useEffect } from "react";
 import PropTypes from "prop-types";
-import _ from "lodash";
+import _, { forEach } from "lodash";
 
 import { NewColumn, NewTask } from "../../misc/NewDataMakers";
 
@@ -128,6 +128,7 @@ function Tab({ tabItem }) {
 	const [draggedColumn, setDraggedColumn] = useState(null);
 	const [resizedColumn, setResizedColumn] = useState(null);
 	const [mouseXposition, setMouseXposition] = useState(0);
+
 	// TODO: choose drag and drop package, consider this: https://github.com/atlassian/react-beautiful-dnd
 	return (
 		<MouseMoveWrapper
@@ -165,7 +166,7 @@ function Tab({ tabItem }) {
 						return (
 							<Task
 								key={task.id}
-								task={{ ...task }}
+								task={task}
 								columns={tabData.columns}
 								changeTabData={changeTabData}
 								resizedColumn={resizedColumn}

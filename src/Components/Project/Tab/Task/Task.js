@@ -6,25 +6,26 @@ import _ from "lodash";
 import { CellOfType } from "./Cells/CellTypes/CellTypes";
 
 import TextCell from "./Cells/TextCell/TextCell";
+import CellWrapper from "./CellWrapper";
 
 import Spacer from "./Spacer/Spacer";
 import style from "./Task.module.css";
 
 const renders = [];
 
-function Task(props) {
-	// Task needs to be light if not in view:
+function Task({ task, columns, changeTabData, resizedColumn, draggedColumn }) {
 	const [taskRef, inView, entry] = useInView();
-	let task, columns, changeTabData, resizedColumn, draggedColumn;
-	if (inView /*  || (!props.resizedColumn && !props.draggedColumn) */) {
+
+	/* let task, columns, changeTabData, resizedColumn, draggedColumn;
+	if (inView  || (!props.resizedColumn && !props.draggedColumn)) {
 		task = props.task;
 		columns = props.columns;
 		changeTabData = props.changeTabData;
 		resizedColumn = props.resizedColumn;
 		draggedColumn = props.draggedColumn;
 	} else {
-		/* console.log("%c Task Psoudo Render", "color: gray"); */
-	}
+		console.log("%c Task Psoudo Render", "color: gray");
+	} */
 
 	useEffect(() => {
 		console.log("%c Task Mount", "font-weight: bold; font-size: 15px; color: red;");
@@ -36,7 +37,15 @@ function Task(props) {
 			console.log(task.isMock ? "task.isMock" : `task with no key for(column.id)${column.id}`);
 			return CellOfType[column.type](Math.random(), column.newCellContent, doCellContentChange);
 		} else {
-			/* console.log(`%c new ${task.content}`, "color:green"); */
+			console.log(`%c new Cell - content ${task[column.id].content}`, "color:green");
+			/* return (
+				<TextCell
+					key={column.id}
+					id={column.id}
+					content={task[column.id].content}
+					doCellContentChange={doCellContentChange}
+				/>
+			); */
 			return CellOfType[column.type](column.id, task[column.id].content, doCellContentChange);
 		}
 	}
@@ -51,40 +60,30 @@ function Task(props) {
 
 	const delayedChangeTabData = useRef(() => changeTabData).current;
 
-	const cellContentDispatch = useRef((id, content, task) => {
+	function cellContentDispatch(id, content, task) {
 		let editedTask = { ...task };
-		/* console.log("dispatch editedTask", editedTask); */
+		console.log("dispatch editedTask", editedTask);
 		editedTask[id].content = content;
-		delayedChangeTabData({ editedTask: editedTask, type: "EDIT_TASK" });
-	}).current;
+		changeTabData({ editedTask: editedTask, type: "EDIT_TASK" });
+	}
 
 	const delayedCellContentDispatch = useRef(
 		_.debounce((id, content, task) => {
 			if (!content) console.error("No content for debounce");
 			cellContentDispatch(id, content, task);
-		}, 300)
+		}, 50)
 	).current;
 
 	return inView ? (
-		<div key={"task.id"} className={style["task"]} ref={taskRef}>
+		<div className={style["task"]} ref={taskRef}>
 			{columns.map((column) => {
-				const cellWrapperWidth = column.width;
-				const spacerWidth = column.spacer;
 				return (
-					<div
+					<CellWrapper
 						key={column.id}
-						className={style["cell-wrapper"]}
-						style={task.isMock ? { opacity: "50%" } : {}}>
-						<div
-							style={
-								column.isDragged
-									? { width: cellWrapperWidth, opacity: "20%" }
-									: { width: cellWrapperWidth }
-							}>
-							{createCell(column)}
-						</div>
-						<Spacer spacerWidth={spacerWidth} />
-					</div>
+						column={column}
+						createCell={createCell}
+						isDragged={resizedColumn ? true : false}
+					/>
 				);
 			})}
 		</div>
@@ -95,4 +94,33 @@ function Task(props) {
 
 Task.propTypes = {};
 
-export default React.memo(Task);
+export default Task;
+
+/* return inView ? (
+		<div key={"task.id"} className={style["task"]} ref={taskRef}>
+			{console.log("HERE-1")}
+			{columns.map((column) => {
+				const spacerWidth = column.spacer;
+				return (
+					<div
+						key={column.id}
+						className={style["cell-wrapper"]}
+						style={task.isMock ? { opacity: "50%" } : {}}>
+						{console.log("HERE-2")}
+						<div
+							style={
+								column.isDragged
+									? { width: cellWrapperWidth, opacity: "20%" }
+									: { width: cellWrapperWidth }
+							}>
+							{console.log("HERE-3")}
+							{createCell(column)}
+						</div>
+						<Spacer spacerWidth={spacerWidth} />
+					</div>
+				);
+			})}
+		</div>
+	) : (
+		<div key={"task.id"} className={style["pseudo-task"]} ref={taskRef}></div>
+	); */
