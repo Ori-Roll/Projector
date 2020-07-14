@@ -20,9 +20,12 @@ function CellWrapper({ column, createCell }) {
 CellWrapper.propTypes = {};
 
 export default React.memo(CellWrapper, (prevProps, nextProps) => {
-	if (nextProps.isDragged) {
-		return prevProps.column.width === nextProps.column.width ? true : false;
-	} else {
-		return false;
+	let dontRender = false;
+	if (nextProps.resizing && prevProps.column.width === nextProps.column.width) {
+		dontRender = true;
 	}
+	if (nextProps.dragging && prevProps.column.spacer === nextProps.column.spacer) {
+		dontRender = true;
+	}
+	return dontRender;
 });

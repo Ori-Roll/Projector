@@ -58,7 +58,7 @@ function Task({ task, columns, changeTabData, resizedColumn, draggedColumn }) {
 		}
 	}
 
-	const delayedChangeTabData = useRef(() => changeTabData).current;
+	/* const delayedChangeTabData = useRef(() => changeTabData).current; */
 
 	function cellContentDispatch(id, content, task) {
 		let editedTask = { ...task };
@@ -70,8 +70,9 @@ function Task({ task, columns, changeTabData, resizedColumn, draggedColumn }) {
 	const delayedCellContentDispatch = useRef(
 		_.debounce((id, content, task) => {
 			if (!content) console.error("No content for debounce");
+			console.log("delayed ...");
 			cellContentDispatch(id, content, task);
-		}, 50)
+		}, 100)
 	).current;
 
 	return inView ? (
@@ -82,7 +83,8 @@ function Task({ task, columns, changeTabData, resizedColumn, draggedColumn }) {
 						key={column.id}
 						column={column}
 						createCell={createCell}
-						isDragged={resizedColumn ? true : false}
+						resizing={resizedColumn ? true : false}
+						dragging={draggedColumn ? true : false}
 					/>
 				);
 			})}
