@@ -2,17 +2,19 @@ import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 
 import style from "./TextCell.module.css";
+import CellsStyle from "../CellsStyle.module.css";
+
 import { NEW_COLUMN_DATA } from "../../../../../defaults";
 
 function TextCell({ id, content, doCellContentChange }) {
 	const [cellText, setCellText] = useState(content);
 
-	console.log(`%c ------cell render! content: ${content}---------`, "color: blue");
-	useEffect(() => console.log("%c TextCell MOUNT!", "color:red"), []);
+	console.log(`%c ------cell render! content: ${content}---------`, "color: green");
+	/* useEffect(() => console.log("%c TextCell MOUNT!", "color:red"), []); */
 
 	function onInputChange(text) {
 		setCellText(text);
-		doCellContentChange(id, text, true);
+		doCellContentChange(id, text, false);
 	}
 
 	function onBlur() {
@@ -20,14 +22,12 @@ function TextCell({ id, content, doCellContentChange }) {
 	}
 
 	return (
-		<div>
-			<input
-				className={style["cell"]}
-				value={cellText}
-				onChange={(e) => onInputChange(e.target.value)}
-				onBlur={() => onBlur()}
-			/>
-		</div>
+		<input
+			className={`${CellsStyle.cell} ${style["text-cell"]}`}
+			value={cellText}
+			onChange={(e) => onInputChange(e.target.value)}
+			onBlur={() => onBlur()}
+		/>
 	);
 }
 
