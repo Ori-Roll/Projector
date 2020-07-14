@@ -15,13 +15,6 @@ function NewTab(type, project) {
 		/* "description", */ "text",
 		"text",
 		"text",
-		"text",
-		"text",
-		"text",
-		"text",
-		"text",
-		"text",
-		"text",
 		"text" /* , "status", "number", "stars" */,
 	]; // this needs to be according to tab type
 	//TODO: Issue here: theres a problame with spacing when only one Cell exists

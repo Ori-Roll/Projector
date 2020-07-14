@@ -1,7 +1,7 @@
 import { deepFreeze } from "../misc";
 
 const defaults = {
-	SPACER_WIDTH: "1px",
+	SPACER_WIDTH: "3px",
 	SPACER_WIDTH_ON_HOVER: "10px",
 	CELL_BACKGROUND_COLOR: "#e2e2e2",
 };

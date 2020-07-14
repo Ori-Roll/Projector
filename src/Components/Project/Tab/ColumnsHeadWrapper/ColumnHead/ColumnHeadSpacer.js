@@ -41,10 +41,6 @@ function ColumnHeadSpacer({ column, tabData, changeTabData, draggedColumn, setRe
 		}
 	}
 
-	/* function onMouseDown() {
-		console.log(column);
-	} */
-
 	function onStartResize() {
 		setResizedColumn(column);
 	}
