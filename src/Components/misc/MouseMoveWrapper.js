@@ -59,6 +59,13 @@ function MouseMoveWrapper({
 		} else if (resizedColumn) {
 			setResizeDelta(0);
 			setResizedColumn(null);
+			changeTabData({
+				editedColumn: {
+					...resizedColumn,
+					width: resizedColumn.width + resizeDelta,
+				},
+				type: "EDIT_COLUMN",
+			});
 		}
 	};
 
@@ -86,15 +93,10 @@ function MouseMoveWrapper({
 
 						delayedMouseMove(e, draggedColumn, resizedColumn, resizeDelta);
 					}}
-					/* onMouseMove={(e) => {
-						e.persist();
-						onMouseMove(e, draggedColumn, resizedColumn);
-					}} */
 					onMouseUp={onMouseUp}
 					onMouseLeave={onMouseUp}
 					ref={wrapperRef}>
 					{/*ADD DYNAMIC DRAG CONTENT HERE*/}
-
 					{props.children}
 					{draggedColumn ? (
 						<div>
