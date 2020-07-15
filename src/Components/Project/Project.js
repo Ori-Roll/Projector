@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import _ from "lodash";
+
 import defaults from "../defaults";
 import Tab from "./Tab/Tab";
 import style from "./Project.module.css"; // TODO: change from style to: import classes from '..';
 
-function Project({ data }) {
-	const [projectData, setProjectData] = useState(data);
+function Project({ projectItem }) {
+	const [projectData, setProjectData] = useState(projectItem);
 
 	function taskOfIdInList(id, listOfTasks) {
 		// fix this mess
@@ -30,14 +32,7 @@ function Project({ data }) {
 
 				tabItem.tasks ? tabItem.tasks.push(...tasks) : (tabItem.tasks = [...tasks]);
 
-				return (
-					<Tab
-						key={tabItem.id}
-						tabItem={tabItem}
-						setProjectData={setProjectData}
-						projectData={projectData}
-					/>
-				);
+				return <Tab key={tabItem.id} tabItem={tabItem} />;
 			})}
 		</div>
 	);

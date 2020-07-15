@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import Project from "./Components/Project/Project";
+import SideBar from "./Components/SideBar/SideBar";
+
 import "./App.css";
 import { NewTab } from "./Components/misc/NewDataMakers";
 
@@ -33,6 +35,7 @@ const projects = {
 
 function App() {
 	const [currentProject, setCurrentProject] = useState("someProjId");
+	const [loadedProjects, setLoadedProjects] = useState(["someProjId", "otherProjId"]);
 
 	useEffect(() => {
 		projects["someProjId"].tabs.push(NewTab(null, projects["someProjId"]));
@@ -40,20 +43,18 @@ function App() {
 		projects["otherProjId"].tabs.push(NewTab(null, projects["otherProjId"]));
 	}, []);
 
-	const [loadedProjects, setLoadedProjects] = useState(["someProjId", "otherProjId"]);
-
 	return (
 		<div className='app'>
 			<header className='App-header'></header>
-			{loadedProjects.map((project) => {
-				console.log(projects);
-				return (
-					<button key={`${project}BTN`} onClick={() => setCurrentProject(project)}>
-						{project}
-					</button>
-				);
-			})}
-			<Project data={projects[currentProject]} />
+			<SideBar
+				loadedProjects={loadedProjects}
+				currentProject={currentProject}
+				setCurrentProject={setCurrentProject}
+			/>
+
+			<div style={{ backgroundColor: "blue" }}>
+				{projects[currentProject] ? <Project projectItem={projects[currentProject]} /> : null}
+			</div>
 		</div>
 	);
 }
