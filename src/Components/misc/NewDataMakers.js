@@ -1,6 +1,6 @@
 import defaults, { NEW_COLUMN_DATA } from "../defaults";
 import { makeKey } from ".";
-import DescriptionCell from "../Project/Tab/Task/Cells/DescriptionCell/DescriptionCell";
+import DescriptionCell from "../Layout/Project/Tab/Task/Cells/DescriptionCell/DescriptionCell";
 
 /* tasksQuerie: ["a", "b", "empty", "last"], */
 

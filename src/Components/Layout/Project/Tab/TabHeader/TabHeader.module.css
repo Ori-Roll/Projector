@@ -1,7 +1,6 @@
 .tab-header-wrapper {
 	display: flex;
 	padding: 1em;
-	border-bottom: rgb(135, 135, 172) 8px solid;
 }
 
 .tab-header {

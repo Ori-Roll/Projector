@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
 
-import defaults from "../defaults";
+import defaults from "../../defaults";
 import Tab from "./Tab/Tab";
 import style from "./Project.module.css"; // TODO: change from style to: import classes from '..';
 

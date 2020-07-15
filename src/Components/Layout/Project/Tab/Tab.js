@@ -2,9 +2,9 @@ import React, { useState, useReducer, useEffect } from "react";
 import PropTypes from "prop-types";
 import _, { forEach } from "lodash";
 
-import { NewColumn, NewTask } from "../../misc/NewDataMakers";
+import { NewColumn, NewTask } from "../../../misc/NewDataMakers";
 
-import MouseMoveWrapper from "../../misc/MouseMoveWrapper";
+import MouseMoveWrapper from "../../../misc/MouseMoveWrapper";
 
 import Task from "./Task/Task";
 import ColumnsHeadWrapper from "./ColumnsHeadWrapper/ColumnsHeadWrapper";
@@ -12,7 +12,7 @@ import TabRightControl from "./TabRightControl/TabRightControl";
 import TabHeader from "./TabHeader/TabHeader";
 
 import style from "./Tab.module.css"; // TODO: rename file to lowercase, in my projects it's always style(s).module.css
-import { NEW_COLUMN_DATA } from "../../defaults";
+import { NEW_COLUMN_DATA } from "../../../defaults";
 
 /* TODO: (Ori) Neads the ability to update the original data from the source after it updetes it one*/
 function tabDataReducer(oldData, action) {

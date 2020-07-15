@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-import { NEW_COLUMN_DATA } from "../../../../../defaults";
-
 import CellsStyle from "../CellsStyle.module.css";
 import style from "./DescriptionCell.module.css";
 

@@ -1,0 +1,18 @@
+.layout {
+	display: grid;
+	height: 100vh;
+	grid-template-columns: 200px auto;
+	grid-template-areas: "sidebar-wrapper project-wrapper";
+}
+
+.side-bar-wrapper {
+	height: 100%;
+	grid-area: sidebar-wrapper;
+}
+
+.project-wrapper {
+	height: 100%;
+	padding: 20px;
+	background-color: rgb(230, 230, 230);
+	grid-area: project-wrapper;
+}

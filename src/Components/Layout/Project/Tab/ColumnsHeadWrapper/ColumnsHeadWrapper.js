@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import defaults from "../../../defaults";
 import ColumnHead from "./ColumnHead/ColumnHead";
 import ColumnHeadSpacer from "./ColumnHead/ColumnHeadSpacer";
 import style from "./ColumnsHeadWrapper.module.css";

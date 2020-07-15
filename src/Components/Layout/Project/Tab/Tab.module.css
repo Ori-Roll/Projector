@@ -9,7 +9,10 @@
 		"tab-content-wrapper tab-right-control	. tab-scroll-end-gradiant"
 		". 					 .					. .";
 	overflow-x: auto;
-	/* background-color: rgb(233, 233, 233); */
+	padding: 18px;
+	background-color: white;
+	border-radius: 20px;
+	width: 80vw;
 }
 
 /* 
@@ -29,7 +32,7 @@
 
 .tab-header-wrapper {
 	grid-area: tab-header-wrapper;
-	background-color: rgb(240, 240, 240);
+	background-color: white;
 }
 
 .tab-right-control-wrapper {

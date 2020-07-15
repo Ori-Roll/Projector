@@ -1,10 +1,9 @@
 .task {
 	display: flex;
 	height: 40px;
-	background-color: gainsboro;
+	background-color: rgb(255, 255, 255);
 	/* background-image: linear-gradient(rgb(223, 223, 223), rgb(212, 212, 212)); */
 	border-bottom: rgb(233, 233, 233) 2px solid;
-	margin-bottom: 4px;
 }
 
 .cell-wrapper {

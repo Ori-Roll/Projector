@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import style from "./TextCell.module.css";
 import CellsStyle from "../CellsStyle.module.css";
 
-import { NEW_COLUMN_DATA } from "../../../../../defaults";
+import { NEW_COLUMN_DATA } from "../../../../../../defaults";
 
 function TextCell({ id, content, doCellContentChange }) {
 	const [cellText, setCellText] = useState(content);

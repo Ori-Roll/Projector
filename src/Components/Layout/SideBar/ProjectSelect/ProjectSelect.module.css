@@ -1,0 +1,30 @@
+.project-select {
+	float: right;
+	margin-top: 100px;
+	display: flex;
+	flex-direction: column;
+	border-radius: 20px 0 0 20px;
+	background-color: white;
+	width: 130px;
+	padding: 8px;
+}
+/* 
+.project-select::after {
+	position: relative;
+	top: -90px;
+	right: -100px;
+	background-color: tomato;
+	border-radius: 10px;
+	content: "---";
+	width: 50px;
+	height: 50px;
+} */
+
+.project-select-btn {
+	font-size: 100%;
+	font-family: inherit;
+	border: 0;
+	padding: 6px 10px 6px;
+	background: none;
+	text-align: right;
+}

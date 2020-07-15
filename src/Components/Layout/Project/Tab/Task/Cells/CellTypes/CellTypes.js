@@ -5,7 +5,7 @@ import TextCell from "../TextCell/TextCell";
 import NumberCell from "../NumberCell/NumberCell";
 import StarsCell from "../StarsCell/StarsCell";
 import StatusCell from "../StatusCell/StatusCell";
-import { NEW_COLUMN_DATA } from "../../../../../defaults";
+import { NEW_COLUMN_DATA } from "../../../../../../defaults";
 
 // THIS LIST NEEDS TO MATCH knownCellTypes (see function below)
 
