@@ -3,7 +3,8 @@
 	height: 100%;
 	outline: none;
 	border: none;
-	color: rgb(0, 0, 0); /* */
-	background-color: rgb(228, 228, 228); /* */
-	/* padding: 0 4px; */
+	color: rgb(0, 0, 0);
+	text-align: center;
+	padding: 6px 20px 0;
+	background: none;
 }

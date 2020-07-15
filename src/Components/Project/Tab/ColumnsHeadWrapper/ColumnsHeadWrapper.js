@@ -17,7 +17,7 @@ function ColumnsHeadWrapper({
 	}, []);
 
 	return (
-		<div className={style["tab-head"]}>
+		<div className={style["column-head-wrapper"]}>
 			{tabData.columns.map((column) => {
 				return (
 					<div className={style["item-container"]} key={`head-cont${column.id}`}>

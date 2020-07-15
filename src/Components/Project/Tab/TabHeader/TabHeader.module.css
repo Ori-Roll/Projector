@@ -1,5 +1,7 @@
 .tab-header-wrapper {
 	display: flex;
+	padding: 1em;
+	border-bottom: rgb(135, 135, 172) 8px solid;
 }
 
 .tab-header {
@@ -12,8 +14,8 @@
 
 .tab-header-right-menu {
 	text-align: right;
-	color: burlywood;
-	background-color: rgb(211, 211, 211);
+	color: rgb(100, 79, 52);
+	border: rgb(165, 148, 148) 2px solid;
 	border-radius: 10px;
 	width: 40px;
 }

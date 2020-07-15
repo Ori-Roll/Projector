@@ -37,7 +37,7 @@ function Task({ task, columns, changeTabData, resizedColumn, draggedColumn }) {
 			console.log(task.isMock ? "task.isMock" : `task with no key for(column.id)${column.id}`);
 			return CellOfType[column.type](Math.random(), column.newCellContent, doCellContentChange);
 		} else {
-			console.log(`%c new Cell - content ${task[column.id].content}`, "color:green");
+			/* console.log(`%c new Cell - content ${task[column.id].content}`, "color:green"); */
 			/* return (
 				<TextCell
 					key={column.id}

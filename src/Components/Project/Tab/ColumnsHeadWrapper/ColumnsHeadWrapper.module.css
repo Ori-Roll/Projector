@@ -1,6 +1,11 @@
-.tab-head {
+.column-head-wrapper {
 	display: flex;
-	margin-bottom: 2px;
+	/* padding: 20px 0 2px; */
+	height: 48px;
+}
+
+.column-head-wrapper:hover {
+	box-shadow: inset rgb(72, 94, 148) 0 -2px;
 }
 
 .item-container {

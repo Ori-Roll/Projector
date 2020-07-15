@@ -1,15 +1,15 @@
 .tab {
-	padding: 0 5px;
-	margin: 0 0 10px;
 	border-bottom: rgb(221, 221, 221) 1px dashed;
+	border-radius: 2px;
 	display: grid;
-	grid-template-columns: max-content 80px auto auto;
+	grid-template-columns: max-content 60px auto auto;
 	grid-template-rows: 80px auto 20px;
 	grid-template-areas:
 		"tab-header-wrapper  tab-header-wrapper . tab-scroll-end-gradiant"
 		"tab-content-wrapper tab-right-control	. tab-scroll-end-gradiant"
 		". 					 .					. .";
 	overflow-x: auto;
+	/* background-color: rgb(233, 233, 233); */
 }
 
 /* 
@@ -29,6 +29,7 @@
 
 .tab-header-wrapper {
 	grid-area: tab-header-wrapper;
+	background-color: rgb(240, 240, 240);
 }
 
 .tab-right-control-wrapper {
@@ -38,22 +39,23 @@
 .tab::-webkit-scrollbar {
 	width: 12px;
 	height: 12px;
+	background: none;
 }
 
 .tab::-webkit-scrollbar-track {
 	margin: 10px;
-	border-bottom: white 10px solid;
+	background: none;
 }
 .tab::-webkit-scrollbar-thumb {
-	background-color: rgb(221, 221, 221);
 	border-radius: 10px;
+	background-color: rgb(185, 185, 185);
 }
 
 .tab-scroll-end-gradiant {
 	grid-area: tab-scroll-end-gradiant;
-	position: sticky;
+	position: relative;
 	top: 0;
-	right: -5px;
+	right: -50;
 	width: 50px;
 	background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgb(255, 255, 255));
 	z-index: 5;

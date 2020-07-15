@@ -1,12 +1,11 @@
 .tab-right-control {
 	height: 100%;
-	border: lightgray 2px dashed;
-	border-radius: 10px;
-	background-color: white;
+	border: rgb(167, 167, 167) 1px dashed;
+	border-radius: 2px;
+	background-color: rgb(209, 210, 228);
 	display: flex;
 	flex-flow: column;
 	align-items: center;
-	margin-right: 30px;
 	cursor: pointer;
 }
 .tab-right-control * {
