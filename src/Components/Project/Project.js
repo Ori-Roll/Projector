@@ -2,22 +2,10 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import defaults from "../defaults";
 import Tab from "./Tab/Tab";
-import { NewTab } from "../misc/NewDataMakers";
 import style from "./Project.module.css"; // TODO: change from style to: import classes from '..';
 
-function Project(props) {
-	const [projectData, setProjectData] = useState({
-		id: "someProjId",
-		name: "someProjName",
-		users: [
-			{ id: "user1Id", permission: "viewer" }, // can only view things
-			{ id: "user2Is", permission: "user" }, // can change and add things
-			{ id: "user3Id", permission: "boss" }, // at least one has to be boss, can change settings and delete project
-			//users have a list of projects too, need valedations from projects when getting projects
-		],
-		tabs: [],
-		tasks: [],
-	});
+function Project({ data }) {
+	const [projectData, setProjectData] = useState(data);
 
 	function taskOfIdInList(id, listOfTasks) {
 		// fix this mess
@@ -30,8 +18,6 @@ function Project(props) {
 		}
 		return index;
 	}
-
-	projectData.tabs.push(NewTab(null, projectData));
 
 	return (
 		<div className={style.project}>
