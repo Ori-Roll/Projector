@@ -12,7 +12,5 @@
 
 .project-wrapper {
 	height: 100%;
-	padding: 20px;
-	background-color: rgb(230, 230, 230);
 	grid-area: project-wrapper;
 }

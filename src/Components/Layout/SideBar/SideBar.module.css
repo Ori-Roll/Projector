@@ -1,4 +1,52 @@
+:root {
+	--side-general-bg-color: rgb(216, 216, 216);
+	--side-general-border: rgb(219, 219, 219) 2px solid;
+}
+
 .side-bar {
 	height: 100%;
-	background-color: rgb(25, 0, 255);
+	/* background-color: rgb(50, 50, 50); */
+	/* border-right: rgb(190, 190, 190) 10px solid; */
+	position: relative;
+	/* box-shadow: inset rgb(60, 60, 60) -4px 0; */
+}
+
+.general {
+	position: absolute;
+	height: 100%;
+	width: 80px;
+	z-index: 105;
+}
+
+.general-top {
+	position: absolute;
+	height: 100px;
+	width: 160px;
+	top: 0;
+	left: 0;
+	background-color: var(--side-general-bg-color);
+	border-bottom: var(--side-general-border);
+	border-right: var(--side-general-border);
+	border-radius: 0 0 5px 0;
+}
+
+.general-mid {
+	position: absolute;
+	height: 50px;
+	width: 0px;
+	top: 100px;
+	left: 0;
+	background-color: var(--side-general-bg-color);
+}
+
+.general-bottom {
+	position: absolute;
+	top: 150px;
+	left: 0;
+	height: calc(100% - 100px);
+	width: 160px;
+	border-top: var(--side-general-border);
+	border-right: var(--side-general-border);
+	border-radius: 0 5px 0 0;
+	background-color: var(--side-general-bg-color);
 }

@@ -1,8 +1,8 @@
 .tab-right-control {
 	height: 100%;
-	border: rgb(167, 167, 167) 1px dashed;
+	border: rgb(216, 216, 216) 1px dashed;
 	border-radius: 2px;
-	background-color: rgb(209, 210, 228);
+	background-color: white;
 	display: flex;
 	flex-flow: column;
 	align-items: center;

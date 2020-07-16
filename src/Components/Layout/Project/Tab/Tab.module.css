@@ -2,14 +2,14 @@
 	border-bottom: rgb(221, 221, 221) 1px dashed;
 	border-radius: 2px;
 	display: grid;
-	grid-template-columns: max-content 60px auto auto;
+	grid-template-columns: max-content 50px auto auto;
 	grid-template-rows: 80px auto 20px;
 	grid-template-areas:
 		"tab-header-wrapper  tab-header-wrapper . tab-scroll-end-gradiant"
 		"tab-content-wrapper tab-right-control	. tab-scroll-end-gradiant"
 		". 					 .					. .";
 	overflow-x: auto;
-	padding: 18px;
+	padding: 18px 20px;
 	background-color: white;
 	border-radius: 20px;
 	width: 80vw;

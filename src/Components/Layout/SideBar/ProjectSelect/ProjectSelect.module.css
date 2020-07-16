@@ -1,13 +1,27 @@
+:root {
+	--side-project-select-bg-color: rgb(231, 231, 231);
+}
+
 .project-select {
-	float: right;
-	margin-top: 100px;
+	position: absolute;
+	padding: 105px 15px 0 0;
+	left: -175px;
+	height: 100%;
 	display: flex;
 	flex-direction: column;
-	border-radius: 20px 0 0 20px;
-	background-color: white;
-	width: 130px;
-	padding: 8px;
+	width: 350px;
+	background-color: var(--side-project-select-bg-color);
+	/* border: rgb(60, 60, 60) 4px solid; */
+	border-right: rgb(218, 218, 218) 1px solid;
+	transition: ease-in-out 100ms;
+	transition-delay: 0.5s;
+	z-index: 100;
 }
+
+.project-select:hover {
+	left: 0px;
+}
+
 /* 
 .project-select::after {
 	position: relative;
@@ -19,12 +33,25 @@
 	width: 50px;
 	height: 50px;
 } */
+.current-project-display {
+	padding: 5px 10px 5px;
+	font-size: 22px;
+	font-family: inherit;
+	text-align: right;
+	background-color: rgb(49, 98, 211);
+	border-radius: 5px;
+	color: rgb(255, 255, 255);
+	z-index: 110;
+}
 
 .project-select-btn {
-	font-size: 100%;
-	font-family: inherit;
 	border: 0;
-	padding: 6px 10px 6px;
-	background: none;
+	padding: 8px 30px 8px;
+	margin-bottom: 5px;
+	font-size: 18px;
+	font-family: inherit;
 	text-align: right;
+	background: none;
+	color: black;
+	z-index: 110;
 }

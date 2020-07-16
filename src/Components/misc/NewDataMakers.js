@@ -12,10 +12,14 @@ function NewTab(type, project) {
 	// TODO: This needs a type that changes its behaviour!
 	const newTab = { id: makeKey(), name: "", columns: [], tasks: [], tasksQuerie: [] };
 	const normalTabColumnsTMP = [
-		/* "description", */ "text",
+		"description",
 		"text",
 		"text",
-		"text" /* , "status", "number", "stars" */,
+		"text",
+		"text",
+		"status",
+		"number",
+		"stars",
 	]; // this needs to be according to tab type
 	//TODO: Issue here: theres a problame with spacing when only one Cell exists
 	normalTabColumnsTMP.forEach((ofType) => {

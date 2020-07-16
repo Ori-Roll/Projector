@@ -8,6 +8,7 @@ function ProjectSelect({ loadedProjects, currentProject, setCurrentProject }) {
 	}
 	return (
 		<div className={style["project-select"]}>
+			<div className={style["current-project-display"]}>{currentProject}</div>
 			{loadedProjects.map((project) => {
 				return (
 					<button
