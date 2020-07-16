@@ -43,6 +43,7 @@
 
 .general-bottom {
 	position: absolute;
+	padding: 50px 0 0 34px;
 	top: 150px;
 	left: 0;
 	height: calc(100% - 100px);

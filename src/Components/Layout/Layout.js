@@ -35,6 +35,7 @@ const projects = {
 function Layout(props) {
 	const [currentProject, setCurrentProject] = useState("someProjId");
 	const [loadedProjects, setLoadedProjects] = useState(["someProjId", "otherProjId"]);
+	const [currentUser, setCurrentUser] = useState("User3 name");
 
 	useEffect(() => {
 		projects["someProjId"].tabs.push(NewTab(null, projects["someProjId"]));
@@ -49,6 +50,7 @@ function Layout(props) {
 					loadedProjects={loadedProjects}
 					currentProject={currentProject}
 					setCurrentProject={setCurrentProject}
+					currentUser={currentUser}
 				/>
 			</div>
 			<div className={style["project-wrapper"]}>
