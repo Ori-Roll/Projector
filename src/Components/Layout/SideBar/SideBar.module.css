@@ -1,6 +1,6 @@
 :root {
-	--side-general-bg-color: rgb(216, 216, 216);
-	--side-general-border: rgb(219, 219, 219) 2px solid;
+	--side-general-bg-color: rgb(243, 243, 243);
+	--side-general-border: rgb(179, 179, 179) 1px solid;
 }
 
 .side-bar {
@@ -28,6 +28,7 @@
 	border-bottom: var(--side-general-border);
 	border-right: var(--side-general-border);
 	border-radius: 0 0 5px 0;
+	box-shadow: rgba(0, 0, 0, 0.2) 5px 5px 20px;
 }
 
 .general-mid {
@@ -37,6 +38,7 @@
 	top: 100px;
 	left: 0;
 	background-color: var(--side-general-bg-color);
+	border-right: var(--side-general-border);
 }
 
 .general-bottom {
@@ -49,4 +51,5 @@
 	border-right: var(--side-general-border);
 	border-radius: 0 5px 0 0;
 	background-color: var(--side-general-bg-color);
+	box-shadow: rgba(0, 0, 0, 0.2) 5px 5px 20px;
 }
