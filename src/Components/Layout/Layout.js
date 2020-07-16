@@ -8,7 +8,7 @@ import style from "./Layout.module.css";
 const projects = {
 	someProjId: {
 		id: "someProjId",
-		name: "someProjName",
+		name: "some ProjName",
 		users: [
 			{ id: "user1Id", permission: "viewer" }, // can only view things
 			{ id: "user2Is", permission: "user" }, // can change and add things
@@ -20,7 +20,7 @@ const projects = {
 	},
 	otherProjId: {
 		id: "otherProjId",
-		name: "someProjName",
+		name: "other ProjName",
 		users: [
 			{ id: "user1Id", permission: "viewer" }, // can only view things
 			{ id: "user2Is", permission: "user" }, // can change and add things

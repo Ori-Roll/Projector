@@ -9,6 +9,11 @@ import style from "./Project.module.css"; // TODO: change from style to: import 
 function Project({ projectItem }) {
 	const [projectData, setProjectData] = useState(projectItem);
 
+	useEffect(() => setProjectData(projectItem), [projectItem]);
+
+	console.log(`%c PROJECT RENDER ${projectData.name}`, "color: blue");
+	console.log(projectData);
+
 	function taskOfIdInList(id, listOfTasks) {
 		// fix this mess
 		let index = listOfTasks.findIndex((task) => {
@@ -23,14 +28,14 @@ function Project({ projectItem }) {
 
 	return (
 		<div className={style.project}>
-			{projectData.tabs.map((tabItem) => {
+			{projectItem.tabs.map((tabItem) => {
 				// DO I DO THIS ???????
 				let tasks = [];
 				tabItem.tasksQuerie.forEach((querie) =>
-					tasks.push(projectData.tasks[taskOfIdInList(querie, projectData.tasks)])
+					tasks.push(projectItem.tasks[taskOfIdInList(querie, projectItem.tasks)])
 				);
 
-				tabItem.tasks ? tabItem.tasks.push(...tasks) : (tabItem.tasks = [...tasks]);
+				tabItem.tasks = tasks;
 
 				return <Tab key={tabItem.id} tabItem={tabItem} />;
 			})}
