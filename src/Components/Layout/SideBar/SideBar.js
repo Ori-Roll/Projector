@@ -10,10 +10,10 @@ function SideBar({ loadedProjects, currentProject, setCurrentProject, currentUse
 		<div className={style["side-bar"]}>
 			<div className={style["general"]}>
 				<div className={style["general-top"]} />
-				<div className={style["general-mid"]} />
-				<div className={style["general-bottom"]}>
+				<div className={style["general-mid"]}>
 					<UserSelect currentUser={currentUser} />
 				</div>
+				<div className={style["general-bottom"]}></div>
 			</div>
 			<ProjectSelect
 				loadedProjects={loadedProjects}

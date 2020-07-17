@@ -1,11 +1,18 @@
 .user-icon {
 	width: 80px;
 	height: 80px;
-	border: rgb(177, 177, 177) 2px solid;
+	border: rgb(255, 255, 255) 3px solid;
 	box-shadow: inset white 0 0 0 3px;
+	box-shadow: rgba(0, 0, 0, 0.164) 0 0 5px 5px;
 	border-radius: 100%;
 	background-image: url("https://i1.pickpik.com/photos/830/669/108/labrador-head-hell-dog-preview.jpg");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+	transition: ease 0.2s;
+}
+
+.user-icon:hover {
+	transform: scale(1.05);
+	box-shadow: rgba(0, 0, 0, 0.164) 0 0 6px 6px;
 }
