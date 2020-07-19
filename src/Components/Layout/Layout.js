@@ -16,7 +16,7 @@ const projects = {
 			//users have a list of projects too, need valedations from projects when getting projects
 		],
 		tabs: [],
-		tasks: [],
+		tasks: {},
 	},
 	otherProjId: {
 		id: "otherProjId",
@@ -28,20 +28,18 @@ const projects = {
 			//users have a list of projects too, need valedations from projects when getting projects
 		],
 		tabs: [],
-		tasks: [],
+		tasks: {},
 	},
 };
+
+projects["someProjId"].tabs.push(NewTab(null, projects["someProjId"]));
+projects["otherProjId"].tabs.push(NewTab(null, projects["otherProjId"]));
+projects["otherProjId"].tabs.push(NewTab(null, projects["otherProjId"]));
 
 function Layout(props) {
 	const [currentProject, setCurrentProject] = useState("someProjId");
 	const [loadedProjects, setLoadedProjects] = useState(["someProjId", "otherProjId"]);
 	const [currentUser, setCurrentUser] = useState("User3 name");
-
-	useEffect(() => {
-		projects["someProjId"].tabs.push(NewTab(null, projects["someProjId"]));
-		projects["otherProjId"].tabs.push(NewTab(null, projects["otherProjId"]));
-		projects["otherProjId"].tabs.push(NewTab(null, projects["otherProjId"]));
-	}, []);
 
 	return (
 		<div className={style["layout"]}>

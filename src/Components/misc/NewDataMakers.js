@@ -9,6 +9,8 @@ function NewColumn(type) {
 }
 
 function NewTab(type, project) {
+	console.log("---> ------------------------------");
+	/* console.log("---> project tasks starts as,", project.tasks); */
 	// TODO: This needs a type that changes its behaviour!
 	const newTab = { id: makeKey(), name: "", columns: [], tasks: [], tasksQuerie: [] };
 	const normalTabColumnsTMP = ["description", "text", "status", "number", "stars"]; // this needs to be according to tab type
@@ -19,11 +21,12 @@ function NewTab(type, project) {
 	const normalTabNumOfTasks = 1; // this needs to be according to tab type
 	for (let i = 0; i < normalTabNumOfTasks; i++) {
 		let newTask = NewTask(newTab.columns);
-
-		project.tasks.push(newTask); // TODO: This needs to come from the projects reducer?
+		/* console.log("---> project gets task ,", newTask.id); */
+		project.tasks[newTask.id] = newTask; // TODO: This needs to come from the projects reducer?
+		/* console.log("---> project tasks is,", project.tasks); */
 		newTab.tasksQuerie.push(newTask.id);
 	}
-
+	console.log("NewTab --- ", newTab);
 	return newTab;
 	// TODO: add a column for basic task description (the first static column)
 }

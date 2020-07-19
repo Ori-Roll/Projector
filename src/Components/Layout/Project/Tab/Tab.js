@@ -41,6 +41,13 @@ function tabDataReducer(oldData, action) {
 			let newTask = action.newTask ? action.newTask : NewTask(data.columns);
 			data.tasks.push(newTask);
 			return data;
+		case "ADD_NEW_TASKS":
+			console.log("-----------------------------------");
+			if (!action.newTasks) throw new Error("ADD_NEW_TASKS No new tasks");
+			if (Array.isArray(action.newTasks))
+				console.log("ADD_NEW_TASKS new tasks not in array", action.newTasks);
+			action.newTasks.forEach((task) => data.tasks.push(task));
+			return data;
 		case "EDIT_TASK":
 			if (!action.editedTask) throw new Error("EDIT_TASK - no editedTask provided");
 			const taskIndex = indexOfTask(action.editedTask.id); // CHANGE TO indexOf ????
@@ -68,14 +75,6 @@ function tabDataReducer(oldData, action) {
 			});
 			return data;
 		case "EDIT_COLUMN":
-			/* if (!action.editedColumn) throw new Error("EDIT_COLUMN - no editedColumn provided");
-
-			data.columns[indexOfColumn(action.editedColumn.id)] = {
-				...data.columns[indexOfColumn(action.editedColumn.id)],
-				...action.editedColumn,
-			};
-			return data; */
-
 			if (!action.editedColumn) throw new Error("EDIT_COLUMN - no editedColumn provided");
 
 			let editedData = { ...oldData };
@@ -113,8 +112,8 @@ function tabDataReducer(oldData, action) {
 	}
 }
 
-function Tab({ tabItem }) {
-	const [tabData, changeTabData] = useReducer(tabDataReducer, _.cloneDeep(tabItem));
+function Tab({ tabItem, projectTasks }) {
+	const [tabData, changeTabData] = useReducer(tabDataReducer, tabItem);
 	// TODO: I would rename this
 	const [tabIsOpen, setTabIsOpen] = useState(true); // TODO: (Ori) this needs to initially come from backend
 	function toggleTabIsOpen() {
@@ -122,8 +121,13 @@ function Tab({ tabItem }) {
 	}
 
 	useEffect(() => {
-		console.log("TAB MOUNT");
+		/* console.log("%c TAB MOUNT (EFFECT!)", "font-weight: bold; font-size: 15px; color: red;"); */
+		let tasks = [];
+		tabItem.tasksQuerie.forEach((querie) => tasks.push(projectTasks[querie]));
+		changeTabData({ type: "ADD_NEW_TASKS", newTasks: tasks });
 	}, []);
+
+	console.log(tabData);
 
 	const [draggedColumn, setDraggedColumn] = useState(null);
 	const [resizedColumn, setResizedColumn] = useState(null);

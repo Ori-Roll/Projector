@@ -14,30 +14,10 @@ function Project({ projectItem }) {
 	console.log(`%c PROJECT RENDER ${projectData.name}`, "color: blue");
 	console.log(projectData);
 
-	function taskOfIdInList(id, listOfTasks) {
-		// fix this mess
-		let index = listOfTasks.findIndex((task) => {
-			// bad "t" in original find in reducer
-			return task.id === id;
-		});
-		if (index === -1) {
-			throw new Error("No matching task");
-		}
-		return index;
-	}
-
 	return (
 		<div className={style.project}>
 			{projectItem.tabs.map((tabItem) => {
-				// DO I DO THIS ???????
-				let tasks = [];
-				tabItem.tasksQuerie.forEach((querie) =>
-					tasks.push(projectItem.tasks[taskOfIdInList(querie, projectItem.tasks)])
-				);
-
-				tabItem.tasks = tasks;
-
-				return <Tab key={tabItem.id} tabItem={tabItem} />;
+				return <Tab key={tabItem.id} tabItem={tabItem} projectTasks={projectItem.tasks} />;
 			})}
 		</div>
 	);

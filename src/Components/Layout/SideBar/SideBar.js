@@ -5,7 +5,6 @@ import UserSelect from "./UserSelect/UserSelect";
 import style from "./SideBar.module.css";
 
 function SideBar({ loadedProjects, currentProject, setCurrentProject, currentUser }) {
-	console.log(currentProject);
 	return (
 		<div className={style["side-bar"]}>
 			<div className={style["general"]}>
