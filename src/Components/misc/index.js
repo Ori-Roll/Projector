@@ -2,6 +2,11 @@ function makeKey() {
 	return Math.random();
 }
 
+function newTimeStamp() {
+	const newDate = new Date();
+	return newDate.getTime();
+}
+
 function deepFreeze(obj) {
 	Object.freeze(obj);
 	if (obj === undefined) {
@@ -21,4 +26,4 @@ function deepFreeze(obj) {
 	return obj;
 }
 
-export { makeKey, deepFreeze };
+export { makeKey, deepFreeze, newTimeStamp };

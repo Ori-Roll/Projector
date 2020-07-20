@@ -1,18 +1,25 @@
 import defaults, { NEW_COLUMN_DATA } from "../defaults";
-import { makeKey } from ".";
+import { makeKey, newTimeStamp } from ".";
 import DescriptionCell from "../Layout/Project/Tab/Task/Cells/DescriptionCell/DescriptionCell";
 
 /* tasksQuerie: ["a", "b", "empty", "last"], */
 
 function NewColumn(type) {
-	return { id: makeKey(), ...NEW_COLUMN_DATA[type] };
+	return { id: makeKey(), ...NEW_COLUMN_DATA[type], timeStamp: newTimeStamp() };
 }
 
 function NewTab(type, project) {
 	console.log("---> ------------------------------");
 	/* console.log("---> project tasks starts as,", project.tasks); */
 	// TODO: This needs a type that changes its behaviour!
-	const newTab = { id: makeKey(), name: "", columns: [], tasks: [], tasksQuerie: [] };
+	const newTab = {
+		id: makeKey(),
+		name: "",
+		columns: [],
+		tasks: [],
+		tasksQuerie: [],
+		timeStamp: newTimeStamp(),
+	};
 	const normalTabColumnsTMP = ["description", "text", "status", "number", "stars"]; // this needs to be according to tab type
 	//TODO: Issue here: theres a problame with spacing when only one Cell exists
 	normalTabColumnsTMP.forEach((ofType) => {
@@ -21,9 +28,7 @@ function NewTab(type, project) {
 	const normalTabNumOfTasks = 1; // this needs to be according to tab type
 	for (let i = 0; i < normalTabNumOfTasks; i++) {
 		let newTask = NewTask(newTab.columns);
-		/* console.log("---> project gets task ,", newTask.id); */
 		project.tasks[newTask.id] = newTask; // TODO: This needs to come from the projects reducer?
-		/* console.log("---> project tasks is,", project.tasks); */
 		newTab.tasksQuerie.push(newTask.id);
 	}
 	console.log("NewTab --- ", newTab);
@@ -32,10 +37,14 @@ function NewTab(type, project) {
 }
 
 function NewTask(columns) {
-	const newTask = { id: makeKey() };
+	const newTask = { id: makeKey(), timeStamp: newTimeStamp() }; // DOSE THIS NEED A TIMESTAMP?
 	columns.forEach((column) => {
 		if (NEW_COLUMN_DATA[column.type]) {
-			newTask[column.id] = { id: column.id, content: NEW_COLUMN_DATA[column.type].newCellContent };
+			newTask[column.id] = {
+				id: column.id,
+				content: NEW_COLUMN_DATA[column.type].newCellContent,
+				timeStamp: newTimeStamp(), // DOSE THIS NEED A TIMESTAMP?
+			};
 		}
 	});
 

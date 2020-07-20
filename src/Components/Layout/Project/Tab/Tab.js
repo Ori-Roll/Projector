@@ -40,13 +40,16 @@ function tabDataReducer(oldData, action) {
 		case "ADD_NEW_TASK":
 			let newTask = action.newTask ? action.newTask : NewTask(data.columns);
 			data.tasks.push(newTask);
+			data.tasksQuerie.push(newTask.id);
 			return data;
 		case "ADD_NEW_TASKS":
 			console.log("-----------------------------------");
 			if (!action.newTasks) throw new Error("ADD_NEW_TASKS No new tasks");
 			if (Array.isArray(action.newTasks))
 				console.log("ADD_NEW_TASKS new tasks not in array", action.newTasks);
-			action.newTasks.forEach((task) => data.tasks.push(task));
+			action.newTasks.forEach((task) => {
+				data.tasks.push(task); // NOT GOOD - does this update queirie or not??? BAD
+			});
 			return data;
 		case "EDIT_TASK":
 			if (!action.editedTask) throw new Error("EDIT_TASK - no editedTask provided");
