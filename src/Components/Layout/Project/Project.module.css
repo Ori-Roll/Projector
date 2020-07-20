@@ -3,3 +3,13 @@
 	height: 100%;
 	background-color: white;
 }
+
+.project-loader {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-flow: column;
+	align-content: center;
+	font-style: oblique;
+	font-size: x-large;
+}

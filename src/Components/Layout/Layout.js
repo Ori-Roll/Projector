@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { PageContext } from "../ContextProvider/ContextProvider";
 import PropTypes from "prop-types";
 import Project from "./Project/Project";
+import ProjectLoader from "./Project/ProjectLoader";
 import SideBar from "./SideBar/SideBar";
 import { NewTab } from "../misc/NewDataMakers";
 import style from "./Layout.module.css";
@@ -89,7 +90,7 @@ function Layout(props) {
 				{projects.hasOwnProperty(currentProject) ? (
 					<Project projectItem={projects[currentProject]} />
 				) : (
-					<p>LOADING!</p>
+					<ProjectLoader />
 				)}
 			</div>
 		</div>
