@@ -5,7 +5,7 @@ import SideBar from "./SideBar/SideBar";
 import { NewTab } from "../misc/NewDataMakers";
 import style from "./Layout.module.css";
 
-const projects = {
+const crappyServerData = {
 	someProjId: {
 		id: "someProjId",
 		name: "some ProjName",
@@ -32,9 +32,36 @@ const projects = {
 	},
 };
 
-projects["someProjId"].tabs.push(NewTab(null, projects["someProjId"]));
-projects["otherProjId"].tabs.push(NewTab(null, projects["otherProjId"]));
-projects["otherProjId"].tabs.push(NewTab(null, projects["otherProjId"]));
+function someTime() {
+	return new Promise((resolve) => setTimeout(resolve, 1000));
+}
+
+async function setCrappyServerData(data) {
+	await someTime();
+	if (false) {
+		if (Math.random() > 0.7) {
+			return "error";
+		}
+	}
+	crappyServerData = data;
+	return getCrappyServerData; // TODO: check for timeStamps mach
+}
+
+async function getCrappyServerData() {
+	await someTime();
+	if (false) {
+		if (Math.random() > 0.7) {
+			return "error";
+		}
+	}
+	return crappyServerData;
+}
+
+const projects = {};
+
+serverData["someProjId"].tabs.push(NewTab(null, projects["someProjId"]));
+serverData["otherProjId"].tabs.push(NewTab(null, projects["otherProjId"]));
+serverData["otherProjId"].tabs.push(NewTab(null, projects["otherProjId"]));
 
 function Layout(props) {
 	const [currentProject, setCurrentProject] = useState("someProjId");
