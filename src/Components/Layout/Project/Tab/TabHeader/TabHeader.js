@@ -6,7 +6,7 @@ import style from "./TabHeader.module.css";
 
 function TabHeader({ toggleTabIsOpen, tabIsOpen, changeTabData }) {
 	useEffect(() => {
-		console.log("%c TabHeader Mount!", "font-weight: bold; font-size: 15px; color: red;");
+		/* console.log("%c TabHeader Mount!", "font-weight: bold; font-size: 15px; color: red;"); */
 	}, []);
 
 	const onHeaderClick = () => {

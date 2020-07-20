@@ -12,7 +12,7 @@ function ColumnsHeadWrapper({
 	setResizedColumn,
 }) {
 	useEffect(() => {
-		console.log("%c ColumnHeadWrapper Mount!", "font-weight: bold; font-size: 15px; color: red;");
+		/* console.log("%c ColumnHeadWrapper Mount!", "font-weight: bold; font-size: 15px; color: red;"); */
 	}, []);
 
 	return (

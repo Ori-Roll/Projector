@@ -28,7 +28,7 @@ function Task({ task, columns, changeTabData, resizedColumn, draggedColumn }) {
 	} */
 
 	useEffect(() => {
-		console.log("%c Task Mount", "font-weight: bold; font-size: 15px; color: red;");
+		console.log("%c Task Mount", "font-weight: bold; font-size: 12px; color: pink;");
 	}, []);
 
 	function createCell(column = () => console.error("no column for cell")) {

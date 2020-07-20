@@ -7,9 +7,6 @@ import style from "./DescriptionCell.module.css";
 function DescriptionCell({ id, content, doCellContentChange }) {
 	const [cellText, setCellText] = useState(content);
 
-	console.log(`%c ------cell render! content: ${content}---------`, "color: blue");
-	useEffect(() => console.log("%c TextCell MOUNT!", "color:red"), []);
-
 	function onInputChange(text) {
 		setCellText(text);
 		doCellContentChange(id, text, true);

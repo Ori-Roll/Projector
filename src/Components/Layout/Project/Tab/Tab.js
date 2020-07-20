@@ -124,7 +124,7 @@ function Tab({ tabItem, projectTasks }) {
 	}
 
 	useEffect(() => {
-		/* console.log("%c TAB MOUNT (EFFECT!)", "font-weight: bold; font-size: 15px; color: red;"); */
+		console.log("%c TAB MOUNT (effect!)", "font-weight: bold; font-size: 15px; color: red;");
 		let tasks = [];
 		tabItem.tasksQuerie.forEach((querie) => tasks.push(projectTasks[querie]));
 		changeTabData({ type: "ADD_NEW_TASKS", newTasks: tasks });

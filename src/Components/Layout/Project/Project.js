@@ -10,9 +10,15 @@ function Project({ projectItem }) {
 	const [projectData, setProjectData] = useState(projectItem);
 
 	useEffect(() => setProjectData(projectItem), [projectItem]);
-
-	console.log(`%c PROJECT RENDER ${projectData.name}`, "color: blue");
-	console.log(projectData);
+	useEffect(
+		() =>
+			console.log(
+				`%c PROJECT MOUNT ${projectData.name} (effect)`,
+				"color: red;font-weight: bold; font-size: 15px;"
+			),
+		[]
+	);
+	/* console.log(`%c PROJECT RENDER ${projectData.name}`, "color: blue"); */
 
 	return (
 		<div className={style.project}>
