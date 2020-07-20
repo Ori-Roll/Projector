@@ -3,12 +3,21 @@ import React, { useState, createContext } from "react";
 export const PageContext = createContext();
 
 function ContextProvider(props) {
-	const [aaa, setAaa] = useState("BLA AAA");
+	const [projects, setProjects] = useState({});
+
+	function addProject(proj) {
+		setProjects((oldProjects) => {
+			const newProjectsData = { ...oldProjects };
+			newProjectsData[proj.id] = proj;
+			return newProjectsData;
+		});
+	}
 
 	return (
 		<PageContext.Provider
 			value={{
-				aaa: aaa,
+				projects: projects,
+				addProject: addProject,
 			}}>
 			{props.children}
 		</PageContext.Provider>
