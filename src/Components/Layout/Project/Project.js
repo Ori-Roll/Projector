@@ -4,28 +4,112 @@ import _ from "lodash";
 
 import defaults from "../../defaults";
 import Tab from "./Tab/Tab";
+import ProjectLoader from "./ProjectLoader";
+
+import { NewTab } from "../../misc/NewDataMakers";
+
 import style from "./Project.module.css"; // TODO: change from style to: import classes from '..';
 
-function Project({ projectItem }) {
-	const [projectData, setProjectData] = useState(projectItem);
+const crappyServerData = {
+	someProjId: {
+		id: "someProjId",
+		name: "some ProjName",
+		users: [
+			{ id: "user1Id", permission: "viewer" }, // can only view things
+			{ id: "user2Is", permission: "user" }, // can change and add things
+			{ id: "user3Id", permission: "boss" }, // at least one has to be boss, can change settings and delete project
+			//users have a list of projects too, need valedations from projects when getting projects
+		],
+		tabs: [],
+		tasks: {},
+	},
+	otherProjId: {
+		id: "otherProjId",
+		name: "other ProjName",
+		users: [
+			{ id: "user1Id", permission: "viewer" }, // can only view things
+			{ id: "user2Is", permission: "user" }, // can change and add things
+			{ id: "user3Id", permission: "boss" }, // at least one has to be boss, can change settings and delete project
+			//users have a list of projects too, need valedations from projects when getting projects
+		],
+		tabs: [],
+		tasks: {},
+	},
+};
 
-	useEffect(() => setProjectData(projectItem), [projectItem]);
-	useEffect(
-		() =>
-			console.log(
-				`%c PROJECT MOUNT ${projectData.name} (effect)`,
-				"color: red;font-weight: bold; font-size: 15px;"
-			),
-		[]
-	);
+function someTime() {
+	return new Promise((resolve) => setTimeout(resolve, 1000));
+}
+
+async function setCrappyServerData(data) {
+	await someTime();
+	if (false) {
+		if (Math.random() > 0.7) {
+			return "error";
+		}
+	}
+	crappyServerData = data;
+	return getCrappyServerData; // TODO: check for timeStamps mach
+}
+
+async function getCrappyServerData(query) {
+	await someTime();
+	if (false) {
+		if (Math.random() > 0.7) {
+			return "error";
+		}
+	}
+	return crappyServerData[query];
+}
+
+/* a------
+    b-------- go back to b and this time weit for b to finish
+	   c--X	 
+ - what if person 1 delete a column while person 2 changes colomns data	 
+ - is there a way of saving changes and revert without saving everything ?
+
+*/
+
+crappyServerData["someProjId"].tabs.push(NewTab(null, crappyServerData["someProjId"]));
+crappyServerData["otherProjId"].tabs.push(NewTab(null, crappyServerData["otherProjId"]));
+crappyServerData["otherProjId"].tabs.push(NewTab(null, crappyServerData["otherProjId"]));
+
+function Project({ currentProject }) {
+	const [projectData, setProjectData] = useState(null);
+	const [loading, setLoading] = useState(true);
+
+	console.log("currentProject", currentProject);
+
+	useEffect(() => {
+		console.log(
+			`%c PROJECT MOUNT ${projectData} (effect)`,
+			"color: red;font-weight: bold; font-size: 15px;"
+		);
+	}, []);
+
+	useEffect(() => {
+		getCrappyServerData(currentProject)
+			.then((res) => {
+				console.log("res", res);
+				setProjectData(res);
+			})
+			.then(setLoading(false));
+	}, [currentProject]);
+
 	/* console.log(`%c PROJECT RENDER ${projectData.name}`, "color: blue"); */
 
 	return (
-		<div className={style.project}>
-			{projectItem.tabs.map((tabItem) => {
-				return <Tab key={tabItem.id} tabItem={tabItem} projectTasks={projectItem.tasks} />;
-			})}
-		</div>
+		<>
+			{!projectData ? (
+				<ProjectLoader />
+			) : (
+				<div className={style.project}>
+					{projectData.tabs.map((tabItem) => {
+						return <Tab key={tabItem.id} tabItem={tabItem} projectTasks={projectData.tasks} />;
+					})}
+				</div>
+			)}
+		</>
 	);
 }
 

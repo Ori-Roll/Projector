@@ -31,7 +31,6 @@ function NewTab(type, project) {
 		project.tasks[newTask.id] = newTask; // TODO: This needs to come from the projects reducer?
 		newTab.tasksQuerie.push(newTask.id);
 	}
-	console.log("NewTab --- ", newTab);
 	return newTab;
 	// TODO: add a column for basic task description (the first static column)
 }
