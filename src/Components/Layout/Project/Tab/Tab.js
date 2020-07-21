@@ -43,7 +43,6 @@ function tabDataReducer(oldData, action) {
 			data.tasksQuerie.push(newTask.id);
 			return data;
 		case "ADD_NEW_TASKS":
-			console.log("-----------------------------------");
 			if (!action.newTasks) throw new Error("ADD_NEW_TASKS No new tasks");
 			if (Array.isArray(action.newTasks))
 				console.log("ADD_NEW_TASKS new tasks not in array", action.newTasks);
@@ -129,8 +128,6 @@ function Tab({ tabItem, projectTasks }) {
 		tabItem.tasksQuerie.forEach((querie) => tasks.push(projectTasks[querie]));
 		changeTabData({ type: "ADD_NEW_TASKS", newTasks: tasks });
 	}, []);
-
-	console.log(tabData);
 
 	const [draggedColumn, setDraggedColumn] = useState(null);
 	const [resizedColumn, setResizedColumn] = useState(null);

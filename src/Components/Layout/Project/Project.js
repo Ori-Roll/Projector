@@ -90,7 +90,6 @@ function Project({ currentProject }) {
 	useEffect(() => {
 		getCrappyServerData(currentProject)
 			.then((res) => {
-				console.log("res", res);
 				setProjectData(res);
 			})
 			.then(setLoading(false));
