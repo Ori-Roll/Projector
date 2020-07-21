@@ -7,14 +7,14 @@ import SideBar from "./SideBar/SideBar";
 import style from "./Layout.module.css";
 
 function Layout(props) {
-	const [currentProject, setCurrentProject] = useState("someProjId");
 	const [loadedProjects, setLoadedProjects] = useState(["someProjId", "otherProjId"]);
 	const [currentUser, setCurrentUser] = useState("User3 name"); //TODO: what about cleanups for effects
+	const { viewedProject, setViewedProject } = useContext(AppContext);
 
 	/* useEffect(() => {
-		if (!userProjects[currentProject])
+		if (!userProjects[viewedProject])
 			
-	}, [currentProject]); 
+	}, [viewedProject]); 
 	
 	*/
 
@@ -22,13 +22,13 @@ function Layout(props) {
 		<div className={style["layout"]}>
 			<div className={style["side-bar-wrapper"]}>
 				<SideBar
-					currentProject={currentProject}
-					setCurrentProject={setCurrentProject}
+					viewedProject={viewedProject}
+					setViewedProject={setViewedProject}
 					currentUser={currentUser}
 				/>
 			</div>
 			<div className={style["project-wrapper"]}>
-				{currentProject ? <Project currentProject={currentProject} /> : <div>SELECT PROJECT!</div>}
+				{viewedProject ? <Project viewedProject={viewedProject} /> : <div>SELECT PROJECT!</div>}
 			</div>
 		</div>
 	);

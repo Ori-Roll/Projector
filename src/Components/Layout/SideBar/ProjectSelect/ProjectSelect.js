@@ -3,15 +3,15 @@ import PropTypes from "prop-types";
 import style from "./ProjectSelect.module.css";
 import { AppContext } from "../../../ContextProviders/AppContextProvider";
 
-function ProjectSelect({ currentProject, setCurrentProject }) {
+function ProjectSelect({ viewedProject, setViewedProject }) {
 	const { userProjects } = useContext(AppContext);
 
 	function onProjectClick(project) {
-		setCurrentProject(project);
+		setViewedProject(project);
 	}
 	return (
 		<div className={style["project-select"]}>
-			<div className={style["current-project-display"]}>{currentProject}</div>
+			<div className={style["current-project-display"]}>{viewedProject}</div>
 			{userProjects.map((project) => {
 				return (
 					<button

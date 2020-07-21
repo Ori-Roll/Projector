@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
 
@@ -48,7 +48,7 @@ async function setCrappyServerData(data) {
 			return "error";
 		}
 	}
-	crappyServerData = data;
+	crappyServerData[data] = data;
 	return getCrappyServerData; // TODO: check for timeStamps mach
 }
 
@@ -74,11 +74,11 @@ crappyServerData["someProjId"].tabs.push(NewTab(null, crappyServerData["someProj
 crappyServerData["otherProjId"].tabs.push(NewTab(null, crappyServerData["otherProjId"]));
 crappyServerData["otherProjId"].tabs.push(NewTab(null, crappyServerData["otherProjId"]));
 
-function Project({ currentProject }) {
+function Project({ viewedProject }) {
 	const [projectData, setProjectData] = useState(null);
 	const [loading, setLoading] = useState(true);
 
-	console.log("currentProject", currentProject);
+	console.log("viewedProject", viewedProject);
 
 	useEffect(() => {
 		console.log(
@@ -88,12 +88,12 @@ function Project({ currentProject }) {
 	}, []);
 
 	useEffect(() => {
-		getCrappyServerData(currentProject)
+		getCrappyServerData(viewedProject)
 			.then((res) => {
 				setProjectData(res);
 			})
 			.then(setLoading(false));
-	}, [currentProject]);
+	}, [viewedProject]);
 
 	/* console.log(`%c PROJECT RENDER ${projectData.name}`, "color: blue"); */
 
