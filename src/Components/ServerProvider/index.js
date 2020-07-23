@@ -2,7 +2,7 @@ import _ from "lodash";
 import { NewTab } from "../misc/NewDataMakers";
 import { queries } from "@testing-library/react";
 
-const crappyServerData = {
+let crappyServerData = {
 	users: {
 		user1Id: {
 			id: "user1Id",
@@ -65,14 +65,16 @@ function someTime() {
 	return new Promise((resolve) => setTimeout(resolve, 1000));
 }
 
-async function setCrappyServerData(data) {
+async function setCrappyServerData(path, newData) {
 	await someTime();
 	if (false) {
 		if (Math.random() > 0.7) {
 			return "error";
 		}
 	}
-	crappyServerData[data] = data;
+	_.set(crappyServerData, path, newData);
+	/* crappyServerData[data] = newData; */
+	console.log("set data to: ", crappyServerData);
 	return getCrappyServerData; // TODO: check for timeStamps mach
 }
 

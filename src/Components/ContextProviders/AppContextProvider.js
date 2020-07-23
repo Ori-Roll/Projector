@@ -2,8 +2,8 @@ import React, { useState, useEffect, createContext } from "react";
 import { NewTask } from "../misc/NewDataMakers";
 
 import { useImmerReducer } from "use-immer";
-import { indexOf } from "lodash";
-import { queries } from "@testing-library/react";
+
+import { setCrappyServerData, getCrappyServerData } from "../ServerProvider";
 
 function projectDataReducer(draft, action) {
 	function indexItemIdIn(id, Arr) {
@@ -58,6 +58,14 @@ function AppContextProvider(props) {
 	});
 	const [viewedProject, setViewedProject] = useState("someProjId");
 	const [projectData, dispatchProjectData] = useImmerReducer(projectDataReducer, null);
+
+	/* function dispatchSendProj(dispatchObject){
+		dispatchProjectData(dispatchObject).then(setCrappyServerData(projectData))
+	} */
+	useEffect(() => {
+		console.log("CHANGE TO PROJECT - SEND!");
+		setCrappyServerData(viewedProject, projectData);
+	}, [projectData]);
 
 	console.log("CONTEXT!");
 	return (

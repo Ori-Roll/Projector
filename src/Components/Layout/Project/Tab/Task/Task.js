@@ -58,9 +58,6 @@ function Task({ task, columns, resizedColumn, draggedColumn }) {
 	/* const delayedChangeTabData = useRef(() => changeTabData).current; */
 
 	function cellContentDispatch(id, content, task) {
-		/* let editedTask = { ...task };
-		editedTask[id].content = content;
-		changeTabData({ editedTask: editedTask, type: "EDIT_TASK" }); */
 		dispatchProjectData({ type: "EDIT_CELL", taskId: task.id, cellId: id, newContent: content });
 	}
 
