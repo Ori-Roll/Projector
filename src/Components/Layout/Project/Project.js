@@ -15,8 +15,6 @@ function Project({ viewedProject }) {
 	const { projectData, dispatchProjectData } = useContext(AppContext);
 	const [loading, setLoading] = useState(true);
 
-	/* console.log("viewedProject", viewedProject); */
-
 	useEffect(() => {
 		console.log(
 			`%c PROJECT MOUNT ${projectData} (effect)`,
@@ -31,8 +29,6 @@ function Project({ viewedProject }) {
 			})
 			.then(setLoading(false));
 	}, [viewedProject]);
-
-	/* console.log(`%c PROJECT RENDER ${projectData.name}`, "color: blue"); */
 
 	return (
 		<>

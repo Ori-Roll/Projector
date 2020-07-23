@@ -11,7 +11,6 @@ function projectDataReducer(draft, action) {
 		if (index === -1) throw new Error("No matching task");
 		return index;
 	}
-	console.log("CONTEXT");
 	switch (action.type) {
 		case "CHANGE_PROJECT_TO":
 			return action.project;
@@ -26,7 +25,6 @@ function projectDataReducer(draft, action) {
 		case "ADD_NEW_TASKS": // is this needed ???
 			if (!action.newTasks) throw new Error("ADD_NEW_TASKS No new tasks");
 			if (!action.tab) console.error("ADD_NEW_TASK - no tab to add to");
-			console.log(action.tab);
 			if (Array.isArray(action.newTasks))
 				console.log("ADD_NEW_TASKS new tasks not in array", action.newTasks);
 			action.newTasks.forEach((task) => {
@@ -61,9 +59,6 @@ function AppContextProvider(props) {
 	const [viewedProject, setViewedProject] = useState("someProjId");
 	const [projectData, dispatchProjectData] = useImmerReducer(projectDataReducer, null);
 
-	/* useEffect(() => {
-		console.log(projectData);
-	}, [projectData]); */
 	console.log("CONTEXT!");
 	return (
 		<AppContext.Provider

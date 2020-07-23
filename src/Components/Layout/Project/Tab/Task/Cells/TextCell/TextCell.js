@@ -39,18 +39,3 @@ export default React.memo(TextCell, (prevProps, nextProps) => {
 	if (prevProps.content === "" && nextProps.content === "") return true;
 	return prevProps.content !== nextProps.content ? true : false;
 });
-
-/* let changeCellData;
-
-function CellDataChanger(task, cellId, changeTabData) {
-	console.log("Out happend");
-	return (cellEdit) => {
-		console.log("In happend");
-		 let editedTask = { ...task };
-		editedTask[cellId] = cellEdit;
-		changeTabData({ editedTask: editedTask, type: "EDIT_TASK" });
-	};
-}
- */
-
-/* changeCellData({ content: cellText }); */

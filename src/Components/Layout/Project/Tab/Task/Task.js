@@ -43,14 +43,6 @@ function Task({ task, columns, resizedColumn, draggedColumn }) {
 			return CellOfType[column.type](Math.random(), column.newCellContent, doCellContentChange);
 		} else {
 			/* console.log(`%c new Cell - content ${task[column.id].content}`, "color:green"); */
-			/* return (
-				<TextCell
-					key={column.id}
-					id={column.id}
-					content={task[column.id].content}
-					doCellContentChange={doCellContentChange}
-				/>
-			); */
 			return CellOfType[column.type](column.id, task[column.id].content, doCellContentChange);
 		}
 	}
@@ -102,32 +94,3 @@ function Task({ task, columns, resizedColumn, draggedColumn }) {
 Task.propTypes = {};
 
 export default Task;
-
-/* return inView ? (
-		<div key={"task.id"} className={style["task"]} ref={taskRef}>
-			{console.log("HERE-1")}
-			{columns.map((column) => {
-				const spacerWidth = column.spacer;
-				return (
-					<div
-						key={column.id}
-						className={style["cell-wrapper"]}
-						style={task.isMock ? { opacity: "50%" } : {}}>
-						{console.log("HERE-2")}
-						<div
-							style={
-								column.isDragged
-									? { width: cellWrapperWidth, opacity: "20%" }
-									: { width: cellWrapperWidth }
-							}>
-							{console.log("HERE-3")}
-							{createCell(column)}
-						</div>
-						<Spacer spacerWidth={spacerWidth} />
-					</div>
-				);
-			})}
-		</div>
-	) : (
-		<div key={"task.id"} className={style["pseudo-task"]} ref={taskRef}></div>
-	); */
