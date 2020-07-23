@@ -20,12 +20,12 @@ function NewTab(type, project) {
 		tasksQuerie: [],
 		timeStamp: newTimeStamp(),
 	};
+	const normalTabNumOfTasks = 1; // this needs to be according to tab type
 	const normalTabColumnsTMP = ["description", "text", "status", "number", "stars"]; // this needs to be according to tab type
 	//TODO: Issue here: theres a problame with spacing when only one Cell exists
 	normalTabColumnsTMP.forEach((ofType) => {
 		newTab.columns.push(NewColumn(ofType));
 	});
-	const normalTabNumOfTasks = 1; // this needs to be according to tab type
 	for (let i = 0; i < normalTabNumOfTasks; i++) {
 		let newTask = NewTask(newTab.columns);
 		project.tasks[newTask.id] = newTask; // TODO: This needs to come from the projects reducer?

@@ -10,7 +10,7 @@ function SideBar({ viewedProject, setViewedProject, currentUser }) {
 			<div className={style["general"]}>
 				<div className={style["general-top"]} />
 				<div className={style["general-mid"]}>
-					<UserSelect currentUser={currentUser} />
+					<UserSelect />
 				</div>
 				<div className={style["general-bottom"]}></div>
 			</div>
