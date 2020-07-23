@@ -1,9 +1,10 @@
-import React, { useState, useReducer, useEffect } from "react";
+import React, { useState, useReducer, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
-import _, { forEach } from "lodash";
+import _ from "lodash";
 
 import { NewColumn, NewTask } from "../../../misc/NewDataMakers";
 
+import { AppContext } from "../../../ContextProviders/AppContextProvider";
 import MouseMoveWrapper from "../../../misc/MouseMoveWrapper";
 
 import Task from "./Task/Task";
@@ -13,6 +14,7 @@ import TabHeader from "./TabHeader/TabHeader";
 
 import style from "./Tab.module.css"; // TODO: rename file to lowercase, in my projects it's always style(s).module.css
 import { NEW_COLUMN_DATA } from "../../../defaults";
+import { queries } from "@testing-library/react";
 
 /* TODO: (Ori) Neads the ability to update the original data from the source after it updetes it one*/
 function tabDataReducer(oldData, action) {
@@ -37,27 +39,27 @@ function tabDataReducer(oldData, action) {
 	const indexOfColumn = (id) => IdInSubDataIndexer(oldData)(id, "columns"); // TODO: NOT GOOD REMAKES THE FUNCTION ALL THE TIME
 
 	switch (action.type) {
-		case "ADD_NEW_TASK":
+		/* case "ADD_NEW_TASK":
 			let newTask = action.newTask ? action.newTask : NewTask(data.columns);
 			data.tasks.push(newTask);
 			data.tasksQuerie.push(newTask.id);
-			return data;
-		case "ADD_NEW_TASKS":
+			return data; */
+		/* 	case "ADD_NEW_TASKS":
 			if (!action.newTasks) throw new Error("ADD_NEW_TASKS No new tasks");
 			if (Array.isArray(action.newTasks))
 				console.log("ADD_NEW_TASKS new tasks not in array", action.newTasks);
 			action.newTasks.forEach((task) => {
 				data.tasks.push(task); // NOT GOOD - does this update queirie or not??? BAD
-			});
-			return data;
-		case "EDIT_TASK":
+			}); 
+			return data;*/
+		/* case "EDIT_TASK":
 			if (!action.editedTask) throw new Error("EDIT_TASK - no editedTask provided");
 			const taskIndex = indexOfTask(action.editedTask.id); // CHANGE TO indexOf ????
 			data.tasks[taskIndex] = {
 				...data.tasks[taskIndex],
 				...action.editedTask,
 			};
-			return data;
+			return data; */
 		case "DELETE_TASK":
 			if (action.task || action.id) {
 				data.tasks.splice(indexOfTask(action.id ? action.id : action.task.id), 1);
@@ -113,10 +115,11 @@ function tabDataReducer(oldData, action) {
 			throw new Error("tabDataReducer: No action provided");
 	}
 }
-
-function Tab({ tabItem, projectTasks }) {
+// TODO: "tab" -I would rename this
+function Tab({ tabItem, tabTasks }) {
 	const [tabData, changeTabData] = useReducer(tabDataReducer, tabItem);
-	// TODO: I would rename this
+	const { dispatchProjectData } = useContext(AppContext);
+
 	const [tabIsOpen, setTabIsOpen] = useState(true); // TODO: (Ori) this needs to initially come from backend
 	function toggleTabIsOpen() {
 		setTabIsOpen(!tabIsOpen);
@@ -124,14 +127,26 @@ function Tab({ tabItem, projectTasks }) {
 
 	useEffect(() => {
 		console.log("%c TAB MOUNT (effect!)", "font-weight: bold; font-size: 15px; color: red;");
-		let tasks = [];
-		tabItem.tasksQuerie.forEach((querie) => tasks.push(projectTasks[querie]));
-		changeTabData({ type: "ADD_NEW_TASKS", newTasks: tasks });
+		/* let tasks = [];
+		tabItem.tasksQuerie.forEach((querie) => tasks.push(projectTasks[querie])); */
+		/* dispatchProjectData({
+			type: "TAB_APPEND_QUERIES",
+			queries: tabItem.tasksQuerie,
+			tabId: tabItem.id,
+		}); */
 	}, []);
+	useEffect(
+		_.debounce(() => updateTabInProject(), 2000),
+		[tabData]
+	);
 
 	const [draggedColumn, setDraggedColumn] = useState(null);
 	const [resizedColumn, setResizedColumn] = useState(null);
 	const [mouseXposition, setMouseXposition] = useState(0);
+
+	function updateTabInProject() {
+		dispatchProjectData({ type: "UPDATE_TAB_DATA", tabData: tabData });
+	}
 
 	// TODO: choose drag and drop package, consider this: https://github.com/atlassian/react-beautiful-dnd
 	return (
@@ -143,14 +158,11 @@ function Tab({ tabItem, projectTasks }) {
 			setResizedColumn={setResizedColumn}
 			mouseXposition={mouseXposition}
 			setMouseXposition={setMouseXposition}
-			changeTabData={changeTabData}>
+			changeTabData={changeTabData}
+			updateTabInProject={updateTabInProject}>
 			<div className={style.tab}>
 				<div className={style["tab-header-wrapper"]}>
-					<TabHeader
-						tabIsOpen={tabIsOpen}
-						toggleTabIsOpen={toggleTabIsOpen}
-						changeTabData={changeTabData}
-					/>
+					<TabHeader tabIsOpen={tabIsOpen} toggleTabIsOpen={toggleTabIsOpen} tabItem={tabItem} />
 				</div>
 
 				<div /* TODO add classcat package. className={cc([style["tab-content-wrapper"], {[style.open]: tabIsOpen}])} */
@@ -166,7 +178,7 @@ function Tab({ tabItem, projectTasks }) {
 						setResizedColumn={setResizedColumn}
 					/>
 					{/* <TaskCopy task={"C"} /> */}
-					{tabData.tasks.map((task) => {
+					{tabTasks.map((task) => {
 						return (
 							<Task
 								key={task.id}

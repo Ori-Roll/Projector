@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AppContext } from "../ContextProviders/AppContextProvider";
 import PropTypes from "prop-types";
+
+import { setCrappyServerData, getCrappyServerData } from "../ServerProvider";
+
 import Project from "./Project/Project";
 import SideBar from "./SideBar/SideBar";
 
@@ -8,15 +11,17 @@ import style from "./Layout.module.css";
 
 function Layout(props) {
 	const [loadedProjects, setLoadedProjects] = useState(["someProjId", "otherProjId"]);
-	const [currentUser, setCurrentUser] = useState("User3 name"); //TODO: what about cleanups for effects
+	const { currentUser, setCurrentUser } = useContext(AppContext);
 	const { viewedProject, setViewedProject } = useContext(AppContext);
 
 	/* useEffect(() => {
-		if (!userProjects[viewedProject])
+		if (!currentUser.projects[viewedProject])
 			
 	}, [viewedProject]); 
 	
 	*/
+
+	//TODO: what about cleanups for effects
 
 	return (
 		<div className={style["layout"]}>

@@ -2,83 +2,20 @@ import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
 
+import { AppContext } from "./../../ContextProviders/AppContextProvider";
 import defaults from "../../defaults";
 import Tab from "./Tab/Tab";
 import ProjectLoader from "./ProjectLoader";
 
-import { NewTab } from "../../misc/NewDataMakers";
-
 import style from "./Project.module.css"; // TODO: change from style to: import classes from '..';
 
-const crappyServerData = {
-	someProjId: {
-		id: "someProjId",
-		name: "some ProjName",
-		users: [
-			{ id: "user1Id", permission: "viewer" }, // can only view things
-			{ id: "user2Is", permission: "user" }, // can change and add things
-			{ id: "user3Id", permission: "boss" }, // at least one has to be boss, can change settings and delete project
-			//users have a list of projects too, need valedations from projects when getting projects
-		],
-		tabs: [],
-		tasks: {},
-	},
-	otherProjId: {
-		id: "otherProjId",
-		name: "other ProjName",
-		users: [
-			{ id: "user1Id", permission: "viewer" }, // can only view things
-			{ id: "user2Is", permission: "user" }, // can change and add things
-			{ id: "user3Id", permission: "boss" }, // at least one has to be boss, can change settings and delete project
-			//users have a list of projects too, need valedations from projects when getting projects
-		],
-		tabs: [],
-		tasks: {},
-	},
-};
-
-function someTime() {
-	return new Promise((resolve) => setTimeout(resolve, 1000));
-}
-
-async function setCrappyServerData(data) {
-	await someTime();
-	if (false) {
-		if (Math.random() > 0.7) {
-			return "error";
-		}
-	}
-	crappyServerData[data] = data;
-	return getCrappyServerData; // TODO: check for timeStamps mach
-}
-
-async function getCrappyServerData(query) {
-	await someTime();
-	if (false) {
-		if (Math.random() > 0.7) {
-			return "error";
-		}
-	}
-	return crappyServerData[query];
-}
-
-/* a------
-    b-------- go back to b and this time weit for b to finish
-	   c--X	 
- - what if person 1 delete a column while person 2 changes colomns data	 
- - is there a way of saving changes and revert without saving everything ?
-
-*/
-
-crappyServerData["someProjId"].tabs.push(NewTab(null, crappyServerData["someProjId"]));
-crappyServerData["otherProjId"].tabs.push(NewTab(null, crappyServerData["otherProjId"]));
-crappyServerData["otherProjId"].tabs.push(NewTab(null, crappyServerData["otherProjId"]));
+import { setCrappyServerData, getCrappyServerData } from "./../../ServerProvider";
 
 function Project({ viewedProject }) {
-	const [projectData, setProjectData] = useState(null);
+	const { projectData, dispatchProjectData } = useContext(AppContext);
 	const [loading, setLoading] = useState(true);
 
-	console.log("viewedProject", viewedProject);
+	/* console.log("viewedProject", viewedProject); */
 
 	useEffect(() => {
 		console.log(
@@ -90,7 +27,7 @@ function Project({ viewedProject }) {
 	useEffect(() => {
 		getCrappyServerData(viewedProject)
 			.then((res) => {
-				setProjectData(res);
+				dispatchProjectData({ type: "CHANGE_PROJECT_TO", project: res });
 			})
 			.then(setLoading(false));
 	}, [viewedProject]);
@@ -103,8 +40,10 @@ function Project({ viewedProject }) {
 				<ProjectLoader />
 			) : (
 				<div className={style.project}>
+					{console.log("projectData-Sent", projectData)}
 					{projectData.tabs.map((tabItem) => {
-						return <Tab key={tabItem.id} tabItem={tabItem} projectTasks={projectData.tasks} />;
+						let tabTaskSet = tabItem.tasksQuerie.map((querie) => projectData.tasks[querie]);
+						return <Tab key={tabItem.id} tabItem={tabItem} tabTasks={tabTaskSet} />;
 					})}
 				</div>
 			)}

@@ -25,6 +25,7 @@ function MouseMoveWrapper({
 	mouseXposition,
 	setMouseXposition,
 	changeTabData,
+	updateTabInProject,
 	...props
 }) {
 	const [resizeDelta, setResizeDelta] = useState(0);
@@ -54,7 +55,6 @@ function MouseMoveWrapper({
 				newData: { isDragged: false, spacer: defaults.SPACER_WIDTH },
 				type: "EDIT_ALL_COLUMNS",
 			});
-
 			setDraggedColumn(null);
 		} else if (resizedColumn) {
 			setResizeDelta(0);

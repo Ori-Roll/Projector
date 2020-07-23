@@ -1,10 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import PropTypes from "prop-types";
+
+import { AppContext } from "./../../../../ContextProviders/AppContextProvider";
 
 import TabArrow from "./TabArrow/TabArrow";
 import style from "./TabHeader.module.css";
 
-function TabHeader({ toggleTabIsOpen, tabIsOpen, changeTabData }) {
+function TabHeader({ toggleTabIsOpen, tabIsOpen, tabItem }) {
+	const { dispatchProjectData } = useContext(AppContext);
+
 	useEffect(() => {
 		/* console.log("%c TabHeader Mount!", "font-weight: bold; font-size: 15px; color: red;"); */
 	}, []);
@@ -14,7 +18,7 @@ function TabHeader({ toggleTabIsOpen, tabIsOpen, changeTabData }) {
 	};
 
 	function onAddTaskClick() {
-		changeTabData({ type: "ADD_NEW_TASK" });
+		dispatchProjectData({ type: "ADD_NEW_TASK", tab: tabItem });
 	}
 
 	return (

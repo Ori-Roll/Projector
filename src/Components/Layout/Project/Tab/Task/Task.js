@@ -1,9 +1,10 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { useInView } from "react-intersection-observer";
 import _ from "lodash";
 
 import { CellOfType } from "./Cells/CellTypes/CellTypes";
+import { AppContext } from "./../../../../ContextProviders/AppContextProvider";
 
 import TextCell from "./Cells/TextCell/TextCell";
 import CellWrapper from "./CellWrapper";
@@ -13,8 +14,10 @@ import style from "./Task.module.css";
 
 const renders = [];
 
-function Task({ task, columns, changeTabData, resizedColumn, draggedColumn }) {
+function Task({ task, columns, resizedColumn, draggedColumn }) {
 	const [taskRef, inView, entry] = useInView();
+
+	const { dispatchProjectData } = useContext(AppContext);
 
 	/* let task, columns, changeTabData, resizedColumn, draggedColumn;
 	if (inView  || (!props.resizedColumn && !props.draggedColumn)) {
@@ -26,6 +29,8 @@ function Task({ task, columns, changeTabData, resizedColumn, draggedColumn }) {
 	} else {
 		console.log("%c Task Psoudo Render", "color: gray");
 	} */
+
+	/* 	console.log(`%c ------Task render! did: ${task.id}---------`, "color: green"); */
 
 	useEffect(() => {
 		/* console.log("%c Task Mount", "font-weight: bold; font-size: 12px; color: pink;"); */
@@ -61,10 +66,10 @@ function Task({ task, columns, changeTabData, resizedColumn, draggedColumn }) {
 	/* const delayedChangeTabData = useRef(() => changeTabData).current; */
 
 	function cellContentDispatch(id, content, task) {
-		let editedTask = { ...task };
-		console.log("dispatch editedTask", editedTask);
+		/* let editedTask = { ...task };
 		editedTask[id].content = content;
-		changeTabData({ editedTask: editedTask, type: "EDIT_TASK" });
+		changeTabData({ editedTask: editedTask, type: "EDIT_TASK" }); */
+		dispatchProjectData({ type: "EDIT_CELL", taskId: task.id, cellId: id, newContent: content });
 	}
 
 	const delayedCellContentDispatch = useRef(
@@ -72,10 +77,10 @@ function Task({ task, columns, changeTabData, resizedColumn, draggedColumn }) {
 			if (!content) console.error("No content for debounce");
 			console.log("delayed ...");
 			cellContentDispatch(id, content, task);
-		}, 100)
+		}, 200)
 	).current;
 
-	return inView ? (
+	return inView ? ( //maby add this to a list of viewed on tab and render there accordingly (no need to pass anything)
 		<div className={style["task"]} ref={taskRef}>
 			{columns.map((column) => {
 				return (

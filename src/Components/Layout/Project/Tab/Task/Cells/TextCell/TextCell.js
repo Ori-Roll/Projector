@@ -9,7 +9,7 @@ import { NEW_COLUMN_DATA } from "../../../../../../defaults";
 function TextCell({ id, content, doCellContentChange }) {
 	const [cellText, setCellText] = useState(content);
 
-	/* console.log(`%c ------cell render! content: ${content}---------`, "color: green"); */
+	console.log(`%c ------cell render! content: ${content}---------`, "color: green");
 	/* useEffect(() => console.log("%c TextCell MOUNT!", "color:red"), []); */
 
 	function onInputChange(text) {
