@@ -11,7 +11,6 @@ getCrappyServerData("users").then((res) => (users = res));
 function UserSelect() {
 	const { currentUser, setCurrentUser } = useContext(AppContext);
 
-	console.log("USERS", users);
 	const [usersMenu, setUsersManu] = useState(false);
 
 	function onClick() {
@@ -31,6 +30,7 @@ function UserSelect() {
 					{Object.keys(users).map((key) => {
 						return (
 							<UserIcon
+								key={key}
 								userName={users[key].name}
 								onClickCallback={() => changeToUser(users[key].id)}
 								userIcon={users[key].icon}
