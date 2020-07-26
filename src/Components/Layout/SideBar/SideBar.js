@@ -7,14 +7,10 @@ import style from "./SideBar.module.css";
 function SideBar({ viewedProject, setViewedProject, currentUser }) {
 	return (
 		<div className={style["side-bar"]}>
-			<div className={style["general"]}>
-				<div className={style["general-top"]} />
-				<div className={style["general-mid"]}>
-					<UserSelect />
-				</div>
-				<div className={style["general-bottom"]}></div>
-			</div>
 			<ProjectSelect viewedProject={viewedProject} setViewedProject={setViewedProject} />
+			<div className={style["general"]}>
+				<UserSelect />
+			</div>
 		</div>
 	);
 }

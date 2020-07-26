@@ -1,9 +1,9 @@
 .user-icon {
-	width: 80px;
-	height: 80px;
-	border: rgb(255, 255, 255) 3px solid;
-	box-shadow: inset white 0 0 0 3px;
-	box-shadow: rgba(0, 0, 0, 0.164) 0 0 5px 5px;
+	width: 48px;
+	height: 48px;
+	/* border: rgb(255, 255, 255) 3px solid; */
+	box-shadow: inset white 0 0 0 2px;
+	/* box-shadow: rgba(0, 0, 0, 0.164) 0 0 5px 5px; */
 	border-radius: 100%;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -13,6 +13,8 @@
 }
 
 .user-icon:hover {
-	transform: scale(1.05);
-	box-shadow: rgba(0, 0, 0, 0.164) 0 0 6px 6px;
+	/* transform: scale(1.2); */
+	height: 50px;
+	width: 50px;
+	/* box-shadow: rgba(0, 0, 0, 0.164) 0 0 6px 6px; */
 }

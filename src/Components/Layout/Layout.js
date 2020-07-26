@@ -32,6 +32,8 @@ function Layout(props) {
 					currentUser={currentUser}
 				/>
 			</div>
+			<div className={style["project-head"]}></div>
+			<div className={style["project-side-bar"]}></div>
 			<div className={style["project-wrapper"]}>
 				{viewedProject ? <Project viewedProject={viewedProject} /> : <div>SELECT PROJECT!</div>}
 			</div>

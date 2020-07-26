@@ -1,31 +1,36 @@
 :root {
-	--side-general-bg-color: rgb(243, 243, 243);
+	--side-general-bg-color: rgb(49, 53, 56);
 	--side-general-border: rgb(179, 179, 179) 1px solid;
 }
 
 .side-bar {
+	position: absolute;
 	height: 100%;
-	/* background-color: rgb(50, 50, 50); */
-	/* border-right: rgb(190, 190, 190) 10px solid; */
-	position: relative;
-	/* box-shadow: inset rgb(60, 60, 60) -4px 0; */
+	left: 0;
+	top: 0;
+	background-color: lightcoral;
+	width: 50px;
+	z-index: 150;
 }
 
 .general {
 	position: absolute;
+	background-color: var(--side-general-bg-color);
+	border-right: var(--side-general-border);
+	box-shadow: rgba(0, 0, 0, 0.2) 5px 5px 20px;
 	height: 100%;
-	width: 80px;
-	z-index: 105;
+	width: 40px;
+	top: 0;
+	z-index: 110;
 }
 
-.general-top {
+/* .general-top {
 	position: absolute;
 	height: 150px;
 	width: 130px;
 	top: 0;
 	left: 0;
 	background-color: var(--side-general-bg-color);
-	/* border-bottom: var(--side-general-border); */
 	border-right: var(--side-general-border);
 	box-shadow: rgba(0, 0, 0, 0.2) 5px 5px 20px;
 	z-index: 1;
@@ -40,7 +45,6 @@
 	left: 0;
 	background-color: var(--side-general-bg-color);
 	padding: 630px 0 0 40px;
-	/* border-right: var(--side-general-border); */
 	z-index: 3;
 }
 
@@ -58,3 +62,4 @@
 	box-shadow: rgba(0, 0, 0, 0.2) 5px 5px 20px;
 	z-index: 2;
 }
+ */

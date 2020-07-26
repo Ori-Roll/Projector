@@ -1,11 +1,12 @@
 :root {
-	--side-project-select-bg-color: rgb(231, 231, 231);
+	--side-project-select-bg-color: rgb(40, 154, 219);
 }
 
 .project-select {
 	position: absolute;
 	padding: 105px 0 0 0;
-	left: -180px;
+	left: -305px;
+	top: 0;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
@@ -34,14 +35,32 @@
 	height: 50px;
 } */
 .current-project-display {
-	height: 40px;
-	padding: 8px 16px 5px;
-	font-size: 16px;
+	position: absolute;
+	right: -60px;
+	top: 40px;
+	height: 50px;
+	padding: 12px 120px;
+	border-radius: 50px;
+	font-size: 18px;
 	font-family: inherit;
 	text-align: right;
-	background-color: rgb(58, 91, 238);
+	background-color: inherit;
 	color: rgb(255, 255, 255);
 	z-index: 110;
+}
+
+.project-select-folder-lable {
+	position: absolute;
+	right: -55px;
+	top: 45px;
+	padding: 20px;
+	border-radius: 25px;
+	background-color: white;
+	background-position: center;
+	background-size: 26px;
+	background-repeat: no-repeat;
+	background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Folder_close_alt_font_awesome.svg/512px-Folder_close_alt_font_awesome.svg.png");
+	z-index: 120;
 }
 
 .project-select-btn {

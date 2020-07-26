@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import { AppContext } from "../../../ContextProviders/AppContextProvider";
 import { setCrappyServerData, getCrappyServerData } from "../../../ServerProvider";
+import style from "./UserSelect.module.css";
 
 import UserIcon from "../../../misc/GlobalComponents/UserIcon/UserIcon";
 
@@ -23,7 +24,7 @@ function UserSelect() {
 	}
 
 	return (
-		<>
+		<div className={style["user-select"]}>
 			<UserIcon userName={currentUser.name} onClickCallback={onClick} userIcon={currentUser.icon} />
 			{usersMenu ? (
 				<div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)" }}>
@@ -39,7 +40,7 @@ function UserSelect() {
 					})}
 				</div>
 			) : null}
-		</>
+		</div>
 	);
 }
 

@@ -11,6 +11,7 @@ function ProjectSelect({ viewedProject, setViewedProject }) {
 	}
 	return (
 		<div className={style["project-select"]}>
+			<div className={style["project-select-folder-lable"]} />
 			<div className={style["current-project-display"]}>{viewedProject}</div>
 			{currentUser.projects.map((project) => {
 				return (
