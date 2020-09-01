@@ -6,7 +6,7 @@ import style from "./ColumnsHeadWrapper.module.css";
 
 function ColumnsHeadWrapper({
 	tabData,
-	changeTabData,
+	changeGroupData,
 	draggedColumn,
 	setDraggedColumn,
 	setResizedColumn,
@@ -24,12 +24,12 @@ function ColumnsHeadWrapper({
 							column={column}
 							draggedColumn={draggedColumn}
 							setDraggedColumn={setDraggedColumn}
-							changeTabData={changeTabData}
+							changeGroupData={changeGroupData}
 						/>
 						<ColumnHeadSpacer
 							column={column}
 							tabData={tabData}
-							changeTabData={changeTabData}
+							changeGroupData={changeGroupData}
 							draggedColumn={draggedColumn}
 							setResizedColumn={setResizedColumn}
 						/>

@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { NewTab } from "../misc/NewDataMakers";
+import { NewGroup } from "../misc/NewDataMakers";
 import axios from "axios";
 
 import { regiserUser, loginUser, getLoggedInUser } from "./auth";
@@ -34,7 +34,7 @@ let crappyServerData = {
 			{ id: "user3Id", permission: "boss" }, // at least one has to be boss, can change settings and delete project
 			//users have a list of projects too, need valedations from projects when getting projects
 		],
-		tabs: [],
+		groups: [],
 		tasks: {},
 	},
 	otherProjId: {
@@ -46,7 +46,7 @@ let crappyServerData = {
 			{ id: "user3Id", permission: "boss" }, // at least one has to be boss, can change settings and delete project
 			//users have a list of projects too, need valedations from projects when getting projects
 		],
-		tabs: [],
+		groups: [],
 		tasks: {},
 	},
 	ProjId3: {
@@ -58,7 +58,7 @@ let crappyServerData = {
 			{ id: "user3Id", permission: "boss" }, // at least one has to be boss, can change settings and delete project
 			//users have a list of projects too, need valedations from projects when getting projects
 		],
-		tabs: [],
+		groups: [],
 		tasks: {},
 	},
 };
@@ -104,11 +104,11 @@ async function getCrappyServerData(query) {
 
 */
 
-crappyServerData["someProjId"].tabs.push(NewTab(null, crappyServerData["someProjId"]));
-crappyServerData["otherProjId"].tabs.push(NewTab(null, crappyServerData["otherProjId"]));
-crappyServerData["otherProjId"].tabs.push(NewTab(null, crappyServerData["otherProjId"]));
-crappyServerData["ProjId3"].tabs.push(NewTab(null, crappyServerData["ProjId3"]));
-crappyServerData["ProjId3"].tabs.push(NewTab(null, crappyServerData["ProjId3"]));
-crappyServerData["ProjId3"].tabs.push(NewTab(null, crappyServerData["ProjId3"]));
+crappyServerData["someProjId"].groups.push(NewGroup(null, crappyServerData["someProjId"]));
+crappyServerData["otherProjId"].groups.push(NewGroup(null, crappyServerData["otherProjId"]));
+crappyServerData["otherProjId"].groups.push(NewGroup(null, crappyServerData["otherProjId"]));
+crappyServerData["ProjId3"].groups.push(NewGroup(null, crappyServerData["ProjId3"]));
+crappyServerData["ProjId3"].groups.push(NewGroup(null, crappyServerData["ProjId3"]));
+crappyServerData["ProjId3"].groups.push(NewGroup(null, crappyServerData["ProjId3"]));
 
 export { setCrappyServerData, getCrappyServerData, loginUser, getLoggedInUser };

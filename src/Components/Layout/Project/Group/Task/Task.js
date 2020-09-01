@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer";
 import _ from "lodash";
 
 import { CellOfType } from "./Cells/CellTypes/CellTypes";
-import { AppContext } from "./../../../../ContextProviders/AppContextProvider";
+import { AppContext } from "../../../../ContextProviders/AppContextProvider";
 
 import TextCell from "./Cells/TextCell/TextCell";
 import CellWrapper from "./CellWrapper";
@@ -19,11 +19,11 @@ function Task({ task, columns, resizedColumn, draggedColumn }) {
 
 	const { dispatchProjectData } = useContext(AppContext);
 
-	/* let task, columns, changeTabData, resizedColumn, draggedColumn;
+	/* let task, columns, changeGroupData, resizedColumn, draggedColumn;
 	if (inView  || (!props.resizedColumn && !props.draggedColumn)) {
 		task = props.task;
 		columns = props.columns;
-		changeTabData = props.changeTabData;
+		changeGroupData = props.changeGroupData;
 		resizedColumn = props.resizedColumn;
 		draggedColumn = props.draggedColumn;
 	} else {
@@ -55,7 +55,7 @@ function Task({ task, columns, resizedColumn, draggedColumn }) {
 		}
 	}
 
-	/* const delayedChangeTabData = useRef(() => changeTabData).current; */
+	/* const delayedChangeGroupData = useRef(() => changeGroupData).current; */
 
 	function cellContentDispatch(id, content, task) {
 		dispatchProjectData({ type: "EDIT_CELL", taskId: task.id, cellId: id, newContent: content });
@@ -69,7 +69,7 @@ function Task({ task, columns, resizedColumn, draggedColumn }) {
 		}, 200)
 	).current;
 
-	return inView ? ( //maby add this to a list of viewed on tab and render there accordingly (no need to pass anything)
+	return inView ? ( //maby add this to a list of viewed on group and render there accordingly (no need to pass anything)
 		<div className={style["task"]} ref={taskRef}>
 			{columns.map((column) => {
 				return (

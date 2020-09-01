@@ -1,4 +1,4 @@
-.tab-right-control {
+.group-right-control {
 	height: 100%;
 	border: rgb(216, 216, 216) 1px dashed;
 	border-radius: 2px;
@@ -8,7 +8,7 @@
 	align-items: center;
 	cursor: pointer;
 }
-.tab-right-control * {
+.group-right-control * {
 	padding: 0;
 	text-align: center;
 }

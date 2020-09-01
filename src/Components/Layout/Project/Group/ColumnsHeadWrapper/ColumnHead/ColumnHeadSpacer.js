@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 import style from "./ColumnHead.module.css";
 import defaults from "../../../../../defaults";
 
-function ColumnHeadSpacer({ column, tabData, changeTabData, draggedColumn, setResizedColumn }) {
+function ColumnHeadSpacer({ column, tabData, changeGroupData, draggedColumn, setResizedColumn }) {
 	const [mouseOver, setMouseOver] = useState(false);
 
 	function toggleMouseOver(mouseIsOver) {
 		if (draggedColumn && mouseIsOver) {
 			if (draggedColumn.id === column.id) return;
 			setMouseOver(true);
-			changeTabData({
+			changeGroupData({
 				editedColumn: {
 					id: column.id,
 					spacer: `${draggedColumn.width}px`,
@@ -19,7 +19,7 @@ function ColumnHeadSpacer({ column, tabData, changeTabData, draggedColumn, setRe
 			});
 		} else if (!draggedColumn || !mouseIsOver) {
 			setMouseOver(false);
-			changeTabData({
+			changeGroupData({
 				editedColumn: {
 					id: column.id,
 					spacer: defaults.SPACER_WIDTH,
@@ -32,7 +32,7 @@ function ColumnHeadSpacer({ column, tabData, changeTabData, draggedColumn, setRe
 	function onMouseUp() {
 		// move draggedColumn after column
 		if (draggedColumn) {
-			changeTabData({
+			changeGroupData({
 				column: draggedColumn,
 				moveAfter: column,
 				type: "MOVE_COLUMN_AFTER",

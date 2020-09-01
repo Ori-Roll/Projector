@@ -24,8 +24,8 @@ function MouseMoveWrapper({
 	setResizedColumn,
 	mouseXposition,
 	setMouseXposition,
-	changeTabData,
-	updateTabInProject,
+	changeGroupData,
+	updateGroupInProject,
 	...props
 }) {
 	const [resizeDelta, setResizeDelta] = useState(0);
@@ -39,7 +39,7 @@ function MouseMoveWrapper({
 		if (resizedColumn) {
 			if (resizedColumn.width + resizeDelta < resizedColumn.minWidth) return;
 			if (resizedColumn.width + resizeDelta > resizedColumn.maxWidth) return;
-			changeTabData({
+			changeGroupData({
 				editedColumn: {
 					...resizedColumn,
 					width: resizedColumn.width + resizeDelta,
@@ -50,7 +50,7 @@ function MouseMoveWrapper({
 	};
 	const onMouseUp = () => {
 		if (draggedColumn) {
-			changeTabData({
+			changeGroupData({
 				// this can have an issue with spacer having no "isDragged" to know what column gose there
 				newData: { isDragged: false, spacer: defaults.SPACER_WIDTH },
 				type: "EDIT_ALL_COLUMNS",

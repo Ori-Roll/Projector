@@ -9,15 +9,15 @@ import MouseMoveWrapper from "../../../misc/MouseMoveWrapper";
 
 import Task from "./Task/Task";
 import ColumnsHeadWrapper from "./ColumnsHeadWrapper/ColumnsHeadWrapper";
-import TabRightControl from "./TabRightControl/TabRightControl";
-import TabHeader from "./TabHeader/TabHeader";
+import GroupRightControl from "./GroupRightControl/GroupRightControl";
+import GroupHeader from "./GroupHeader/GroupHeader";
 
-import style from "./Tab.module.css"; // TODO: rename file to lowercase, in my projects it's always style(s).module.css
+import style from "./Group.module.css"; // TODO: rename file to lowercase, in my projects it's always style(s).module.css
 import { NEW_COLUMN_DATA } from "../../../defaults";
 import { queries } from "@testing-library/react";
 
 /* TODO: (Ori) Neads the ability to update the original data from the source after it updetes it one*/
-function tabDataReducer(oldData, action) {
+function groupDataReducer(oldData, action) {
 	const data = _.cloneDeep(oldData);
 
 	function IdInSubDataIndexer(dataSet, subDataSet) {
@@ -111,81 +111,85 @@ function tabDataReducer(oldData, action) {
 			}
 			return data;
 		default:
-			throw new Error("tabDataReducer: No action provided");
+			throw new Error("groupDataReducer: No action provided");
 	}
 }
 
-// TODO: "tab" -I would rename this
-function Tab({ tabItem, tabTasks }) {
-	const [tabData, changeTabData] = useReducer(tabDataReducer, tabItem);
+// TODO: "group" -I would rename this
+function Group({ groupItem, groupTasks }) {
+	const [groupData, changeGroupData] = useReducer(groupDataReducer, groupItem);
 	const { dispatchProjectData } = useContext(AppContext);
 
-	const [tabIsOpen, setTabIsOpen] = useState(true); // TODO: (Ori) this needs to initially come from backend
-	function toggleTabIsOpen() {
-		setTabIsOpen(!tabIsOpen);
+	const [groupIsOpen, setGroupIsOpen] = useState(true); // TODO: (Ori) this needs to initially come from backend
+	function toggleGroupIsOpen() {
+		setGroupIsOpen(!groupIsOpen);
 	}
-	console.log("%c Tab render", "font-weight: bold; font-size: 15px; color: purple;");
+	console.log("%c Group render", "font-weight: bold; font-size: 15px; color: purple;");
 
 	useEffect(() => {
-		console.log("%c TAB MOUNT (effect!)", "font-weight: bold; font-size: 15px; color: red;");
+		console.log("%c GROUP MOUNT (effect!)", "font-weight: bold; font-size: 15px; color: red;");
 		/* let tasks = [];
-		tabItem.tasksQuerie.forEach((querie) => tasks.push(projectTasks[querie])); */
+		groupItem.tasksQuerie.forEach((querie) => tasks.push(projectTasks[querie])); */
 		/* dispatchProjectData({
 			type: "TAB_APPEND_QUERIES",
-			queries: tabItem.tasksQuerie,
-			tabId: tabItem.id,
+			queries: groupItem.tasksQuerie,
+			groupId: groupItem.id,
 		}); */
 	}, []);
 	useEffect(
-		_.debounce(() => updateTabInProject(), 2000),
-		[tabData]
+		_.debounce(() => updateGroupInProject(), 2000),
+		[groupData]
 	);
 
 	const [draggedColumn, setDraggedColumn] = useState(null);
 	const [resizedColumn, setResizedColumn] = useState(null);
 	const [mouseXposition, setMouseXposition] = useState(0);
 
-	function updateTabInProject() {
-		dispatchProjectData({ type: "UPDATE_TAB_DATA", tabData: tabData });
+	function updateGroupInProject() {
+		dispatchProjectData({ type: "UPDATE_TAB_DATA", groupData: groupData });
 	}
 
 	// TODO: choose drag and drop package, consider this: https://github.com/atlassian/react-beautiful-dnd
 	return (
 		<MouseMoveWrapper
-			key={`MMWrapper${tabData.id}`}
+			key={`MMWrapper${groupData.id}`}
 			draggedColumn={draggedColumn}
 			setDraggedColumn={setDraggedColumn}
 			resizedColumn={resizedColumn}
 			setResizedColumn={setResizedColumn}
 			mouseXposition={mouseXposition}
 			setMouseXposition={setMouseXposition}
-			changeTabData={changeTabData}
-			updateTabInProject={updateTabInProject}>
-			<div className={style.tab}>
-				<div className={style["tab-header-wrapper"]}>
-					<TabHeader tabIsOpen={tabIsOpen} toggleTabIsOpen={toggleTabIsOpen} tabItem={tabItem} />
+			changeGroupData={changeGroupData}
+			updateGroupInProject={updateGroupInProject}>
+			<div className={style.group}>
+				<div className={style["group-header-wrapper"]}>
+					<GroupHeader
+						groupIsOpen={groupIsOpen}
+						toggleGroupIsOpen={toggleGroupIsOpen}
+						groupItem={groupItem}
+					/>
 				</div>
 
-				<div /* TODO add classcat package. className={cc([style["tab-content-wrapper"], {[style.open]: tabIsOpen}])} */
-					className={style["tab-content-wrapper"]} /* TODO add classcat package:  */
-					style={!tabIsOpen ? { backgroundColor: "red", display: "none" } : {}}>
+				<div /* TODO add classcat package. className={cc([style["group-content-wrapper"], {[style.open]: groupIsOpen}])} */
+					className={style["group-content-wrapper"]} /* TODO add classcat package:  */
+					style={!groupIsOpen ? { backgroundColor: "red", display: "none" } : {}}>
 					{/* TODO use class open */}
 					<ColumnsHeadWrapper
-						key={`${tabData.id}Head`}
-						tabData={tabData}
-						changeTabData={changeTabData}
+						key={`${groupData.id}Head`}
+						groupData={groupData}
+						changeGroupData={changeGroupData}
 						draggedColumn={draggedColumn}
 						setDraggedColumn={setDraggedColumn}
 						setResizedColumn={setResizedColumn}
 					/>
 					{/* <TaskCopy task={"C"} /> */}
-					{tabTasks.map((task) => {
+					{groupTasks.map((task) => {
 						return (
 							<Task
 								key={task.id}
 								task={task}
-								columns={tabData.columns}
-								changeTabData={changeTabData}
+								columns={groupData.columns}
+								changeGroupData={changeGroupData}
 								resizedColumn={resizedColumn}
 								draggedColumn={draggedColumn}
 							/>
@@ -193,28 +197,28 @@ function Tab({ tabItem, tabTasks }) {
 					})}
 				</div>
 				<div
-					className={style["tab-right-control-wrapper"]}
-					style={!tabIsOpen ? { backgroundColor: "red", display: "none" } : {}}>
-					<TabRightControl changeTabData={changeTabData} />
+					className={style["group-right-control-wrapper"]}
+					style={!groupIsOpen ? { backgroundColor: "red", display: "none" } : {}}>
+					<GroupRightControl changeGroupData={changeGroupData} />
 				</div>
-				<div className={style["tab-scroll-end-gradiant"]} />
+				<div className={style["group-scroll-end-gradiant"]} />
 			</div>
 		</MouseMoveWrapper>
 	);
 }
 
-Tab.propTypes = {};
+Group.propTypes = {};
 
-export default Tab;
+export default Group;
 
 /* 
 useEffect(() => {
-	changeTabData({
+	changeGroupData({
 		editedTask: { id: "a", "001": { content: "changed Task" }, "002": { content: 5 } },
 		type: "EDIT_TASK",
 	});
-	changeTabData({ newTask: newTask(tabData), type: "ADD_NEW_TASK" });
-	changeTabData({
+	changeGroupData({ newTask: newTask(groupData), type: "ADD_NEW_TASK" });
+	changeGroupData({
 		id: "b",
 		type: "DELETE_TASK",
 	});

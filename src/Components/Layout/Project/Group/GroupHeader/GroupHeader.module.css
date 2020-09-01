@@ -1,9 +1,9 @@
-.tab-header-wrapper {
+.group-header-wrapper {
 	display: flex;
 	padding: 1em;
 }
 
-.tab-header {
+.group-header {
 	padding: 7px;
 	font-size: large;
 	font-weight: 700;
@@ -11,7 +11,7 @@
 	cursor: pointer;
 }
 
-.tab-header-right-menu {
+.group-header-right-menu {
 	text-align: right;
 	color: rgb(100, 79, 52);
 	border: rgb(165, 148, 148) 2px solid;

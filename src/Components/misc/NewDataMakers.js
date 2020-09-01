@@ -1,6 +1,6 @@
 import defaults, { NEW_COLUMN_DATA } from "../defaults";
 import { makeKey, newTimeStamp } from ".";
-import DescriptionCell from "../Layout/Project/Tab/Task/Cells/DescriptionCell/DescriptionCell";
+import DescriptionCell from "../Layout/Project/Group/Task/Cells/DescriptionCell/DescriptionCell";
 
 /* tasksQuerie: ["a", "b", "empty", "last"], */
 
@@ -8,9 +8,9 @@ function NewColumn(type) {
 	return { id: makeKey(), ...NEW_COLUMN_DATA[type], timeStamp: newTimeStamp() };
 }
 
-function NewTab(type, project) {
+function NewGroup(type, project) {
 	// TODO: This needs a type that changes its behaviour!
-	const newTab = {
+	const newGroup = {
 		id: makeKey(),
 		name: "",
 		columns: [],
@@ -18,18 +18,18 @@ function NewTab(type, project) {
 		tasksQuerie: [],
 		timeStamp: newTimeStamp(),
 	};
-	const normalTabNumOfTasks = 1; // this needs to be according to tab type
-	const normalTabColumnsTMP = ["description", "text", "text", "text", "text"]; // this needs to be according to tab type
+	const normalGroupNumOfTasks = 1; // this needs to be according to group type
+	const normalGroupColumnsTMP = ["description", "text", "text", "text", "text"]; // this needs to be according to group type
 	//TODO: Issue here: theres a problame with spacing when only one Cell exists
-	normalTabColumnsTMP.forEach((ofType) => {
-		newTab.columns.push(NewColumn(ofType));
+	normalGroupColumnsTMP.forEach((ofType) => {
+		newGroup.columns.push(NewColumn(ofType));
 	});
-	for (let i = 0; i < normalTabNumOfTasks; i++) {
-		let newTask = NewTask(newTab.columns);
+	for (let i = 0; i < normalGroupNumOfTasks; i++) {
+		let newTask = NewTask(newGroup.columns);
 		project.tasks[newTask.id] = newTask; // TODO: This needs to come from the projects reducer?
-		newTab.tasksQuerie.push(newTask.id);
+		newGroup.tasksQuerie.push(newTask.id);
 	}
-	return newTab;
+	return newGroup;
 	// TODO: add a column for basic task description (the first static column)
 }
 
@@ -48,4 +48,4 @@ function NewTask(columns) {
 	return newTask;
 }
 
-export { NewTab, NewColumn, NewTask };
+export { NewGroup, NewColumn, NewTask };

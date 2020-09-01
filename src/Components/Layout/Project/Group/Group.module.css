@@ -1,12 +1,12 @@
-.tab {
+.group {
 	border-bottom: rgb(221, 221, 221) 1px dashed;
 	border-radius: 2px;
 	display: grid;
 	grid-template-columns: max-content 50px auto auto;
 	grid-template-rows: 80px auto 20px;
 	grid-template-areas:
-		"tab-header-wrapper  tab-header-wrapper . tab-scroll-end-gradiant"
-		"tab-content-wrapper tab-right-control	. tab-scroll-end-gradiant"
+		"group-header-wrapper  group-header-wrapper . group-scroll-end-gradiant"
+		"group-content-wrapper group-right-control	. group-scroll-end-gradiant"
 		". 					 .					. .";
 	overflow-x: auto;
 	padding: 18px 20px;
@@ -16,46 +16,46 @@
 }
 
 /* 
-.tab-side-wrapper {
-	grid-area: tab-side-wrapper;
+.group-side-wrapper {
+	grid-area: group-side-wrapper;
 }
  */
 
-.tab-content-wrapper {
-	grid-area: tab-content-wrapper;
+.group-content-wrapper {
+	grid-area: group-content-wrapper;
 	display: block;
 }
 
-.tab-content-wrapper-closed {
+.group-content-wrapper-closed {
 	display: none;
 }
 
-.tab-header-wrapper {
-	grid-area: tab-header-wrapper;
+.group-header-wrapper {
+	grid-area: group-header-wrapper;
 	background-color: white;
 }
 
-.tab-right-control-wrapper {
-	grid-area: tab-right-control;
+.group-right-control-wrapper {
+	grid-area: group-right-control;
 }
 
-.tab::-webkit-scrollbar {
+.group::-webkit-scrollbar {
 	width: 12px;
 	height: 12px;
 	background: none;
 }
 
-.tab::-webkit-scrollbar-track {
+.group::-webkit-scrollbar-track {
 	margin: 10px;
 	background: none;
 }
-.tab::-webkit-scrollbar-thumb {
+.group::-webkit-scrollbar-thumb {
 	border-radius: 10px;
 	background-color: rgb(185, 185, 185);
 }
 
-.tab-scroll-end-gradiant {
-	grid-area: tab-scroll-end-gradiant;
+.group-scroll-end-gradiant {
+	grid-area: group-scroll-end-gradiant;
 	position: relative;
 	top: 0;
 	right: -50;

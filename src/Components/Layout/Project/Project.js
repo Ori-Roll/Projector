@@ -4,7 +4,7 @@ import _ from "lodash";
 
 import { AppContext } from "./../../ContextProviders/AppContextProvider";
 import defaults from "../../defaults";
-import Tab from "./Tab/Tab";
+import Group from "./Group/Group";
 import ProjectLoader from "./ProjectLoader";
 
 import style from "./Project.module.css"; // TODO: change from style to: import classes from '..';
@@ -38,9 +38,9 @@ function Project({ viewedProject }) {
 				<ProjectLoader />
 			) : (
 				<div className={style.project}>
-					{projectData.tabs.map((tabItem) => {
+					{projectData.groups.map((tabItem) => {
 						let tabTaskSet = tabItem.tasksQuerie.map((querie) => projectData.tasks[querie]);
-						return <Tab key={tabItem.id} tabItem={tabItem} tabTasks={tabTaskSet} />;
+						return <Group key={tabItem.id} tabItem={tabItem} tabTasks={tabTaskSet} />;
 					})}
 				</div>
 			)}
@@ -53,10 +53,10 @@ Project.propTypes = {};
 export default Project;
 
 /*
-tabs: [
+groups: [
 		{
 		id: makeKey(),
-		name: "Tab A",
+		name: "Group A",
 		columns: [
 			{
 				id: "001",

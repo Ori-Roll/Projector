@@ -1,4 +1,4 @@
-.tab-arrow {
+.group-arrow {
 	color: rgb(21, 184, 0);
 	font-size: x-large;
 	cursor: pointer;
@@ -6,6 +6,6 @@
 	transform-origin: 42%;
 }
 
-.tab-arrow-wrapper {
+.group-arrow-wrapper {
 	margin: 2px 8px;
 }

@@ -16,20 +16,20 @@ function projectDataReducer(draft, action) {
 			return action.project;
 		case "ADD_NEW_TASK":
 			if (!action.newTask) console.log("ADD_NEW_TASK - adding a new empty task");
-			if (!action.tab) console.error("ADD_NEW_TASK - no tab to add to");
-			let newTask = action.newTask ? action.newTask : NewTask(action.tab.columns);
+			if (!action.group) console.error("ADD_NEW_TASK - no group to add to");
+			let newTask = action.newTask ? action.newTask : NewTask(action.group.columns);
 			draft.tasks[newTask.id] = newTask;
-			draft.tabs[indexItemIdIn(action.tab.id, draft.tabs)].tasksQuerie.push(newTask.id);
+			draft.groups[indexItemIdIn(action.group.id, draft.groups)].tasksQuerie.push(newTask.id);
 			return draft;
 
 		case "ADD_NEW_TASKS": // is this needed ???
 			if (!action.newTasks) throw new Error("ADD_NEW_TASKS No new tasks");
-			if (!action.tab) console.error("ADD_NEW_TASK - no tab to add to");
+			if (!action.group) console.error("ADD_NEW_TASK - no group to add to");
 			if (Array.isArray(action.newTasks))
 				console.log("ADD_NEW_TASKS new tasks not in array", action.newTasks);
 			action.newTasks.forEach((task) => {
 				draft.tasks[task.id] = action.task;
-				draft.tabs[indexItemIdIn(action.tab.id, draft.tabs)].tasksQuerie.push(task.id); // NOT GOOD - does this update queirie or not??? BAD
+				draft.groups[indexItemIdIn(action.group.id, draft.groups)].tasksQuerie.push(task.id); // NOT GOOD - does this update queirie or not??? BAD
 			});
 			return draft;
 		case "EDIT_TASK":
@@ -41,7 +41,7 @@ function projectDataReducer(draft, action) {
 			draft.tasks[action.taskId][action.cellId].content = action.newContent;
 			return draft;
 		case "UPDATE_TAB_DATA":
-			draft.tabs[action.tabData.id] = action.tabData;
+			draft.groups[action.tabData.id] = action.tabData;
 			return draft;
 		default:
 			console.error("NO ACTION FOR REDUCER");

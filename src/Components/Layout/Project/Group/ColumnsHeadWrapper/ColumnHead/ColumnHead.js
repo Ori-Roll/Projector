@@ -5,7 +5,7 @@ import ColumnHeadPopup from "./ColumnHeadPopup";
 
 import style from "./ColumnHead.module.css";
 
-function ColumnHead({ column, draggedColumn, setDraggedColumn, changeTabData }) {
+function ColumnHead({ column, draggedColumn, setDraggedColumn, changeGroupData }) {
 	const [hovered, setHovered] = useState(false);
 
 	function onHeadChange() {
@@ -14,7 +14,7 @@ function ColumnHead({ column, draggedColumn, setDraggedColumn, changeTabData }) 
 
 	function onMouseDown() {
 		setDraggedColumn(column);
-		changeTabData({
+		changeGroupData({
 			editedColumn: {
 				//editedColumn need to be renamed changedColumn or maby just column
 				id: column.id,
