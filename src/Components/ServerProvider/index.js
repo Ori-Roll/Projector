@@ -1,6 +1,8 @@
 import _ from "lodash";
 import { NewTab } from "../misc/NewDataMakers";
-import { queries } from "@testing-library/react";
+import axios from "axios";
+
+import { regiserUser, loginUser, getLoggedInUser } from "./auth";
 
 let crappyServerData = {
 	users: {
@@ -65,7 +67,13 @@ function someTime() {
 	return new Promise((resolve) => setTimeout(resolve, 1000));
 }
 
+function startServerAccess() {
+	axios.defaults.withCredentials = true;
+}
+
 async function setCrappyServerData(path, newData) {
+	axios.defaults.withCredentials = true;
+
 	await someTime();
 	if (false) {
 		if (Math.random() > 0.7) {
@@ -74,7 +82,6 @@ async function setCrappyServerData(path, newData) {
 	}
 	_.set(crappyServerData, path, newData);
 	/* crappyServerData[data] = newData; */
-	console.log("set data to: ", crappyServerData);
 	return getCrappyServerData; // TODO: check for timeStamps mach
 }
 
@@ -85,6 +92,7 @@ async function getCrappyServerData(query) {
 			return "error";
 		}
 	}
+
 	return _.get(crappyServerData, query);
 }
 
@@ -103,4 +111,4 @@ crappyServerData["ProjId3"].tabs.push(NewTab(null, crappyServerData["ProjId3"]))
 crappyServerData["ProjId3"].tabs.push(NewTab(null, crappyServerData["ProjId3"]));
 crappyServerData["ProjId3"].tabs.push(NewTab(null, crappyServerData["ProjId3"]));
 
-export { setCrappyServerData, getCrappyServerData };
+export { setCrappyServerData, getCrappyServerData, loginUser, getLoggedInUser };
