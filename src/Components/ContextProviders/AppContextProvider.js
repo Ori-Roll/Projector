@@ -56,7 +56,7 @@ function AppContextProvider(props) {
 		name: "user 1 name",
 		projects: ["someProjId"],
 	});
-	const [viewedProject, setViewedProject] = useState("someProjId");
+	const [viewedProject, setViewedProject] = useState();
 	const [projectData, dispatchProjectData] = useImmerReducer(projectDataReducer, null);
 
 	/* function dispatchSendProj(dispatchObject){

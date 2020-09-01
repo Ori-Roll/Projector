@@ -1,4 +1,6 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
+
+import { getUserProjects } from "./projects";
 
 async function registerUser(name, email, password) {
 	try {
@@ -37,6 +39,8 @@ async function loginUser(email, password) {
 		);
 		document.cookie = `token: ${response.data.token}`;
 		console.log("cookie ", document.cookie);
+		const userProjects = await getUserProjects();
+		console.log("user proj imported for user", userProjects.data);
 		return response.data;
 	} catch (error) {
 		console.error(error.response.data);

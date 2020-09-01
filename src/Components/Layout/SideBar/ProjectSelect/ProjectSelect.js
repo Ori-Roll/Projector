@@ -9,20 +9,24 @@ function ProjectSelect({ viewedProject, setViewedProject }) {
 	function onProjectClick(project) {
 		setViewedProject(project);
 	}
+
 	return (
 		<div className={style["project-select"]}>
 			<div className={style["project-select-folder-lable"]} />
-			<div className={style["current-project-display"]}>{viewedProject}</div>
-			{currentUser.projects.map((project) => {
-				return (
-					<button
-						className={style["project-select-btn"]}
-						key={`${project}BTN`}
-						onClick={() => onProjectClick(project)}>
-						{project}
-					</button>
-				);
-			})}
+			{/* TODO: change so it will load a proj if no viewed proj */}
+			<div className={style["current-project-display"]}>{viewedProject ? viewedProject : null}</div>
+			{currentUser.projects
+				? currentUser.projects.map((project) => {
+						return (
+							<button
+								className={style["project-select-btn"]}
+								key={`${project}BTN`}
+								onClick={() => onProjectClick(project)}>
+								{project}
+							</button>
+						);
+				  })
+				: " ! no projects ! "}
 		</div>
 	);
 }

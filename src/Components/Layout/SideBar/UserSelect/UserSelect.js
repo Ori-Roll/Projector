@@ -40,10 +40,17 @@ function UserSelect() {
 		const registeredUserRes = await registerUser("ori", "oriroll9@gmail.com", "123456");
 		console.log("regiserUserClick Click ", registeredUserRes);
 	}
+
 	async function loginUserClick() {
-		const loggedInUserRes = await loginUser("oriroll3@gmail.com", "123456");
-		console.log("loginUser Click ", loggedInUserRes);
+		try {
+			const loggedInUserRes = await loginUser("oriroll@gmail.com", "1234567");
+			if (loggedInUserRes) setCurrentUser(loggedInUserRes.user);
+			console.log("loginUser Click ", loggedInUserRes);
+		} catch (error) {
+			console.error(error);
+		}
 	}
+
 	async function getLoggedInUserClick() {
 		const currentUserRes = await getLoggedInUser();
 		console.log("getLoggedInUser Click, ", currentUserRes);
