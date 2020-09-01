@@ -14,14 +14,9 @@ function Layout(props) {
 	const { currentUser, setCurrentUser } = useContext(AppContext);
 	const { viewedProject, setViewedProject } = useContext(AppContext);
 
-	/* useEffect(() => {
-		if (!currentUser.projects[viewedProject])
-			
-	}, [viewedProject]); 
-	
-	*/
-
 	//TODO: what about cleanups for effects
+
+	//	console.log("%c Layout render", "font-weight: bold; font-size: 20px; color: purple;");
 
 	return (
 		<div className={style["layout"]}>

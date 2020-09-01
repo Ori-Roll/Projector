@@ -114,6 +114,7 @@ function tabDataReducer(oldData, action) {
 			throw new Error("tabDataReducer: No action provided");
 	}
 }
+
 // TODO: "tab" -I would rename this
 function Tab({ tabItem, tabTasks }) {
 	const [tabData, changeTabData] = useReducer(tabDataReducer, tabItem);
@@ -123,6 +124,7 @@ function Tab({ tabItem, tabTasks }) {
 	function toggleTabIsOpen() {
 		setTabIsOpen(!tabIsOpen);
 	}
+	// console.log("%c Tab render", "font-weight: bold; font-size: 15px; color: purple;");
 
 	useEffect(() => {
 		console.log("%c TAB MOUNT (effect!)", "font-weight: bold; font-size: 15px; color: red;");
@@ -149,55 +151,44 @@ function Tab({ tabItem, tabTasks }) {
 
 	// TODO: choose drag and drop package, consider this: https://github.com/atlassian/react-beautiful-dnd
 	return (
-		<MouseMoveWrapper
-			key={`MMWrapper${tabData.id}`}
-			draggedColumn={draggedColumn}
-			setDraggedColumn={setDraggedColumn}
-			resizedColumn={resizedColumn}
-			setResizedColumn={setResizedColumn}
-			mouseXposition={mouseXposition}
-			setMouseXposition={setMouseXposition}
-			changeTabData={changeTabData}
-			updateTabInProject={updateTabInProject}>
-			<div className={style.tab}>
-				<div className={style["tab-header-wrapper"]}>
-					<TabHeader tabIsOpen={tabIsOpen} toggleTabIsOpen={toggleTabIsOpen} tabItem={tabItem} />
-				</div>
-
-				<div /* TODO add classcat package. className={cc([style["tab-content-wrapper"], {[style.open]: tabIsOpen}])} */
-					className={style["tab-content-wrapper"]} /* TODO add classcat package:  */
-					style={!tabIsOpen ? { backgroundColor: "red", display: "none" } : {}}>
-					{/* TODO use class open */}
-					<ColumnsHeadWrapper
-						key={`${tabData.id}Head`}
-						tabData={tabData}
-						changeTabData={changeTabData}
-						draggedColumn={draggedColumn}
-						setDraggedColumn={setDraggedColumn}
-						setResizedColumn={setResizedColumn}
-					/>
-					{/* <TaskCopy task={"C"} /> */}
-					{tabTasks.map((task) => {
-						return (
-							<Task
-								key={task.id}
-								task={task}
-								columns={tabData.columns}
-								changeTabData={changeTabData}
-								resizedColumn={resizedColumn}
-								draggedColumn={draggedColumn}
-							/>
-						);
-					})}
-				</div>
-				<div
-					className={style["tab-right-control-wrapper"]}
-					style={!tabIsOpen ? { backgroundColor: "red", display: "none" } : {}}>
-					<TabRightControl changeTabData={changeTabData} />
-				</div>
-				<div className={style["tab-scroll-end-gradiant"]} />
+		<div className={style.tab}>
+			<div className={style["tab-header-wrapper"]}>
+				<TabHeader tabIsOpen={tabIsOpen} toggleTabIsOpen={toggleTabIsOpen} tabItem={tabItem} />
 			</div>
-		</MouseMoveWrapper>
+
+			<div /* TODO add classcat package. className={cc([style["tab-content-wrapper"], {[style.open]: tabIsOpen}])} */
+				className={style["tab-content-wrapper"]} /* TODO add classcat package:  */
+				style={!tabIsOpen ? { backgroundColor: "red", display: "none" } : {}}>
+				{/* TODO use class open */}
+				<ColumnsHeadWrapper
+					key={`${tabData.id}Head`}
+					tabData={tabData}
+					changeTabData={changeTabData}
+					draggedColumn={draggedColumn}
+					setDraggedColumn={setDraggedColumn}
+					setResizedColumn={setResizedColumn}
+				/>
+				{/* <TaskCopy task={"C"} /> */}
+				{tabTasks.map((task) => {
+					return (
+						<Task
+							key={task.id}
+							task={task}
+							columns={tabData.columns}
+							changeTabData={changeTabData}
+							resizedColumn={resizedColumn}
+							draggedColumn={draggedColumn}
+						/>
+					);
+				})}
+			</div>
+			<div
+				className={style["tab-right-control-wrapper"]}
+				style={!tabIsOpen ? { backgroundColor: "red", display: "none" } : {}}>
+				<TabRightControl changeTabData={changeTabData} />
+			</div>
+			<div className={style["tab-scroll-end-gradiant"]} />
+		</div>
 	);
 }
 
