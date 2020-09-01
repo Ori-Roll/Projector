@@ -13,6 +13,7 @@ async function registerUser(name, email, password) {
 			{ headers: { "Content-Type": "application/json" } }
 		);
 		document.cookie = `token: ${response.data.token}`;
+		console.log("cookie ", document.cookie);
 		return response;
 	} catch (error) {
 		if (error.response.data.error === "Duplicate field value enterd") {
@@ -35,12 +36,14 @@ async function loginUser(email, password) {
 			{ headers: { "Content-Type": "application/json" } }
 		);
 		document.cookie = `token: ${response.data.token}`;
+		console.log("cookie ", document.cookie);
 		return response.data;
 	} catch (error) {
 		console.error(error.response.data);
 	}
 }
 
+// TODO: Theres an issue here sometimes after register - fix this
 async function logoutUser() {
 	try {
 		const response = await axios.get("http://localhost:5000/api/v0/auth/logout");
