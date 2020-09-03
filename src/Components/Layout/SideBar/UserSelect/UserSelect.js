@@ -3,12 +3,9 @@ import PropTypes from "prop-types";
 import { AppContext } from "../../../ContextProviders/AppContextProvider";
 import { setCrappyServerData, getCrappyServerData } from "../../../ServerProvider";
 import {
-	registerUser,
 	loginUser,
 	logoutUser,
 	getLoggedInUser,
-	forgotUserPassword,
-	resetUserPassword,
 	updateUserDetails,
 	updateUserPassword,
 } from "./../../../ServerProvider/auth";
@@ -36,41 +33,11 @@ function UserSelect() {
 		setUsersManu(!usersMenu);
 	}
 
-	async function registerUserClick() {
-		const registeredUserRes = await registerUser("ori", "oriroll9@gmail.com", "123456");
-		console.log("regiserUserClick Click ", registeredUserRes);
-	}
-
-	async function loginUserClick() {
-		try {
-			const loggedInUserRes = await loginUser("oriroll@gmail.com", "1234567");
-			if (loggedInUserRes) setCurrentUser(loggedInUserRes.user);
-			console.log("loginUser Click ", loggedInUserRes);
-		} catch (error) {
-			console.error(error);
-		}
-	}
-
 	async function getLoggedInUserClick() {
 		const currentUserRes = await getLoggedInUser();
 		console.log("getLoggedInUser Click, ", currentUserRes);
 	}
 
-	async function forgotPasswordClick() {
-		const forgotPasswordRes = await forgotUserPassword("oriroll@gmail.com");
-		if (forgotPasswordRes)
-			alert(
-				"An email was sent to you. Please follow the instructions on the email to reset your password."
-			);
-		console.log("forgotPassword Click, ", forgotPasswordRes);
-	}
-	async function resetPasswordClick() {
-		const resetUserPasswordRes = await resetUserPassword(
-			"df5b9096c7d37cfbfd53b2a9717d47cf851ecf5d",
-			"123456"
-		);
-		console.log("resetPassword Click ", resetUserPasswordRes);
-	}
 	async function updateUserDetailsClick() {
 		const updateUserDetailsRes = await updateUserDetails({
 			email: "oriroll@gmail.com",
@@ -84,24 +51,23 @@ function UserSelect() {
 	}
 	async function logoutClick() {
 		const logoutUserRes = await logoutUser();
+		// HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		console.log("logoutClick ", logoutUserRes);
+		document.cookie = null; // TODO: Is this how to do this?
+		console.log("document.cookie is ", document.cookie);
 	}
 
 	return (
 		<div className={style["user-select"]}>
-			<UserIcon userName={currentUser.name} onClickCallback={onClick} userIcon={currentUser.icon} />
+			<div>
+				<button onClick={getLoggedInUserClick}>getLoggedInUser</button>
+				<button onClick={updateUserDetailsClick}>updateUserDetails</button>
+				<button onClick={updatePasswordClick}>updatePassword</button>
+				<button onClick={logoutClick}>logout</button>
+			</div>
+			{/* <UserIcon userName={currentUser.name} onClickCallback={onClick} userIcon={currentUser.icon} /> */}
 			{usersMenu ? (
 				<div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)" }}>
-					<div>
-						<button onClick={registerUserClick}>registerUser</button>
-						<button onClick={loginUserClick}>loginUser</button>
-						<button onClick={getLoggedInUserClick}>getLoggedInUser</button>
-						<button onClick={forgotPasswordClick}>forgotPassword</button>
-						<button onClick={resetPasswordClick}>resetPassword</button>
-						<button onClick={updateUserDetailsClick}>updateUserDetails</button>
-						<button onClick={updatePasswordClick}>updatePassword</button>
-						<button onClick={logoutClick}>logout</button>
-					</div>
 					{Object.keys(users).map((key) => {
 						return (
 							<UserIcon

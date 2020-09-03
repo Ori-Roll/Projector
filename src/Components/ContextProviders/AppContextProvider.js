@@ -51,13 +51,10 @@ function projectDataReducer(draft, action) {
 export const AppContext = createContext();
 
 function AppContextProvider(props) {
-	const [currentUser, setCurrentUser] = useState({
-		id: "user1Id",
-		name: "user 1 name",
-		projects: ["someProjId"],
-	});
+	const [currentUser, setCurrentUser] = useState(null);
 	const [viewedProject, setViewedProject] = useState();
 	const [projectData, dispatchProjectData] = useImmerReducer(projectDataReducer, null);
+	const [appInitState, setAppInitState] = useState("loading");
 
 	/* function dispatchSendProj(dispatchObject){
 		dispatchProjectData(dispatchObject).then(setCrappyServerData(projectData))
@@ -77,6 +74,8 @@ function AppContextProvider(props) {
 				setViewedProject: setViewedProject,
 				projectData: projectData,
 				dispatchProjectData: dispatchProjectData,
+				appInitState: appInitState,
+				setAppInitState: setAppInitState,
 			}}>
 			{props.children}
 		</AppContext.Provider>

@@ -1,6 +1,7 @@
 import axios from "axios";
-
 import { getUserProjects } from "./projects";
+
+axios.defaults.withCredentials = true;
 
 async function registerUser(name, email, password) {
 	try {
@@ -41,9 +42,11 @@ async function loginUser(email, password) {
 		console.log("cookie ", document.cookie);
 		const userProjects = await getUserProjects();
 		console.log("user proj imported for user", userProjects.data);
+		debugger;
 		return response.data;
 	} catch (error) {
 		console.error(error.response.data);
+		debugger;
 	}
 }
 
@@ -58,12 +61,13 @@ async function logoutUser() {
 }
 
 async function getLoggedInUser() {
+	console.log("getLoggedInUser STARTS");
 	try {
 		const response = await axios.get("http://localhost:5000/api/v0/auth/me");
+		console.log("getLoggedInUser response is ", response);
 		if (response) return response.data;
 	} catch (error) {
-		console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		if (error.response) console.error(error.response.data);
+		console.error("error is ", error.response);
 	}
 }
 

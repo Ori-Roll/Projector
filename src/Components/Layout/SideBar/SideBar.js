@@ -7,7 +7,7 @@ import style from "./SideBar.module.css";
 function SideBar({ viewedProject, setViewedProject, currentUser }) {
 	return (
 		<div className={style["side-bar"]}>
-			<ProjectSelect viewedProject={viewedProject} setViewedProject={setViewedProject} />
+			{/* <ProjectSelect viewedProject={viewedProject} setViewedProject={setViewedProject} /> */}
 			<div className={style["general"]}>
 				<UserSelect />
 			</div>
