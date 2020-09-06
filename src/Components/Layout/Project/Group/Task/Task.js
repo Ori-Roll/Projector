@@ -38,8 +38,8 @@ function Task({ task, columns, resizedColumn, draggedColumn }) {
 
 	function createCell(column = () => console.error("no column for cell")) {
 		if (!column.type) throw new Error("No column.type for cell");
-		if (task.isMock || !task.hasOwnProperty(column.id)) {
-			console.log(task.isMock ? "task.isMock" : `task with no key for(column.id)${column.id}`);
+		if (!task.hasOwnProperty(column.id)) {
+			console.log(`task with no key for column.id ${column.id}`);
 			return CellOfType[column.type](Math.random(), column.newCellContent, doCellContentChange);
 		} else {
 			/* console.log(`%c new Cell - content ${task[column.id].content}`, "color:green"); */
@@ -72,15 +72,7 @@ function Task({ task, columns, resizedColumn, draggedColumn }) {
 	return inView ? ( //maby add this to a list of viewed on group and render there accordingly (no need to pass anything)
 		<div className={style["task"]} ref={taskRef}>
 			{columns.map((column) => {
-				return (
-					<CellWrapper
-						key={column.id}
-						column={column}
-						createCell={createCell}
-						resizing={resizedColumn ? true : false}
-						dragging={draggedColumn ? true : false}
-					/>
-				);
+				return <CellWrapper key={column.id} column={column} createCell={createCell} />;
 			})}
 		</div>
 	) : (

@@ -1,46 +1,62 @@
 import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
-import _ from "lodash";
+import _, { forEach } from "lodash";
 
 import { AppContext } from "./../../ContextProviders/AppContextProvider";
 import defaults from "../../defaults";
+/* import Group from "./Group/GroupCopy1"; */
 import Group from "./Group/Group";
 import ProjectLoader from "./ProjectLoader";
+
+import { getProjectGroups } from "../../ServerProvider/groups";
 
 import style from "./Project.module.css"; // TODO: change from style to: import classes from '..';
 
 import { setCrappyServerData, getCrappyServerData } from "./../../ServerProvider";
 
-function Project({ viewedProject }) {
-	const { projectData, dispatchProjectData } = useContext(AppContext);
+function Project({ project }) {
+	/* const { projectData, dispatchProjectData } = useContext(AppContext); */
+	const [projectData, setProjectData] = useState({ ...project });
 	const [loading, setLoading] = useState(true);
 
-	// console.log("%c Project render", "font-weight: bold; font-size: 18px; color: purple;");
+	async function initGroups() {
+		console.log("INIT");
+		try {
+			const groups = await getProjectGroups(project._id);
+			console.log("groups are ", groups.data);
+			const newGroups = {};
+			groups.data.forEach((group) => {
+				newGroups[group._id] = group;
+				newGroups[group._id].loaded = true;
+			});
+			setProjectData((oldData) => {
+				const newData = { ...oldData, groups: newGroups };
+				return newData;
+			});
+		} catch (error) {
+			console.error(error);
+		}
+	}
 
+	console.log("%c Project render", "font-weight: bold; font-size: 18px; color: purple;");
 	useEffect(() => {
 		console.log(
-			`%c PROJECT MOUNT ${projectData} (effect)`,
+			`%c PROJECT MOUNT ${project} (effect)`,
 			"color: red;font-weight: bold; font-size: 15px;"
 		);
+		initGroups();
 	}, []);
-
-	useEffect(() => {
-		getCrappyServerData(viewedProject)
-			.then((res) => {
-				dispatchProjectData({ type: "CHANGE_PROJECT_TO", project: res });
-			})
-			.then(setLoading(false));
-	}, [viewedProject]);
 
 	return (
 		<>
-			{!projectData ? (
+			{!projectData.groups ? (
 				<ProjectLoader />
 			) : (
 				<div className={style.project}>
-					{projectData.groups.map((tabItem) => {
-						let tabTaskSet = tabItem.tasksQuerie.map((querie) => projectData.tasks[querie]);
-						return <Group key={tabItem.id} tabItem={tabItem} tabTasks={tabTaskSet} />;
+					{Object.values(projectData.groups).map((group) => {
+						/* let groupTaskSet = groupItem.tasksQuerie.map((querie) => project.tasks[querie]); */
+						/* return <Group key={groupItem.id} groupItem={groupItem} groupTasks={groupTaskSet} />; */
+						return <Group key={group._id} group={group} />;
 					})}
 				</div>
 			)}

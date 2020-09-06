@@ -26,7 +26,7 @@ function projectDataReducer(draft, action) {
 			if (!action.newTasks) throw new Error("ADD_NEW_TASKS No new tasks");
 			if (!action.group) console.error("ADD_NEW_TASK - no group to add to");
 			if (Array.isArray(action.newTasks))
-				console.log("ADD_NEW_TASKS new tasks not in array", action.newTasks);
+				console.error("ADD_NEW_TASKS new tasks not in array", action.newTasks);
 			action.newTasks.forEach((task) => {
 				draft.tasks[task.id] = action.task;
 				draft.groups[indexItemIdIn(action.group.id, draft.groups)].tasksQuerie.push(task.id); // NOT GOOD - does this update queirie or not??? BAD

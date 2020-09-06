@@ -55,6 +55,7 @@ function UserSelect() {
 		console.log("logoutClick ", logoutUserRes);
 		document.cookie = null; // TODO: Is this how to do this?
 		console.log("document.cookie is ", document.cookie);
+		setCurrentUser(null);
 	}
 
 	return (

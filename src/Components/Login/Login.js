@@ -15,11 +15,11 @@ function Login() {
 	const { currentUser, setCurrentUser, setAppInitState } = useContext(AppContext);
 	const [email, setEmail] = useState("");
 	const [isValidEmail, setIsValidEmail] = useState(true);
-	const [password, setPassword] = useState();
+	const [password, setPassword] = useState("");
 
 	function onEmailChange(emailVal) {
 		let re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-		if (re.test(emailVal) || emailVal === "") {
+		if (re.test(emailVal)) {
 			setIsValidEmail(true);
 		} else {
 			setIsValidEmail(false);
@@ -78,7 +78,7 @@ function Login() {
 		console.log("resetPassword Click ", resetUserPasswordRes);
 	}
 	return (
-		<div className={style["welcome-page"]}>
+		<div className={style["login-page"]}>
 			<div className={style["color-top"]} />
 			<form>
 				<div className={style["input-group"]}>
@@ -92,7 +92,7 @@ function Login() {
 						onChange={(e) => onEmailChange(e.target.value)}
 					/>
 					<p className={style["input-warning"]}>
-						{isValidEmail ? " " : "Please enter a valid email"}
+						{isValidEmail || email === "" ? " " : "Please enter a valid email"}
 					</p>
 				</div>
 				<div className={style["input-group"]}>
@@ -105,17 +105,19 @@ function Login() {
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 					/>
-					<p className={style["input-warning"]}>
-						{isValidEmail ? " " : "Please enter a valid email"}
-					</p>
+					<button className={style["forgot-password-btn"]} onClick={forgotPasswordClick}>
+						Forgot your password ?
+					</button>
 				</div>
 				<button
-					className={isValidEmail ? style["login-btn"] : style["login-btn-disabled"]}
+					className={
+						isValidEmail && password !== "" ? style["login-btn"] : style["login-btn-disabled"]
+					}
 					onClick={(e) => loginUserClick(e)}>
 					Login
 				</button>
 			</form>
-			<button onClick={forgotPasswordClick}>forgotPassword</button>
+
 			<button onClick={resetPasswordClick}>resetPassword</button>
 			<button onClick={registerUserClick}>registerUser</button>
 		</div>

@@ -10,48 +10,57 @@ import Project from "./Project/Project";
 import SideBar from "./SideBar/SideBar";
 import style from "./Layout.module.css";
 
+//TODO: what about cleanups for effects
+
 function Layout() {
-	const { appInitState, setAppInitState } = useContext(AppContext);
-	const { currentUser, setCurrentUser } = useContext(AppContext);
-	const [loadedProjects, setLoadedProjects] = useState();
-
 	const { viewedProject, setViewedProject } = useContext(AppContext);
+	const { currentUser, setCurrentUser } = useContext(AppContext);
+	const [currentProject, setCurrentProject] = useState(null);
+	const [loadedProjects, setLoadedProjects] = useState({});
 
-	//TODO: what about cleanups for effects
-
-	//	console.log("%c Layout render", "font-weight: bold; font-size: 20px; color: purple;");
-
-	console.log("appInitState returned is : ", appInitState);
+	console.log("%c Layout render", "font-weight: bold; font-size: 10px; color: purple;");
 
 	async function updateProjectsOnUserChange() {
-		console.log("updateProjectsOnUserChange : currentUser is ", currentUser);
 		if (!currentUser) return;
 		try {
 			const res = await getUserProjects();
 			setLoadedProjects(res.data);
+			const projectsToLoad = {};
+			res.data.forEach((proj) => {
+				projectsToLoad[proj._id] = proj;
+			});
+			setLoadedProjects({ ...projectsToLoad });
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		}
 	}
 
 	useEffect(() => {
 		updateProjectsOnUserChange();
 	}, [currentUser]);
-	console.log("@Layout currentUser: ", currentUser);
+
+	useEffect(() => {
+		if (loadedProjects[0]) {
+			setCurrentProject(
+				currentUser.lastOpenedProject ? currentUser.lastOpenedProject : loadedProjects[2]._id
+			);
+		}
+	}, [loadedProjects]);
+
 	return (
 		<div>
 			<div className={style["layout"]}>
 				<div className={style["side-bar-wrapper"]}>
-					<SideBar
-						viewedProject={viewedProject}
-						setViewedProject={setViewedProject}
-						currentUser={currentUser}
-					/>
+					<SideBar currentUser={currentUser} />
 				</div>
 				<div className={style["project-head"]}></div>
 				<div className={style["project-side-bar"]}></div>
 				<div className={style["project-wrapper"]}>
-					{viewedProject ? <Project viewedProject={viewedProject} /> : <div>SELECT PROJECT!</div>}
+					{currentProject ? (
+						<Project project={loadedProjects[currentProject]} />
+					) : (
+						<div>SELECT PROJECT!</div>
+					)}
 				</div>
 			</div>
 		</div>
