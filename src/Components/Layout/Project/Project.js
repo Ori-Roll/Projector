@@ -23,13 +23,14 @@ function Project({ project }) {
 		console.log("INIT");
 		try {
 			const groups = await getProjectGroups(project._id);
-			console.log("groups are ", groups.data);
+			console.log("loaded groups are ", groups.data);
 			const newGroups = {};
 			groups.data.forEach((group) => {
 				newGroups[group._id] = group;
 				newGroups[group._id].loaded = true;
 			});
 			setProjectData((oldData) => {
+				console.log("new groups are ", newGroups);
 				const newData = { ...oldData, groups: newGroups };
 				return newData;
 			});
@@ -54,6 +55,7 @@ function Project({ project }) {
 			) : (
 				<div className={style.project}>
 					{Object.values(projectData.groups).map((group) => {
+						console.log("group passed : ", group);
 						/* let groupTaskSet = groupItem.tasksQuerie.map((querie) => project.tasks[querie]); */
 						/* return <Group key={groupItem.id} groupItem={groupItem} groupTasks={groupTaskSet} />; */
 						return <Group key={group._id} group={group} />;

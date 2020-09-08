@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import style from "./GroupArrow.module.css";
 
-function GroupArrow({ groupIsOpen, toggleGroupIsOpen }) {
+function GroupArrow({ groupIsOpen, setGroupIsOpen }) {
 	const [arrowDown, setArrowDown] = useState(groupIsOpen);
 	const diraction = {
 		rotated: "rotate(90deg) translate(8%, -7%)",
@@ -12,7 +12,7 @@ function GroupArrow({ groupIsOpen, toggleGroupIsOpen }) {
 	useEffect(() => setArrowDown(groupIsOpen), [groupIsOpen]);
 
 	const onArrowClick = () => {
-		toggleGroupIsOpen();
+		setGroupIsOpen(!groupIsOpen);
 	};
 
 	return (

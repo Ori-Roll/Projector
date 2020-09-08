@@ -5,23 +5,23 @@ import ColumnHeadPopup from "./ColumnHeadPopup";
 
 import style from "./ColumnHead.module.css";
 
-function ColumnHead({ column, draggedColumn, setDraggedColumn, changeGroupData }) {
+function ColumnHead({ column /* changeGroupData */ }) {
 	const [hovered, setHovered] = useState(false);
 
 	function onHeadChange() {
-		console.log("changeHead!");
+		console.log("Change Head!");
 	}
 
 	function onMouseDown() {
-		setDraggedColumn(column);
-		changeGroupData({
+		console.log("Mouse Down!");
+		/* 	changeGroupData({
 			editedColumn: {
 				//editedColumn need to be renamed changedColumn or maby just column
 				id: column.id,
 				isDragged: true,
 			},
 			type: "EDIT_COLUMN",
-		});
+		}); */
 	}
 
 	return (
@@ -31,17 +31,11 @@ function ColumnHead({ column, draggedColumn, setDraggedColumn, changeGroupData }
 			onMouseLeave={() => setTimeout(() => setHovered(false), 200)}>
 			<div // TODO: DO I NEED THIS ?
 				className={style["column-content-wrapper"]}
-				style={
-					column.isDragged ? { width: column.width, opacity: "20%" } : { width: column.width }
-				}>
-				<input className={style["column-head-item"]} value={column.id} onChange={onHeadChange} />
+				style={{ width: column.width }}>
+				<input className={style["column-head-item"]} value={column.title} onChange={onHeadChange} />
 			</div>
-			<ColumnHeadPopup
-				hovered={hovered}
-				draggedColumn={draggedColumn}
-				column={column}
-				onMouseDown={onMouseDown}
-			/>
+
+			{/* <ColumnHeadPopup hovered={hovered} column={column} onMouseDown={onMouseDown} /> */}
 		</div>
 	);
 }

@@ -38,13 +38,21 @@ function Task({ task, columns, resizedColumn, draggedColumn }) {
 
 	function createCell(column = () => console.error("no column for cell")) {
 		if (!column.type) throw new Error("No column.type for cell");
-		if (!task.hasOwnProperty(column.id)) {
+
+		const cell = task.cells.find((cell) => cell.columnMatch === column._id);
+		if (!cell) {
+			console.error(`task with no cell match for column.id ${column.id}`);
+		} else {
+			return CellOfType[column.type](column.id, cell.content, doCellContentChange);
+		}
+
+		/* if (!task.cells.find(cell => )) {
 			console.log(`task with no key for column.id ${column.id}`);
 			return CellOfType[column.type](Math.random(), column.newCellContent, doCellContentChange);
-		} else {
-			/* console.log(`%c new Cell - content ${task[column.id].content}`, "color:green"); */
-			return CellOfType[column.type](column.id, task[column.id].content, doCellContentChange);
-		}
+		} else { */
+		/* console.log(`%c new Cell - content ${task[column.id].content}`, "color:green"); */
+		/* return CellOfType[column.type](column.id, task[column.id].content, doCellContentChange); */
+		/* } */
 	}
 
 	function doCellContentChange(id, content, debounced) {

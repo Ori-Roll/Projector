@@ -42,11 +42,9 @@ async function loginUser(email, password) {
 		console.log("cookie ", document.cookie);
 		const userProjects = await getUserProjects();
 		console.log("user proj imported for user", userProjects.data);
-		debugger;
 		return response.data;
 	} catch (error) {
 		console.error(error.response.data);
-		debugger;
 	}
 }
 

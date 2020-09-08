@@ -9,8 +9,8 @@ function CellWrapper({ column, createCell }) {
 			className={style["cell-wrapper"]}
 			style={
 				column.isDragged
-					? { width: column.width, marginRight: column.spacer, opacity: "20%" }
-					: { width: column.width, marginRight: column.spacer }
+					? { width: column.width, marginRight: "1px", opacity: "20%" }
+					: { width: column.width, marginRight: "1px" }
 			}>
 			{createCell(column)}
 		</div>

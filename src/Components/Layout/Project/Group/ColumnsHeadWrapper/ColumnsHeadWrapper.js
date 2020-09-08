@@ -5,11 +5,9 @@ import ColumnHeadSpacer from "./ColumnHead/ColumnHeadSpacer";
 import style from "./ColumnsHeadWrapper.module.css";
 
 function ColumnsHeadWrapper({
-	tabData,
-	changeGroupData,
-	draggedColumn,
-	setDraggedColumn,
-	setResizedColumn,
+	columns,
+	/* changeGroupData, */
+	/* setResizedColumn, */
 }) {
 	useEffect(() => {
 		/* console.log("%c ColumnHeadWrapper Mount!", "font-weight: bold; font-size: 15px; color: red;"); */
@@ -17,21 +15,19 @@ function ColumnsHeadWrapper({
 
 	return (
 		<div className={style["column-head-wrapper"]}>
-			{tabData.columns.map((column) => {
+			{columns.map((column) => {
+				console.log(column);
 				return (
-					<div className={style["item-container"]} key={`head-cont${column.id}`}>
+					<div className={style["item-container"]} key={column._id}>
+						{console.log("COLUMN!")}
 						<ColumnHead
 							column={column}
-							draggedColumn={draggedColumn}
-							setDraggedColumn={setDraggedColumn}
-							changeGroupData={changeGroupData}
+							/* changeGroupData={changeGroupData} */
 						/>
 						<ColumnHeadSpacer
 							column={column}
-							tabData={tabData}
-							changeGroupData={changeGroupData}
-							draggedColumn={draggedColumn}
-							setResizedColumn={setResizedColumn}
+							/* changeGroupData={changeGroupData}
+							setResizedColumn={setResizedColumn} */
 						/>
 					</div>
 				);

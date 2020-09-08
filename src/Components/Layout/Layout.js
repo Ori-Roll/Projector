@@ -42,7 +42,7 @@ function Layout() {
 	useEffect(() => {
 		if (loadedProjects[0]) {
 			setCurrentProject(
-				currentUser.lastOpenedProject ? currentUser.lastOpenedProject : loadedProjects[2]._id
+				currentUser.lastOpenedProject ? currentUser.lastOpenedProject : loadedProjects[0]._id
 			);
 		}
 	}, [loadedProjects]);

@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import style from "./ColumnHead.module.css";
 import defaults from "../../../../../defaults";
 
-function ColumnHeadSpacer({ column, tabData, changeGroupData, draggedColumn, setResizedColumn }) {
+function ColumnHeadSpacer({ column /* changeGroupData, setResizedColumn*/ }) {
 	const [mouseOver, setMouseOver] = useState(false);
-
+	/* 
 	function toggleMouseOver(mouseIsOver) {
 		if (draggedColumn && mouseIsOver) {
 			if (draggedColumn.id === column.id) return;
@@ -60,15 +60,15 @@ function ColumnHeadSpacer({ column, tabData, changeGroupData, draggedColumn, set
 			return false;
 		}
 	}
-
+ */
 	return (
 		<div
 			className={style["head-spacer-handle"]}
 			style={{
-				width: column.spacer,
-				border: mouseOver && draggedColumn ? "#e85454 2px dashed" : null,
+				width:
+					defaults.SPACER_WIDTH /* border: mouseOver && draggedColumn ? "#e85454 2px dashed" : null, */,
 			}}>
-			{draggedColumn && isValidHoverSpacer() ? (
+			{/* {draggedColumn && isValidHoverSpacer() ? (
 				<div
 					className={style["head-spacer-hover-area"]}
 					onMouseOver={() => toggleMouseOver(true)}
@@ -79,7 +79,7 @@ function ColumnHeadSpacer({ column, tabData, changeGroupData, draggedColumn, set
 					className={style["head-spacer-hover-resize-area"]}
 					onMouseDown={onStartResize}
 					onMouseUp={onStopResize}></div>
-			)}
+			)} */}
 		</div>
 	);
 }

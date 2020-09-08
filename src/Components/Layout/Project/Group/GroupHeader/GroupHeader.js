@@ -6,7 +6,7 @@ import { AppContext } from "../../../../ContextProviders/AppContextProvider";
 import GroupArrow from "./GroupArrow/GroupArrow";
 import style from "./GroupHeader.module.css";
 
-function GroupHeader({ toggleGroupIsOpen, groupIsOpen, groupItem }) {
+function GroupHeader({ groupIsOpen, setGroupIsOpen, group }) {
 	const { dispatchProjectData } = useContext(AppContext);
 
 	useEffect(() => {
@@ -14,16 +14,16 @@ function GroupHeader({ toggleGroupIsOpen, groupIsOpen, groupItem }) {
 	}, []);
 
 	const onHeaderClick = () => {
-		toggleGroupIsOpen();
+		setGroupIsOpen(!groupIsOpen);
 	};
 
 	function onAddTaskClick() {
-		dispatchProjectData({ type: "ADD_NEW_TASK", group: groupItem });
+		/* dispatchProjectData({ type: "ADD_NEW_TASK", group: group }); */
 	}
 
 	return (
 		<div className={style["group-header-wrapper"]}>
-			<GroupArrow groupIsOpen={groupIsOpen} toggleGroupIsOpen={toggleGroupIsOpen} />
+			<GroupArrow groupIsOpen={groupIsOpen} setGroupIsOpen={setGroupIsOpen} />
 			<div
 				className={style["group-header"]}
 				style={{ fontWeight: groupIsOpen ? "600" : "400" }}

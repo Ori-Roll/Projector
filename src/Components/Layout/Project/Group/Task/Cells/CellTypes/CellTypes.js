@@ -10,6 +10,9 @@ import { NEW_COLUMN_DATA } from "../../../../../../defaults";
 // THIS LIST NEEDS TO MATCH knownCellTypes (see function below)
 
 const CellOfType = {
+	title: (id, content, doCellContentChange) => (
+		<TextCell key={id} id={id} content={content} doCellContentChange={doCellContentChange} />
+	),
 	description: (id, content, doCellContentChange) => (
 		<DescriptionCell key={id} id={id} content={content} doCellContentChange={doCellContentChange} />
 	),
