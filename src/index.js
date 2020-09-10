@@ -1,14 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import AppContextProvider from "./Components/ContextProviders/AppContextProvider";
+import { Provider } from "react-redux";
+import store from "./Components/redux/rootReducer";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
-	<AppContextProvider>
+	<Provider store={store}>
 		<App />
-	</AppContextProvider>,
+	</Provider>,
 	document.getElementById("root")
 );
 

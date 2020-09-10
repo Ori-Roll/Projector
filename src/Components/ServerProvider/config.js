@@ -5,9 +5,8 @@ async function initUser() {
 	console.log("START document.cookie ", document.cookie);
 	if (document.cookie && document.cookie.startsWith("token")) {
 		try {
-			console.log("getLoggedInUser");
-			user = await getLoggedInUser();
-			console.log("setCurrentUser", user);
+			const res = await getLoggedInUser();
+			user = res.data;
 		} catch (error) {
 			// TODO: This needs to be addressed
 			user = null;

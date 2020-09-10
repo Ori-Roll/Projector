@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+
 import PropTypes from "prop-types";
 import _ from "lodash";
 
 import Task from "./Task/Task";
+import TaskAddFooter from "./TaskAddFooter/TaskAddFooter";
 import ColumnsHeadWrapper from "./ColumnsHeadWrapper/ColumnsHeadWrapper";
 import GroupHeader from "./GroupHeader/GroupHeader";
 import style from "./Group.module.css"; // TODO: rename file to lowercase, in my projects it's always style(s).module.css
@@ -21,11 +23,13 @@ function Group({ group }) {
 		//This needs to run here if I want to change only the group
 		() => {
 			_.debounce(() => console.log("debounced run a func to change data on database"), 2000);
-			setColumns([...group.columns]);
-			setTasks([...group.tasks]);
+			console.log(group);
+			setColumns(group.columns);
+			setTasks(group.tasks);
 		},
 		[group]
 	);
+
 	return (
 		/* TODO add classcat package:  */
 		<div className={style.group}>
@@ -41,7 +45,7 @@ function Group({ group }) {
 					/* changeGroupData={changeGroupData} */
 				/>
 				{group.loaded ? (
-					group.tasks.map((task) => {
+					tasks.map((task) => {
 						/* return (
 						<div>
 							<div key={task._id}>{JSON.stringify(task, null, 2)}</div>
@@ -52,8 +56,11 @@ function Group({ group }) {
 						return <Task key={task._id} task={task} columns={group.columns} />;
 					})
 				) : (
-					<div>Loading</div>
+					<div>LOADER</div>
 				)}
+				<div className={style["task-add-wrapper"]}>
+					<TaskAddFooter group={group} setTasks={setTasks} />
+				</div>
 			</div>
 		</div>
 	);

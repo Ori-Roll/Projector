@@ -17,9 +17,11 @@ function CellWrapper({ column, createCell }) {
 	);
 }
 
-CellWrapper.propTypes = {};
+CellWrapper.propTypes = { column: PropTypes.object, createCell: PropTypes.func };
 
-export default React.memo(CellWrapper, (prevProps, nextProps) => {
+export default CellWrapper;
+
+/* export default React.memo(CellWrapper, (prevProps, nextProps) => {
 	let dontRender = false;
 	if (nextProps.resizing && prevProps.column.width === nextProps.column.width) {
 		dontRender = true;
@@ -29,3 +31,4 @@ export default React.memo(CellWrapper, (prevProps, nextProps) => {
 	}
 	return dontRender;
 });
+ */

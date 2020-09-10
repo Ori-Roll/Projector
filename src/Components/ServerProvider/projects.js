@@ -11,13 +11,26 @@ async function createNewProject(newProject) {
 	}
 }
 
-async function getUserProjects() {
+async function getUserProjects(populate = false) {
 	try {
-		const response = await axios.get("http://localhost:5000/api/v0/projects");
+		const response = populate
+			? await axios.get("http://localhost:5000/api/v0/projects")
+			: await axios.get("http://localhost:5000/api/v0/projects?nopopulate=true");
 		return response.data;
 	} catch (error) {
 		console.error(error.response.data);
 	}
 }
 
-export { getUserProjects };
+async function getUserProject(projectId, populate = true) {
+	try {
+		const response = populate
+			? await axios.get(`http://localhost:5000/api/v0/projects/${projectId}`)
+			: await axios.get("http://localhost:5000/api/v0/projects/${projectId}?nopopulate=true");
+		return response.data;
+	} catch (error) {
+		console.error(error.response.data);
+	}
+}
+
+export { getUserProjects, getUserProject };

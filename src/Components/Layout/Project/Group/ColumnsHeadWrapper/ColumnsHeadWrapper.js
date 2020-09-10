@@ -16,10 +16,8 @@ function ColumnsHeadWrapper({
 	return (
 		<div className={style["column-head-wrapper"]}>
 			{columns.map((column) => {
-				console.log(column);
 				return (
 					<div className={style["item-container"]} key={column._id}>
-						{console.log("COLUMN!")}
 						<ColumnHead
 							column={column}
 							/* changeGroupData={changeGroupData} */

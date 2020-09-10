@@ -6,7 +6,7 @@ import CellsStyle from "../CellsStyle.module.css";
 
 import { NEW_COLUMN_DATA } from "../../../../../../defaults";
 
-function TextCell({ id, content, doCellContentChange }) {
+function TextCell({ id, content, cellChange }) {
 	const [cellText, setCellText] = useState(content);
 
 	console.log(`%c ------cell render! content: ${content}---------`, "color: green");
@@ -14,11 +14,11 @@ function TextCell({ id, content, doCellContentChange }) {
 
 	function onInputChange(text) {
 		setCellText(text);
-		doCellContentChange(id, text, true);
+		cellChange(id, text, true);
 	}
 
 	function onBlur() {
-		doCellContentChange(id, cellText, false);
+		cellChange(id, cellText, false);
 	}
 
 	return (

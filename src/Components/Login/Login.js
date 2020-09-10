@@ -1,6 +1,9 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import style from "./Login.module.css";
+
+import { useDispatch } from "react-redux";
+import { setUserDispatch } from "../redux/rootReducer";
 
 import {
 	registerUser,
@@ -9,10 +12,11 @@ import {
 	forgotUserPassword,
 	resetUserPassword,
 } from "../ServerProvider/auth";
-import { AppContext } from "../ContextProviders/AppContextProvider";
 
 function Login() {
-	const { currentUser, setCurrentUser, setAppInitState } = useContext(AppContext);
+	const dispatch = useDispatch();
+	const setUser = (user) => dispatch(setUserDispatch(user));
+
 	const [email, setEmail] = useState("");
 	const [isValidEmail, setIsValidEmail] = useState(true);
 	const [password, setPassword] = useState("");
@@ -34,9 +38,8 @@ function Login() {
 			if (registeredUserRes) {
 				try {
 					const user = await getLoggedInUser();
-					setCurrentUser(user);
+					setUser(user);
 					console.log("user isss", user);
-					setAppInitState("loggedin");
 				} catch (error) {
 					console.log(error);
 				}
@@ -52,11 +55,9 @@ function Login() {
 			console.log("loginUserClick!");
 			const loggedInUserRes = await loginUser(email, password);
 			if (loggedInUserRes) {
-				setCurrentUser(loggedInUserRes.user);
-				console.log("user isss", loggedInUserRes);
-				setAppInitState("loggedin");
+				setUser(loggedInUserRes.user);
+				console.log("loginUserClick -user is", loggedInUserRes);
 			}
-			console.log("loginUser Click ", loggedInUserRes);
 		} catch (error) {
 			console.error(error);
 		}

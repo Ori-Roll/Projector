@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import _, { forEach } from "lodash";
 
@@ -12,26 +12,19 @@ import { getProjectGroups } from "../../ServerProvider/groups";
 
 import style from "./Project.module.css"; // TODO: change from style to: import classes from '..';
 
-import { setCrappyServerData, getCrappyServerData } from "./../../ServerProvider";
-
 function Project({ project }) {
-	/* const { projectData, dispatchProjectData } = useContext(AppContext); */
 	const [projectData, setProjectData] = useState({ ...project });
 	const [loading, setLoading] = useState(true);
 
 	async function initGroups() {
-		console.log("INIT");
 		try {
 			const groups = await getProjectGroups(project._id);
-			console.log("loaded groups are ", groups.data);
-			const newGroups = {};
+			console.log("Project got groups: ", groups.data);
 			groups.data.forEach((group) => {
-				newGroups[group._id] = group;
-				newGroups[group._id].loaded = true;
+				group.loaded = true;
 			});
 			setProjectData((oldData) => {
-				console.log("new groups are ", newGroups);
-				const newData = { ...oldData, groups: newGroups };
+				const newData = { ...oldData, groups: groups.data };
 				return newData;
 			});
 		} catch (error) {
@@ -40,6 +33,7 @@ function Project({ project }) {
 	}
 
 	console.log("%c Project render", "font-weight: bold; font-size: 18px; color: purple;");
+	console.log("%c Project ", project);
 	useEffect(() => {
 		console.log(
 			`%c PROJECT MOUNT ${project} (effect)`,
@@ -54,8 +48,7 @@ function Project({ project }) {
 				<ProjectLoader />
 			) : (
 				<div className={style.project}>
-					{Object.values(projectData.groups).map((group) => {
-						console.log("group passed : ", group);
+					{projectData.groups.map((group) => {
 						/* let groupTaskSet = groupItem.tasksQuerie.map((querie) => project.tasks[querie]); */
 						/* return <Group key={groupItem.id} groupItem={groupItem} groupTasks={groupTaskSet} />; */
 						return <Group key={group._id} group={group} />;

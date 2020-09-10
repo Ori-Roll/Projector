@@ -1,20 +1,21 @@
-import React, { useState, useEffect, useContext, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "./Components/Layout/Layout";
 import Login from "./Components/Login/Login";
 import Loader from "./Components/Login/Loader";
 import { initUser } from "./Components/ServerProvider/config";
-import { AppContext } from "./Components/ContextProviders/AppContextProvider";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserDispatch } from "./Components/redux/rootReducer";
 
 import "./App.css";
 
 function App() {
-	const { currentUser, setCurrentUser } = useContext(AppContext);
-
+	const dispatch = useDispatch();
+	const user = useSelector((state) => state?.user);
+	const setUser = (user) => dispatch(setUserDispatch(user));
 	const [loading, setLoading] = useState(true);
-
 	async function initApp() {
 		const user = await initUser();
-		setCurrentUser(user);
+		setUser(user);
 		setLoading(false);
 	}
 
@@ -26,7 +27,7 @@ function App() {
 		<div className='app'>
 			<header className='App-header'></header>
 			{loading && <Loader />}
-			{!currentUser ? <Login /> : <Layout />}
+			{!user?._id ? <Login /> : <Layout />}
 		</div>
 	);
 }

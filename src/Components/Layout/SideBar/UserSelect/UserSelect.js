@@ -1,7 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { AppContext } from "../../../ContextProviders/AppContextProvider";
-import { setCrappyServerData, getCrappyServerData } from "../../../ServerProvider";
+import { getCrappyServerData } from "../../../ServerProvider";
+
+import { useDispatch } from "react-redux";
+import { setUserDispatch } from "../../../redux/rootReducer";
+
 import {
 	loginUser,
 	logoutUser,
@@ -17,7 +21,8 @@ let users;
 getCrappyServerData("users").then((res) => (users = res));
 
 function UserSelect() {
-	const { currentUser, setCurrentUser } = useContext(AppContext);
+	const dispatch = useDispatch();
+	const setUser = (user) => dispatch(setUserDispatch(user));
 
 	const [usersMenu, setUsersManu] = useState(false);
 
@@ -26,7 +31,7 @@ function UserSelect() {
 	}
 
 	async function changeToUser(userId) {
-		getCrappyServerData(`users.${userId}`).then((res) => setCurrentUser(res));
+		getCrappyServerData(`users.${userId}`).then((res) => setUser(res));
 		const user = await loginUser("johnJohn@gmail.com", "123456");
 		const me = await getLoggedInUser();
 		// console.log("me, ", me);
@@ -55,7 +60,7 @@ function UserSelect() {
 		console.log("logoutClick ", logoutUserRes);
 		document.cookie = null; // TODO: Is this how to do this?
 		console.log("document.cookie is ", document.cookie);
-		setCurrentUser(null);
+		setUser(null);
 	}
 
 	return (
@@ -66,7 +71,7 @@ function UserSelect() {
 				<button onClick={updatePasswordClick}>updatePassword</button>
 				<button onClick={logoutClick}>logout</button>
 			</div>
-			{/* <UserIcon userName={currentUser.name} onClickCallback={onClick} userIcon={currentUser.icon} /> */}
+			{/* <UserIcon userName={user.name} onClickCallback={onClick} userIcon={user.icon} /> */}
 			{usersMenu ? (
 				<div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)" }}>
 					{Object.keys(users).map((key) => {

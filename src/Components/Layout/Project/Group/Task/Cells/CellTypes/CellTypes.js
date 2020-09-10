@@ -10,28 +10,28 @@ import { NEW_COLUMN_DATA } from "../../../../../../defaults";
 // THIS LIST NEEDS TO MATCH knownCellTypes (see function below)
 
 const CellOfType = {
-	title: (id, content, doCellContentChange) => (
-		<TextCell key={id} id={id} content={content} doCellContentChange={doCellContentChange} />
+	title: (id, content, cellChange) => (
+		<TextCell key={id} id={id} content={content} cellChange={cellChange} />
 	),
-	description: (id, content, doCellContentChange) => (
-		<DescriptionCell key={id} id={id} content={content} doCellContentChange={doCellContentChange} />
+	description: (id, content, cellChange) => (
+		<DescriptionCell key={id} id={id} content={content} cellChange={cellChange} />
 	),
-	text: (id, content, doCellContentChange) => (
-		<TextCell key={id} id={id} content={content} doCellContentChange={doCellContentChange} />
+	text: (id, content, cellChange) => (
+		<TextCell key={id} id={id} content={content} cellChange={cellChange} />
 	),
-	number: (id, content, doCellContentChange) => (
-		<NumberCell key={id} id={id} content={content} doCellContentChange={doCellContentChange} />
+	number: (id, content, cellChange) => (
+		<NumberCell key={id} id={id} content={content} cellChange={cellChange} />
 	),
-	stars: (id, content, doCellContentChange) => (
-		<StarsCell key={id} id={id} content={content} doCellContentChange={doCellContentChange} />
+	stars: (id, content, cellChange) => (
+		<StarsCell key={id} id={id} content={content} cellChange={cellChange} />
 	),
-	status: (id, content, doCellContentChange) => (
-		<StatusCell key={id} id={id} content={content} doCellContentChange={doCellContentChange} />
+	status: (id, content, cellChange) => (
+		<StatusCell key={id} id={id} content={content} cellChange={cellChange} />
 	),
 };
 
 // THERE NEEDS TO BE A MATCH TO CELL TYPES
-(function cellTypeMatchCheck() {
+/* (function cellTypeMatchCheck() {
 	for (let type in CellOfType) {
 		if (!NEW_COLUMN_DATA[type]) {
 			console.error(`NEW_COLUMN_DATA has no matching cellType for ${type} `);
@@ -42,6 +42,6 @@ const CellOfType = {
 			console.error(`CellOfType has no matching cellType for ${type} `);
 		}
 	}
-})();
+})(); */
 
 export { CellOfType, TextCell, NumberCell, StarsCell, StatusCell };
