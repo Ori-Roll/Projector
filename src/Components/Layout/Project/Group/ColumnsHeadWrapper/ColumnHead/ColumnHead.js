@@ -8,12 +8,9 @@ import style from "./ColumnHead.module.css";
 function ColumnHead({ column /* changeGroupData */ }) {
 	const [hovered, setHovered] = useState(false);
 
-	function onHeadChange() {
-		console.log("Change Head!");
-	}
+	function onHeadChange() {}
 
 	function onMouseDown() {
-		console.log("Mouse Down!");
 		/* 	changeGroupData({
 			editedColumn: {
 				//editedColumn need to be renamed changedColumn or maby just column
@@ -31,7 +28,8 @@ function ColumnHead({ column /* changeGroupData */ }) {
 			onMouseLeave={() => setTimeout(() => setHovered(false), 200)}>
 			<div // TODO: DO I NEED THIS ?
 				className={style["column-content-wrapper"]}
-				style={{ width: column.width }}>
+				/* style={{ width: column.width }} */
+			>
 				<input className={style["column-head-item"]} value={column.title} onChange={onHeadChange} />
 			</div>
 

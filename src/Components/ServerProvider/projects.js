@@ -22,7 +22,7 @@ async function getUserProjects(populate = false) {
 	}
 }
 
-async function getUserProject(projectId, populate = true) {
+async function getProject(projectId, populate = true) {
 	try {
 		const response = populate
 			? await axios.get(`http://localhost:5000/api/v0/projects/${projectId}`)
@@ -33,4 +33,4 @@ async function getUserProject(projectId, populate = true) {
 	}
 }
 
-export { getUserProjects, getUserProject };
+export { getUserProjects, getProject };

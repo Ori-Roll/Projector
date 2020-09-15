@@ -14,12 +14,12 @@ function projectDataReducer(draft, action) {
 	switch (action.type) {
 		case "CHANGE_PROJECT_TO":
 			return action.project;
-		case "ADD_NEW_TASK":
+		/* case "ADD_NEW_TASK":
 			if (!action.group) console.error("ADD_NEW_TASK - no group to add to");
 			let newTask = action.newTask ? action.newTask : NewTask(action.group.columns);
 			draft.tasks[newTask.id] = newTask;
 			draft.groups[indexItemIdIn(action.group.id, draft.groups)].tasksQuerie.push(newTask.id);
-			return draft;
+			return draft; */
 
 		/* case "ADD_NEW_TASKS": // is this needed ???
 			if (!action.newTasks) throw new Error("ADD_NEW_TASKS No new tasks");

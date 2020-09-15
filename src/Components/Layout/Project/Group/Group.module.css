@@ -7,7 +7,7 @@
 	grid-template-areas:
 		"group-header-wrapper  group-header-wrapper . group-scroll-end-gradiant"
 		"group-content-wrapper group-right-control	. group-scroll-end-gradiant"
-		". 					 .					. .";
+		". 					   .					. .	";
 	overflow-x: auto;
 	padding: 18px 20px;
 	background-color: white;

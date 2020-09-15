@@ -10,23 +10,21 @@ import { NEW_COLUMN_DATA } from "../../../../../../defaults";
 // THIS LIST NEEDS TO MATCH knownCellTypes (see function below)
 
 const CellOfType = {
-	title: (id, content, cellChange) => (
-		<TextCell key={id} id={id} content={content} cellChange={cellChange} />
+	title: (cell, doCellChange) => (
+		<TextCell key={cell._id} cell={cell} doCellChange={doCellChange} />
 	),
-	description: (id, content, cellChange) => (
-		<DescriptionCell key={id} id={id} content={content} cellChange={cellChange} />
+	description: (cell, doCellChange) => (
+		<DescriptionCell key={cell._id} cell={cell} doCellChange={doCellChange} />
 	),
-	text: (id, content, cellChange) => (
-		<TextCell key={id} id={id} content={content} cellChange={cellChange} />
+	text: (cell, doCellChange) => <TextCell key={cell._id} cell={cell} doCellChange={doCellChange} />,
+	number: (cell, doCellChange) => (
+		<TextCell key={cell._id} cell={cell} doCellChange={doCellChange} />
 	),
-	number: (id, content, cellChange) => (
-		<NumberCell key={id} id={id} content={content} cellChange={cellChange} />
+	stars: (cell, doCellChange) => (
+		<StarsCell key={cell._id} cell={cell} doCellChange={doCellChange} />
 	),
-	stars: (id, content, cellChange) => (
-		<StarsCell key={id} id={id} content={content} cellChange={cellChange} />
-	),
-	status: (id, content, cellChange) => (
-		<StatusCell key={id} id={id} content={content} cellChange={cellChange} />
+	status: (cell, doCellChange) => (
+		<StatusCell key={cell._id} cell={cell} doCellChange={doCellChange} />
 	),
 };
 

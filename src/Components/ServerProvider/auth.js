@@ -40,8 +40,6 @@ async function loginUser(email, password) {
 		);
 		document.cookie = `token: ${response.data.token}`;
 		console.log("cookie ", document.cookie);
-		const userProjects = await getUserProjects();
-		console.log("user proj imported for user", userProjects.data);
 		return response.data;
 	} catch (error) {
 		console.error(error.response.data);
@@ -59,10 +57,8 @@ async function logoutUser() {
 }
 
 async function getLoggedInUser() {
-	console.log("getLoggedInUser STARTS");
 	try {
 		const response = await axios.get("http://localhost:5000/api/v0/auth/me");
-		console.log("getLoggedInUser response is ", response);
 		if (response) return response.data;
 	} catch (error) {
 		console.error("error is ", error.response);

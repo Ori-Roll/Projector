@@ -13,7 +13,7 @@ import {
 	resetUserPassword,
 } from "../ServerProvider/auth";
 
-function Login() {
+function Login({ initApp }) {
 	const dispatch = useDispatch();
 	const setUser = (user) => dispatch(setUserDispatch(user));
 
@@ -34,14 +34,13 @@ function Login() {
 	async function registerUserClick() {
 		try {
 			const registeredUserRes = await registerUser("ori", "david2@gmail.com", "123456");
-			console.log("regiserUserClick Click ", registeredUserRes);
 			if (registeredUserRes) {
 				try {
 					const user = await getLoggedInUser();
 					setUser(user);
-					console.log("user isss", user);
+					initApp(user);
 				} catch (error) {
-					console.log(error);
+					console.קררםר(error);
 				}
 			}
 		} catch (error) {
@@ -56,6 +55,7 @@ function Login() {
 			const loggedInUserRes = await loginUser(email, password);
 			if (loggedInUserRes) {
 				setUser(loggedInUserRes.user);
+				initApp(loggedInUserRes.user);
 				console.log("loginUserClick -user is", loggedInUserRes);
 			}
 		} catch (error) {

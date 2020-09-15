@@ -6,19 +6,19 @@ import CellsStyle from "../CellsStyle.module.css";
 
 import { NEW_COLUMN_DATA } from "../../../../../../defaults";
 
-function TextCell({ id, content, cellChange }) {
-	const [cellText, setCellText] = useState(content);
+function TextCell({ cell, doCellChange }) {
+	const [cellText, setCellText] = useState(cell.content);
 
-	console.log(`%c ------cell render! content: ${content}---------`, "color: green");
+	/* console.log(`%c ------cell render! content: ${cell.content}---------`, "color: green"); */
 	/* useEffect(() => console.log("%c TextCell MOUNT!", "color:red"), []); */
 
 	function onInputChange(text) {
 		setCellText(text);
-		cellChange(id, text, true);
+		doCellChange({ ...cell, content: text }, true);
 	}
 
 	function onBlur() {
-		cellChange(id, cellText, false);
+		doCellChange({ ...cell, content: cellText }, false);
 	}
 
 	return (
@@ -36,6 +36,6 @@ TextCell.propTypes = {};
 /* export default TextCell; */
 
 export default React.memo(TextCell, (prevProps, nextProps) => {
-	if (prevProps.content === "" && nextProps.content === "") return true;
-	return prevProps.content !== nextProps.content ? true : false;
+	if (prevProps.cell.content === "" && nextProps.cell.content === "") return true;
+	return prevProps.cell.content !== nextProps.cell.content ? true : false;
 });

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import style from "./Task.module.css";
 
-function CellWrapper({ column, createCell }) {
+function CellWrapper({ column, children }) {
 	return (
 		<div
 			key={column.id}
@@ -12,7 +12,7 @@ function CellWrapper({ column, createCell }) {
 					? { width: column.width, marginRight: "1px", opacity: "20%" }
 					: { width: column.width, marginRight: "1px" }
 			}>
-			{createCell(column)}
+			{children}
 		</div>
 	);
 }
