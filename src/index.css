@@ -18,11 +18,11 @@ code {
 	position: absolute;
 	width: 20px;
 	height: 30px;
-	background-repeat: no-repeat;
+	/* background-repeat: no-repeat;
 	background-origin: content-box;
 	box-sizing: border-box;
-	background-position: bottom right;
-	background-color: blue;
+	background-position: bottom right; */
+	/* background-color: blue; */
 	padding: 0 3px 3px 0;
 	z-index: 1000;
 }
@@ -51,18 +51,18 @@ code {
 }
 .react-resizable-handle-w,
 .react-resizable-handle-e {
-	/* top: 50%;
+	top: 50%;
 	margin-top: -10px;
-	cursor: ew-resize; */
+	cursor: ew-resize;
 }
 .react-resizable-handle-w {
 	left: 0;
 	transform: rotate(135deg);
 }
 .react-resizable-handle-e {
-	/* right: 0;
-	transform: rotate(315deg);
-	background-color: tomato; */
+	right: -10px;
+	/* transform: rotate(315deg); */
+	/* background-color: tomato; */
 }
 .react-resizable-handle-n,
 .react-resizable-handle-s {

@@ -22,6 +22,8 @@ function Project() {
 
 	const [loadingGroups, setLoadingGroups] = useState(true);
 
+	console.log(project);
+
 	async function initGroups() {
 		try {
 			let groups = await getProjectGroups(project._id);

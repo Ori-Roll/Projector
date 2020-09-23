@@ -1,15 +1,20 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import DescriptionCell from "../DescriptionCell/DescriptionCell";
 import TextCell from "../TextCell/TextCell";
 import NumberCell from "../NumberCell/NumberCell";
 import StarsCell from "../StarsCell/StarsCell";
 import StatusCell from "../StatusCell/StatusCell";
+import AssignCell from "../AssignCell/AssignCell";
+
 import { NEW_COLUMN_DATA } from "../../../../../../defaults";
 
 // THIS LIST NEEDS TO MATCH knownCellTypes (see function below)
 
 const CellOfType = {
+	assign: (cell, doCellChange, assign) => (
+		<AssignCell key={cell._id} cell={cell} doCellChange={doCellChange} assign={assign} />
+	),
 	title: (cell, doCellChange) => (
 		<TextCell key={cell._id} cell={cell} doCellChange={doCellChange} />
 	),

@@ -78,6 +78,12 @@ function Login({ initApp }) {
 		);
 		console.log("resetPassword Click ", resetUserPasswordRes);
 	}
+
+	async function uploadFileClick(e) {
+		e.preventDefault();
+		console.log("CLICK");
+	}
+
 	return (
 		<div className={style["login-page"]}>
 			<div className={style["color-top"]} />
@@ -119,8 +125,19 @@ function Login({ initApp }) {
 				</button>
 			</form>
 
-			<button onClick={resetPasswordClick}>resetPassword</button>
-			<button onClick={registerUserClick}>registerUser</button>
+			<button onClick={resetPasswordClick}>Reset password</button>
+			<button onClick={uploadFileClick}>Upload file</button>
+			<div class='image-upload'>
+				<label for='file-input'>
+					<img
+						onClick={(e) => registerUserClick(e)}
+						className={style["upload-image-current"]}
+						src='https://picsum.photos/id/237/200/300'
+					/>
+				</label>
+
+				<input id='file-input' type='file' className={style["upload-image-input"]} />
+			</div>
 		</div>
 	);
 }

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { editCellDispatch } from "../../../../redux/rootReducer";
-import _ from "lodash";
+import _, { assign } from "lodash";
 
 import { useInView } from "react-intersection-observer";
 
@@ -32,7 +32,9 @@ function Task({ task, columns, taskIndex, groupIndex }) {
 		if (!cell) {
 			console.error(`task with no cell match for column.id ${column.id}`);
 		} else {
-			return CellOfType[column.type](cell, doCellChange);
+			let options = [];
+			if (column.type === "assign") options.push(task.assignedTo);
+			return CellOfType[column.type](cell, doCellChange, ...options);
 		}
 	}
 	async function cellChange(cell) {
@@ -40,7 +42,10 @@ function Task({ task, columns, taskIndex, groupIndex }) {
 			// Change on server
 			var changedTask = _.cloneDeep(task); //TODO: BAD! but if I deepclone it creates rerenders!
 			const cellIndex = changedTask.cells.findIndex((cellItem) => cellItem._id === cell._id);
+			console.log("cellIndex ", cellIndex);
+			console.log("changedTask.cells[cellIndex] ", changedTask.cells[cellIndex]);
 			changedTask.cells[cellIndex] = cell;
+			console.log("task  ", changedTask);
 			changedTask = await changeTask(changedTask);
 			changedTask = changedTask.data;
 			if (changedTask.cells[cellIndex].content !== cell.content)
@@ -55,12 +60,13 @@ function Task({ task, columns, taskIndex, groupIndex }) {
 
 	const delayedCellChange = _.debounce((cell) => {
 		cellChange(cell);
-	}, 400);
+	}, 500);
 
 	function doCellChange(cell, debounced) {
 		if (debounced) {
 			delayedCellChange(cell);
 		} else {
+			delayedCellChange.cancel();
 			cellChange(cell);
 		}
 	}

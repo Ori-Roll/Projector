@@ -14,10 +14,12 @@ function TextCell({ cell, doCellChange }) {
 
 	function onInputChange(text) {
 		setCellText(text);
+		console.log("CHANGE ", { ...cell, content: text });
 		doCellChange({ ...cell, content: text }, true);
 	}
 
 	function onBlur() {
+		console.log("CHANGE ", { ...cell, content: cellText });
 		doCellChange({ ...cell, content: cellText }, false);
 	}
 
