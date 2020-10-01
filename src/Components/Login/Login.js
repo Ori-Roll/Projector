@@ -11,6 +11,7 @@ import {
 	getLoggedInUser,
 	forgotUserPassword,
 	resetUserPassword,
+	uploadUserPhoto,
 } from "../ServerProvider/auth";
 
 function Login({ initApp }) {
@@ -40,7 +41,7 @@ function Login({ initApp }) {
 					setUser(user);
 					initApp(user);
 				} catch (error) {
-					console.קררםר(error);
+					console.error(error);
 				}
 			}
 		} catch (error) {
@@ -77,11 +78,6 @@ function Login({ initApp }) {
 			"123456"
 		);
 		console.log("resetPassword Click ", resetUserPasswordRes);
-	}
-
-	async function uploadFileClick(e) {
-		e.preventDefault();
-		console.log("CLICK");
 	}
 
 	return (
@@ -126,18 +122,7 @@ function Login({ initApp }) {
 			</form>
 
 			<button onClick={resetPasswordClick}>Reset password</button>
-			<button onClick={uploadFileClick}>Upload file</button>
-			<div class='image-upload'>
-				<label for='file-input'>
-					<img
-						onClick={(e) => registerUserClick(e)}
-						className={style["upload-image-current"]}
-						src='https://picsum.photos/id/237/200/300'
-					/>
-				</label>
-
-				<input id='file-input' type='file' className={style["upload-image-input"]} />
-			</div>
+			<button onClick={(e) => registerUserClick(e)}>Register User</button>
 		</div>
 	);
 }

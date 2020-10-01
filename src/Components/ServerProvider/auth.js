@@ -110,6 +110,23 @@ async function updateUserDetails(newDetails) {
 	}
 }
 
+async function uploadUserPhoto(photo) {
+	var formData = new FormData();
+	formData.append("image", photo);
+
+	try {
+		const response = await axios.put(
+			"http://localhost:5000/api/v0/auth/userPhotoUpload",
+			formData,
+			{ headers: { "Content-Type": "multipart/form-data" } }
+		);
+		console.log("image for user is now : ", response.data);
+		return response.data;
+	} catch (error) {
+		console.error(error.response.data);
+	}
+}
+
 async function updateUserPassword(currentPassword, newPassword) {
 	try {
 		const response = await axios.put(
@@ -135,4 +152,5 @@ export {
 	resetUserPassword,
 	updateUserDetails,
 	updateUserPassword,
+	uploadUserPhoto,
 };

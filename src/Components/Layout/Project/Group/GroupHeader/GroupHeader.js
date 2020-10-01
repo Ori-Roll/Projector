@@ -15,11 +15,11 @@ function GroupHeader({ groupIsOpen, setGroupIsOpen, group, groupIndex }) {
 
 	return (
 		<div className={style["group-header-wrapper"]}>
-			<GroupArrow groupIsOpen={groupIsOpen} setGroupIsOpen={setGroupIsOpen} />
 			<div
 				className={style["group-header"]}
 				style={{ fontWeight: groupIsOpen ? "600" : "400" }}
 				onClick={onHeaderClick}>
+				<GroupArrow groupIsOpen={groupIsOpen} setGroupIsOpen={setGroupIsOpen} />
 				{group.title}
 			</div>
 			<div className={style["group-header-right-menu"]}>

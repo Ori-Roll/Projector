@@ -23,7 +23,7 @@ function AssignCell({ cell, doCellChange, assign }) {
 	return (
 		<div>
 			{assign.map((user) => (
-				<UserIcon userName={user.name} userIcon={user.photo} />
+				<UserIcon key={user._id} userName={user.name} userIcon={user.photo} />
 			))}
 		</div>
 	);

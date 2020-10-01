@@ -136,14 +136,3 @@ button {
 	position: fixed;
 	z-index: 501;
 }
-
-.upload-image-current {
-	width: 100px;
-	height: 100px;
-	border-radius: 10px;
-	overflow: "hidden";
-	background-size: "contain";
-}
-.upload-image-input {
-	display: none;
-}
