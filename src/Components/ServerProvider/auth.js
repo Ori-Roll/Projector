@@ -120,7 +120,6 @@ async function uploadUserPhoto(photo) {
 			formData,
 			{ headers: { "Content-Type": "multipart/form-data" } }
 		);
-		console.log("image for user is now : ", response.data);
 		return response.data;
 	} catch (error) {
 		console.error(error.response.data);

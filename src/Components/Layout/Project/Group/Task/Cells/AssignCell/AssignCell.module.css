@@ -6,3 +6,8 @@
 	box-shadow: inset rgb(242, 242, 242) 12px 12px 30px, rgb(242, 242, 242) 4px 4px 5px;
 	/* background-color: rgb(245, 245, 245); */
 }
+
+.user-icon-wrapper {
+	width: 35px;
+	height: 35px;
+}

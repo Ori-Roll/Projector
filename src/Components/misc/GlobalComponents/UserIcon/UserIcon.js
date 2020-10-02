@@ -2,15 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import style from "./UserIcon.module.css";
 
-function UserIcon({
-	onClickCallback,
-	userName = null,
-	userIcon = "https://cdn.pixabay.com/photo/2017/11/10/05/48/user-2935527_960_720.png",
-}) {
+function UserIcon({ onClickCallback, userName = null, userPhoto, userId }) {
+	const photoUrl = `http://localhost:5000/api/v0/auth/getUserPhoto/${userId}`;
 	return (
-		<div onClick={onClickCallback}>
-			<div className={style["user-icon"]} style={{ backgroundImage: `url("${userIcon}")` }} />
-			{userName ? <div className={style["user-name"]}>{userName}</div> : null}
+		<div onClick={onClickCallback} className={style["user-icon-inner-wrapper"]}>
+			<div
+				className={style["user-icon"]}
+				style={{ backgroundImage: `url("${photoUrl}?version=${userPhoto}")` }}
+			/>
+			{/* {userName && <div className={style["user-name"]}>{userName}</div>} */}
 		</div>
 	);
 }

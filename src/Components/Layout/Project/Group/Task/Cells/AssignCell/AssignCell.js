@@ -23,7 +23,9 @@ function AssignCell({ cell, doCellChange, assign }) {
 	return (
 		<div>
 			{assign.map((user) => (
-				<UserIcon key={user._id} userName={user.name} userIcon={user.photo} />
+				<div key={user._id} className={style["user-icon-wrapper"]}>
+					<UserIcon userName={user.name} userId={user._id} userPhoto={user.photo} />
+				</div>
 			))}
 		</div>
 	);

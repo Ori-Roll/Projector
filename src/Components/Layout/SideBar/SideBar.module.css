@@ -39,6 +39,11 @@
 	display: none;
 }
 
+.user-icon-wrapper {
+	width: 35px;
+	height: 35px;
+}
+
 /* .general-top {
 	position: absolute;
 	height: 150px;
