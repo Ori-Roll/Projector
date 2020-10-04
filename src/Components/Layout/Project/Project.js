@@ -22,7 +22,7 @@ function Project() {
 
 	const [loadingGroups, setLoadingGroups] = useState(true);
 
-	console.log(project);
+	console.log("project");
 
 	async function initGroups() {
 		try {

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { editCellDispatch } from "../../../../redux/rootReducer";
@@ -13,8 +13,11 @@ import CellWrapper from "./CellWrapper";
 
 import style from "./Task.module.css";
 
-function Task({ task, columns, taskIndex, groupIndex }) {
+function Task({ task: taskData, columns, taskIndex, groupIndex }) {
 	const [taskWrapperRef, inView, entry] = useInView();
+
+	const [task, setTask] = useState(taskData);
+
 	/* const taskRef = useRef(task); */
 
 	const dispatch = useDispatch();
@@ -37,37 +40,57 @@ function Task({ task, columns, taskIndex, groupIndex }) {
 			return CellOfType[column.type](cell, doCellChange, ...options);
 		}
 	}
-	async function cellChange(cell) {
-		try {
-			// Change on server
-			var changedTask = _.cloneDeep(task); //TODO: BAD! but if I deepclone it creates rerenders!
-			const cellIndex = changedTask.cells.findIndex((cellItem) => cellItem._id === cell._id);
-			console.log("cellIndex ", cellIndex);
-			console.log("changedTask.cells[cellIndex] ", changedTask.cells[cellIndex]);
-			changedTask.cells[cellIndex] = cell;
-			console.log("task  ", changedTask);
-			changedTask = await changeTask(changedTask);
-			changedTask = changedTask.data;
-			if (changedTask.cells[cellIndex].content !== cell.content)
-				console.error("Task on server does not match task change");
 
+	let taskChanges = useRef();
+
+	async function cellChange(newTask) {
+		//debugger;
+		try {
+			if (!newTask) {
+				console.log("no newTask");
+				newTask = task;
+			}
+			console.log("new task:  ", task);
+			// Change on server
+			let changedTask = await changeTask(newTask);
+			changedTask = changedTask.data;
+			if (newTask.cells !== changedTask.cells) {
+				// This should check for the individual cell
+				console.error("Task on server does not match task change");
+				console.log("changeTask.cells ", changedTask.cells);
+				console.log("newTask.cells ", newTask.cells);
+			}
 			// Change on store - only change the cell (not deepCloned)
-			editCell(cell, cellIndex, taskIndex, groupIndex);
+			// editCell(cell, cellIndex, taskIndex, groupIndex);
 		} catch (error) {
 			console.error(error);
 		}
 	}
 
-	const delayedCellChange = _.debounce((cell) => {
-		cellChange(cell);
-	}, 500);
-
 	function doCellChange(cell, debounced) {
+		function doLocalChange() {
+			const newCells = [...task.cells];
+			newCells[newCells.findIndex((cellItem) => cellItem.columnMatch === cell.columnMatch)] = cell;
+			const newTask = { ...task, cells: newCells };
+			setTask(newTask);
+			console.log("did setTask", newTask);
+			return newTask;
+		}
+
+		const delayedCellChange = _.debounce(() => {
+			cellChange();
+		}, 800);
+
 		if (debounced) {
-			delayedCellChange(cell);
+			console.log("will debounce");
+			const newTask = doLocalChange();
+			/* console.log("newTask created, its now ", newTask); */
+			delayedCellChange();
 		} else {
+			console.log("action now");
+			const newTask = doLocalChange();
 			delayedCellChange.cancel();
-			cellChange(cell);
+			cellChange(newTask);
 		}
 	}
 

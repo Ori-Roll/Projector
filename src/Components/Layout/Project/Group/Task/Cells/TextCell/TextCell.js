@@ -13,22 +13,21 @@ function TextCell({ cell, doCellChange }) {
 	/* useEffect(() => console.log("%c TextCell MOUNT!", "color:red"), []); */
 
 	function onInputChange(text) {
-		setCellText(text);
-		console.log("CHANGE ", { ...cell, content: text });
+		//console.log("CHANGE - DEBOUNCE ", { ...cell, content: text });
 		doCellChange({ ...cell, content: text }, true);
 	}
 
-	function onBlur() {
-		console.log("CHANGE ", { ...cell, content: cellText });
-		doCellChange({ ...cell, content: cellText }, false);
+	function onBlur(text) {
+		//console.log("CHANGE - BLUR", { ...cell, content: text });
+		doCellChange({ ...cell, content: text }, false);
 	}
 
 	return (
 		<input
 			className={`${CellsStyle.cell} ${style["text-cell"]}`}
-			value={cellText}
+			value={cell.content}
 			onChange={(e) => onInputChange(e.target.value)}
-			onBlur={() => onBlur()}
+			onBlur={(e) => onBlur(e.target.value)}
 		/>
 	);
 }
