@@ -4,10 +4,23 @@
 	height: 48px;
 }
 
-.column-head-wrapper:hover {
+/* .column-head-wrapper:hover {
 	box-shadow: inset rgb(72, 94, 148) 0 -2px;
-}
+} */
 
 .item-container {
 	display: flex;
+}
+
+.resize-handle {
+	position: absolute;
+	right: -4px;
+	top: 15px;
+	width: 10px;
+	height: 28px;
+	border-radius: 3px;
+	text-align: center;
+	color: rgb(214, 214, 214);
+	z-index: 1000;
+	cursor: grab;
 }

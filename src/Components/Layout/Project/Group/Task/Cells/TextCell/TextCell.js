@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
+import _ from "lodash";
 
 import style from "./TextCell.module.css";
 import CellsStyle from "../CellsStyle.module.css";
@@ -8,8 +9,7 @@ import { NEW_COLUMN_DATA } from "../../../../../../defaults";
 
 function TextCell({ cell, doCellChange }) {
 	const [cellText, setCellText] = useState(cell.content);
-
-	/* console.log(`%c ------cell render! content: ${cell.content}---------`, "color: green"); */
+	//	console.log(`%c ------cell render! content: ${cell.content}---------`, "color: green");
 	/* useEffect(() => console.log("%c TextCell MOUNT!", "color:red"), []); */
 
 	function onInputChange(text) {
@@ -32,11 +32,12 @@ function TextCell({ cell, doCellChange }) {
 	);
 }
 
-TextCell.propTypes = {};
+// TextCell.propTypes = {};
 
 /* export default TextCell; */
 
 export default React.memo(TextCell, (prevProps, nextProps) => {
-	if (prevProps.cell.content === "" && nextProps.cell.content === "") return true;
-	return prevProps.cell.content !== nextProps.cell.content ? true : false;
+	// if (prevProps.cell.content === "" && nextProps.cell.content === "") return true;
+	// return prevProps.cell.content === nextProps.cell.content;
+	return _.isEqual(prevProps, nextProps);
 });

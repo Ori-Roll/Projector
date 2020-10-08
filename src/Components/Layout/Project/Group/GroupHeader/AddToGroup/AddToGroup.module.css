@@ -1,5 +1,55 @@
 .add-to-gorup-btn {
 	width: 40px;
 	height: 40px;
-	background-color: tomato;
+	background-color: rgb(238, 238, 238);
+	color: rgb(149, 149, 149);
+	border: none;
+	border-radius: 20px;
+	text-align: center;
+	font-size: xx-large;
+	cursor: pointer;
+}
+
+.add-to-group-menu {
+	position: relative;
+	text-align: left;
+	list-style-type: none;
+	padding: 0.8em 1em;
+	top: -58px;
+	right: 300px;
+	width: 18em;
+	background-color: white;
+	border-radius: 3px;
+	box-shadow: rgba(209, 209, 209, 0.349) 2px 2px 20px 5px;
+	z-index: 2000;
+}
+
+ul li {
+	display: flex;
+	background-color: white;
+	padding: 10px;
+	border-radius: 3px;
+	border: rgb(230, 230, 230) 1px solid;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+
+ul li p {
+	padding: 5px 10px;
+	margin: 0;
+}
+
+ul li:hover {
+	background-color: rgb(235, 235, 235);
+}
+
+.column-icon {
+	width: 35px;
+	height: 35px;
+	background-color: rgb(238, 238, 238);
+	color: rgb(199, 199, 199);
+	border: rgb(230, 230, 230) 1px solid;
+	border-radius: 20px;
+	text-align: center;
+	font-size: x-large;
 }

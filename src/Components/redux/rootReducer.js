@@ -49,6 +49,9 @@ function projectReducer(state = {}, action) {
 			case "ADD_TASK":
 				draft.groups[action.groupIndex].tasks.push(action.task);
 				break;
+			case "EDIT_TASK":
+				draft.groups[action.groupIndex].tasks[action.taskIndex] = action.task;
+				break;
 			case "EDIT_CELL":
 				draft.groups[action.groupIndex].tasks[action.taskIndex].cells[action.cellIndex] =
 					action.cell;
@@ -57,8 +60,8 @@ function projectReducer(state = {}, action) {
 				draft.groups[action.groupIndex].columnLoading = true;
 				break;
 			case "ADD_NEW_COLUMN_SUCCESS":
-				draft.groups[action.groupIndex].tasks = action.group.tasks;
 				draft.groups[action.groupIndex].columns = action.group.columns;
+				draft.groups[action.groupIndex].tasks = action.group.tasks;
 				draft.groups[action.groupIndex].columnLoading = false;
 				break;
 			case "ADD_NEW_COLUMN_FAILED":
@@ -147,6 +150,15 @@ export function addTaskDispatch(task, groupIndex) {
 		type: "ADD_TASK",
 		task: task,
 		groupIndex: groupIndex,
+	};
+}
+
+export function editTaskDispatch(groupIndex, taskIndex, task) {
+	return {
+		type: "EDIT_TASK",
+		groupIndex: groupIndex,
+		taskIndex: taskIndex,
+		task: task,
 	};
 }
 

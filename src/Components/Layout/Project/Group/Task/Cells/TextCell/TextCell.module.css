@@ -1,7 +1,7 @@
 .text-cell {
 	border: #e7e7e7 1px solid;
 	text-align: left;
-	padding-left: 4px;
-	box-shadow: inset rgb(242, 242, 242) 12px 12px 30px, rgb(242, 242, 242) 4px 4px 5px;
+	padding-left: 10px;
+	box-shadow: rgb(242, 242, 242) 4px 4px 5px;
 	/* background-color: rgb(245, 245, 245); */
 }

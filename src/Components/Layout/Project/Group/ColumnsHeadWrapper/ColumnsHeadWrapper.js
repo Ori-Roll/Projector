@@ -38,21 +38,20 @@ function ColumnsHeadWrapper({
 				return (
 					<div className={style["item-container"]} key={column._id}>
 						<ResizableBox
+							handle={<div className={style["resize-handle"]}>&#x205E;&#x205E;</div>}
 							width={column.width}
 							height={40}
 							minConstraints={[column.minWidth]}
 							maxConstraints={[column.maxWidth]}
 							onResize={(e, data) => onResize(data, columnIndex)}
-							/* handle={
-							
-							} */
 							resizeHandles={["e"]}>
 							<ColumnHead
 								column={column}
 								/* changeGroupData={changeGroupData} */
 							/>
 						</ResizableBox>
-						<ColumnHeadSpacer column={column} />
+
+						{/* <ColumnHeadSpacer column={column} /> */}
 					</div>
 				);
 			})}

@@ -12,7 +12,7 @@ async function createNewTask(task) {
 				headers: { "Content-Type": "application/json" },
 			}
 		);
-		/* console.log("createNewTask gor a res from server of ", response.data); */
+		console.log("createNewTask gor a res from server of ", response.data);
 		return response.data;
 	} catch (error) {
 		console.error(error.response.data);

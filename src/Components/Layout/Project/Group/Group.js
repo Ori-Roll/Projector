@@ -12,17 +12,17 @@ import style from "./Group.module.css"; // TODO: rename file to lowercase, in my
 function Group({ group, groupIndex }) {
 	const [groupIsOpen, setGroupIsOpen] = useState(true); // TODO: (Ori) this needs to initially come from backend
 
-	/* console.log("%c GROUP RENDER", "font-weight: bold; font-size: 20px; color: red;"); */
-	useEffect(() => {
-		/* console.log("%c GROUP MOUNT (effect!)", "font-weight: bold; font-size: 30px; color: red;"); */
-	}, []);
-	useEffect(
+	// console.log("%c GROUP RENDER", "font-weight: bold; font-size: 20px; color: red;");
+	/* useEffect(() => {
+		console.log("%c GROUP MOUNT (effect!)", "font-weight: bold; font-size: 30px; color: red;");
+	}, []); */
+	/* useEffect(
 		//This needs to run here if I want to change only the group
 		() => {
-			/* console.log("group change. gorup is: ", group); */
+			console.log("group change. gorup is: ", group);
 		},
 		[group]
-	);
+	); */
 
 	return (
 		/* TODO add classcat package:  */

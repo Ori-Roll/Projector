@@ -8,7 +8,7 @@ import UserIcon from "./../../../../../../misc/GlobalComponents/UserIcon/UserIco
 
 function AssignCell({ cell, doCellChange, assign }) {
 	const [cellAssignedTo, setCellAssignedTo] = useState(cell.assignedTo);
-
+	console.log("Assign cell is ", assign);
 	/* console.log(`%c ------cell render! content: ${cell.content}---------`, "color: green"); */
 	/* useEffect(() => console.log("%c AssignCell MOUNT!", "color:red"), []); */
 
@@ -24,7 +24,7 @@ function AssignCell({ cell, doCellChange, assign }) {
 		<div>
 			{assign.map((user) => (
 				<div key={user._id} className={style["user-icon-wrapper"]}>
-					<UserIcon userName={user.name} userId={user._id} userPhoto={user.photo} />
+					<UserIcon key={user._id} userName={user.name} userId={user._id} userPhoto={user.photo} />
 				</div>
 			))}
 		</div>

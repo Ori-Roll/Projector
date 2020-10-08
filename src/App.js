@@ -23,9 +23,10 @@ function App() {
 			let userProjects = await getUserProjects(false);
 			userProjects = userProjects.data;
 			user.projects = userProjects;
-			const lastProject = user.userLastProject ? user.userLastProject : userProjects[0]._id;
-			let projectToOpen = userProjects.find((project) => project._id === lastProject); // await getProject(lastProject._id, true);
-
+			const lastOpenedProject = user.lastOpenedProject
+				? user.lastOpenedProject
+				: userProjects[0]._id;
+			let projectToOpen = userProjects.find((project) => project._id === lastOpenedProject); // await getProject(lastProject._id, true);
 			setUser(user);
 			setProject(projectToOpen ? projectToOpen : null);
 		}

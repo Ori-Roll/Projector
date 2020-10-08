@@ -1,17 +1,17 @@
 .task {
 	display: flex;
-	height: 40px;
+	height: 42px;
 	/* background-color: rgb(222, 226, 228); */
 	/* background-image: linear-gradient(rgb(223, 223, 223), rgb(212, 212, 212)); */
 	/* border-bottom: rgb(240, 240, 240) 2px solid; */
 	border: rgb(245, 245, 245) 1px solid;
-	padding: 2px;
-	margin-bottom: 5px;
+	/* padding: 2px; */
+	margin-bottom: 10px;
 }
 
 .cell-wrapper {
 	height: 100%;
-	border-right: white 3px solid;
+	border-right: white 1px solid;
 	/* border-left: white 2px solid; */
 	transition: ease 100ms;
 }
