@@ -24,7 +24,7 @@
 	z-index: 2000;
 }
 
-ul li {
+.add-to-group-menu li {
 	display: flex;
 	background-color: white;
 	padding: 10px;
@@ -34,12 +34,12 @@ ul li {
 	cursor: pointer;
 }
 
-ul li p {
+.add-to-group-menu li p {
 	padding: 5px 10px;
 	margin: 0;
 }
 
-ul li:hover {
+.add-to-group-menu li:hover {
 	background-color: rgb(235, 235, 235);
 }
 

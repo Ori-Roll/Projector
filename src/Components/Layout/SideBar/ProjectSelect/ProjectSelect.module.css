@@ -1,5 +1,6 @@
 :root {
 	--side-project-select-bg-color: rgb(40, 154, 219);
+	--side-project-select-bg-color-hover: rgb(61, 173, 238);
 }
 
 .project-select {
@@ -73,4 +74,9 @@
 	background: none;
 	color: black;
 	z-index: 110;
+	outline: none;
+}
+
+.project-select-btn:hover {
+	background-color: var(--side-project-select-bg-color-hover);
 }

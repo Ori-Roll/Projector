@@ -4,10 +4,8 @@
 }
 
 .side-bar {
-	position: absolute;
+	position: fixed;
 	height: 100%;
-	left: 0;
-	top: 0;
 	background-color: lightcoral;
 	width: 50px;
 	z-index: 150;

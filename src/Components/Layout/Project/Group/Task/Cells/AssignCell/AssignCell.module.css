@@ -1,13 +1,42 @@
 .assign-cell {
-	border-radius: 1px;
-	border: #e7e7e7 1px solid;
-	text-align: left;
-	padding-left: 4px;
-	box-shadow: inset rgb(242, 242, 242) 12px 12px 30px, rgb(242, 242, 242) 4px 4px 5px;
-	/* background-color: rgb(245, 245, 245); */
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
+
+.assigned-users-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	height: 100%;
 }
 
 .user-icon-wrapper {
-	width: 35px;
-	height: 35px;
+	margin: 0 0 0 4px;
+	width: 36px;
+	height: 36px;
+}
+
+.add-assigned-btn {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 1em;
+	height: 1em;
+	top: 15%;
+	right: 5px;
+	color: grey;
+	background-color: rgb(255, 255, 255);
+	border: rgb(218, 218, 218) 1px solid;
+	border-radius: 20px;
+	text-align: center;
+	font-size: x-large;
+	cursor: pointer;
+	outline: none;
+}
+
+.add-assigned-btn:hover {
+	background-color: rgb(224, 224, 224);
 }

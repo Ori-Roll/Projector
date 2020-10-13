@@ -5,9 +5,17 @@ import style from "./AssignCell.module.css";
 import CellsStyle from "../CellsStyle.module.css";
 
 import UserIcon from "./../../../../../../misc/GlobalComponents/UserIcon/UserIcon";
+import AssignedUsersMenu from "../../../../../../../GlobalComponents/AssignedUsersMenu/AssignedUsersMenu";
 
 function AssignCell({ cell, doCellChange, assign }) {
 	const [cellAssignedTo, setCellAssignedTo] = useState(cell.assignedTo);
+
+	const [assignedUsersMenuIsOn, setAssignedUsersMenuIsOn] = useState(false);
+
+	function onAssignUsersToTask() {
+		console.log("onAssignUsersToTask click");
+	}
+
 	console.log("Assign cell is ", assign);
 	/* console.log(`%c ------cell render! content: ${cell.content}---------`, "color: green"); */
 	/* useEffect(() => console.log("%c AssignCell MOUNT!", "color:red"), []); */
@@ -20,13 +28,36 @@ function AssignCell({ cell, doCellChange, assign }) {
 		/* 		doCellChange({ ...cell, content: cellText }, false); */
 	}
 
+	function onAddAssignedClick() {
+		setAssignedUsersMenuIsOn(true);
+	}
+
 	return (
-		<div>
-			{assign.map((user) => (
-				<div key={user._id} className={style["user-icon-wrapper"]}>
-					<UserIcon key={user._id} userName={user.name} userId={user._id} userPhoto={user.photo} />
-				</div>
-			))}
+		<div className={style["assign-cell"]}>
+			<div className={style["assigned-users-wrapper"]}>
+				{assign.map((user) => (
+					<div key={user._id} className={style["user-icon-wrapper"]}>
+						<UserIcon
+							key={user._id}
+							userName={user.name}
+							userId={user._id}
+							userPhoto={user.photo}
+						/>
+					</div>
+				))}
+			</div>
+
+			<button className={style["add-assigned-btn"]} onClick={onAddAssignedClick}>
+				&#43;
+			</button>
+
+			{assignedUsersMenuIsOn && (
+				<AssignedUsersMenu
+					assign={assign}
+					setAssignedUsersMenuIsOn={setAssignedUsersMenuIsOn}
+					onAssignUsersToTask={onAssignUsersToTask}
+				/>
+			)}
 		</div>
 	);
 }
