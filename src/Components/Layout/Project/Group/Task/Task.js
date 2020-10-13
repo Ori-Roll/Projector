@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import _ from "lodash";
 import { useInView } from "react-intersection-observer";
 
-import { changeTask } from "../../../../ServerProvider/task";
+import { db_changeTask } from "../../../../ServerProvider/task";
 import { editTaskDispatch } from "../../../../redux/rootReducer";
 
 import { CellOfType } from "./Cells/CellTypes/CellTypes";
@@ -41,20 +41,19 @@ function Task({ task, columns, taskIndex, groupIndex }) {
 			console.error(`task with no cell match for column.id ${column.id}`);
 		} else {
 			let options = [];
-			if (column.type === "assign") options.push(task.assignedTo);
+			if (column.type === "assign") options.push(task.assignedTo, task, taskChange);
 			return CellOfType[column.type](cell, doCellChange, ...options);
 		}
 	}
 
 	async function cellChange(newTask) {
 		try {
-			console.log("new task:  ", newTask);
 			// Change on server
-			let changedTask = await changeTask(newTask);
+			let changedTask = await db_changeTask(newTask);
 			changedTask = changedTask.data;
 			/*	// This should check for the individual cell
 				console.error("Task on server does not match task change");
-				console.log("changeTask.cells ", changedTask.cells);
+				console.log("db_changeTask.cells ", changedTask.cells);
 				console.log("newTask.cells ", newTask.cells);
 			} */
 
@@ -93,6 +92,23 @@ function Task({ task, columns, taskIndex, groupIndex }) {
 			const newTask = doLocalChange(cell);
 			cellChange(newTask);
 		}
+	}
+
+	function taskLocalChange(task) {}
+
+	async function taskChange(changedTask) {
+		console.log("on task => changedTask - ", changedTask);
+		editTask(groupIndex, taskIndex, changedTask);
+		/* try {
+			let resChangedTask = await db_changeTask(changedTask);
+			resChangedTask = resChangedTask.data;
+			console.log("on task => resChangedTask - ", resChangedTask);
+			editTask(groupIndex, taskIndex, resChangedTask);
+		} catch (error) {
+			// This changes task back to the task in the functions closure
+			editTask(groupIndex, taskIndex, task);
+			console.error(error);
+		} */
 	}
 
 	return inView ? ( // TODO: maby add this to a list of viewed on group and render there accordingly (no need to pass anything)

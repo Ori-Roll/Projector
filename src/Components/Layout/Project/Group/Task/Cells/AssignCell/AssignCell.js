@@ -4,16 +4,18 @@ import PropTypes from "prop-types";
 import style from "./AssignCell.module.css";
 import CellsStyle from "../CellsStyle.module.css";
 
-import UserIcon from "./../../../../../../misc/GlobalComponents/UserIcon/UserIcon";
+import UserIcon from "../../../../../../../GlobalComponents/UserIcon/UserIcon";
 import AssignedUsersMenu from "../../../../../../../GlobalComponents/AssignedUsersMenu/AssignedUsersMenu";
 
-function AssignCell({ cell, doCellChange, assign }) {
+function AssignCell({ cell, doCellChange, assign, task, taskChange }) {
 	const [cellAssignedTo, setCellAssignedTo] = useState(cell.assignedTo);
 
 	const [assignedUsersMenuIsOn, setAssignedUsersMenuIsOn] = useState(false);
 
-	function onAssignUsersToTask() {
-		console.log("onAssignUsersToTask click");
+	function onAssignUsersToTask(users) {
+		const changedTask = { ...task, assignedTo: [...task.assignedTo, ...users] };
+		taskChange(changedTask);
+		//setCellAssignedTo([...cellAssignedTo, ...users]);
 	}
 
 	console.log("Assign cell is ", assign);
@@ -55,7 +57,7 @@ function AssignCell({ cell, doCellChange, assign }) {
 				<AssignedUsersMenu
 					assign={assign}
 					setAssignedUsersMenuIsOn={setAssignedUsersMenuIsOn}
-					onAssignUsersToTask={onAssignUsersToTask}
+					onAssignUsersCallback={onAssignUsersToTask}
 				/>
 			)}
 		</div>

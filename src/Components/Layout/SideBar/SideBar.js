@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import ProjectSelect from "./ProjectSelect/ProjectSelect";
 
 import UserSelect from "./UserSelect/UserSelect";
-import UserIcon from "../../misc/GlobalComponents/UserIcon/UserIcon";
+import UserIcon from "../../../GlobalComponents/UserIcon/UserIcon";
 import style from "./SideBar.module.css";
 
 import { uploadUserPhoto } from "../../ServerProvider/auth";

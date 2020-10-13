@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { AppContext } from "../../../ContextProviders/AppContextProvider";
+import { AppContext } from "../../../000_Old_ContextProvider/AppContextProvider";
 import { getCrappyServerData } from "../../../ServerProvider";
 
 import { useDispatch } from "react-redux";
@@ -15,7 +15,7 @@ import {
 } from "./../../../ServerProvider/auth";
 import style from "./UserSelect.module.css";
 
-import UserIcon from "../../../misc/GlobalComponents/UserIcon/UserIcon";
+import UserIcon from "../../../../GlobalComponents/UserIcon/UserIcon";
 
 let users;
 getCrappyServerData("users").then((res) => (users = res));

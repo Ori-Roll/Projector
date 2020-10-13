@@ -19,7 +19,7 @@ async function createNewTask(task) {
 	}
 }
 
-async function changeTask(task) {
+async function db_changeTask(task) {
 	try {
 		!task.project && console.error(`New task does not have a project`);
 		!task.group && console.error(`New task does not have a group`);
@@ -37,4 +37,4 @@ async function changeTask(task) {
 	}
 }
 
-export { createNewTask, changeTask };
+export { createNewTask, db_changeTask };
