@@ -3,7 +3,7 @@ import { getUserProjects } from "./projects";
 
 axios.defaults.withCredentials = true;
 
-async function registerUser(name, email, password) {
+async function db_registerUser(name, email, password) {
 	try {
 		const response = await axios.post(
 			"http://localhost:5000/api/v0/auth/register",
@@ -28,7 +28,7 @@ async function registerUser(name, email, password) {
 	}
 }
 
-async function loginUser(email, password) {
+async function db_loginUser(email, password) {
 	try {
 		const response = await axios.post(
 			"http://localhost:5000/api/v0/auth/login",
@@ -47,7 +47,7 @@ async function loginUser(email, password) {
 }
 
 // TODO: Theres an issue here sometimes after register - fix this
-async function logoutUser() {
+async function db_logoutUser() {
 	try {
 		const response = await axios.get("http://localhost:5000/api/v0/auth/logout");
 		return response.data;
@@ -56,7 +56,7 @@ async function logoutUser() {
 	}
 }
 
-async function getLoggedInUser() {
+async function db_getLoggedInUser() {
 	try {
 		const response = await axios.get("http://localhost:5000/api/v0/auth/me");
 		if (response) return response.data;
@@ -65,7 +65,7 @@ async function getLoggedInUser() {
 	}
 }
 
-async function forgotUserPassword(email) {
+async function db_forgotUserPassword(email) {
 	try {
 		const response = await axios.post(
 			"http://localhost:5000/api/v0/auth/forgotpassword",
@@ -80,7 +80,7 @@ async function forgotUserPassword(email) {
 	}
 }
 
-async function resetUserPassword(resetPasswordToken, newPassword) {
+async function db_resetUserPassword(resetPasswordToken, newPassword) {
 	// resetPasswordToken was sent by mail
 	try {
 		console.log(`http://localhost:5000/api/v0/auth/resetpassword/${resetPasswordToken}`);
@@ -97,7 +97,7 @@ async function resetUserPassword(resetPasswordToken, newPassword) {
 	}
 }
 
-async function updateUserDetails(newDetails) {
+async function db_updateUserDetails(newDetails) {
 	try {
 		const response = await axios.put(
 			"http://localhost:5000/api/v0/auth/updatedetails",
@@ -110,7 +110,7 @@ async function updateUserDetails(newDetails) {
 	}
 }
 
-async function uploadUserPhoto(photo) {
+async function db_uploadUserPhoto(photo) {
 	var formData = new FormData();
 	formData.append("image", photo);
 
@@ -126,7 +126,7 @@ async function uploadUserPhoto(photo) {
 	}
 }
 
-async function updateUserPassword(currentPassword, newPassword) {
+async function db_updateUserPassword(currentPassword, newPassword) {
 	try {
 		const response = await axios.put(
 			"http://localhost:5000/api/v0/auth/updatepassword",
@@ -142,14 +142,24 @@ async function updateUserPassword(currentPassword, newPassword) {
 	}
 }
 
+async function db_getApprovingUsers() {
+	try {
+		const response = await axios.get("http://localhost:5000/api/v0/auth/getApprovingUsers");
+		if (response) return response.data.data;
+	} catch (error) {
+		console.error("error is ", error.response);
+	}
+}
+
 export {
-	registerUser,
-	loginUser,
-	logoutUser,
-	getLoggedInUser,
-	forgotUserPassword,
-	resetUserPassword,
-	updateUserDetails,
-	updateUserPassword,
-	uploadUserPhoto,
+	db_registerUser,
+	db_loginUser,
+	db_logoutUser,
+	db_getLoggedInUser,
+	db_forgotUserPassword,
+	db_resetUserPassword,
+	db_updateUserDetails,
+	db_updateUserPassword,
+	db_uploadUserPhoto,
+	db_getApprovingUsers,
 };

@@ -5,9 +5,9 @@ import _ from "lodash";
 import { db_getUsersByEmailQuery } from "../../Components/ServerProvider/users";
 
 import style from "./UsersSearchBox.module.css";
-import UserIcon from "../UserIcon/UserIcon";
+import UsersListItem from "../UsersListItem/UsersListItem";
 
-function AssignedUsersMenu({ onAddUserCallback, lable = true }) {
+function AssignedUsersMenu({ onAddUserCallback, lable = true, ignoreUsers }) {
 	const minCharForQuery = 2;
 
 	const [searchBoxActive, setSearchBoxActive] = useState(false);
@@ -17,6 +17,9 @@ function AssignedUsersMenu({ onAddUserCallback, lable = true }) {
 
 	async function newSearchQuery(value) {
 		const usersResults = await db_getUsersByEmailQuery(value);
+		usersResults.filter((userRes) => {
+			return ignoreUsers.find((user) => user._id === userRes._id) === undefined;
+		}); // TODO: This filter does not work
 		setSearchByEmailResults([...usersResults]);
 	}
 
@@ -37,6 +40,7 @@ function AssignedUsersMenu({ onAddUserCallback, lable = true }) {
 
 	function onSearchBoxBlur() {
 		setTimeout(() => setSearchBoxActive(false), 100); //TODO: fix this
+		setSearchByEmail("");
 	}
 
 	return (
@@ -59,23 +63,11 @@ function AssignedUsersMenu({ onAddUserCallback, lable = true }) {
 			{searchBoxActive && searchByEmailResults.length > minCharForQuery && (
 				<ul className={style["user-suggestion-ul"]}>
 					{searchByEmailResults.map((userRes) => (
-						<li
+						<UsersListItem
 							key={userRes._id}
-							className={style["user-suggestion-li"]}
-							onClick={(e) => onSelectUserByEmail(e, userRes)}>
-							<div className={style["user-icon-wrapper"]}>
-								<UserIcon
-									key={userRes._id}
-									userName={userRes.name}
-									userPhoto={userRes.photo}
-									userId={userRes._id}
-								/>
-							</div>
-							<div>
-								<p>{userRes.name}</p>
-								<h2>{userRes.email}</h2>
-							</div>
-						</li>
+							user={userRes}
+							onClickCallback={(e, user) => onSelectUserByEmail(e, user)}
+						/>
 					))}
 				</ul>
 			)}

@@ -12,38 +12,55 @@
 	justify-content: center;
 	z-index: 2000;
 }
+
 .form-wrapper {
 	background-color: white;
 	width: 400px;
-	height: 500px;
+	height: 600px;
 	padding: 50px;
+	display: grid;
+	grid-template-rows: auto 5fr 2fr 1fr;
+	gap: 0.3em;
 }
+
+.form-wrapper h1 {
+	color: rgb(7, 67, 116);
+	padding: 0;
+	margin: 0;
+}
+
 .selected-users-ul {
 	width: 100%;
+	max-width: 300px;
+	height: 70px;
 	display: flex;
 	flex-direction: row;
 	justify-content: left;
+	align-items: center;
 	overflow-x: scroll;
 }
 
 .selected-users-ul li {
 	list-style-type: none;
-	width: 35px;
-	height: 35px;
-	min-width: 35px;
+	width: 45px;
+	height: 45px;
+	min-width: 45px;
 }
 
-.selected-users-ul::-webkit-scrollbar {
+.selected-users-ul::-webkit-scrollbar,
+.user-suggestion-ul::-webkit-scrollbar {
 	width: 6px;
 	height: 6px;
 	background: none;
 }
 
-.selected-users-ul::-webkit-scrollbar-track {
+.selected-users-ul::-webkit-scrollbar-track,
+.user-suggestion-ul::-webkit-scrollbar-track {
 	margin: 10px;
 	background: none;
 }
-.selected-users-ul::-webkit-scrollbar-thumb {
+.selected-users-ul::-webkit-scrollbar-thumb,
+.user-suggestion-ul::-webkit-scrollbar-thumb {
 	border-radius: 10px;
 	background-color: rgb(185, 185, 185);
 }
@@ -54,7 +71,6 @@
 	border: rgb(224, 224, 224) 1px solid;
 	padding: 0.6rem 0;
 	width: 100%;
-	margin: 40px 0 0;
 	text-decoration: none;
 	background: rgb(255, 255, 255);
 	color: #353535;
@@ -72,4 +88,12 @@
 .done-btn:hover,
 .done-btn:focus {
 	background: #b5defa;
+}
+
+.user-suggestion-ul {
+	height: 150px;
+	overflow-y: scroll;
+	width: 100%;
+	margin: 0;
+	padding: 0;
 }

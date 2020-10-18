@@ -6,15 +6,39 @@
 
 .assigned-users-wrapper {
 	display: flex;
-	flex-wrap: wrap;
+	flex-direction: row;
 	align-items: center;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	padding-left: 25px;
 	height: 100%;
+	width: 125px;
+}
+
+.assigned-users-wrapper::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+	background: none;
+}
+
+.assigned-users-wrapper::-webkit-scrollbar-track {
+	margin: 10px;
+	background: none;
+}
+.assigned-users-wrapper::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background-color: rgb(185, 185, 185);
 }
 
 .user-icon-wrapper {
-	margin: 0 0 0 4px;
-	width: 36px;
-	height: 36px;
+	margin: 0 0 0 -10px;
+	width: 34px;
+	min-width: 34px;
+	height: 34px;
+}
+
+.user-icon-wrapper:hover {
+	z-index: 5;
 }
 
 .add-assigned-btn {

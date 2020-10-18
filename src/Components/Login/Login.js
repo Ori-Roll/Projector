@@ -6,12 +6,12 @@ import { useDispatch } from "react-redux";
 import { setUserDispatch } from "../redux/rootReducer";
 
 import {
-	registerUser,
-	loginUser,
-	getLoggedInUser,
-	forgotUserPassword,
-	resetUserPassword,
-	uploadUserPhoto,
+	db_registerUser,
+	db_loginUser,
+	db_getLoggedInUser,
+	db_forgotUserPassword,
+	db_resetUserPassword,
+	db_uploadUserPhoto,
 } from "../ServerProvider/auth";
 
 function Login({ initApp }) {
@@ -34,10 +34,10 @@ function Login({ initApp }) {
 
 	async function registerUserClick() {
 		try {
-			const registeredUserRes = await registerUser("ori", "david2@gmail.com", "123456");
+			const registeredUserRes = await db_registerUser("ori", "david2@gmail.com", "123456");
 			if (registeredUserRes) {
 				try {
-					const user = await getLoggedInUser();
+					const user = await db_getLoggedInUser();
 					setUser(user);
 					initApp(user);
 				} catch (error) {
@@ -53,7 +53,7 @@ function Login({ initApp }) {
 		e.preventDefault();
 		try {
 			console.log("loginUserClick!");
-			const loggedInUserRes = await loginUser(email, password);
+			const loggedInUserRes = await db_loginUser(email, password);
 			if (loggedInUserRes) {
 				setUser(loggedInUserRes.user);
 				initApp(loggedInUserRes.user);
@@ -65,7 +65,7 @@ function Login({ initApp }) {
 	}
 
 	async function forgotPasswordClick() {
-		const forgotPasswordRes = await forgotUserPassword("oriroll@gmail.com");
+		const forgotPasswordRes = await db_forgotUserPassword("oriroll@gmail.com");
 		if (forgotPasswordRes)
 			alert(
 				"An email was sent to you. Please follow the instructions on the email to reset your password."
@@ -73,7 +73,7 @@ function Login({ initApp }) {
 		console.log("forgotPassword Click, ", forgotPasswordRes);
 	}
 	async function resetPasswordClick() {
-		const resetUserPasswordRes = await resetUserPassword(
+		const resetUserPasswordRes = await db_resetUserPassword(
 			"df5b9096c7d37cfbfd53b2a9717d47cf851ecf5d",
 			"123456"
 		);

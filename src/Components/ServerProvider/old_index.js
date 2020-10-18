@@ -2,7 +2,7 @@ import _ from "lodash";
 import { NewGroup } from "../misc/NewDataMakers";
 import axios from "axios";
 
-import { regiserUser, loginUser, getLoggedInUser } from "./auth";
+import { db_regiserUser, db_loginUser, db_getLoggedInUser } from "./auth";
 
 let crappyServerData = {
 	users: {
@@ -111,4 +111,4 @@ crappyServerData["ProjId3"].groups.push(NewGroup(null, crappyServerData["ProjId3
 crappyServerData["ProjId3"].groups.push(NewGroup(null, crappyServerData["ProjId3"]));
 crappyServerData["ProjId3"].groups.push(NewGroup(null, crappyServerData["ProjId3"]));
 
-export { setCrappyServerData, getCrappyServerData, loginUser, getLoggedInUser };
+export { setCrappyServerData, getCrappyServerData, db_loginUser, db_getLoggedInUser };

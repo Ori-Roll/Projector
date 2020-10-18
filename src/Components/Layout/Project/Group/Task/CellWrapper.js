@@ -7,11 +7,7 @@ function CellWrapper({ column, children }) {
 		<div
 			key={column.id}
 			className={style["cell-wrapper"]}
-			style={
-				column.isDragged
-					? { width: column.width, marginRight: "1px", opacity: "20%" }
-					: { width: column.width, marginRight: "1px" }
-			}>
+			style={column.isDragged ? { width: column.width, opacity: "20%" } : { width: column.width }}>
 			{children}
 		</div>
 	);

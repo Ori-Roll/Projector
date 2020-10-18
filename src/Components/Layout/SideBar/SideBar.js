@@ -8,7 +8,7 @@ import UserSelect from "./UserSelect/UserSelect";
 import UserIcon from "../../../GlobalComponents/UserIcon/UserIcon";
 import style from "./SideBar.module.css";
 
-import { uploadUserPhoto } from "../../ServerProvider/auth";
+import { db_uploadUserPhoto } from "../../ServerProvider/auth";
 
 import { setUserDispatch } from "../../redux/rootReducer";
 
@@ -25,7 +25,7 @@ function SideBar() {
 
 	async function onUserPhotoUpload(e) {
 		try {
-			let updatedUser = await uploadUserPhoto(e.target.files[0]);
+			let updatedUser = await db_uploadUserPhoto(e.target.files[0]);
 			updatedUser = updatedUser.data;
 			console.log("updatedUser ", updatedUser);
 			setUser(updatedUser);

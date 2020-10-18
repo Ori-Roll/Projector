@@ -31,6 +31,7 @@ async function db_changeTask(task) {
 				headers: { "Content-Type": "application/json" },
 			}
 		);
+		console.log("got back ", response.data.data);
 		return response.data;
 	} catch (error) {
 		console.error(error.response.data);

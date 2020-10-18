@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { AppContext } from "../../../000_Old_ContextProvider/AppContextProvider";
-import { getCrappyServerData } from "../../../ServerProvider";
+import { getCrappyServerData } from "../../../ServerProvider/old_index";
 
 import { useDispatch } from "react-redux";
 import { setUserDispatch } from "../../../redux/rootReducer";
 
 import {
-	loginUser,
-	logoutUser,
-	getLoggedInUser,
-	updateUserDetails,
-	updateUserPassword,
+	db_loginUser,
+	db_logoutUser,
+	db_getLoggedInUser,
+	db_updateUserDetails,
+	db_updateUserPassword,
 } from "./../../../ServerProvider/auth";
 import style from "./UserSelect.module.css";
 
@@ -32,30 +32,30 @@ function UserSelect() {
 
 	async function changeToUser(userId) {
 		getCrappyServerData(`users.${userId}`).then((res) => setUser(res));
-		const user = await loginUser("johnJohn@gmail.com", "123456");
-		const me = await getLoggedInUser();
+		const user = await db_loginUser("johnJohn@gmail.com", "123456");
+		const me = await db_getLoggedInUser();
 		// console.log("me, ", me);
 		setUsersManu(!usersMenu);
 	}
 
 	async function getLoggedInUserClick() {
-		const currentUserRes = await getLoggedInUser();
-		console.log("getLoggedInUser Click, ", currentUserRes);
+		const currentUserRes = await db_getLoggedInUser();
+		console.log("db_getLoggedInUser Click, ", currentUserRes);
 	}
 
 	async function updateUserDetailsClick() {
-		const updateUserDetailsRes = await updateUserDetails({
+		const updateUserDetailsRes = await db_updateUserDetails({
 			email: "oriroll@gmail.com",
 			name: "Mr Ori the first",
 		});
-		console.log("updateUserDetails Click", updateUserDetailsRes);
+		console.log("db_updateUserDetails Click", updateUserDetailsRes);
 	}
 	async function updatePasswordClick() {
-		const updateUserPasswordRes = await updateUserPassword("123456", "1234567");
+		const updateUserPasswordRes = await db_updateUserPassword("123456", "1234567");
 		console.log("updatePasswordClick ", updateUserPasswordRes);
 	}
 	async function logoutClick() {
-		const logoutUserRes = await logoutUser();
+		const logoutUserRes = await db_logoutUser();
 		// HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		console.log("logoutClick ", logoutUserRes);
 		document.cookie = null; // TODO: Is this how to do this?
@@ -66,8 +66,8 @@ function UserSelect() {
 	return (
 		<div className={style["user-select"]}>
 			<div>
-				<button onClick={getLoggedInUserClick}>getLoggedInUser</button>
-				<button onClick={updateUserDetailsClick}>updateUserDetails</button>
+				<button onClick={getLoggedInUserClick}>get LoggedIn User</button>
+				<button onClick={updateUserDetailsClick}>update Users Details</button>
 				<button onClick={updatePasswordClick}>updatePassword</button>
 				<button onClick={logoutClick}>logout</button>
 			</div>

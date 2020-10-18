@@ -1,16 +1,63 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import _ from "lodash";
+import { useSelector } from "react-redux";
+import _, { find } from "lodash";
 
-import { db_getUsersByEmailQuery } from "../../Components/ServerProvider/users";
+import { db_getApprovingUsers } from "../../Components/ServerProvider/auth";
 
 import UserIcon from "../UserIcon/UserIcon";
+import UsersListItem from "../UsersListItem/UsersListItem";
 import UsersSearchBox from "../UsersSearchBox/UsersSearchBox";
 
 import style from "./AssignedUsersMenu.module.css";
 
 function AssignedUsersMenu({ assign, setAssignedUsersMenuIsOn, onAssignUsersCallback }) {
-	const [selectedUsers, setSelectedUsers] = useState([]);
+	const user = useSelector((state) => state?.user);
+	const [selectedUsers, setSelectedUsers] = useState([...assign]);
+	const [knownUsersLoaded, setKnownUsersLoaded] = useState(false);
+	const [allKnownUsers, setAllKnownUsers] = useState([]);
+
+	useEffect(() => {
+		async function initGetApprovingUsers() {
+			try {
+				const approvingUsersRes = await db_getApprovingUsers();
+				let combinedUsers = approvingUsersRes.approvingUsers.concat(
+					approvingUsersRes.user.knownUsers
+				);
+				combinedUsers = _.uniqBy(combinedUsers, "_id");
+				setAllKnownUsers(combinedUsers);
+				console.log("combinedUsers  ", combinedUsers);
+			} catch (error) {
+				console.error("cant get known users", error);
+			}
+			setKnownUsersLoaded(true);
+		}
+		initGetApprovingUsers();
+	}, []);
+
+	function knownUsersDisplay() {
+		if (!knownUsersLoaded) {
+			return <h3>Loading known users</h3>;
+		}
+		if (allKnownUsers.length !== 0) {
+			const usersToShow = allKnownUsers.filter(
+				(user) => selectedUsers.find((selectedUser) => selectedUser._id === user._id) === undefined
+			);
+			return (
+				<ul className={style["user-suggestion-ul"]}>
+					{usersToShow.map((user) => {
+						return <UsersListItem key={user._id} user={user} onClickCallback={onAddUser} />;
+					})}
+				</ul>
+			);
+		}
+		return (
+			<div>
+				<h3>No known users.</h3>
+				<p>You can try searching for more users</p>
+			</div>
+		);
+	}
 
 	function onDoneClick() {
 		onAssignUsersCallback(selectedUsers);
@@ -21,10 +68,23 @@ function AssignedUsersMenu({ assign, setAssignedUsersMenuIsOn, onAssignUsersCall
 		setAssignedUsersMenuIsOn(false);
 	}
 
-	function onAddUser(user) {
+	function onAddUser(e, user) {
 		if (selectedUsers.find((selectedUser) => selectedUser._id === user._id) === undefined) {
 			setSelectedUsers((selectedUsers) => [...selectedUsers, user]);
 		}
+	}
+
+	function onRemoveUser(user) {
+		console.log("remove");
+		setSelectedUsers((selectedUsers) => {
+			const newSelectedUsers = [...selectedUsers];
+			const removedUserIndex = newSelectedUsers.findIndex(
+				(selectedUser) => user._id === selectedUser._id
+			);
+			newSelectedUsers.splice(removedUserIndex, 1);
+			console.log("newSelectedUsers ", newSelectedUsers);
+			return newSelectedUsers;
+		});
 	}
 
 	return (
@@ -34,14 +94,36 @@ function AssignedUsersMenu({ assign, setAssignedUsersMenuIsOn, onAssignUsersCall
 				onClick={(e) => {
 					e.stopPropagation();
 				}}>
-				<UsersSearchBox onAddUserCallback={(user) => onAddUser(user)} lable={true} />
-				<ul className={style["selected-users-ul"]}>
-					{selectedUsers.map((user) => (
-						<li key={user._id}>
-							<UserIcon userName={user.name} userPhoto={user.photo} userId={user._id} />
-						</li>
-					))}
-				</ul>
+				<div>
+					<h1>Select Users</h1>
+
+					{knownUsersDisplay()}
+				</div>
+				<div>
+					<h2>Search for more users</h2>
+					<UsersSearchBox
+						onAddUserCallback={(user) => onAddUser(user)}
+						lable={true}
+						ignoreUsers={selectedUsers}
+					/>
+				</div>
+
+				<div>
+					<h1>Selected Users</h1>
+					<ul className={style["selected-users-ul"]}>
+						{selectedUsers.map((user) => (
+							<li key={user._id}>
+								<UserIcon
+									userName={user.name}
+									userPhoto={user.photo}
+									userId={user._id}
+									removable={true}
+									onRemoveCallback={onRemoveUser}
+								/>
+							</li>
+						))}
+					</ul>
+				</div>
 				{selectedUsers.length !== 0 && (
 					<button
 						className={style["done-btn"]}

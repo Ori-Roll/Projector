@@ -3,7 +3,7 @@ import { NewTask } from "../misc/NewDataMakers";
 
 import { useImmerReducer } from "use-immer";
 
-import { setCrappyServerData } from "../ServerProvider";
+import { setCrappyServerData } from "../ServerProvider/old_index";
 
 function projectDataReducer(draft, action) {
 	function indexItemIdIn(id, Arr) {

@@ -8,12 +8,10 @@ import UserIcon from "../../../../../../../GlobalComponents/UserIcon/UserIcon";
 import AssignedUsersMenu from "../../../../../../../GlobalComponents/AssignedUsersMenu/AssignedUsersMenu";
 
 function AssignCell({ cell, doCellChange, assign, task, taskChange }) {
-	const [cellAssignedTo, setCellAssignedTo] = useState(cell.assignedTo);
-
 	const [assignedUsersMenuIsOn, setAssignedUsersMenuIsOn] = useState(false);
 
 	function onAssignUsersToTask(users) {
-		const changedTask = { ...task, assignedTo: [...task.assignedTo, ...users] };
+		const changedTask = { ...task, assignedTo: users };
 		taskChange(changedTask);
 		//setCellAssignedTo([...cellAssignedTo, ...users]);
 	}
@@ -37,7 +35,7 @@ function AssignCell({ cell, doCellChange, assign, task, taskChange }) {
 	return (
 		<div className={style["assign-cell"]}>
 			<div className={style["assigned-users-wrapper"]}>
-				{assign.map((user) => (
+				{task.assignedTo.map((user) => (
 					<div key={user._id} className={style["user-icon-wrapper"]}>
 						<UserIcon
 							key={user._id}
@@ -66,12 +64,12 @@ function AssignCell({ cell, doCellChange, assign, task, taskChange }) {
 
 AssignCell.propTypes = {};
 
-/* export default AssignCell; */
+export default AssignCell;
 
-export default React.memo(AssignCell, (prevProps, nextProps) => {
-	if (prevProps.cell.content === "" && nextProps.cell.content === "") return true;
-	return prevProps.cell.content !== nextProps.cell.content ? true : false;
-});
+/* export default React.memo(AssignCell, (prevProps, nextProps) => {
+	//if (prevProps.task.assignedTo === [] && nextProps.task.assignedTo === []) return true;
+	return prevProps.task.assignedTo !== nextProps.task.assignedTo ? true : false;
+}); */
 
 {
 	/* <input

@@ -1,11 +1,11 @@
-import { getLoggedInUser } from "./auth";
+import { db_getLoggedInUser } from "./auth";
 
 async function initUser() {
 	let user = null;
 	console.log("START document.cookie ", document.cookie);
 	if (document.cookie && document.cookie.startsWith("token")) {
 		try {
-			const res = await getLoggedInUser();
+			const res = await db_getLoggedInUser();
 			user = res.data;
 		} catch (error) {
 			// TODO: This needs to be addressed
