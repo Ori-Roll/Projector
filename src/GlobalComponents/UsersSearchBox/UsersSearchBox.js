@@ -17,10 +17,12 @@ function AssignedUsersMenu({ onAddUserCallback, lable = true, ignoreUsers }) {
 
 	async function newSearchQuery(value) {
 		const usersResults = await db_getUsersByEmailQuery(value);
+
 		usersResults.filter((userRes) => {
 			return ignoreUsers.find((user) => user._id === userRes._id) === undefined;
 		}); // TODO: This filter does not work
-		setSearchByEmailResults([...usersResults]);
+		console.log("usersResults is , ", usersResults)
+		setSearchByEmailResults(usersResults);
 	}
 
 	const debouncedEmailSearch = _.debounce((value) => {
@@ -34,7 +36,6 @@ function AssignedUsersMenu({ onAddUserCallback, lable = true, ignoreUsers }) {
 	}
 
 	function onSelectUserByEmail(e, user) {
-		e.stopPropagation();
 		onAddUserCallback(user);
 	}
 
@@ -44,7 +45,7 @@ function AssignedUsersMenu({ onAddUserCallback, lable = true, ignoreUsers }) {
 	}
 
 	return (
-		<div className={style["search-wrapper"]}>
+		<div className={style["search-wrapper"]} >
 			{lable && (
 				<label className={style["search-lable"]} htmlFor='search-by-email'>
 					Search for someone by his Email:
@@ -60,15 +61,15 @@ function AssignedUsersMenu({ onAddUserCallback, lable = true, ignoreUsers }) {
 				autoComplete='off'
 				onBlur={onSearchBoxBlur}
 			/>
-			{searchBoxActive && searchByEmailResults.length > minCharForQuery && (
-				<ul className={style["user-suggestion-ul"]}>
-					{searchByEmailResults.map((userRes) => (
-						<UsersListItem
+			{searchBoxActive  && (
+				<ul className={style["user-suggestion-ul"]} >
+					{searchByEmailResults.map((userRes) => {
+						return <UsersListItem
 							key={userRes._id}
 							user={userRes}
-							onClickCallback={(e, user) => onSelectUserByEmail(e, user)}
+							onClickCallback={onSelectUserByEmail}
 						/>
-					))}
+					})}
 				</ul>
 			)}
 		</div>

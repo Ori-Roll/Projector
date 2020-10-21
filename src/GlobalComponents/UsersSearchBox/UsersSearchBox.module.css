@@ -27,6 +27,21 @@
 	padding: 0;
 }
 
+.user-suggestion-ul::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+	background: none;
+}
+
+.user-suggestion-ul::-webkit-scrollbar-track {
+	margin: 10px;
+	background: none;
+}
+.user-suggestion-ul::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background-color: rgb(185, 185, 185);
+}
+
 .user-suggestion-li {
 	display: flex;
 	flex-direction: row;

@@ -52,7 +52,7 @@ function AssignedUsersMenu({ assign, setAssignedUsersMenuIsOn, onAssignUsersCall
 			);
 		}
 		return (
-			<div>
+			<div >
 				<h3>No known users.</h3>
 				<p>You can try searching for more users</p>
 			</div>
@@ -96,9 +96,10 @@ function AssignedUsersMenu({ assign, setAssignedUsersMenuIsOn, onAssignUsersCall
 					e.stopPropagation();
 				}}>
 				<div>
-					<h1>Select Users</h1>
-
-					{knownUsersDisplay()}
+					<h1>Add someone to this task</h1>
+						<div className={style["user-suggestion-wrapper"]}>
+						{knownUsersDisplay()}
+						</div>
 				</div>
 				<div>
 					<h2>Search for more users</h2>
