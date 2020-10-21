@@ -16,14 +16,6 @@ import style from "./Task.module.css";
 function Task({ task, columns, taskIndex, groupIndex }) {
 	const [taskWrapperRef, inView, entry] = useInView();
 
-	// const [task, setTask] = useState(taskData);
-
-	/* useEffect(() => {
-		setTask(taskData);
-	}, [taskData]);
- */
-	/* const taskRef = useRef(task); */
-
 	const dispatch = useDispatch();
 	const editTask = (groupIndex, taskIndex, task) =>
 		dispatch(editTaskDispatch(groupIndex, taskIndex, task));
@@ -32,7 +24,7 @@ function Task({ task, columns, taskIndex, groupIndex }) {
 		console.log("%c Task Mount", "font-weight: bold; font-size: 12px; color: pink;");
 	}, []); */
 
-	console.log(`%c ------Task render! did: ${task.assignedTo.length}---------`, "color: green");
+	//console.log(`%c ------Task render! did: ${task.assignedTo.length}---------`, "color: green");
 
 	function createCell(column = () => console.error("no column for cell")) {
 		if (!column.type) throw new Error("No column.type for cell");
@@ -99,9 +91,6 @@ function Task({ task, columns, taskIndex, groupIndex }) {
 	async function taskChange(changedTask) {
 		editTask(groupIndex, taskIndex, changedTask);
 		try {
-			/* const assignedToSimple = changedTask.assignedTo.map((user) => user._id);
-			const changedTaskSimple = _.cloneDeep(changedTask);
-			changedTaskSimple.assignedTo = assignedToSimple; */
 			console.log("START sending task", changedTask);
 			let resChangedTask = await db_changeTask(changedTask);
 			resChangedTask = resChangedTask.data;

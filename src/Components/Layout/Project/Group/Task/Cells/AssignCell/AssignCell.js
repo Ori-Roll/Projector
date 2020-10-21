@@ -16,7 +16,6 @@ function AssignCell({ cell, doCellChange, assign, task, taskChange }) {
 		//setCellAssignedTo([...cellAssignedTo, ...users]);
 	}
 
-	console.log("Assign cell is ", assign);
 	/* console.log(`%c ------cell render! content: ${cell.content}---------`, "color: green"); */
 	/* useEffect(() => console.log("%c AssignCell MOUNT!", "color:red"), []); */
 
