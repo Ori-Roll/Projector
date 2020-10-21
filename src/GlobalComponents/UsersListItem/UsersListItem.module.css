@@ -9,6 +9,11 @@
 	background-color: white;
 	margin: 0;
 }
+
+.user-li:hover {
+	background-color: rgb(215, 233, 255);
+}
+
 .user-li h3 {
 	font-size: 1em;
 	font-weight: 600;

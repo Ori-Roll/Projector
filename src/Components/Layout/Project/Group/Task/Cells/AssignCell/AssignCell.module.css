@@ -12,7 +12,7 @@
 	overflow-y: hidden;
 	padding-left: 25px;
 	height: 100%;
-	width: 125px;
+	width: 80%;
 }
 
 .assigned-users-wrapper::-webkit-scrollbar {
