@@ -69,6 +69,7 @@ function AssignedUsersMenu({ assign, setAssignedUsersMenuIsOn, onAssignUsersCall
 	}
 
 	function onAddUser(e, user) {
+		console.log("on add user - user is : ", user);
 		if (selectedUsers.find((selectedUser) => selectedUser._id === user._id) === undefined) {
 			setSelectedUsers((selectedUsers) => [...selectedUsers, user]);
 		}
@@ -102,7 +103,7 @@ function AssignedUsersMenu({ assign, setAssignedUsersMenuIsOn, onAssignUsersCall
 				<div>
 					<h2>Search for more users</h2>
 					<UsersSearchBox
-						onAddUserCallback={(user) => onAddUser(user)}
+						onAddUserCallback={(user) => onAddUser(null, user)}
 						lable={true}
 						ignoreUsers={selectedUsers}
 					/>
