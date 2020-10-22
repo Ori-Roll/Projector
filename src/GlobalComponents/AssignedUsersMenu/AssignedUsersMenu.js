@@ -8,6 +8,7 @@ import { db_getApprovingUsers } from "../../Components/ServerProvider/auth";
 import UserIcon from "../UserIcon/UserIcon";
 import UsersListItem from "../UsersListItem/UsersListItem";
 import UsersSearchBox from "../UsersSearchBox/UsersSearchBox";
+import Loader from "../Loader/Loader"
 
 import style from "./AssignedUsersMenu.module.css";
 
@@ -37,7 +38,7 @@ function AssignedUsersMenu({ assign, setAssignedUsersMenuIsOn, onAssignUsersCall
 
 	function knownUsersDisplay() {
 		if (!knownUsersLoaded) {
-			return <h3>Loading known users</h3>;
+			return <Loader message={"Loading known users"}/>;
 		}
 		if (allKnownUsers.length !== 0) {
 			const usersToShow = allKnownUsers.filter(
