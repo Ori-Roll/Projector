@@ -19,12 +19,10 @@ function AssignCell({ cell, doCellChange, assign, task, taskChange }) {
 	/* console.log(`%c ------cell render! content: ${cell.content}---------`, "color: green"); */
 	/* useEffect(() => console.log("%c AssignCell MOUNT!", "color:red"), []); */
 
-	function onInputChange(text) {
-		/* 	doCellChange({ ...cell, content: text }, true); */
-	}
-
-	function onBlur() {
-		/* 		doCellChange({ ...cell, content: cellText }, false); */
+	const iconsSpacing = ()=> {
+		if ((task.assignedTo.length > 2) && (task.assignedTo.length < 8)) return -8 - task.assignedTo.length;
+		if (task.assignedTo.length >= 8) return -16;
+		return -8;
 	}
 
 	function onAddAssignedClick() {
@@ -35,7 +33,7 @@ function AssignCell({ cell, doCellChange, assign, task, taskChange }) {
 		<div className={style["assign-cell"]}>
 			<div className={style["assigned-users-wrapper"]}>
 				{task.assignedTo.map((user) => (
-					<div key={user._id} className={style["user-icon-wrapper"]}>
+					<div key={user._id} className={style["user-icon-wrapper"]} style={{marginRight: `${iconsSpacing()}px`}}>
 						<UserIcon
 							key={user._id}
 							userName={user.name}

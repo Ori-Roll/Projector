@@ -10,7 +10,7 @@
 	align-items: center;
 	overflow-x: scroll;
 	overflow-y: hidden;
-	padding-left: 25px;
+	padding-left: 6px;
 	height: 100%;
 	width: 80%;
 }
@@ -31,7 +31,7 @@
 }
 
 .user-icon-wrapper {
-	margin: 0 0 0 -10px;
+	margin: 0;
 	width: 34px;
 	min-width: 34px;
 	height: 34px;
