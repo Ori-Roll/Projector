@@ -34,13 +34,11 @@ function UserSelect() {
 		getCrappyServerData(`users.${userId}`).then((res) => setUser(res));
 		const user = await db_loginUser("johnJohn@gmail.com", "123456");
 		const me = await db_getLoggedInUser();
-		// console.log("me, ", me);
 		setUsersManu(!usersMenu);
 	}
 
 	async function getLoggedInUserClick() {
 		const currentUserRes = await db_getLoggedInUser();
-		console.log("db_getLoggedInUser Click, ", currentUserRes);
 	}
 
 	async function updateUserDetailsClick() {
@@ -48,18 +46,14 @@ function UserSelect() {
 			email: "oriroll@gmail.com",
 			name: "Mr Ori the first",
 		});
-		console.log("db_updateUserDetails Click", updateUserDetailsRes);
 	}
 	async function updatePasswordClick() {
 		const updateUserPasswordRes = await db_updateUserPassword("123456", "1234567");
-		console.log("updatePasswordClick ", updateUserPasswordRes);
 	}
 	async function logoutClick() {
 		const logoutUserRes = await db_logoutUser();
 		// HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		console.log("logoutClick ", logoutUserRes);
 		document.cookie = null; // TODO: Is this how to do this?
-		console.log("document.cookie is ", document.cookie);
 		setUser(null);
 	}
 

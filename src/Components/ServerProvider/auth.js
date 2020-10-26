@@ -16,7 +16,6 @@ async function db_registerUser(name, email, password) {
 			{ headers: { "Content-Type": "application/json" } }
 		);
 		document.cookie = `token: ${response.data.token}`;
-		console.log("cookie ", document.cookie);
 		return response;
 	} catch (error) {
 		if (error.response.data.error === "Duplicate field value enterd") {
@@ -39,7 +38,6 @@ async function db_loginUser(email, password) {
 			{ headers: { "Content-Type": "application/json" } }
 		);
 		document.cookie = `token: ${response.data.token}`;
-		console.log("cookie ", document.cookie);
 		return response.data;
 	} catch (error) {
 		console.error(error.response.data);
@@ -83,7 +81,6 @@ async function db_forgotUserPassword(email) {
 async function db_resetUserPassword(resetPasswordToken, newPassword) {
 	// resetPasswordToken was sent by mail
 	try {
-		console.log(`http://localhost:5000/api/v0/auth/resetpassword/${resetPasswordToken}`);
 		const response = await axios.put(
 			`http://localhost:5000/api/v0/auth/resetpassword/${resetPasswordToken}`,
 			{

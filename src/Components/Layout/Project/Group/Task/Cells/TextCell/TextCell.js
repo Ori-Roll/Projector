@@ -9,16 +9,12 @@ import { NEW_COLUMN_DATA } from "../../../../../../defaults";
 
 function TextCell({ cell, doCellChange }) {
 	const [cellText, setCellText] = useState(cell.content);
-	//	console.log(`%c ------cell render! content: ${cell.content}---------`, "color: green");
-	/* useEffect(() => console.log("%c TextCell MOUNT!", "color:red"), []); */
 
 	function onInputChange(text) {
-		//console.log("CHANGE - DEBOUNCE ", { ...cell, content: text });
 		doCellChange({ ...cell, content: text }, true);
 	}
 
 	function onBlur(text) {
-		//console.log("CHANGE - BLUR", { ...cell, content: text });
 		doCellChange({ ...cell, content: text }, false);
 	}
 

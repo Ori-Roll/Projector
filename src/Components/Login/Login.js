@@ -52,12 +52,10 @@ function Login({ initApp }) {
 	async function loginUserClick(e) {
 		e.preventDefault();
 		try {
-			console.log("loginUserClick!");
 			const loggedInUserRes = await db_loginUser(email, password);
 			if (loggedInUserRes) {
 				setUser(loggedInUserRes.user);
 				initApp(loggedInUserRes.user);
-				console.log("loginUserClick -user is", loggedInUserRes);
 			}
 		} catch (error) {
 			console.error(error);
@@ -70,14 +68,12 @@ function Login({ initApp }) {
 			alert(
 				"An email was sent to you. Please follow the instructions on the email to reset your password."
 			);
-		console.log("forgotPassword Click, ", forgotPasswordRes);
 	}
 	async function resetPasswordClick() {
 		const resetUserPasswordRes = await db_resetUserPassword(
 			"df5b9096c7d37cfbfd53b2a9717d47cf851ecf5d",
 			"123456"
 		);
-		console.log("resetPassword Click ", resetUserPasswordRes);
 	}
 
 	return (

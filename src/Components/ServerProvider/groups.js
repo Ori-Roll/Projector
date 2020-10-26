@@ -14,7 +14,6 @@ async function createNewGroup(newGroup) {
 async function getProjectGroups(projectId) {
 	try {
 		const response = await axios.get(`http://localhost:5000/api/v0/projects/${projectId}/groups`);
-		console.log("GOT GROUP: ", response.data.data);
 		return response.data;
 	} catch (error) {
 		console.error(error.response.data);

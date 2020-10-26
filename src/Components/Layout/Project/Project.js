@@ -22,8 +22,6 @@ function Project() {
 
 	const [loadingGroups, setLoadingGroups] = useState(true);
 
-	console.log("project", project);
-
 	async function initGroups() {
 		try {
 			let groups = await getProjectGroups(project._id);
@@ -38,15 +36,9 @@ function Project() {
 		}
 	}
 
-	/* console.log("%c Project render", "font-weight: bold; font-size: 18px; color: purple;"); */
-
 	useEffect(() => {
 		initGroups();
 	}, [project._id]);
-
-	useEffect(() => {
-		/* console.log(`%c PROJECT MOUNT ${project}`, "color: red;font-weight: bold; font-size: 15px;"); */
-	}, []);
 
 	return (
 		<>

@@ -28,7 +28,6 @@ function TaskAddFooter({ group, groupIndex }) {
 				group: group._id,
 			});
 			task = task.data;
-			console.log(`Setting new task to task.data `, task);
 			addTask(task, groupIndex);
 		} catch (error) {
 			console.error(error);

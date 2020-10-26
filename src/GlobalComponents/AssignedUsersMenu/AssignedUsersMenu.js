@@ -27,7 +27,6 @@ function AssignedUsersMenu({ assign, setAssignedUsersMenuIsOn, onAssignUsersCall
 				);
 				combinedUsers = _.uniqBy(combinedUsers, "_id");
 				setAllKnownUsers(combinedUsers);
-				console.log("combinedUsers  ", combinedUsers);
 			} catch (error) {
 				console.error("cant get known users", error);
 			}
@@ -70,21 +69,18 @@ function AssignedUsersMenu({ assign, setAssignedUsersMenuIsOn, onAssignUsersCall
 	}
 
 	function onAddUser(e, user) {
-		console.log("on add user - user is : ", user);
 		if (selectedUsers.find((selectedUser) => selectedUser._id === user._id) === undefined) {
 			setSelectedUsers((selectedUsers) => [...selectedUsers, user]);
 		}
 	}
 
 	function onRemoveUser(user) {
-		console.log("remove");
 		setSelectedUsers((selectedUsers) => {
 			const newSelectedUsers = [...selectedUsers];
 			const removedUserIndex = newSelectedUsers.findIndex(
 				(selectedUser) => user._id === selectedUser._id
 			);
 			newSelectedUsers.splice(removedUserIndex, 1);
-			console.log("newSelectedUsers ", newSelectedUsers);
 			return newSelectedUsers;
 		});
 	}

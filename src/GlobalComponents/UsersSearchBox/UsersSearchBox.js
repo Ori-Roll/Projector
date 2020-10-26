@@ -21,7 +21,6 @@ function AssignedUsersMenu({ onAddUserCallback, lable = true, ignoreUsers }) {
 		usersResults.filter((userRes) => {
 			return ignoreUsers.find((user) => user._id === userRes._id) === undefined;
 		}); // TODO: This filter does not work
-		console.log("usersResults is , ", usersResults)
 		setSearchByEmailResults(usersResults);
 	}
 

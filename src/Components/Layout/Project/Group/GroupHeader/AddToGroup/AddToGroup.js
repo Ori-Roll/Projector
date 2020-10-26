@@ -31,7 +31,6 @@ function AddToGroup({ group, groupIndex }) {
 		try {
 			let createColumnRes = await createNewColumn(group);
 			const updatedGroup = createColumnRes.data;
-			console.log("updated gorup is ", updatedGroup);
 			addNewColumnSuccess(updatedGroup, groupIndex);
 		} catch (error) {
 			addNewColumnFailed();

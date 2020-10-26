@@ -5,9 +5,6 @@ import style from "./GroupHeader.module.css";
 import AddToGroup from "./AddToGroup/AddToGroup";
 
 function GroupHeader({ groupIsOpen, setGroupIsOpen, group, groupIndex }) {
-	useEffect(() => {
-		/* console.log("%c GroupHeader Mount!", "font-weight: bold; font-size: 15px; color: red;"); */
-	}, []);
 
 	const onHeaderClick = () => {
 		setGroupIsOpen(!groupIsOpen);

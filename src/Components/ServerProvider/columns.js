@@ -13,8 +13,8 @@ async function createNewColumn(group) {
 				headers: { "Content-Type": "application/json" },
 			}
 		);
-		console.log("response.data", response.data.data);
-		return response.data;
+		return response.data; 
+		// TODO: make all endpoints return data.data and correct all Comp` that use them
 	} catch (error) {
 		console.error(error.response.data);
 	}

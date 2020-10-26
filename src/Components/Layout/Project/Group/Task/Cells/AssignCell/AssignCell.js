@@ -16,9 +16,6 @@ function AssignCell({ cell, doCellChange, assign, task, taskChange }) {
 		//setCellAssignedTo([...cellAssignedTo, ...users]);
 	}
 
-	/* console.log(`%c ------cell render! content: ${cell.content}---------`, "color: green"); */
-	/* useEffect(() => console.log("%c AssignCell MOUNT!", "color:red"), []); */
-
 	const iconsSpacing = ()=> {
 		if ((task.assignedTo.length > 2) && (task.assignedTo.length < 8)) return -8 - task.assignedTo.length;
 		if (task.assignedTo.length >= 8) return -16;

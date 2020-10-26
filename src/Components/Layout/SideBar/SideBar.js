@@ -21,14 +21,12 @@ function SideBar() {
 	async function uploadPhotoClick(e) {
 		/* e.preventDefault(); */
 
-		console.log("CLICK");
 	}
 
 	async function onUserPhotoUpload(e) {
 		try {
 			let updatedUser = await db_uploadUserPhoto(e.target.files[0]);
 			updatedUser = updatedUser.data;
-			console.log("updatedUser ", updatedUser);
 			setUser(updatedUser);
 		} catch (error) {
 			console.error("No user update on photo change", error);

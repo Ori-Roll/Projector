@@ -205,36 +205,3 @@ export function resizeColumnDispatch(groupIndex, columnIndex, width) {
 
 export default store;
 
-/* 
-function rootReducer(state = {}, action) {
-	const [viewedProject, setViewedProject] = useState();
-	const [appInitState, setAppInitState] = useState("loading");
- 
-	 function dispatchSendProj(dispatchObject){
-		dispatchProjectData(dispatchObject).then(setCrappyServerData(projectData))
-	} 
- 	useEffect(() => {
-		console.log("CHANGE TO PROJECT - SEND!");
-		setCrappyServerData(viewedProject, projectData);
-	}, [projectData]);
- 
-	 console.log("CONTEXT!");
-	return (
-		<AppContext.Provider
-			value={{
-				viewedProject: viewedProject,
-				setViewedProject: setViewedProject,
-				projectData: projectData,
-				dispatchProjectData: dispatchProjectData,
-				appInitState: appInitState,
-				setAppInitState: setAppInitState,
-			}}>
-			{props.children}
-		</AppContext.Provider>
-	);
-}
-
-AppContextProvider.propTypes = {};
-
-export default AppContextProvider;
- */

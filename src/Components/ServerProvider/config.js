@@ -2,7 +2,6 @@ import { db_getLoggedInUser } from "./auth";
 
 async function initUser() {
 	let user = null;
-	console.log("START document.cookie ", document.cookie);
 	if (document.cookie && document.cookie.startsWith("token")) {
 		try {
 			const res = await db_getLoggedInUser();
@@ -10,7 +9,7 @@ async function initUser() {
 		} catch (error) {
 			// TODO: This needs to be addressed
 			user = null;
-			console.log("No user with that token");
+			console.error("No user with that token", error);
 		}
 	}
 	return user;

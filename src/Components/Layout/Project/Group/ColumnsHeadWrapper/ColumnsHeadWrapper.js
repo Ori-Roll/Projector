@@ -23,12 +23,7 @@ function ColumnsHeadWrapper({
 	const resizeColumn = (groupIndex, columnIndex, width) =>
 		dispatch(resizeColumnDispatch(groupIndex, columnIndex, width));
 
-	useEffect(() => {
-		/* console.log("%c ColumnHeadWrapper Mount!", "font-weight: bold; font-size: 15px; color: red;"); */
-	}, []);
-
 	function onResize(data, columnIndex) {
-		/* console.log(`resized data`, data.size.width); */
 		resizeColumn(groupIndex, columnIndex, data.size.width);
 	}
 

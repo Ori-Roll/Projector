@@ -20,12 +20,6 @@ function Task({ task, columns, taskIndex, groupIndex }) {
 	const editTask = (groupIndex, taskIndex, task) =>
 		dispatch(editTaskDispatch(groupIndex, taskIndex, task));
 
-	/* useEffect(() => {
-		console.log("%c Task Mount", "font-weight: bold; font-size: 12px; color: pink;");
-	}, []); */
-
-	//console.log(`%c ------Task render! did: ${task.assignedTo.length}---------`, "color: green");
-
 	function createCell(column = () => console.error("no column for cell")) {
 		if (!column.type) throw new Error("No column.type for cell");
 		const cell = task.cells.find((cell) => cell.columnMatch === column._id);
@@ -43,10 +37,8 @@ function Task({ task, columns, taskIndex, groupIndex }) {
 			// Change on server
 			let changedTask = await db_changeTask(newTask);
 			changedTask = changedTask.data;
-			/*	// This should check for the individual cell
+			/*	// TODO: This should check for the individual cell
 				console.error("Task on server does not match task change");
-				console.log("db_changeTask.cells ", changedTask.cells);
-				console.log("newTask.cells ", newTask.cells);
 			} */
 
 			// Change on store - only change the cell (not deepCloned)
@@ -91,14 +83,11 @@ function Task({ task, columns, taskIndex, groupIndex }) {
 	async function taskChange(changedTask) {
 		editTask(groupIndex, taskIndex, changedTask);
 		try {
-			console.log("START sending task", changedTask);
 			let resChangedTask = await db_changeTask(changedTask);
 			resChangedTask = resChangedTask.data;
-			console.log("on task => resChangedTask - ", resChangedTask);
 			editTask(groupIndex, taskIndex, resChangedTask);
 		} catch (error) {
 			// This changes task back to the task in the functions closure
-			console.log("ERROR ->", task);
 			editTask(groupIndex, taskIndex, task);
 			console.error(error);
 		}
