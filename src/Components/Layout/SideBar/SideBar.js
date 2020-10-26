@@ -6,6 +6,7 @@ import ProjectSelect from "./ProjectSelect/ProjectSelect";
 
 import UserSelect from "./UserSelect/UserSelect";
 import UserIcon from "../../../GlobalComponents/UserIcon/UserIcon";
+import Notifications from "./Notifications/Notifications";
 import style from "./SideBar.module.css";
 
 import { db_uploadUserPhoto } from "../../ServerProvider/auth";
@@ -60,6 +61,7 @@ function SideBar() {
 					/>
 				</div>
 				<br></br>
+				<Notifications />
 			</div>
 		</div>
 	);

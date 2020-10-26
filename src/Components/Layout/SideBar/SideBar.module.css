@@ -42,6 +42,10 @@
 	height: 35px;
 }
 
+.bell-icon:hover {
+	background-color: rgb(159, 203, 214);
+}
+
 /* .general-top {
 	position: absolute;
 	height: 150px;

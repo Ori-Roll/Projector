@@ -31,7 +31,7 @@ function ProjectSelect() {
 		<div className={style["project-select"]}>
 			<div className={style["project-select-folder-lable"]} />
 			{/* TODO: change so it will load a proj if no viewed proj */}
-			<div className={style["current-project-display"]}>{project.name && project.name}</div>
+			<div className={style["current-project-display"]}>{project?.name && project.name}</div>
 			{user.projects
 				? user.projects.map((project) => {
 						return (
