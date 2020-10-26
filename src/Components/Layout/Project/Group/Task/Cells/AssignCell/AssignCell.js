@@ -22,7 +22,7 @@ function AssignCell({ cell, doCellChange, assign, task, taskChange }) {
 	const iconsSpacing = ()=> {
 		if ((task.assignedTo.length > 2) && (task.assignedTo.length < 8)) return -8 - task.assignedTo.length;
 		if (task.assignedTo.length >= 8) return -16;
-		return -8;
+		return -5;
 	}
 
 	function onAddAssignedClick() {
