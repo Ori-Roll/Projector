@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
 
 import style from "./AssignCell.module.css";
@@ -7,8 +7,10 @@ import CellsStyle from "../CellsStyle.module.css";
 import UserIcon from "../../../../../../../GlobalComponents/UserIcon/UserIcon";
 import AssignedUsersMenu from "../../../../../../../GlobalComponents/AssignedUsersMenu/AssignedUsersMenu";
 
-function AssignCell({ cell, doCellChange, assign, task, taskChange }) {
+function AssignCell({ cell, doCellChange, task, taskChange }) {
 	const [assignedUsersMenuIsOn, setAssignedUsersMenuIsOn] = useState(false);
+
+	
 
 	function onAssignUsersToTask(users) {
 		const changedTask = { ...task, assignedTo: users };
@@ -17,17 +19,21 @@ function AssignCell({ cell, doCellChange, assign, task, taskChange }) {
 	}
 
 	const iconsSpacing = ()=> {
-		if ((task.assignedTo.length > 2) && (task.assignedTo.length < 8)) return -8 - task.assignedTo.length;
-		if (task.assignedTo.length >= 8) return -16;
-		return -5;
+		const widthX = wrapperRef.current ? Math.floor(wrapperRef.current.offsetWidth/80)**2 : 2;
+		if ((task.assignedTo.length >= 0) && (task.assignedTo.length < 8)) return -8 - task.assignedTo.length + widthX;
+		return -16 + widthX;
 	}
 
 	function onAddAssignedClick() {
 		setAssignedUsersMenuIsOn(true);
 	}
 
+	const wrapperRef = useRef();
+
+	
+
 	return (
-		<div className={style["assign-cell"]}>
+		<div className={style["assign-cell"]} ref={wrapperRef}>
 			<div className={style["assigned-users-wrapper"]}>
 				{task.assignedTo.map((user) => (
 					<div key={user._id} className={style["user-icon-wrapper"]} style={{marginRight: `${iconsSpacing()}px`}}>
@@ -47,7 +53,7 @@ function AssignCell({ cell, doCellChange, assign, task, taskChange }) {
 
 			{assignedUsersMenuIsOn && (
 				<AssignedUsersMenu
-					assign={assign}
+					assign={task.assignedTo}
 					setAssignedUsersMenuIsOn={setAssignedUsersMenuIsOn}
 					onAssignUsersCallback={onAssignUsersToTask}
 				/>
@@ -65,11 +71,3 @@ export default AssignCell;
 	return prevProps.task.assignedTo !== nextProps.task.assignedTo ? true : false;
 }); */
 
-{
-	/* <input
-			className={style["assign-cell"]}
-			value={assign[0].name}
-			onChange={(e) => onInputChange(e.target.value)}
-			onBlur={() => onBlur()}
-		/> */
-}

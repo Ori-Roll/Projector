@@ -20,14 +20,13 @@ function Task({ task, columns, taskIndex, groupIndex }) {
 	const editTask = (groupIndex, taskIndex, task) =>
 		dispatch(editTaskDispatch(groupIndex, taskIndex, task));
 
-	function createCell(column = () => console.error("no column for cell")) {
+	function createCell(column = () => console.error("no column for cell"), options = []) {
 		if (!column.type) throw new Error("No column.type for cell");
 		const cell = task.cells.find((cell) => cell.columnMatch === column._id);
 		if (!cell) {
 			console.error(`task with no cell match for column.id ${column.id}`);
 		} else {
-			let options = [];
-			if (column.type === "assign") options.push(task.assignedTo, task, taskChange);
+			if (column.type === "assign") options.push(task, taskChange);
 			return CellOfType[column.type](cell, doCellChange, ...options);
 		}
 	}
@@ -77,8 +76,6 @@ function Task({ task, columns, taskIndex, groupIndex }) {
 			cellChange(newTask);
 		}
 	}
-
-	function taskLocalChange(task) {}
 
 	async function taskChange(changedTask) {
 		editTask(groupIndex, taskIndex, changedTask);

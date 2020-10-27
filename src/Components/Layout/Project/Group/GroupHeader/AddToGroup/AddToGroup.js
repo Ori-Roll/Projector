@@ -12,7 +12,10 @@ import {
 
 import style from "./AddToGroup.module.css";
 
+
+
 function AddToGroup({ group, groupIndex }) {
+
 	const dispatch = useDispatch();
 	const addNewColumnSuccess = (newColumn, newTasks, groupIndex) =>
 		dispatch(addNewColumnSuccessDispatch(newColumn, newTasks, groupIndex));

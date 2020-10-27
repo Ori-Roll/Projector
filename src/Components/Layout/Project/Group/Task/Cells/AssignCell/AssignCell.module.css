@@ -2,15 +2,16 @@
 	height: 100%;
 	width: 100%;
 	position: relative;
+	background-color: rgb(214, 230, 211);
 }
 
 .assigned-users-wrapper {
 	display: flex;
-	flex-direction: row;
+	flex-flow: row;
 	align-items: center;
-	overflow-x: scroll;
+	/* 	overflow-x: scroll; */
 	overflow-y: hidden;
-	padding-left: 6px;
+	padding-left: 4px;
 	height: 100%;
 	width: 80%;
 }
@@ -32,9 +33,10 @@
 
 .user-icon-wrapper {
 	margin: 0;
-	width: 34px;
-	min-width: 34px;
-	height: 34px;
+	padding: 0;
+	width: 32px;
+	min-width: 32px;
+	height: 32px;
 }
 
 .user-icon-wrapper:hover {

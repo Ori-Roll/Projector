@@ -12,25 +12,24 @@ import { NEW_COLUMN_DATA } from "../../../../../../defaults";
 // THIS LIST NEEDS TO MATCH knownCellTypes (see function below)
 
 const CellOfType = {
-	assign: (cell, doCellChange, assign, task, taskChange) => (
+	assign: (cell, doCellChange, task, taskChange) => (
 		<AssignCell
 			key={cell._id}
 			cell={cell}
 			doCellChange={doCellChange}
-			assign={assign}
 			task={task}
 			taskChange={taskChange}
 		/>
 	),
 	title: (cell, doCellChange) => (
-		<TextCell key={cell._id} cell={cell} doCellChange={doCellChange} />
+		<TextCell key={cell._id} cell={cell} doCellChange={doCellChange} isTitle={true} />
 	),
 	description: (cell, doCellChange) => (
 		<DescriptionCell key={cell._id} cell={cell} doCellChange={doCellChange} />
 	),
 	text: (cell, doCellChange) => <TextCell key={cell._id} cell={cell} doCellChange={doCellChange} />,
 	number: (cell, doCellChange) => (
-		<TextCell key={cell._id} cell={cell} doCellChange={doCellChange} />
+		<TextCell key={cell._id} cell={cell} doCellChange={doCellChange} isTitle={false} />
 	),
 	stars: (cell, doCellChange) => (
 		<StarsCell key={cell._id} cell={cell} doCellChange={doCellChange} />

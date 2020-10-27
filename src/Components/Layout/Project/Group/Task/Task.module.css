@@ -6,7 +6,8 @@
 	/* border-bottom: rgb(240, 240, 240) 2px solid; */
 	border: rgb(245, 245, 245) 1px solid;
 	/* padding: 2px; */
-	margin-bottom: 10px;
+	margin-bottom: 5px;
+	box-shadow: rgb(230, 230, 230) 1px 1px 8px;
 }
 
 .cell-wrapper {

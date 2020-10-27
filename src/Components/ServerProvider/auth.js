@@ -3,6 +3,9 @@ import { getUserProjects } from "./projects";
 
 axios.defaults.withCredentials = true;
 
+
+// TODO: Wrap all endpoints in a general error response that gets no server response and other such responses 
+
 async function db_registerUser(name, email, password) {
 	try {
 		const response = await axios.post(

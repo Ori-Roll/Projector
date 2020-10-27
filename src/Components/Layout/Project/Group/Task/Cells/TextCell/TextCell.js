@@ -7,7 +7,7 @@ import CellsStyle from "../CellsStyle.module.css";
 
 import { NEW_COLUMN_DATA } from "../../../../../../defaults";
 
-function TextCell({ cell, doCellChange }) {
+function TextCell({ cell, doCellChange, isTitle = false }) {
 	const [cellText, setCellText] = useState(cell.content);
 
 	function onInputChange(text) {
@@ -21,6 +21,7 @@ function TextCell({ cell, doCellChange }) {
 	return (
 		<input
 			className={`${CellsStyle.cell} ${style["text-cell"]}`}
+			style={{...(isTitle && { backgroundColor: "rgb(65, 200, 253)"})}}
 			value={cell.content}
 			onChange={(e) => onInputChange(e.target.value)}
 			onBlur={(e) => onBlur(e.target.value)}
