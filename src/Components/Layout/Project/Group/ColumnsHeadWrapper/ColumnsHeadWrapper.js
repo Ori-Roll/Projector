@@ -33,7 +33,7 @@ function ColumnsHeadWrapper({
 				return (
 					<div className={style["item-container"]} key={column._id}>
 						<ResizableBox
-							handle={<div className={style["resize-handle"]}>&#x205E;&#x205E;</div>}
+							handle={<div className={style["resize-handle"]}>&#x275A;</div>}
 							width={column.width}
 							height={40}
 							minConstraints={[column.minWidth]}
