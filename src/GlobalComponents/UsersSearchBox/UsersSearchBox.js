@@ -35,7 +35,7 @@ function AssignedUsersMenu({ onAddUserCallback, lable = true, ignoreUsers }) {
 	}
 
 	function onSelectUserByEmail(e, user) {
-		onAddUserCallback(user);
+		onAddUserCallback(e, user);
 	}
 
 	function onSearchBoxBlur() {
@@ -66,7 +66,7 @@ function AssignedUsersMenu({ onAddUserCallback, lable = true, ignoreUsers }) {
 						return <UsersListItem
 							key={userRes._id}
 							user={userRes}
-							onClickCallback={onSelectUserByEmail}
+							onClickCallback={onAddUserCallback}
 						/>
 					})}
 				</ul>

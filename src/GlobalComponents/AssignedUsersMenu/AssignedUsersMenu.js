@@ -101,7 +101,7 @@ function AssignedUsersMenu({ assign, setAssignedUsersMenuIsOn, onAssignUsersCall
 				<div>
 					<h2>Search for more users</h2>
 					<UsersSearchBox
-						onAddUserCallback={(user) => onAddUser(null, user)}
+						onAddUserCallback={onAddUser}
 						lable={true}
 						ignoreUsers={selectedUsers}
 					/>

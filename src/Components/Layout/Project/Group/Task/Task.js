@@ -92,6 +92,7 @@ function Task({ task, columns, taskIndex, groupIndex }) {
 
 	return inView ? ( // TODO: maby add this to a list of viewed on group and render there accordingly (no need to pass anything)
 		<div className={style["task"]} ref={taskWrapperRef}>
+			<div className={style["task-handle"]}>&#8942;</div>
 			{columns.map((column) => {
 				return (
 					<CellWrapper key={column.id} column={column}>
