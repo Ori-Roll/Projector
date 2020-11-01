@@ -1,6 +1,8 @@
 import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
 
+import _ from "lodash";
+
 import style from "./AssignCell.module.css";
 import CellsStyle from "../CellsStyle.module.css";
 
@@ -64,10 +66,10 @@ function AssignCell({ cell, doCellChange, task, taskChange }) {
 
 AssignCell.propTypes = {};
 
-export default AssignCell;
+/* export default AssignCell; */
 
-/* export default React.memo(AssignCell, (prevProps, nextProps) => {
+export default React.memo(AssignCell, (prevProps, nextProps) => {
 	//if (prevProps.task.assignedTo === [] && nextProps.task.assignedTo === []) return true;
-	return prevProps.task.assignedTo !== nextProps.task.assignedTo ? true : false;
-}); */
+	return _.isEqual(prevProps.assignedTo, nextProps.assignedTo);
+});
 
