@@ -57,15 +57,31 @@ function projectReducer(state = {}, action) {
 					action.cell;
 				break;
 			case "ADD_NEW_COLUMN_INIT":
+				// TODO: start updating status
 				draft.groups[action.groupIndex].columnLoading = true;
 				break;
 			case "ADD_NEW_COLUMN_SUCCESS":
+				// TODO: remove updating status
 				draft.groups[action.groupIndex].columns = action.group.columns;
 				draft.groups[action.groupIndex].tasks = action.group.tasks;
 				draft.groups[action.groupIndex].columnLoading = false;
 				break;
 			case "ADD_NEW_COLUMN_FAILED":
+				// TODO: error for user
 				draft.groups[action.groupIndex].columnLoading = false;
+				break;
+			case "EDIT_COLUMN_INIT":
+				// TODO: start updating status
+				draft.groups[action.groupIndex].columns[action.columnIndex] = action.column;
+				break;
+			case "EDIT_COLUMN_SUCCESS":
+				draft.groups[action.groupIndex].columns[action.columnIndex] = action.column;
+				// TODO: remove updating status
+				break;
+			case "EDIT_COLUMN_FAILED":
+				// TODO: error for user
+				draft.groups[action.groupIndex].columns[action.columnIndex] = action.column;
+				
 				break;
 			case "RESIZE_COLUMN":
 				draft.groups[action.groupIndex].columns[action.columnIndex].width = action.width;
@@ -194,6 +210,37 @@ export function addNewColumnFailedDispatch(groupIndex) {
 	};
 }
 
+export function editColumnInitDispatch(groupIndex, columnIndex, column) {
+	return {
+		type: "EDIT_COLUMN_INIT",
+		groupIndex: groupIndex,
+		columnIndex: columnIndex,
+		column: column,
+	};
+}
+
+
+
+
+export function editColumnSuccess(groupIndex, columnIndex, column) {
+	return {
+		type: "EDIT_COLUMN_SUCCESS",
+		groupIndex: groupIndex,
+		columnIndex: columnIndex,
+		column: column,
+	};
+}
+export function editColumnFailed(groupIndex, columnIndex, column) {
+	return {
+		type: "EDIT_COLUMN_FAILED",
+		groupIndex: groupIndex,
+		columnIndex: columnIndex,
+		column: column,
+	};
+}
+
+
+// TODO: Check if this can go under edit column
 export function resizeColumnDispatch(groupIndex, columnIndex, width) {
 	return {
 		type: "RESIZE_COLUMN",
