@@ -9,9 +9,9 @@
 		"group-content-wrapper group-right-control	. group-scroll-end-gradiant"
 		". 					   .					. .	";
 	overflow-x: auto;
-	background-color: white;
 	border-radius: 20px;
 	width: 80vw;
+	padding: 5px;
 }
 
 /* 

@@ -28,11 +28,12 @@ function AddToGroup({ group, groupIndex }) {
 		setIsMenuOpen(!isMenuOpen);
 	}
 
-	async function addColumnClick() {
+	async function addColumnClick(type) {
+		// TODO: all changes to follow this pattern
 		setIsMenuOpen(!isMenuOpen);
 		addNewColumnInit();
 		try {
-			let createColumnRes = await createNewColumn(group);
+			let createColumnRes = await createNewColumn(group, type);
 			const updatedGroup = createColumnRes.data;
 			addNewColumnSuccess(updatedGroup, groupIndex);
 		} catch (error) {
@@ -41,16 +42,16 @@ function AddToGroup({ group, groupIndex }) {
 		}
 	}
 
-	const menuItems = [
-		<li key={"menu1"} onClick={addColumnClick}>
+	const menuItems = [ //TODO: .map() for this 
+		<li key={"menu1"} onClick={()=>addColumnClick("text")}>
 			<div className={style["column-icon"]}>T</div>
 			<p>New Text Column</p>
 		</li>,
-		<li key={"menu2"}>
+		<li key={"menu2"} onClick={()=>addColumnClick("number")}>
 			<div className={style["column-icon"]}>N</div>
 			<p>New Number Column</p>
 		</li>,
-		<li key={"menu3"}>
+		<li key={"menu3"} onClick={()=>addColumnClick("assign")}>
 			<div className={style["column-icon"]}>U</div>
 			<p>New Users Column</p>
 		</li>,
