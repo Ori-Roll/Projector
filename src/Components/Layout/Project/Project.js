@@ -17,11 +17,10 @@ function Project() {
 	const dispatch = useDispatch();
 
 	const project = useSelector((state) => state?.project);
-
 	const setProjectGroups = (project) => dispatch(setProjectGroupsDispatch(project));
 
 	const [loadingGroups, setLoadingGroups] = useState(true);
-
+	
 	async function initGroups() {
 		try {
 			let groups = await getProjectGroups(project._id);
@@ -30,6 +29,7 @@ function Project() {
 				group.loaded = true;
 			});
 			setProjectGroups(groups);
+			
 			setLoadingGroups(false);
 		} catch (error) {
 			console.error(error);
@@ -39,7 +39,6 @@ function Project() {
 	useEffect(() => {
 		initGroups();
 	}, [project._id]);
-
 	return (
 		<>
 			{loadingGroups ? (
