@@ -1,7 +1,14 @@
 .column-head-wrapper {
-	position: relative;
-	padding: 14px 12px;
+	text-align: center;
+	background-color: rgb(231, 231, 231);
+	border: white 1px solid;
+	width: 100%;
+}
+
+.column-head-title-wrapper {
+	padding: 6px 12px;
 	background-color: white;
+	border: white 1px solid;
 }
 
 .column-content-wrapper {
@@ -11,11 +18,11 @@
 }
 
 .column-head-item {
-	text-align: left;
+	text-align: center;
+	padding-top: 10px;
 	color: rgb(105, 105, 105);
 	background: none;
-	padding: 5px 14px 0 2px;
-	width: 95%;
+	width: 100%;
 	border: none;
 	z-index: 3;
 }
@@ -32,7 +39,7 @@
 	transition: ease 150ms 300ms;
 }
 
-.column-head-drag-handle {
+/* .column-head-drag-handle {
 	position: absolute;
 	right: 15px;
 	top: -10px;
@@ -46,6 +53,16 @@
 	padding: 2px 0;
 	cursor: grab;
 	transition: ease 200ms;
+} */
+
+.column-drag-handle {
+	position: absolute;
+	top: 6px;
+	left: 6px;
+	height: 20px;
+	width: 8px;
+	color: rgb(211, 211, 211);
+	font-size: 18px;
 }
 
 .column-head-setup-btn {

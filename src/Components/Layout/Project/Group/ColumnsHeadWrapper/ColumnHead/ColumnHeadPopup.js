@@ -7,14 +7,14 @@ function ColumnHeadPopup({ hovered, column, onMouseDown }) {
 		<div
 			className={style["column-head-popup"]}
 			style={hovered ? { top: "-13px" } : { opacity: "0" }}>
-			{column.isDraggable ? (
+			{/* {column.isDraggable ? (
 				<div
 					onMouseDown={() => onMouseDown()}
 					className={style["column-head-drag-handle"]}
 					style={hovered ? { opacity: "100%" } : { visibility: "none" }}>
 					{"<>"}
 				</div>
-			) : null}
+			) : null} */}
 			<div className={style["column-head-setup-btn"]}>&#9881;</div>
 		</div>
 	);

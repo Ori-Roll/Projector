@@ -1,8 +1,6 @@
 .column-head-wrapper {
 	display: flex;
-	/* padding: 20px 0 2px; */
-	margin-bottom: 8px;
-	height: 48px;
+	margin-bottom: 2px;
 	padding-left: 14px;
 }
 
