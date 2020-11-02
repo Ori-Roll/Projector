@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import { useDispatch } from "react-redux";
-import { editColumnInitDispatch } from "../../../../../redux/rootReducer";
+import { editColumnInitDispatch, editColumnSuccessDispatch, editColumnFailedDispatch } from "../../../../../redux/rootReducer";
 
 import { db_editColumn } from "../../../../../ServerProvider/columns";
 
@@ -17,14 +17,20 @@ function ColumnHead({ column, columnIndex, groupIndex }) {
 	const [hovered, setHovered] = useState(false);
 
 	const dispatch = useDispatch();
+	const editColumn = {
+		init: (groupIndex, columnIndex, column) => dispatch(editColumnInitDispatch(groupIndex, columnIndex, column)),
+		success: (groupIndex, columnIndex, column) => dispatch(editColumnSuccessDispatch(groupIndex, columnIndex, column)),
+		failed: (groupIndex, columnIndex, column) => dispatch(editColumnFailedDispatch(groupIndex, columnIndex, column)),
+	}
+	/* 
 	const editColumnInit = (groupIndex, columnIndex, column) =>
-		dispatch(editColumnInitDispatch(groupIndex, columnIndex, column));
+		dispatch(editColumnInitDispatch(groupIndex, columnIndex, column)); */
 	
 	async function onHeadChange(title) {
 		const changedColumn = {...column, title: title }
 		/* setColumnTitle(titleChange); */
 		//TODO: This works but renders a lot of cells and headers, many change locally and debounce the rest
-		editColumnInit(groupIndex, columnIndex, changedColumn);
+		editColumn.init(groupIndex, columnIndex, changedColumn);
 	}
 
 	function onMouseDown() {
@@ -41,13 +47,13 @@ function ColumnHead({ column, columnIndex, groupIndex }) {
 
 	async function onBlur(title){
 		const changedColumn = {...column, title: title };
-		editColumnInit(groupIndex, columnIndex, changedColumn);
+		editColumn.init(groupIndex, columnIndex, changedColumn);
 		try {
 			const columnRes = await db_editColumn(changedColumn);
-			editColumnSuccess(groupIndex, columnIndex, changedColumn);
+			editColumn.success(groupIndex, columnIndex, changedColumn);
 		} catch (error) {
 			console.error(error);
-			editColumnFailed(groupIndex, columnIndex, column);
+			editColumn.failed(groupIndex, columnIndex, column);
 			// TODO: make editColumnErr revert changes 
 			// 		 (maby use column (comes with this functions colsure) to revert)
 		}

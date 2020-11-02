@@ -220,9 +220,7 @@ export function editColumnInitDispatch(groupIndex, columnIndex, column) {
 }
 
 
-
-
-export function editColumnSuccess(groupIndex, columnIndex, column) {
+export function editColumnSuccessDispatch(groupIndex, columnIndex, column) {
 	return {
 		type: "EDIT_COLUMN_SUCCESS",
 		groupIndex: groupIndex,
@@ -230,7 +228,7 @@ export function editColumnSuccess(groupIndex, columnIndex, column) {
 		column: column,
 	};
 }
-export function editColumnFailed(groupIndex, columnIndex, column) {
+export function editColumnFailedDispatch(groupIndex, columnIndex, column) {
 	return {
 		type: "EDIT_COLUMN_FAILED",
 		groupIndex: groupIndex,
