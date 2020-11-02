@@ -12,6 +12,7 @@
 
 .task:hover {
 	border: rgb(188, 200, 209) 1px solid;
+	transform: perspective(10cm);
 }
 
 .cell-wrapper {
