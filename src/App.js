@@ -9,7 +9,6 @@ import { setUserDispatch, setProjectDispatch } from "./Components/redux/rootRedu
 
 import "./App.css";
 
-// test
 function App() {
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state?.user);
