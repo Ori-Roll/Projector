@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import ProjectSelect from "./ProjectSelect/ProjectSelect";
 
 import UserSelect from "./UserSelect/UserSelect";
+import AddNewProjectBtn from "./AddNewProject/AddNewProjectBtn"
 import UserIcon from "../../../GlobalComponents/UserIcon/UserIcon";
 import Notifications from "./Notifications/Notifications";
 import style from "./SideBar.module.css";
@@ -36,9 +37,10 @@ function SideBar() {
 	return (
 		<div className={style["side-bar"]}>
 			<ProjectSelect />
+			
 			<div className={style["general"]}>
 				<UserSelect />
-
+				<AddNewProjectBtn />
 				<div className={style["upload-image-wrapper"]}>
 					<label htmlFor='file-input'>
 						<div className={style["user-icon-wrapper"]}>
