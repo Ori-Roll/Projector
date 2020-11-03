@@ -1,0 +1,26 @@
+.project-card{
+    width: 280px;
+    height: 120px;
+    text-align: left;
+    border-radius: 2px;
+    box-shadow: rgb(231, 231, 231) 5px 5px 5px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 2fr 3fr;
+}
+
+.project-card h3 {
+    font-size: 15px;
+    padding: 0;
+    grid-column: 2/3;
+}
+
+.project-card p {
+    font-size: 1rem;
+    grid-column: 2/3;
+}
+
+.project-card img {
+    width: 80px;
+    grid-row: 1 / 3;
+}

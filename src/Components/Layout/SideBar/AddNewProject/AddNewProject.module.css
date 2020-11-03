@@ -9,37 +9,12 @@
 
 .add-new-project-menu {
 	position: fixed;
-	left: calc(50% - 180px);
-	top: calc(50% - 250px);
-	width: 360px;
-	height: 500px;
+	left: calc(5%);
+	top: calc(10%);
+	width: 90%;
+	height: 80%;
 	background-color: rgb(255, 255, 255);
 	box-shadow: rgb(223, 223, 223) 2px 2px 25px;
-	z-index: 500;
+	z-index: 200;
 	border-radius: 0 0 3px 3px;
-}
-.project-card{
-    width: 220px;
-    height: 110px;
-    border-radius: 2px;
-    box-shadow: rgb(231, 231, 231) 5px 5px 5px;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-template-rows: 1fr 1fr;
-}
-
-.project-card h3 {
-    font-size: 1rem;
-    grid-row-start: 1;
-}
-
-.project-card p {
-    font-size: 1rem;
-    grid-row-start: 2;
-}
-
-.project-card img {
-    width: 100px;
-    grid-row-start: 1;
-    grid-row-end: 2;
 }

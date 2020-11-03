@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import AddNewProjectCard from "./AddNewProjectCard"
+import AddNewProjectCard from "./AddNewProjectCard/AddNewProjectCard"
 
 import style from "./AddNewProject.module.css"
 

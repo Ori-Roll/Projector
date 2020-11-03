@@ -10,7 +10,7 @@ function AddNewProjectBtn(props) {
     return (
         <div className={style["add-new-project-btn"]} >
                 
-            {true && <AddNewProjectMenu/>}      
+            {false && <AddNewProjectMenu/>}      
         </div>
     )
 }

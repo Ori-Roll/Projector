@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import style from "./AddNewProject.module.css";
+import style from "./AddNewProjectCard.module.css";
 
 function AddNewProjectCard(props) {
     return (
