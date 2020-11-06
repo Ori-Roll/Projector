@@ -23,6 +23,9 @@ function appReducer(state = {}, action) {
 			case "SET_APP_STATE":
 				draft.appState = action.newState;
 				break;
+			case "CHANGE_APP_GLOBALS":
+				draft.globals = {...draft.globals, ...action.globalsToChange}
+				break;
 			default:
 				return draft;
 		}
@@ -50,6 +53,10 @@ function projectReducer(state = {}, action) {
 				draft.groups[action.groupIndex].tasks.push(action.task);
 				break;
 			case "EDIT_TASK":
+				console.log("--------------------")	
+			console.log(action.groupIndex);
+				console.log(action.taskIndex);
+				console.log(action.task)
 				draft.groups[action.groupIndex].tasks[action.taskIndex] = action.task;
 				break;
 			case "EDIT_CELL":
@@ -158,6 +165,13 @@ export function setAppStateDispatch(state) {
 	return {
 		type: "SET_APP_STATE",
 		state: state,
+	};
+}
+
+export function changeAppGlobalsDispatch(globalsToChange) {
+	return {
+		type: "CHANGE_APP_GLOBALS",
+		globalsToChange: globalsToChange,
 	};
 }
 

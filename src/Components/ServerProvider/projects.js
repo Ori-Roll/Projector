@@ -2,10 +2,10 @@ import axios from "axios";
 
 async function createNewProject(newProject) {
 	try {
-		const response = await axios.get("http://localhost:5000/api/v0/projects", newProject, {
+		const response = await axios.post("http://localhost:5000/api/v0/projects", newProject, {
 			headers: { "Content-Type": "application/json" },
 		});
-		return response;
+		return response.data;
 	} catch (error) {
 		console.error(error);
 	}
@@ -33,4 +33,22 @@ async function getProject(projectId, populate = true) {
 	}
 }
 
-export { getUserProjects, getProject };
+async function getProjectTypes(){
+	try {
+		const response = await axios.get('http://localhost:5000/api/v0/projecttypes');
+		return response.data.data;
+	} catch(error) {
+		console.error("Could not get project types", error);
+	}
+}
+/* 
+async function getProjectTypePhoto(photo){
+	try {
+		const response = await axios.get(`http://localhost:5000/api/v0/projectTypes/${photo}`)
+		return response.data;
+	} catch (error){
+		console.error(error)
+	}
+} */
+
+export { getUserProjects, getProject, createNewProject, getProjectTypes };

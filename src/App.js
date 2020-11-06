@@ -3,9 +3,9 @@ import Layout from "./Components/Layout/Layout";
 import Login from "./Components/Login/Login";
 import Loader from "./Components/Login/Loader";
 import { initUser } from "./Components/ServerProvider/config";
-import { getUserProjects, getProject } from "./Components/ServerProvider/projects";
+import { getUserProjects, getProject, getProjectTypes } from "./Components/ServerProvider/projects";
 import { useDispatch, useSelector } from "react-redux";
-import { setUserDispatch, setProjectDispatch } from "./Components/redux/rootReducer";
+import { setUserDispatch, setProjectDispatch, changeAppGlobalsDispatch } from "./Components/redux/rootReducer";
 
 import "./App.css";
 
@@ -14,23 +14,32 @@ function App() {
 	const user = useSelector((state) => state?.user);
 	const setUser = (user) => dispatch(setUserDispatch(user));
 	const setProject = (project) => dispatch(setProjectDispatch(project));
+	const changeAppGlobals = (globalsToChange) => dispatch(changeAppGlobalsDispatch(globalsToChange))
+
 
 	const [loading, setLoading] = useState(true);
 
 	async function initApp(withUser) {
-		const user = withUser ? { ...withUser } : await initUser();
-		if (user) {
-			let userProjects = await getUserProjects(false);
-			userProjects = userProjects.data;
-			user.projects = userProjects;
-			const lastOpenedProject = user.lastOpenedProject
-				? user.lastOpenedProject
-				: userProjects[0]._id;
-			let projectToOpen = userProjects.find((project) => project._id === lastOpenedProject); // await getProject(lastProject._id, true);
-			setUser(user);
-			setProject(projectToOpen ? projectToOpen : null);
-		}
+		try{
+				const user = withUser ? { ...withUser } : await initUser();
+			if (user) {
+				let projectTypesRes = await getProjectTypes();
+				changeAppGlobals({projectTypes: projectTypesRes})
+				let userProjects = await getUserProjects(false);
+				userProjects = userProjects.data;
+				user.projects = userProjects;
+				const lastOpenedProject = user.lastOpenedProject
+					? user.lastOpenedProject
+					: userProjects[0]._id;
+				let projectToOpen = userProjects.find((project) => project._id === lastOpenedProject); // await getProject(lastProject._id, true);
+				setUser(user);
+				setProject(projectToOpen ? projectToOpen : null);
+			}
 		setLoading(false);
+		} catch (error) {
+			console.error("error setting up app", error);
+		}
+		
 	}
 
 	useEffect(() => {
