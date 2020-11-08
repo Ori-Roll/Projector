@@ -1,46 +1,43 @@
 .add-new-project-btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 100%;
-    background-color: white;
-    font-size: xx-large;
-    text-align: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background-color: white;
+  font-size: xx-large;
+  text-align: center;
+}
+
+.add-new-project-menu-modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(133, 133, 133, 0.082);
 }
 
 .add-new-project-menu {
-	position: fixed;
-	left: calc(10%);
-	top: calc(10%);
-	width: 80%;
-	height: 80%;
-	padding: 10px;
-	background-color: white;
-	box-shadow: rgb(223, 223, 223) 2px 2px 25px;
-	z-index: 200;
-	border: white 10px solid;
-	border-radius: 0 0 3px 3px;
-	overflow-y: scroll;
+  position: fixed;
+  left: calc(5%);
+  top: calc(5%);
+  width: 90%;
+  height: 90%;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.116) 2px 2px 25px;
+  z-index: 200;
+  border-radius: 0 0 3px 3px;
 }
 
-.add-new-project-menu-category-wrapper{
-	text-align: left;
-	margin-bottom: 50px;
-}
-.add-new-project-menu-category-wrapper :first-child{
-	font-size: 1.5rem;
-	font-weight: 100;
+.add-new-project-menu h1 {
+  text-align: left;
+  font-weight: 100;
+  font-size: 2rem;
+  margin-bottom: 25px;
 }
 
-.add-new-project-menu-category {
-	display: flex;
-	flex-wrap: wrap;
-}
-
-.add-new-project-menu-modal{
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left:0;
-	background-color: rgba(133, 133, 133, 0.082);
+.type-items-overlay {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0);
+  width: 100%;
+  height: 100%;
 }

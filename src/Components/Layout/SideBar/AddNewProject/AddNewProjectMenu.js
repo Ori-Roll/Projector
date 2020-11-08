@@ -1,29 +1,24 @@
-import React from 'react'
+import React, {useState} from 'react'
 import PropTypes from 'prop-types'
-import {useSelector} from "react-redux";
 
-import AddNewProjectCard from "./AddNewProjectCard/AddNewProjectCard"
+import ProjectTypeDetails from "./ProjectTypeDetails/ProjectTypeDetails";
+import ProjectTypeItems from "./ProjectTypeItems/ProjectTypeItems";
 
 import style from "./AddNewProject.module.css"
 
 function AddNewProjectMenu(props) {
 
-    const projectTypes = useSelector((state) => state?.app?.globals?.projectTypes);
+    const [selectedProjectType, setSelectedProjectType] = useState(null);
 
     return (
-        <div className={style["add-new-project-menu"]} onClick={e=>e.stopPropagation()}>
-                {projectTypes?.map(category => {
-                        return (
-                        <div className={style["add-new-project-menu-category-wrapper"]}>
-                            <h3>{category.title}</h3>
-                            <div className={style["add-new-project-menu-category"]}>
-                                {category.types.map(type => <AddNewProjectCard key={type.title} projectType={type}/>)}
-                            </div>
-                        </div>) 
-                        
-                        
-                    })
-                }
+        <div 
+        className={style["add-new-project-menu"]} 
+        onClick={e=>e.stopPropagation()}>
+            {selectedProjectType 
+            ? <ProjectTypeDetails selectedProjectType={selectedProjectType} setSelectedProjectType={setSelectedProjectType}/>
+            : <ProjectTypeItems selectedProjectType={selectedProjectType} setSelectedProjectType={setSelectedProjectType} />
+            }
+            
         </div>    
     )   
 }

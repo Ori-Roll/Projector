@@ -2,13 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import style from "./AddNewProjectCard.module.css";
-import { createNewProject } from '../../../../ServerProvider/projects';
 
-function AddNewProjectCard({projectType}) {
+
+function AddNewProjectCard({projectType, setSelectedProjectType}) {
 
     async function onCardClick(){
-        const newProjectRes = await createNewProject(projectType.projectProperties);
-        console.log(newProjectRes.data);
+        setSelectedProjectType(projectType);
     }
 
     return (

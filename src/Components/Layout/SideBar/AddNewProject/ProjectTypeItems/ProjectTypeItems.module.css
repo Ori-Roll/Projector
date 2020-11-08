@@ -1,0 +1,24 @@
+.project-type-items {
+  display: block;
+  overflow-y: scroll;
+  padding: 30px;
+  border-top: white 10px solid;
+  max-height: 100%;
+  overflow-y: scroll;
+}
+
+.add-new-project-menu-category-wrapper {
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.add-new-project-menu-category-wrapper :first-child {
+  font-size: 1.5rem;
+  font-weight: 100;
+  margin-bottom: 15px;
+}
+
+.add-new-project-menu-category {
+  display: flex;
+  flex-wrap: wrap;
+}

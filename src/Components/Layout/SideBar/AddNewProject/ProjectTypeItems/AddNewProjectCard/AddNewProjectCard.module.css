@@ -2,16 +2,19 @@
     width: 380px;
     height: 140px;
     padding: 16px 20px 16px 0;
-    margin: 20px;
+    margin: 10px 20px 10px 0;
     text-align: left;
     border-radius: 3px;
     background-color: white;
-    box-shadow: rgba(59, 59, 59, 0.11) 2px 2px 15px;
     display: grid;
-    grid-template-columns: 8px 2.2fr 3fr;
+    grid-template-columns: 2px 2.2fr 3fr;
     grid-template-rows: 2fr 3fr;
     column-gap: 5px;
     position: relative;
+}
+
+.project-card:hover{
+    box-shadow: rgba(59, 59, 59, 0.11) 2px 2px 15px;
 }
 
 .project-card div:first-child{
