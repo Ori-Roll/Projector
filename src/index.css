@@ -59,6 +59,23 @@ code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+
+body::-webkit-scrollbar {
+	width: 12px;
+	height: 12px;
+	background: none;
+}
+
+body::-webkit-scrollbar-track {
+	margin: 10px;
+	background: none;
+}
+body::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background-color: rgb(185, 185, 185);
+}
+
+
 .react-resizable {
 	position: relative;
 }

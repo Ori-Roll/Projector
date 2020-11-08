@@ -53,10 +53,6 @@ function projectReducer(state = {}, action) {
 				draft.groups[action.groupIndex].tasks.push(action.task);
 				break;
 			case "EDIT_TASK":
-				console.log("--------------------")	
-			console.log(action.groupIndex);
-				console.log(action.taskIndex);
-				console.log(action.task)
 				draft.groups[action.groupIndex].tasks[action.taskIndex] = action.task;
 				break;
 			case "EDIT_CELL":

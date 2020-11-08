@@ -11,13 +11,9 @@ import AssignedUsersMenu from "../../../../../../../GlobalComponents/AssignedUse
 
 function AssignCell({ cell, doCellChange, task, taskChange }) {
 	const [assignedUsersMenuIsOn, setAssignedUsersMenuIsOn] = useState(false);
-
-	
-
 	function onAssignUsersToTask(users) {
 		const changedTask = { ...task, assignedTo: users };
 		taskChange(changedTask);
-		//setCellAssignedTo([...cellAssignedTo, ...users]);
 	}
 
 	const iconsSpacing = ()=> {
@@ -31,8 +27,6 @@ function AssignCell({ cell, doCellChange, task, taskChange }) {
 	}
 
 	const wrapperRef = useRef();
-
-	
 
 	return (
 		<div className={style["assign-cell"]} ref={wrapperRef}>
@@ -66,10 +60,10 @@ function AssignCell({ cell, doCellChange, task, taskChange }) {
 
 AssignCell.propTypes = {};
 
-/* export default AssignCell; */
-
+export default AssignCell;
+/* 
 export default React.memo(AssignCell, (prevProps, nextProps) => {
-	//if (prevProps.task.assignedTo === [] && nextProps.task.assignedTo === []) return true;
+	if (prevProps.task.assignedTo === [] && nextProps.task.assignedTo === []) return true;
 	return _.isEqual(prevProps.assignedTo, nextProps.assignedTo);
-});
+}); */
 

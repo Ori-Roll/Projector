@@ -39,7 +39,7 @@ function ProjectSelect() {
 								className={style["project-select-btn"]}
 								key={`${project._id}BTN`}
 								onClick={(e) => setSelectedProject(project._id)}>
-								{project.name}
+								{project.name === " " ? "nameless project" : project.name}
 							</button>
 						);
 				  })
