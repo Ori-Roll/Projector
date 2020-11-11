@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 import {useSelector} from 'react-redux';
 
+import AppIcon from "../../../../GlobalComponents/AppIcon/AppIcon";
+
 import style from "./Notifications.module.css";
 
 function Notifications() {
@@ -16,10 +18,7 @@ function Notifications() {
 
     return (
         <div>
-            <div className={style["bell-icon"]} onClick={onNotificationsClick} className={style["bell-icon"]}>
-                &#128276;
-                
-            </div>
+            <AppIcon icon="app-icon-bell.png" onClickCallback={onNotificationsClick}/>
             {notifications && <div className={style["notifications-wrapper"]}>
                     {user?.pendingMessages[0] && user.pendingMessages.map(msg => 
                         <div key={msg.header}><p>HEAD:{msg.header}</p><p>BODY:{msg.body}</p></div>
