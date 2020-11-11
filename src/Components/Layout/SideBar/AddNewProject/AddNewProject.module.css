@@ -1,4 +1,4 @@
-.add-new-project-btn {
+/* .add-new-project-btn {
   width: 40px;
   height: 40px;
   border-radius: 100%;
@@ -6,7 +6,7 @@
   font-size: xx-large;
   text-align: center;
 }
-
+ */
 .add-new-project-menu-modal {
   position: fixed;
   width: 100%;
@@ -35,9 +35,9 @@
   margin-bottom: 25px;
 }
 
-.type-items-overlay {
+/* .type-items-overlay {
   position: absolute;
   background-color: rgba(0, 0, 0, 0);
   width: 100%;
   height: 100%;
-}
+} */

@@ -9,16 +9,16 @@ import style from "./AddNewProject.module.css"
 function AddNewProjectMenu(props) {
 
     const [selectedProjectType, setSelectedProjectType] = useState(null);
+    
 
     return (
         <div 
         className={style["add-new-project-menu"]} 
         onClick={e=>e.stopPropagation()}>
             {selectedProjectType 
-            ? <ProjectTypeDetails selectedProjectType={selectedProjectType} setSelectedProjectType={setSelectedProjectType}/>
-            : <ProjectTypeItems selectedProjectType={selectedProjectType} setSelectedProjectType={setSelectedProjectType} />
+            ? <ProjectTypeDetails selectedProjectType={selectedProjectType} setSelectedProjectType={setSelectedProjectType} />
+            : <ProjectTypeItems selectedProjectType={selectedProjectType} setSelectedProjectType={setSelectedProjectType}/>
             }
-            
         </div>    
     )   
 }

@@ -1,17 +1,50 @@
 .type-details {
   width: 100%;
   height: 100%;
-  padding: 15px;
-  background-color: rgb(225, 234, 238);
+  background-color: white;
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  grid-template-rows: 1.5fr 14fr 2fr;
+  grid-template-areas:
+    'back-btn      title-header  .'
+    'options       options            options'
+    'description   description        done-btn';
 }
 
-.type-details-back-arrow {
-  background-color: rgb(81, 119, 224);
-  font-size: 25px;
-  font-weight: 500;
+.type-options-wrapper {
+  padding: 50px;
+  font-size: medium;
+  grid-area: options;
+}
+
+.type-title-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  grid-area: title-header;
+}
+
+.back-btn {
+  grid-area: back-btn;
+  padding: 10px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  color: white;
-  width: 40px;
-  height: 40px;
-  border-radius: 40px;
+  width: 110px;
+  height: 50px;
+}
+
+.back-btn:hover {
+  background-color: rgb(228, 228, 228);
+}
+
+.done-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  grid-area: done-btn;
 }
