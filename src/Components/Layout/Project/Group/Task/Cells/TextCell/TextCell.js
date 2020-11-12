@@ -21,7 +21,7 @@ function TextCell({ cell, doCellChange, isTitle = false }) {
 	return (
 		<input
 			className={`${CellsStyle.cell} ${style["text-cell"]}`}
-			style={{...(isTitle && { backgroundColor: "rgb(65, 200, 253)"})}}
+			style={{...(isTitle && { backgroundColor: "#93cee6"})}}
 			value={cell.content}
 			onChange={(e) => onInputChange(e.target.value)}
 			onBlur={(e) => onBlur(e.target.value)}

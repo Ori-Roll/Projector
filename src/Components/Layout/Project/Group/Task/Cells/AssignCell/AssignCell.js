@@ -10,7 +10,10 @@ import UserIcon from "../../../../../../../GlobalComponents/UserIcon/UserIcon";
 import AssignedUsersMenu from "../../../../../../../GlobalComponents/AssignedUsersMenu/AssignedUsersMenu";
 
 function AssignCell({ cell, doCellChange, task, taskChange }) {
+	
 	const [assignedUsersMenuIsOn, setAssignedUsersMenuIsOn] = useState(false);
+	const [onHovered, setOnHovered] = useState(false);
+	
 	function onAssignUsersToTask(users) {
 		const changedTask = { ...task, assignedTo: users };
 		taskChange(changedTask);
@@ -29,7 +32,7 @@ function AssignCell({ cell, doCellChange, task, taskChange }) {
 	const wrapperRef = useRef();
 
 	return (
-		<div className={style["assign-cell"]} ref={wrapperRef}>
+		<div className={style["assign-cell"]} ref={wrapperRef} onMouseOver={()=>setOnHovered(true)} onMouseLeave={()=>setOnHovered(false)}>
 			<div className={style["assigned-users-wrapper"]}>
 				{task.assignedTo.map((user) => (
 					<div key={user._id} className={style["user-icon-wrapper"]} style={{marginRight: `${iconsSpacing()}px`}}>
@@ -43,7 +46,9 @@ function AssignCell({ cell, doCellChange, task, taskChange }) {
 				))}
 			</div>
 
-			<button className={style["add-assigned-btn"]} onClick={onAddAssignedClick}>
+			<button className={style["add-assigned-btn"]} 
+					onClick={onAddAssignedClick}
+					style={{opacity: onHovered ? 1 : 0}}>
 				&#43;
 			</button>
 

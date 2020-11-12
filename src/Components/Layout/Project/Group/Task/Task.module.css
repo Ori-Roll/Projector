@@ -1,40 +1,39 @@
 .task {
-	display: flex;
-	height: 48px;
-	/* background-color: rgb(222, 226, 228); */
-	/* background-image: linear-gradient(rgb(223, 223, 223), rgb(212, 212, 212)); */
-	/* border-bottom: rgb(240, 240, 240) 2px solid; */
-	border: rgb(245, 245, 245) 1px solid;
-	border-radius: 2px;
-	margin-bottom: 5px;
-	box-shadow: rgb(224, 224, 224) 1px 2px 10px;
+  display: flex;
+  height: 48px;
+  /* background-color: rgb(222, 226, 228); */
+  /* background-image: linear-gradient(rgb(223, 223, 223), rgb(212, 212, 212)); */
+  /* border-bottom: rgb(240, 240, 240) 2px solid; */
+  border: rgb(245, 245, 245) 1px solid;
+  border-radius: 2px;
+  margin-bottom: 5px;
+  box-shadow: rgb(224, 224, 224) 1px 2px 10px;
 }
 
 .task:hover {
-	border: rgb(188, 200, 209) 1px solid;
+  border: rgb(188, 200, 209) 1px solid;
 }
 
 .cell-wrapper {
-	height: 100%;
-	/* border-right: white 1px solid; */
-	/* border-left: white 2px solid; */
-	transition: ease 100ms;
-	overflow: hidden;
+  height: 100%;
+  /* border-right: white 1px solid; */
+  /* border-left: white 2px solid; */
+  transition: ease 100ms;
+  overflow: hidden;
 }
 
 .pseudo-task {
-	background-color: rgb(0, 255, 42);
-	height: 37px;
+  background-color: rgb(0, 255, 42);
+  height: 37px;
 }
 
 .task-handle {
-	height: 42px;
-	width: 14px;
-	background-color: rgb(43, 101, 148);
-	color: white;
-	font-size: 24px;
-	padding: 2px 0 0 2px;
-	margin: 2px 0;
-	border-radius: 2px 0 0 2px;
-	border-right: white 2px solid;
+  height: 100%;
+  width: 14px;
+  background-color: rgb(43, 101, 148);
+  color: white;
+  font-size: 24px;
+  padding: 2px 0 0 2px;
+  border-radius: 2px 0 0 2px;
+  border-right: white 2px solid;
 }

@@ -1,68 +1,65 @@
 .assign-cell {
-	height: 100%;
-	width: 100%;
-	position: relative;
-	background-color: rgb(201, 232, 246);
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background-color: #c3e3b6;
 }
 
 .assigned-users-wrapper {
-	display: flex;
-	flex-flow: row;
-	align-items: center;
-	/* 	overflow-x: scroll; */
-	overflow-y: hidden;
-	padding-left: 4px;
-	height: 100%;
-	width: 80%;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  /* 	overflow-x: scroll; */
+  overflow-y: hidden;
+  padding-left: 6px;
+  height: 100%;
+  width: 80%;
 }
 
 .assigned-users-wrapper::-webkit-scrollbar {
-	width: 6px;
-	height: 6px;
-	background: none;
+  width: 6px;
+  height: 6px;
+  background: none;
 }
 
 .assigned-users-wrapper::-webkit-scrollbar-track {
-	margin: 10px;
-	background: none;
+  margin: 10px;
+  background: none;
 }
 .assigned-users-wrapper::-webkit-scrollbar-thumb {
-	border-radius: 10px;
-	background-color: rgb(185, 185, 185);
+  border-radius: 10px;
+  background-color: rgb(185, 185, 185);
 }
 
 .user-icon-wrapper {
-	margin: 0;
-	padding: 0;
-	width: 32px;
-	min-width: 32px;
-	height: 32px;
+  margin: 0;
+  padding: 0;
+  width: 32px;
+  min-width: 32px;
+  height: 32px;
 }
 
 .user-icon-wrapper:hover {
-	z-index: 5;
+  z-index: 5;
 }
 
 .add-assigned-btn {
-	position: absolute;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	width: 1em;
-	height: 1em;
-	top: 15%;
-	right: 5px;
-	color: grey;
-	background-color: rgb(255, 255, 255);
-	border: rgb(218, 218, 218) 1px solid;
-	border-radius: 20px;
-	text-align: center;
-	font-size: x-large;
-	cursor: pointer;
-	outline: none;
-}
-
-.add-assigned-btn:hover {
-	background-color: rgb(224, 224, 224);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 1.2em;
+  height: 1.2em;
+  top: 15%;
+  right: 5px;
+  color: grey;
+  background-color: rgb(255, 255, 255);
+  border: rgb(218, 218, 218) 1px solid;
+  border-radius: 20px;
+  text-align: center;
+  font-size: x-large;
+  cursor: pointer;
+  outline: none;
+  transition: 200ms ease;
 }
