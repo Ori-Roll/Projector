@@ -4,13 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 
 import ProjectSelect from "./ProjectSelect/ProjectSelect";
 
-import UserSelect from "./UserSelect/UserSelect";
-import AddNewProjectBtn from "./AddNewProject/AddNewProjectBtn"
-import UserIcon from "../../../GlobalComponents/UserIcon/UserIcon";
+import UserOptions from "./UserOptions/UserOptions";
+import AddNewProject from "./AddNewProject/AddNewProject"
 import Notifications from "./Notifications/Notifications";
 import style from "./SideBar.module.css";
-
-import { db_uploadUserPhoto } from "../../ServerProvider/auth";
 
 import { setUserDispatch } from "../../redux/rootReducer";
 
@@ -19,48 +16,13 @@ function SideBar() {
 	const dispatch = useDispatch();
 	const setUser = (user) => dispatch(setUserDispatch(user));
 
-	async function uploadPhotoClick(e) {
-		/* e.preventDefault(); */
-
-	}
-
-	async function onUserPhotoUpload(e) {
-		try {
-			let updatedUser = await db_uploadUserPhoto(e.target.files[0]);
-			updatedUser = updatedUser.data;
-			setUser(updatedUser);
-		} catch (error) {
-			console.error("No user update on photo change", error);
-		}
-	}
 
 	return (
 		<div className={style["side-bar"]}>
 			<ProjectSelect />
-			
 			<div className={style["general"]}>
-				<UserSelect />
-				<AddNewProjectBtn />
-				<div className={style["upload-image-wrapper"]}>
-					<label htmlFor='file-input'>
-						<div className={style["user-icon-wrapper"]}>
-							<UserIcon
-								userName={user.name}
-								userId={user._id}
-								userPhoto={user.photo}
-								onClickCallback={uploadPhotoClick}
-							/>
-						</div>
-					</label>
-
-					<input
-						id='file-input'
-						type='file'
-						className={style["upload-image-input"]}
-						onChange={(e) => onUserPhotoUpload(e)}
-					/>
-				</div>
-				<br></br>
+				<AddNewProject/>
+				<UserOptions/>
 				<Notifications />
 			</div>
 		</div>

@@ -13,7 +13,7 @@ function AddNewProjectBtn(props) {
 
     return (
         <div className={style["add-new-project-btn-wrapper"]}>
-            <AppIcon icon="app-icon-plus.png" onClickCallback={() => setAddNewProjectMenuActive(!addNewProjectMenuActive)}/>
+            <AppIcon icon="app-icon-plus.png" onClickCallback={() => setAddNewProjectMenuActive(!addNewProjectMenuActive)} color={"#ed9a1c"} size={"30px"}/>
             {addNewProjectMenuActive && 
             <div className={style["add-new-project-menu-modal"]} onClick={() => setAddNewProjectMenuActive(false)}>
                 <AddNewProjectMenu/>

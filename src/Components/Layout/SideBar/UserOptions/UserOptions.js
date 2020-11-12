@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { getCrappyServerData } from "../../../ServerProvider/old_index";
 
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { setUserDispatch } from "../../../redux/rootReducer";
+
+import { db_uploadUserPhoto } from "../../../ServerProvider/auth";
 
 import {
 	db_loginUser,
@@ -12,28 +14,26 @@ import {
 	db_updateUserDetails,
 	db_updateUserPassword,
 } from "./../../../ServerProvider/auth";
-import style from "./UserSelect.module.css";
+import style from "./UserOptions.module.css";
 
 import UserIcon from "../../../../GlobalComponents/UserIcon/UserIcon";
 
-let users;
-getCrappyServerData("users").then((res) => (users = res));
-
 function UserSelect() {
+	
 	const dispatch = useDispatch();
 	const setUser = (user) => dispatch(setUserDispatch(user));
+	const user = useSelector((state) => state?.user);
 
-	const [usersMenu, setUsersManu] = useState(false);
+	const [userMenuActive, setUserMenuActive] = useState(false);
 
-	function onClick() {
-		setUsersManu(!usersMenu);
+	function onIconClick(){
+		setUserMenuActive(!userMenuActive);
 	}
 
 	async function changeToUser(userId) {
 		getCrappyServerData(`users.${userId}`).then((res) => setUser(res));
 		const user = await db_loginUser("johnJohn@gmail.com", "123456");
 		const me = await db_getLoggedInUser();
-		setUsersManu(!usersMenu);
 	}
 
 	async function getLoggedInUserClick() {
@@ -46,9 +46,11 @@ function UserSelect() {
 			name: "Mr Ori the first",
 		});
 	}
+
 	async function updatePasswordClick() {
 		const updateUserPasswordRes = await db_updateUserPassword("123456", "1234567");
 	}
+
 	async function logoutClick() {
 		const logoutUserRes = await db_logoutUser();
 		// HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -56,29 +58,60 @@ function UserSelect() {
 		setUser(null);
 	}
 
+	async function uploadPhotoClick(e) {
+		/* e.preventDefault(); */
+	}
+
+	async function onUserPhotoUpload(e) {
+		try {
+			let updatedUser = await db_uploadUserPhoto(e.target.files[0]);
+			updatedUser = updatedUser.data;
+			setUser(updatedUser);
+		} catch (error) {
+			console.error("No user update on photo change", error);
+		}
+	}
+
 	return (
 		<div className={style["user-select"]}>
-			<div>
-				<button onClick={getLoggedInUserClick}>get LoggedIn User</button>
-				<button onClick={updateUserDetailsClick}>update Users Details</button>
-				<button onClick={updatePasswordClick}>updatePassword</button>
-				<button onClick={logoutClick}>logout</button>
+			<div className={style["user-icon-wrapper"]}>
+				<UserIcon
+					userName={user.name}
+					userId={user._id}
+					userPhoto={user.photo}
+					onClickCallback={onIconClick}
+				/>
 			</div>
-			{/* <UserIcon userName={user.name} onClickCallback={onClick} userIcon={user.icon} /> */}
-			{usersMenu ? (
-				<div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)" }}>
-					{Object.keys(users).map((key) => {
-						return (
-							<UserIcon
-								key={key}
-								userName={users[key].name}
-								onClickCallback={() => changeToUser(users[key].id)}
-								userIcon={users[key].icon}
+			
+			{ userMenuActive && 
+				<div className={style["user-options-modal"]} onClick={() => setUserMenuActive(false)}>
+					<div className={style["user-options-wrapper"]} onClick={(e) => e.stopPropagation()}>
+						<button onClick={getLoggedInUserClick}>get LoggedIn User</button>
+						<button onClick={updateUserDetailsClick}>update Users Details</button>
+						<button onClick={updatePasswordClick}>updatePassword</button>
+						<button onClick={logoutClick}>logout</button>
+						<div className={style["upload-image-wrapper"]}>
+							<label htmlFor='file-input'>
+								<div className={style["user-image-wrapper"]}>
+									<UserIcon
+										userName={user.name}
+										userId={user._id}
+										userPhoto={user.photo}
+										onClickCallback={uploadPhotoClick}
+									/>
+								</div>
+							</label>
+
+							<input
+								id='file-input'
+								type='file'
+								className={style["upload-image-input"]}
+								onChange={(e) => onUserPhotoUpload(e)}
 							/>
-						);
-					})}
+						</div> 
+					</div>
 				</div>
-			) : null}
+			}
 		</div>
 	);
 }

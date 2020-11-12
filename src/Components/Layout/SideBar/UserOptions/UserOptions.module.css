@@ -1,5 +1,54 @@
 .user-select {
-	position: absolute;
-	left: 5px;
-	bottom: 0;
+  position: absolute;
+  left: 5px;
+  bottom: 0;
+}
+
+.user-icon-wrapper {
+  width: 40px;
+  height: 40px;
+}
+
+.user-options-modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(133, 133, 133, 0.082);
+}
+
+.user-options-wrapper {
+  position: fixed;
+  left: calc(5%);
+  top: calc(5%);
+  width: 90%;
+  height: 90%;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.116) 2px 2px 25px;
+  z-index: 200;
+  border-radius: 0 0 3px 3px;
+}
+
+.upload-image-wrapper {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.user-image-wrapper {
+  width: 200px;
+  height: 200px;
+}
+
+.upload-image-current {
+  width: 90px;
+  height: 90px;
+  border-radius: 100px;
+  overflow: 'hidden';
+  background-size: 'contain';
+}
+
+.upload-image-input {
+  display: none;
 }
