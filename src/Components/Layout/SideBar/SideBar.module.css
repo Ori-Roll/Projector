@@ -1,13 +1,14 @@
 :root {
   --side-general-bg-color: rgb(44, 45, 46);
   --side-general-border: rgb(179, 179, 179) 1px solid;
+  --side-general-back: #83cf6b;
 }
 
 .side-bar {
   position: fixed;
   height: 100%;
-  background-color: rgb(132, 207, 109);
-  width: 78px;
+  background-color: var(--side-general-back);
+  width: 72px;
   z-index: 150;
 }
 
@@ -17,16 +18,18 @@
   border-right: var(--side-general-border);
   box-shadow: rgba(0, 0, 0, 0.2) 5px 5px 20px;
   height: 100%;
-  width: 70px;
+  width: 60px;
   top: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 10px 0;
+  display: grid;
+  grid-template-rows: 1fr 1fr 12fr 1fr 1fr;
+  gap: 10px;
   z-index: 110;
 }
 
-.bell-icon:hover {
-  background-color: rgb(159, 203, 214);
+.project-select-icon-wrapper {
+  grid-row: 1/2;
+  margin: auto;
 }
 
 /* .general-top {

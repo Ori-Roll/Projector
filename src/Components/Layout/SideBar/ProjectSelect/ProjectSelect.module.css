@@ -1,6 +1,12 @@
 :root {
   --side-project-select-bg-color: rgb(36, 107, 173);
-  --side-project-select-bg-color-hover: rgb(61, 173, 238);
+  --side-project-select-inner-bg-color: rgb(156, 185, 212);
+  --side-project-select-bg-color-hover: rgb(255, 255, 255);
+}
+
+.icon-wrapper {
+  width: 50px;
+  height: 50px;
 }
 
 .project-select {
@@ -16,12 +22,21 @@
   /* border: rgb(60, 60, 60) 4px solid; */
   border-right: rgb(155, 155, 155) 1px solid;
   transition: ease-in-out 100ms;
-  transition-delay: 0.5s;
   z-index: 100;
 }
 
-.project-select:hover {
-  left: 0px;
+.project-select-menu {
+  position: absolute;
+  background-color: var(--side-project-select-inner-bg-color);
+  padding: 20px;
+  top: 0;
+  right: 30px;
+  width: 90%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 40px auto;
+  gap: 20px 2px;
 }
 
 /* 
@@ -37,40 +52,27 @@
 } */
 .current-project-display {
   position: absolute;
-  right: -40px;
-  top: 40px;
-  height: 50px;
-  padding: 12px 120px;
-  border-radius: 50px;
-  font-size: 18px;
+  top: 80px;
+  right: -64px;
+  color: white;
+  transform: rotate(90deg);
+  font-size: 16px;
   font-family: inherit;
-  text-align: right;
-  background-color: inherit;
-  color: rgb(255, 255, 255);
-  z-index: 110;
+  z-index: 120;
 }
 
-.project-select-folder-lable {
-  position: absolute;
-  right: -35px;
-  top: 45px;
-  padding: 20px;
-  border-radius: 25px;
-  background-color: white;
-  background-position: center;
-  background-size: 26px;
-  background-repeat: no-repeat;
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Folder_close_alt_font_awesome.svg/512px-Folder_close_alt_font_awesome.svg.png');
-  z-index: 120;
+.project-select-list {
+  grid-column: 1/3;
 }
 
 .project-select-btn {
   border: 0;
+  width: 100%;
   padding: 8px 30px 8px;
   margin-bottom: 5px;
   font-size: 14px;
   font-family: inherit;
-  text-align: right;
+  text-align: left;
   background: none;
   color: black;
   z-index: 110;

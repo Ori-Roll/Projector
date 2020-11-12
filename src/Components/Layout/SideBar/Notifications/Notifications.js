@@ -17,8 +17,8 @@ function Notifications() {
     }
 
     return (
-        <div>
-            <AppIcon icon="app-icon-bell.png" onClickCallback={onNotificationsClick}/>
+        <div className={style["btn-wrappaer"]}>
+            <AppIcon icon="app-icon-bell.png" onClickCallback={onNotificationsClick} color={"#5db043"}/>
             {notifications && <div className={style["notifications-wrapper"]}>
                     {user?.pendingMessages[0] && user.pendingMessages.map(msg => 
                         <div key={msg.header}><p>HEAD:{msg.header}</p><p>BODY:{msg.body}</p></div>

@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import ProjectSelect from "./ProjectSelect/ProjectSelect";
 
@@ -10,18 +10,21 @@ import Notifications from "./Notifications/Notifications";
 import style from "./SideBar.module.css";
 
 import { setUserDispatch } from "../../redux/rootReducer";
+import AppIcon from "../../../GlobalComponents/AppIcon/AppIcon";
 
 function SideBar() {
 	const user = useSelector((state) => state?.user);
-	const dispatch = useDispatch();
-	const setUser = (user) => dispatch(setUserDispatch(user));
 
+	const [projectSelectActive, setProjectSelectActive] = useState(false)
 
 	return (
 		<div className={style["side-bar"]}>
-			<ProjectSelect />
+			<ProjectSelect projectSelectActive={projectSelectActive} setProjectSelectActive={setProjectSelectActive}/>
 			<div className={style["general"]}>
 				<AddNewProject/>
+				<div className={style["project-select-icon-wrapper"]}>
+					<AppIcon icon="app-icon-folder-closed.png" onClickCallback={() => setProjectSelectActive(!projectSelectActive)} />	
+				</div>
 				<UserOptions/>
 				<Notifications />
 			</div>

@@ -9,6 +9,7 @@ function ProjectTypeDetails({selectedProjectType, setSelectedProjectType}) {
     
     async function onDoneClick(){
         const newProjectRes = await createNewProject(selectedProjectType.projectProperties);
+        console.log("newProjectRes", newProjectRes);
     }
     
     return (
@@ -33,10 +34,10 @@ function ProjectTypeDetails({selectedProjectType, setSelectedProjectType}) {
                 <input type="checkbox" name="friday" value="friday."/>friday
                 <input type="checkbox" name="sunday" value="sunday."/>sunday
                 <br/>
-                
+
             </div>
             
-            <div className={style["done-btn"]}>Done</div>
+            <div className={style["done-btn"]} onClick={onDoneClick}>Done</div>
         </div>
     )
 }

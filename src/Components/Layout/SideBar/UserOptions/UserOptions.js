@@ -18,7 +18,7 @@ import style from "./UserOptions.module.css";
 
 import UserIcon from "../../../../GlobalComponents/UserIcon/UserIcon";
 
-function UserSelect() {
+function UserOptions() {
 	
 	const dispatch = useDispatch();
 	const setUser = (user) => dispatch(setUserDispatch(user));
@@ -116,6 +116,6 @@ function UserSelect() {
 	);
 }
 
-UserSelect.propTypes = {};
+UserOptions.propTypes = {};
 
-export default UserSelect;
+export default UserOptions;

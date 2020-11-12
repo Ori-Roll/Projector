@@ -1,13 +1,11 @@
-.bell-icon {
-	background-color: white;
-	border-radius: 20px;
-	width: 30px;
-	height: 30px;
+.btn-wrappaer {
+  margin: auto;
+  grid-row: 4/5;
 }
 
 .notifications-wrapper {
-	position: relative;
-	width: 100%;
-	display: flex;
-	background-color: white;
+  position: relative;
+  width: 100%;
+  display: flex;
+  background-color: white;
 }
