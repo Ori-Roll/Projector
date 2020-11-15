@@ -1,14 +1,14 @@
 :root {
   --side-project-select-bg-color: rgb(36, 107, 173);
   --side-project-select-inner-bg-color: rgb(156, 185, 212);
-  --side-project-select-bg-color-hover: rgb(255, 255, 255);
+  --side-project-select-bg-color-hover: rgb(220, 227, 231);
 }
 
 .icon-wrapper {
   width: 50px;
   height: 50px;
 }
-
+/* 
 .project-select {
   position: absolute;
   padding: 105px 0 0 0;
@@ -19,24 +19,27 @@
   flex-direction: column;
   width: 350px;
   background-color: var(--side-project-select-bg-color);
-  /* border: rgb(60, 60, 60) 4px solid; */
   border-right: rgb(155, 155, 155) 1px solid;
   transition: ease-in-out 100ms;
   z-index: 100;
-}
+} */
 
 .project-select-menu {
   position: absolute;
-  background-color: var(--side-project-select-inner-bg-color);
+  box-shadow: inset var(--side-project-select-bg-color) -5px 0 0;
+  background-color: white;
   padding: 20px;
   top: 0;
-  right: 30px;
-  width: 90%;
+  left: -200px;
+  width: 300px;
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-template-rows: 40px auto;
   gap: 20px 2px;
+  border-right: rgb(155, 155, 155) 1px solid;
+  transition: ease-in-out 100ms;
+  z-index: 100;
 }
 
 /* 

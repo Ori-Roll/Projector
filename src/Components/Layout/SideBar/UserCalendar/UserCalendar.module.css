@@ -1,0 +1,9 @@
+.user-calendar-wrapper {
+  position: absolute;
+  top: 0;
+  left: 70px;
+  width: 400px;
+  height: 100%;
+  box-shadow: inset rgb(214, 109, 179) 5px 0 0;
+  z-index: 10;
+}

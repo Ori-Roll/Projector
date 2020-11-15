@@ -30,24 +30,22 @@ function ProjectSelect({projectSelectActive, setProjectSelectActive}) {
 
 
 	return (
-		<div className={style["project-select"]} style={{left: projectSelectActive ? "50px" : "-284px"}}>
-			<div className={style["current-project-display"]}>{project?.name && project.name}</div>
-			<div className={style["project-select-menu"]} >
-				<AppIcon icon="app-icon-back-arrow.png" onClickCallback={() => setProjectSelectActive(false)} />
-				<div className={style["project-select-list"]}>
-					{user.projects
-						? user.projects.map((project) => {
-								return (
-									<button
-										className={style["project-select-btn"]}
-										key={`${project._id}BTN`}
-										onClick={(e) => setSelectedProject(project._id)}>
-										{project.name === " " ? "nameless project" : project.name}
-									</button>
-								);
-						})
-						: " ! no projects ! "}
-					</div>
+		<div className={style["project-select-menu"]} style={{left: projectSelectActive ? "50px" : "-235px"}}>
+			{/* <div className={style["current-project-display"]}>{project?.name && project.name}</div> */}
+			<AppIcon icon="app-icon-back-arrow.png" onClickCallback={() => setProjectSelectActive(false)} />
+			<div className={style["project-select-list"]}>
+				{user.projects
+					? user.projects.map((project) => {
+							return (
+								<button
+									className={style["project-select-btn"]}
+									key={`${project._id}BTN`}
+									onClick={(e) => setSelectedProject(project._id)}>
+									{project.name === " " ? "nameless project" : project.name}
+								</button>
+							);
+					})
+					: " ! no projects ! "}
 				</div>
 			</div>
 			/* TODO: change so it will load a proj if no viewed proj */

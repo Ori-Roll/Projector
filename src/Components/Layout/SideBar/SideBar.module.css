@@ -22,13 +22,18 @@
   top: 0;
   padding: 10px 0;
   display: grid;
-  grid-template-rows: 1fr 1fr 12fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 12fr 1fr 1fr 1fr;
   gap: 10px;
   z-index: 110;
 }
 
 .project-select-icon-wrapper {
   grid-row: 1/2;
+  margin: auto;
+}
+
+.user-calendar-icon-wrapper {
+  grid-row: 4/5;
   margin: auto;
 }
 
