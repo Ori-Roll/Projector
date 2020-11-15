@@ -26,8 +26,7 @@ function Task({ task, columns, taskIndex, groupIndex }) {
 		if (!cell) {
 			console.error(`task with no cell match for column.id ${column.id}`);
 		} else {
-			if (column.type === "assign") options.push(task, taskChange);
-			return CellOfType[column.type](cell, doCellChange, ...options);
+			return CellOfType[column.type](cell, doCellChange, task, taskChange, ...options);
 		}
 	}
 

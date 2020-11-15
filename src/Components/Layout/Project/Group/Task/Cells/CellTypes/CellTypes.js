@@ -6,6 +6,7 @@ import NumberCell from "../NumberCell/NumberCell";
 import StarsCell from "../StarsCell/StarsCell";
 import StatusCell from "../StatusCell/StatusCell";
 import AssignCell from "../AssignCell/AssignCell";
+import DueDate from "../DueDate/DueDate"
 
 import { NEW_COLUMN_DATA } from "../../../../../../defaults";
 
@@ -31,11 +32,14 @@ const CellOfType = {
 	number: (cell, doCellChange) => (
 		<TextCell key={cell._id} cell={cell} doCellChange={doCellChange} isTitle={false} />
 	),
-	stars: (cell, doCellChange) => (
-		<StarsCell key={cell._id} cell={cell} doCellChange={doCellChange} />
-	),
 	status: (cell, doCellChange) => (
 		<StatusCell key={cell._id} cell={cell} doCellChange={doCellChange} />
+	),
+	dueDate: (cell, doCellChange, task, taskChange) => (
+		<DueDate key={cell._id} cell={cell} doCellChange={doCellChange} task={task} taskChange={taskChange} />
+	),
+	stars: (cell, doCellChange) => (
+		<StarsCell key={cell._id} cell={cell} doCellChange={doCellChange} />
 	),
 };
 
