@@ -55,7 +55,7 @@ function AddToGroup({ group, groupIndex }) {
 			<div className={style["column-icon"]}>U</div>
 			<p>New Users Column</p>
 		</li>,
-		<li key={"menu4"} onClick={()=>addColumnClick("date")}>
+		<li key={"menu4"} onClick={()=>addColumnClick("dueDate")}>
 		<div className={style["column-icon"]}>D</div>
 		<p>New due date Column</p>
 	</li>,

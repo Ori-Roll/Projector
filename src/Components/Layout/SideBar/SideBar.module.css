@@ -1,14 +1,11 @@
 :root {
   --side-general-bg-color: rgb(44, 45, 46);
   --side-general-border: rgb(179, 179, 179) 1px solid;
-  --side-general-back: #83cf6b;
 }
 
 .side-bar {
   position: fixed;
   height: 100%;
-  background-color: var(--side-general-back);
-  width: 72px;
   z-index: 150;
 }
 
@@ -30,6 +27,11 @@
 .project-select-icon-wrapper {
   grid-row: 1/2;
   margin: auto;
+}
+
+.notifications-icon-wrapper {
+  margin: auto;
+  grid-row: 5/6;
 }
 
 .user-calendar-icon-wrapper {

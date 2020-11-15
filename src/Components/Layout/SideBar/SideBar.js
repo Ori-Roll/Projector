@@ -18,10 +18,13 @@ function SideBar() {
 
 	const [projectSelectActive, setProjectSelectActive] = useState(false)
 	const [userCalendarActive, setUserCalendarActive] = useState(false)
+    const [notificationsMenuActive, setNotificationsMenuActive] = useState(false);
+
 
 	return (
 		<div className={style["side-bar"]}>
 			<ProjectSelect projectSelectActive={projectSelectActive} setProjectSelectActive={setProjectSelectActive}/>
+			<Notifications notificationsMenuActive={notificationsMenuActive}/>
 			<div className={style["general"]}>
 				<AddNewProject/>
 				<div className={style["project-select-icon-wrapper"]}>
@@ -32,7 +35,9 @@ function SideBar() {
 					<AppIcon icon="app-icon-calendar.png" color={"#e6274d"} onClickCallback={() => setUserCalendarActive(!userCalendarActive)} />	
 				</div>
 				<UserOptions/>
-				<Notifications />
+				<div className={style["notifications-icon-wrapper"]}>
+					<AppIcon icon="app-icon-bell.png" onClickCallback={() => setNotificationsMenuActive(!notificationsMenuActive)} color={"#5db043"}/>
+				</div>
 			</div>
 		</div>
 	);

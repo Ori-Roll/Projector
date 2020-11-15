@@ -1,11 +1,16 @@
-.btn-wrappaer {
-  margin: auto;
-  grid-row: 5/6;
+.notifications-wrapper {
+  position: absolute;
+  background-color: white;
+  border-right: #83cf6b 7px solid;
+  width: 320px;
+  height: 100%;
+  display: flex;
+  transition: 0.1s ease;
 }
 
-.notifications-wrapper {
-  position: relative;
+.notification-message {
   width: 100%;
-  display: flex;
-  background-color: white;
+  height: 110px;
+  padding: 20px;
+  border-bottom: #83cf6b 1px solid;
 }
