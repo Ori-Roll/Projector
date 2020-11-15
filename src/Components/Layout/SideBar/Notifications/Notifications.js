@@ -11,7 +11,7 @@ function Notifications({notificationsMenuActive}) {
     const user = useSelector((state) => state?.user);
 
     return (
-    <div className={style["notifications-wrapper"]} style={{left: notificationsMenuActive ? "55px" : "-250px"}}>
+    <div className={style["notifications-wrapper"]} style={{left: notificationsMenuActive ? "65px" : "-250px"}}>
         {user?.pendingMessages[0] && user.pendingMessages.map(msg => 
             <div className={style["notification-message"]} key={msg.header}><p>HEAD:{msg.header}</p><p>BODY:{msg.body}</p></div>
         )}

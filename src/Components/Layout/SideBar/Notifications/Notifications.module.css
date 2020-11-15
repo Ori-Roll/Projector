@@ -1,10 +1,12 @@
 .notifications-wrapper {
   position: absolute;
-  background-color: white;
+  background-color: #a7df96;
   border-right: #83cf6b 7px solid;
   width: 320px;
   height: 100%;
   display: flex;
+  flex-flow: column;
+  padding: 5px;
   transition: 0.1s ease;
 }
 
@@ -12,5 +14,6 @@
   width: 100%;
   height: 110px;
   padding: 20px;
+  background-color: rgb(231, 231, 231);
   border-bottom: #83cf6b 1px solid;
 }
