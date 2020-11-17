@@ -30,8 +30,9 @@ function ProjectSelect({projectSelectActive, setProjectSelectActive}) {
 
 
 	return (
-		<div className={style["project-select-menu"]} style={{left: projectSelectActive ? "50px" : "-235px"}}>
+		<div className={style["project-select-menu"]} style={{left: projectSelectActive ? "50px" : "-234px"}}>
 			{/* <div className={style["current-project-display"]}>{project?.name && project.name}</div> */}
+			<p className={style["vertical-side-header"]}>Select Project</p>
 			<AppIcon icon="app-icon-back-arrow.png" onClickCallback={() => setProjectSelectActive(false)} />
 			<div className={style["project-select-list"]}>
 				{user.projects

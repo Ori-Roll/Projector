@@ -26,7 +26,7 @@
 
 .project-select-menu {
   position: absolute;
-  box-shadow: inset var(--side-project-select-bg-color) -5px 0 0;
+  box-shadow: inset var(--side-project-select-bg-color) -25px 0 0;
   background-color: white;
   padding: 20px;
   top: 0;
@@ -40,6 +40,16 @@
   border-right: rgb(155, 155, 155) 1px solid;
   transition: ease-in-out 100ms;
   z-index: 100;
+}
+
+.vertical-side-header {
+  position: absolute;
+  color: white;
+  font-size: 16px;
+  transform: rotate(90deg);
+  left: 188px;
+  top: 100px;
+  width: 200px;
 }
 
 /* 

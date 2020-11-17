@@ -11,9 +11,9 @@
 
 .general {
   position: absolute;
-  background-color: var(--side-general-bg-color);
   border-right: var(--side-general-border);
   box-shadow: rgba(0, 0, 0, 0.2) 5px 5px 20px;
+  background-color: white;
   height: 100%;
   width: 60px;
   top: 0;

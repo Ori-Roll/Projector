@@ -1,7 +1,7 @@
 .notifications-wrapper {
   position: absolute;
-  background-color: #a7df96;
-  border-right: #83cf6b 7px solid;
+  background-color: white;
+  border-right: #83cf6b 4px solid;
   width: 320px;
   height: 100%;
   display: flex;
