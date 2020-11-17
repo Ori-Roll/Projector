@@ -20,15 +20,14 @@ function DueDate({cell, doCellChange, task, taskChange}) {
     return (
         <div className={`${CellsStyle.cell} ${style["duedate-cell"]}`}>
             <div className={style["duedate-icon-wrapper"]}>
-            <AppIcon icon={"app-icon-calendar.png"} color="#cad2e0" size={25}/>
+                <AppIcon icon={"app-icon-calendar-gray.png"} cssOptions={{background:"none"}} size={35}/>
+                <input
+                className={style["duedate-input"]}
+                value={ date && _.isDate(date) ?
+                    `${date.toLocaleString("default", { weekday: "short" })}, ${date.getDate()}/${date.getMonth()}, ${date.getHours()}:${date.getMinutes()}` : "choose date" }
+                onChange={ e=> onChange(e.target.value)}
+                />
             </div>
-            
-            <input
-            className={style["duedate-input"]}
-            value={ date && _.isDate(date) ?
-                `${date.toLocaleString("default", { weekday: "short" })}, ${date.getDate()}/${date.getMonth()}, ${date.getHours()}:${date.getMinutes()}` : "choose date" }
-            onChange={ e=> onChange(e.target.value)}
-            />
         </div>
         
     )
