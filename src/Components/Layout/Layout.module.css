@@ -11,7 +11,7 @@
 .project-head {
   height: 100%;
   grid-area: project-head;
-  background-color: rgb(171, 224, 255);
+  background-color: rgb(240, 240, 240);
 }
 
 .project-side-bar {
