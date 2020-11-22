@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { setDefaultLocale } from  "react-datepicker";
+import es from 'date-fns/locale/es';
+
+
 import Layout from "./Components/Layout/Layout";
 import Login from "./Components/Login/Login";
 import Loader from "./Components/Login/Loader";
@@ -7,19 +11,24 @@ import { getUserProjects, getProject, getProjectTypes } from "./Components/Serve
 import { useDispatch, useSelector } from "react-redux";
 import { setUserDispatch, setProjectDispatch, changeAppGlobalsDispatch } from "./Components/redux/rootReducer";
 
+
+
 import "./App.css";
 
 function App() {
-	const dispatch = useDispatch();
+	
 	const user = useSelector((state) => state?.user);
+	const globals = useSelector((state) => state?.app)
+	const dispatch = useDispatch();
 	const setUser = (user) => dispatch(setUserDispatch(user));
 	const setProject = (project) => dispatch(setProjectDispatch(project));
 	const changeAppGlobals = (globalsToChange) => dispatch(changeAppGlobalsDispatch(globalsToChange))
 
-
 	const [loading, setLoading] = useState(true);
 
 	async function initApp(withUser) {
+		/* setDefaultLocale('es', es) */
+		
 		try{
 				const user = withUser ? { ...withUser } : await initUser();
 			if (user) {
@@ -47,7 +56,7 @@ function App() {
 	}, []);
 
 	return (
-		<div className='app'>
+		<div className='app' style={globals?.cssVariables}>
 			<header className='App-header'></header>
 			{loading && <Loader />}
 			{!loading && (!user._id ? <Login initApp={initApp} /> : <Layout />)}

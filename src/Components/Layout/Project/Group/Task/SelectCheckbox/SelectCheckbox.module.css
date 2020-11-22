@@ -1,0 +1,8 @@
+.task-selection-checkbox {
+  position: absolute;
+  top: calc((var(--task-height) / 2) - (var(--normal-checkbox-size) / 2));
+  left: -32px;
+  margin: 0;
+  width: var(--normal-checkbox-size);
+  height: var(--normal-checkbox-size);
+}

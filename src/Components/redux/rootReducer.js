@@ -14,7 +14,14 @@ function userReducer(state = {}, action) {
 	return x;
 }
 
-function appReducer(state = {}, action) {
+const defaultAppValues = {
+	cssVariables: {
+		"--task-height": "48px",
+		"--normal-checkbox-size": '20px'
+	}
+}
+
+function appReducer(state = defaultAppValues , action) {
 	return produce(state, (draft) => {
 		switch (action.type) {
 			case "SET_VIEWED_PROJECT":
@@ -84,10 +91,18 @@ function projectReducer(state = {}, action) {
 			case "EDIT_COLUMN_FAILED":
 				// TODO: error for user
 				draft.groups[action.groupIndex].columns[action.columnIndex] = action.column;
-				
 				break;
 			case "RESIZE_COLUMN":
 				draft.groups[action.groupIndex].columns[action.columnIndex].width = action.width;
+			case "ADD_TO_SELECTED_TASKS":
+				draft.selectedTasks.push(action.taskId);
+				break;
+			case "REMOVE_FROM_SELECTED_TASKS":
+				draft.selectedTasks.filter((taskId) => {return taskId != action.taskId});
+				break;
+			case "CLEAR_SELECTED_TASKS":
+				draft.selectedTasks = [];
+				break;
 			/* case "ADD_NEW_TASK":
 				if (!action.group) console.error("ADD_NEW_TASK - no group to add to");
 				let newTask = action.newTask;
@@ -256,6 +271,26 @@ export function resizeColumnDispatch(groupIndex, columnIndex, width) {
 		columnIndex: columnIndex,
 		width: width,
 	};
+}
+
+export function addToSelectedTasksDispatch(taskId) {
+	return {
+		type: "ADD_TO_SELECTED_TASKS",
+		taskId: taskId
+	};
+}
+
+export function removeFromSelectedTasksDispatch(taskId) {
+	return {
+		type: "REMOVE_FROM_SELECTED_TASKS",
+		taskId: taskId
+	};
+}
+
+export function clearSelectedTasks() {
+	return {
+		type: "CLEAR_SELECTED_TASKS",
+	}
 }
 
 export default store;

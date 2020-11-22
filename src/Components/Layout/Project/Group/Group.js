@@ -14,7 +14,7 @@ function Group({ group, groupIndex }) {
 
 	return (
 		/* TODO add classcat package:  */
-		<div className={style.group}>
+		<div className={style["group"]}>
 			<div className={style["group-header-wrapper"]}>
 				<GroupHeader
 					groupIsOpen={groupIsOpen}

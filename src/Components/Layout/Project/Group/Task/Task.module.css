@@ -1,16 +1,17 @@
 .task {
   display: flex;
-  height: 48px;
+  height: var(--task-height);
   /* background-color: rgb(222, 226, 228); */
   /* background-image: linear-gradient(rgb(223, 223, 223), rgb(212, 212, 212)); */
   /* border-bottom: rgb(240, 240, 240) 2px solid; */
   border: rgb(245, 245, 245) 1px solid;
   border-radius: 2px;
   margin-bottom: 5px;
-  box-shadow: rgb(224, 224, 224) 1px 2px 10px;
+  position: relative;
 }
 
 .task:hover {
+  box-shadow: rgb(233, 233, 233) -2px 2px 10px;
   border: rgb(188, 200, 209) 1px solid;
 }
 

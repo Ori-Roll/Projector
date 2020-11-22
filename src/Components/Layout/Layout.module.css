@@ -1,21 +1,17 @@
 .layout {
   display: grid;
   height: 100vh;
-  grid-template-columns: 60px 150px auto;
+  grid-template-columns: 60px 110px 0px auto;
   grid-template-rows: 100px auto;
   grid-template-areas:
-    'project-head 	project-head			project-head 		project-head'
-    '. 				project-side-bar		project-wrapper 	project-wrapper';
+    'project-head 	project-head			  project-head 		  project-head'
+    '. 				      .		                project-wrapper 	project-wrapper';
 }
 
 .project-head {
   height: 100%;
   grid-area: project-head;
   background-color: rgb(240, 240, 240);
-}
-
-.project-side-bar {
-  grid-area: project-side-bar;
 }
 
 .side-bar-wrapper {

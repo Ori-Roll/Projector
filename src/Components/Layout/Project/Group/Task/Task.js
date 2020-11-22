@@ -12,9 +12,13 @@ import { CellOfType } from "./Cells/CellTypes/CellTypes";
 import CellWrapper from "./CellWrapper";
 
 import style from "./Task.module.css";
+import SelectCheckbox from "./SelectCheckbox/SelectCheckbox";
 
 function Task({ task, columns, taskIndex, groupIndex }) {
+	
 	const [taskWrapperRef, inView, entry] = useInView();
+
+	const [taskIsSelected, setTaskIsSelected] = useState(false);
 
 	const dispatch = useDispatch();
 	const editTask = (groupIndex, taskIndex, task) =>
@@ -77,6 +81,7 @@ function Task({ task, columns, taskIndex, groupIndex }) {
 	}
 
 	async function taskChange(changedTask) {
+
 		editTask(groupIndex, taskIndex, changedTask);
 		try {
 			let resChangedTask = await db_changeTask(changedTask);
@@ -91,6 +96,12 @@ function Task({ task, columns, taskIndex, groupIndex }) {
 
 	return inView ? ( // TODO: maby add this to a list of viewed on group and render there accordingly (no need to pass anything)
 		<div className={style["task"]} ref={taskWrapperRef}>
+			<SelectCheckbox 
+				taskIsSelected={taskIsSelected} 
+				setTaskIsSelected={setTaskIsSelected}
+				taskId={task._id} 
+				groupIndex={groupIndex}
+				/>
 			<div className={style["task-handle"]}>&#8942;</div>
 			{columns.map((column) => {
 				return (
