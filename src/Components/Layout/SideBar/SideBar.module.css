@@ -1,6 +1,6 @@
 :root {
-  --side-general-bg-color: rgb(44, 45, 46);
-  --side-general-border: rgb(179, 179, 179) 1px solid;
+  --side-general-bg-color: rgb(34, 34, 34);
+  --side-general-border: rgb(100, 100, 100) 1px solid;
 }
 
 .side-bar {
@@ -13,7 +13,7 @@
   position: absolute;
   border-right: var(--side-general-border);
   box-shadow: rgba(0, 0, 0, 0.2) 5px 5px 20px;
-  background-color: white;
+  background-color: var(--side-general-bg-color);
   height: 100%;
   width: 60px;
   top: 0;

@@ -21,6 +21,7 @@ function ProjectSelect({projectSelectActive, setProjectSelectActive}) {
 		try {
 			const newProjectRes = await getProject(projectId, true);
 			setProject(newProjectRes.data);
+			setProjectSelectActive(false);
 			// "TODO: This needs to control loader for project";
 		} catch (error) {
 			console.error(error.response.data);
@@ -30,7 +31,7 @@ function ProjectSelect({projectSelectActive, setProjectSelectActive}) {
 
 
 	return (
-		<div className={style["project-select-menu"]} style={{left: projectSelectActive ? "50px" : "-234px"}}>
+		<div className={style["project-select-menu"]} style={{left: projectSelectActive ? "50px" : "-234px"}} onBlur={()=>setProjectSelectActive(false)}>
 			{/* <div className={style["current-project-display"]}>{project?.name && project.name}</div> */}
 			<p className={style["vertical-side-header"]}>Select Project</p>
 			<AppIcon icon="app-icon-back-arrow.png" onClickCallback={() => setProjectSelectActive(false)} />

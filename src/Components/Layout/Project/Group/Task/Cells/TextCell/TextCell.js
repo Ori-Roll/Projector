@@ -5,8 +5,6 @@ import _ from "lodash";
 import style from "./TextCell.module.css";
 import CellsStyle from "../CellsStyle.module.css";
 
-import { NEW_COLUMN_DATA } from "../../../../../../defaults";
-
 function TextCell({ cell, doCellChange, isTitle = false }) {
 	const [cellText, setCellText] = useState(cell.content);
 

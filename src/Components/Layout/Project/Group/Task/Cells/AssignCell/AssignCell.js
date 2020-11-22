@@ -33,7 +33,8 @@ function AssignCell({ cell, doCellChange, task, taskChange }) {
 
 	return (
 		<div className={style["assign-cell"]} ref={wrapperRef} onMouseOver={()=>setOnHovered(true)} onMouseLeave={()=>setOnHovered(false)}>
-			<div className={style["assigned-users-wrapper"]}>
+			<div 
+				className={style["assigned-users-wrapper"]}>
 				{task.assignedTo.map((user) => (
 					<div key={user._id} className={style["user-icon-wrapper"]} style={{marginRight: `${iconsSpacing()}px`}}>
 						<UserIcon

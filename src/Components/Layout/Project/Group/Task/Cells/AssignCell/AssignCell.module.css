@@ -9,11 +9,12 @@
   display: flex;
   flex-flow: row;
   align-items: center;
+  justify-content: left;
   /* 	overflow-x: scroll; */
   overflow-y: hidden;
-  padding-left: 6px;
+  padding-left: 8px;
   height: 100%;
-  width: 80%;
+  width: 100%;
 }
 
 .assigned-users-wrapper::-webkit-scrollbar {
