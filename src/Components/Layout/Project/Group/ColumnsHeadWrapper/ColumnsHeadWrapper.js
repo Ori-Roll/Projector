@@ -40,7 +40,7 @@ function ColumnsHeadWrapper({
 
 	return (
 		<div className={style["column-head-wrapper"]}>
-			{columns.map((column, columnIndex) => {
+			{columns?.map((column, columnIndex) => {
 				return (
 						<ResizableBox
 							key={column._id}

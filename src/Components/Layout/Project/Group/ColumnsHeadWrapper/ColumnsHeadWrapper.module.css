@@ -1,7 +1,7 @@
 .column-head-wrapper {
-	display: flex;
-	margin-bottom: 2px;
-	padding-left: 14px;
+  display: flex;
+  margin-bottom: 2px;
+  padding-left: 14px;
 }
 
 /* .column-head-wrapper:hover {
@@ -9,18 +9,18 @@
 } */
 
 .item-container {
-	display: flex;
+  display: flex;
 }
 
 .resize-handle {
-	position: absolute;
-	right: -6px;
-	top: 15px;
-	width: 10px;
-	height: 28px;
-	border-radius: 3px;
-	text-align: center;
-	color: rgb(214, 214, 214);
-	z-index: 1000;
-	cursor: ew-resize;
+  position: absolute;
+  right: -6px;
+  top: 15px;
+  width: 10px;
+  height: 28px;
+  border-radius: 3px;
+  text-align: center;
+  color: rgb(214, 214, 214);
+  z-index: 500;
+  cursor: ew-resize;
 }

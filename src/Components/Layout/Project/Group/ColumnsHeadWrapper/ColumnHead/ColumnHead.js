@@ -67,15 +67,18 @@ function ColumnHead({ column, columnIndex, groupIndex }) {
 			{column.type && column.type!=="title" && 
 				<div className={style["column-drag-handle"]}>&#8942;&#8942;</div>
 			}
-			<div // TODO: DO I NEED THIS ?
+			{column.type!=="title" && 
+				<div // TODO: DO I NEED THIS ?
 				className={style["column-content-wrapper"]}
-				/* style={{ width: column.width }} */
 			>
 				<input className={style["column-head-item"]} value={column.title} onChange={(e) => onHeadChange(e.target.value)} onBlur={(e) => onBlur(e.target.value)}/>
-			</div>
+			</div>}
+			
 
 			<ColumnHeadPopup hovered={hovered} column={column} onMouseDown={onMouseDown} />
+			
 		</div>
+		
 	);
 }
 /* :{ backgroundColor: column.color ? column.color} */
