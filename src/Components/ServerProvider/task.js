@@ -12,6 +12,8 @@ async function createNewTask(task) {
 				headers: { "Content-Type": "application/json" },
 			}
 		);
+		if(response.data.data.dueDate) response.data.data.dueDate = new Date(response.data.data.dueDate);
+	
 		return response.data;
 	} catch (error) {
 		console.error(error.response.data);
@@ -30,6 +32,7 @@ async function db_changeTask(task) {
 				headers: { "Content-Type": "application/json" },
 			}
 		);
+		if(response.data.data.dueDate) response.data.data.dueDate = new Date(response.data.data.dueDate);
 		return response.data;
 	} catch (error) {
 		console.error(error.response.data);
