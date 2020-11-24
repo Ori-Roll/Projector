@@ -39,4 +39,38 @@ async function db_changeTask(task) {
 	}
 }
 
-export { createNewTask, db_changeTask };
+
+async function db_deleteTask(task) {
+	try {
+		const response = await axios.delete(
+			`http://localhost:5000/api/v0/projects/${task.project}/tasks/${task._id}`,
+			task,
+			{
+				headers: { "Content-Type": "application/json" },
+			}
+		);
+		return response.data;
+	} catch (error) {
+		console.error(error.response.data);
+	}
+}
+
+
+async function db_deleteTasks(tasks, project) {
+	console.log("tasks are ", tasks);
+	console.log("project is ", project);
+	console.log("STRING:",`http://localhost:5000/api/v0/projects/${project}/tasks/${tasks}`)
+	/* const config = document.cookie.getAuthentication(); // AxiosRequestConfig
+	config.data = {payload: tasks}; */
+	
+	try {
+		const response = await axios.delete(
+			`http://localhost:5000/api/v0/projects/${project}/tasks/${tasks}`
+		);
+		return response.data.data;
+	} catch (error) {
+		console.error(error.response.data);
+	}
+}
+
+export { createNewTask, db_changeTask, db_deleteTask, db_deleteTasks };

@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{ useEffect } from 'react';
 import PropTypes from 'prop-types'
 import style from "./SelectCheckbox.module.css";
 import {addToSelectedTasksDispatch, removeFromSelectedTasksDispatch} from "./../../../../../redux/rootReducer"; 
@@ -8,6 +8,13 @@ function SelectCheckbox({taskIsSelected ,setTaskIsSelected, taskId}) {
     
     const dispatch = useDispatch();
     const selected = useSelector(state => state.project.selectedTasks)
+
+    useEffect(() => {
+        if(!selected.includes(taskId)){
+            setTaskIsSelected(false);
+            console.log("THISSS")
+        }
+    }, [selected])
 
     const changeSelectedTo = {
         selected: () => dispatch(addToSelectedTasksDispatch(taskId)),

@@ -11,7 +11,6 @@ import style from "./Group.module.css"; // TODO: rename file to lowercase, in my
 
 function Group({ group, groupIndex }) {
 	const [groupIsOpen, setGroupIsOpen] = useState(true); // TODO: (Ori) this needs to initially come from backend
-
 	return (
 		/* TODO add classcat package:  */
 		<div className={style["group"]}>

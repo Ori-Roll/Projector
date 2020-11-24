@@ -51,7 +51,8 @@ function projectReducer(state = {}, action) {
 			case "CHANGE_PROJECT_TO":
 				return action.project;
 			case "SET_PROJECT_GROUP":
-				draft.groups.splice(indexItemIdIn(action.group._id, draft.groups), 1, action.group);
+				const groupIndex = draft.groups.findIndex(group => group._id === action.group._id); 
+				draft.groups.splice(groupIndex ,1 ,action.group);
 				break;
 			case "SET_PROJECT_GROUPS":
 				draft.groups = action.groups;
@@ -62,6 +63,9 @@ function projectReducer(state = {}, action) {
 			case "EDIT_TASK":
 				draft.groups[action.groupIndex].tasks[action.taskIndex] = action.task;
 				break;
+			case "DELETE_TASKS_FROM_GROUP":
+				draft.groups[action.groupIndex].tasks = 
+					draft.groups[action.groupIndex].tasks.filter(task => task !== action.taskIndex);
 			case "EDIT_CELL":
 				draft.groups[action.groupIndex].tasks[action.taskIndex].cells[action.cellIndex] =
 					action.cell;
@@ -98,7 +102,7 @@ function projectReducer(state = {}, action) {
 				draft.selectedTasks.push(action.taskId);
 				break;
 			case "REMOVE_FROM_SELECTED_TASKS":
-				draft.selectedTasks.filter((taskId) => {return taskId != action.taskId});
+				draft.selectedTasks = draft.selectedTasks.filter(taskId => taskId !== action.taskId);
 				break;
 			case "CLEAR_SELECTED_TASKS":
 				draft.selectedTasks = [];
@@ -156,7 +160,7 @@ export function setProjectDispatch(project) {
 	};
 }
 
-export function changeProjectGroupDispatch(group) {
+export function setProjectGroupDispatch(group) {
 	// This is for the whole group
 	return {
 		type: "SET_PROJECT_GROUP",
@@ -201,6 +205,14 @@ export function editTaskDispatch(groupIndex, taskIndex, task) {
 		taskIndex: taskIndex,
 		task: task,
 	};
+}
+
+export function deleteTaskFromGroup(groupIndex, taskIndex) {
+	return {
+		type: "DELETE_TASKS_FROM_GROUP",
+		groupIndex: groupIndex,
+		taskIndex: taskIndex
+	}
 }
 
 export function editCellDispatch(cell, cellIndex, taskIndex, groupIndex) {
@@ -287,7 +299,7 @@ export function removeFromSelectedTasksDispatch(taskId) {
 	};
 }
 
-export function clearSelectedTasks() {
+export function clearSelectedTasksDispatch() {
 	return {
 		type: "CLEAR_SELECTED_TASKS",
 	}

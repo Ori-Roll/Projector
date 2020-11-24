@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 import style from "./SelectedMenu.module.css";
-import {clearSelectedTasksDispatch} from "./../../../../../redux/rootReducer"; 
+import {clearSelectedTasksDispatch, setProjectGroupDispatch} from "./../../../../../redux/rootReducer"; 
 
 import {db_deleteTasks} from "../../../../../ServerProvider/task"
 
@@ -18,13 +18,13 @@ function SelectedMenu() {
     const project = useSelector(state => state.project)
     
     const clearSelectedTasks = ()=>dispatch(clearSelectedTasksDispatch())
-
-    const [referenceElement, setReferenceElement] = useState(null);
+    const setProjectGroup = (group)=>dispatch(setProjectGroupDispatch(group))
+    /* const [referenceElement, setReferenceElement] = useState(null);
     const [popperElement, setPopperElement] = useState(null);
     const [arrowElement, setArrowElement] = useState(null);
     const { styles, attributes } = usePopper(referenceElement, popperElement, {
       modifiers: [{ name: 'arrow', options: { element: arrowElement } }],
-    });
+    }); */
 
     function onCheckAll(){
         console.log("CHECK ALL")
@@ -32,14 +32,15 @@ function SelectedMenu() {
 
     async function onDeleteSelected(){
         try{
-            const deleteRes = await db_deleteTasks(selected, project._id);
-            console.log(deleteRes);
+            const deleteResGroup = await db_deleteTasks(selected, project._id);
+            deleteResGroup.loaded = true;
+            setProjectGroup(deleteResGroup);
             clearSelectedTasks();
         } catch(error) {
             console.error(error)
         }
     }
-
+    
     return (
         <>
             {/* <button 

@@ -61,7 +61,9 @@ function ColumnHead({ column, columnIndex, groupIndex }) {
 
 	return (
 		<div
-			className={style[(column.type && column.type==="title" ? "column-head-title-wrapper" : "column-head-wrapper")]}
+			className={style[(column.type && column.type==="title" 
+				? "column-head-title-wrapper" 
+				: "column-head-wrapper")]}
 			onMouseOver={() => setHovered(true)}
 			onMouseLeave={() => setTimeout(() => setHovered(false), 200)}>
 			{column.type && column.type!=="title" && 
@@ -71,7 +73,10 @@ function ColumnHead({ column, columnIndex, groupIndex }) {
 				<div // TODO: DO I NEED THIS ?
 				className={style["column-content-wrapper"]}
 			>
-				<input className={style["column-head-item"]} value={column.title} onChange={(e) => onHeadChange(e.target.value)} onBlur={(e) => onBlur(e.target.value)}/>
+				<input className={style["column-head-item"]} 
+					value={column.title} 
+					onChange={(e) => onHeadChange(e.target.value)} 
+					onBlur={(e) => onBlur(e.target.value)}/>
 			</div>}
 			
 
