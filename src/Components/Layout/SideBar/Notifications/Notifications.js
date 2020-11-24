@@ -10,11 +10,20 @@ function Notifications({notificationsMenuActive}) {
     
     const user = useSelector((state) => state?.user);
 
+    const noNotifications = () => 
+        (<div className={style["no-notifiaction-message"]}>
+            <h3>All clear</h3>
+            <h3>{":-)"}</h3>
+            <p>No new notifications or messages</p>
+        </div>)
+
     return (
     <div className={style["notifications-wrapper"]} style={{left: notificationsMenuActive ? "65px" : "-250px"}}>
-        {user?.pendingMessages[0] && user.pendingMessages.map(msg => 
+        {user?.pendingMessages[0] ? user.pendingMessages.map(msg => 
             <div className={style["notification-message"]} key={msg.header}><p>HEAD:{msg.header}</p><p>BODY:{msg.body}</p></div>
-        )}
+        )
+        : noNotifications()
+    }
     </div> 
     )
 }
