@@ -9,6 +9,7 @@ import add from "date-fns/add";
 import style from "./DueDate.module.css";
 import CellsStyle from "../CellsStyle.module.css";
 import AppIcon from '../../../../../../../GlobalComponents/AppIcon/AppIcon';
+import ReminderPicker from '../../../../../../../GlobalComponents/ReminderPicker/ReminderPicker';
 
 
  

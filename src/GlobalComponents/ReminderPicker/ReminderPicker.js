@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import style from "./ReminderPicker.module.css"
 
-function ReminderPicker(props) {
+function ReminderPicker({task}) {
     return (
         <div className={style["picker-wrapper"]}>
             
