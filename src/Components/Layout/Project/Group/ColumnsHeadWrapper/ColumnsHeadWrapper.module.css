@@ -2,6 +2,7 @@
   display: flex;
   margin-bottom: 2px;
   padding-left: 14px;
+  position: relative;
 }
 
 /* .column-head-wrapper:hover {

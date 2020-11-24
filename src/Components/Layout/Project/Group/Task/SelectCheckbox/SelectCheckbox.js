@@ -13,8 +13,9 @@ function SelectCheckbox({taskIsSelected ,setTaskIsSelected, taskId}) {
         selected: () => dispatch(addToSelectedTasksDispatch(taskId)),
         unSelected: ()=> dispatch(removeFromSelectedTasksDispatch(taskId)),
     }
-
+    
     function toggleSelected(){
+        
         if(taskIsSelected){
             changeSelectedTo.unSelected()
         } else {

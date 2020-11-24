@@ -7,7 +7,7 @@
   grid-template-areas:
     'group-header-wrapper  group-header-wrapper . group-scroll-end-gradiant'
     'group-content-wrapper group-right-control	. group-scroll-end-gradiant'
-    '. 					   .					. .	';
+    '. 					           .					          . .	';
   border-radius: 20px;
   width: 80vw;
   padding: 5px;

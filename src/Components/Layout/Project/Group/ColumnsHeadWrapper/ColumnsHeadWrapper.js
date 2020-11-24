@@ -12,6 +12,7 @@ import ColumnHead from "./ColumnHead/ColumnHead";
 import { resizeColumnDispatch } from "../../../../redux/rootReducer";
 
 import style from "./ColumnsHeadWrapper.module.css";
+import SelectedMenu from "./SelectedMenu/SelectedMenu";
 
 function ColumnsHeadWrapper({
 	columns,
@@ -40,6 +41,7 @@ function ColumnsHeadWrapper({
 
 	return (
 		<div className={style["column-head-wrapper"]}>
+			<SelectedMenu/>
 			{columns?.map((column, columnIndex) => {
 				return (
 						<ResizableBox
@@ -61,6 +63,7 @@ function ColumnsHeadWrapper({
 						</ResizableBox>
 				);
 			})}
+
 		</div>
 	);
 }
