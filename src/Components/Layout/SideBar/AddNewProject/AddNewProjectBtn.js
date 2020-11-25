@@ -7,7 +7,7 @@ import style from "./AddNewProject.module.css";
 import AddNewProjectMenu from './AddNewProjectMenu';
 
 
-function AddNewProjectBtn(props) {
+function AddNewProjectBtn() {
 
     const [addNewProjectMenuActive, setAddNewProjectMenuActive] = useState(false);
 
@@ -20,7 +20,7 @@ function AddNewProjectBtn(props) {
             />
             {addNewProjectMenuActive && 
             <div className={style["add-new-project-menu-modal"]} onClick={() => setAddNewProjectMenuActive(false)}>
-                <AddNewProjectMenu/>
+                <AddNewProjectMenu setAddNewProjectMenuActive={setAddNewProjectMenuActive}/>
             </div>}
         </div>
     )
