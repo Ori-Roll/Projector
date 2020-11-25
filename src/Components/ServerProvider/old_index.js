@@ -1,4 +1,4 @@
-import _ from "lodash";
+/* import _ from "lodash";
 import { NewGroup } from "../misc/NewDataMakers";
 import axios from "axios";
 
@@ -81,7 +81,6 @@ async function setCrappyServerData(path, newData) {
 		}
 	}
 	_.set(crappyServerData, path, newData);
-	/* crappyServerData[data] = newData; */
 	return getCrappyServerData; // TODO: check for timeStamps mach
 }
 
@@ -96,14 +95,6 @@ async function getCrappyServerData(query) {
 	return _.get(crappyServerData, query);
 }
 
-/* a------
-    b-------- go back to b and this time weit for b to finish
-	   c--X	 
- - what if person 1 delete a column while person 2 changes colomns data	 
- - is there a way of saving changes and revert without saving everything ?
-
-*/
-
 crappyServerData["someProjId"].groups.push(NewGroup(null, crappyServerData["someProjId"]));
 crappyServerData["otherProjId"].groups.push(NewGroup(null, crappyServerData["otherProjId"]));
 crappyServerData["otherProjId"].groups.push(NewGroup(null, crappyServerData["otherProjId"]));
@@ -112,3 +103,4 @@ crappyServerData["ProjId3"].groups.push(NewGroup(null, crappyServerData["ProjId3
 crappyServerData["ProjId3"].groups.push(NewGroup(null, crappyServerData["ProjId3"]));
 
 export { setCrappyServerData, getCrappyServerData, db_loginUser, db_getLoggedInUser };
+ */
