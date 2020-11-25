@@ -5,7 +5,7 @@ import style from "./Project.module.css";
 function ProjectLoader(props) {
 	return (
 		<div className={style["project-loader"]}>
-			<p>Loading...</p>
+			<p>Loading project...</p>
 		</div>
 	);
 }

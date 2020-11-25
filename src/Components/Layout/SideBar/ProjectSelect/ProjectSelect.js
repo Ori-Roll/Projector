@@ -1,12 +1,14 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
-import style from "./ProjectSelect.module.css";
 
 import { setProjectDispatch } from "../../../redux/rootReducer";
-
 import { getProject } from "../../../ServerProvider/projects";
+
 import AppIcon from "../../../../GlobalComponents/AppIcon/AppIcon";
+import useResetTemporaryOperations from "../../../../GlobalComponents/globalControllers/useResetTemporaryOperations"
+
+import style from "./ProjectSelect.module.css";
 
 function ProjectSelect({projectSelectActive, setProjectSelectActive}) {
 	const dispatch = useDispatch();
@@ -15,13 +17,14 @@ function ProjectSelect({projectSelectActive, setProjectSelectActive}) {
 	const project = useSelector((state) => state.project);
 	const setProject = (project) => dispatch(setProjectDispatch(project));
 
-
+	const resetTemporaryOperations = useResetTemporaryOperations();
 
 	async function setSelectedProject(projectId) {
 		try {
 			setProjectSelectActive(false);
 			const newProjectRes = await getProject(projectId, true);
 			setProject(newProjectRes.data);
+			resetTemporaryOperations();
 			// "TODO: This needs to control loader for project";
 		} catch (error) {
 			console.error(error.response.data);

@@ -1,15 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import {useDispatch} from "react-redux"
+
 import { createNewProject } from '../../../../ServerProvider/projects';
+
+import {setProjectDispatch} from "../../../../redux/rootReducer"
 
 import style from "./ProjectTypeDetails.module.css";
 
-function ProjectTypeDetails({selectedProjectType, setSelectedProjectType}) {
+function ProjectTypeDetails({selectedProjectType, setSelectedProjectType, setAddNewProjectMenuActive}) {
     
+    const dispatch = useDispatch()
+
+    const setProjectToSelected = (project) => dispatch(setProjectDispatch(project))
+
     async function onDoneClick(){
+        setAddNewProjectMenuActive(false);
         const newProjectRes = await createNewProject(selectedProjectType.projectProperties);
         console.log("newProjectRes", newProjectRes);
+        setProjectToSelected(newProjectRes);
     }
     
     return (

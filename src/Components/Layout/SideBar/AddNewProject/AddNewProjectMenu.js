@@ -6,7 +6,7 @@ import ProjectTypeItems from "./ProjectTypeItems/ProjectTypeItems";
 
 import style from "./AddNewProject.module.css"
 
-function AddNewProjectMenu(props) {
+function AddNewProjectMenu({setAddNewProjectMenuActive}) {
 
     const [selectedProjectType, setSelectedProjectType] = useState(null);
     
@@ -16,7 +16,9 @@ function AddNewProjectMenu(props) {
         className={style["add-new-project-menu"]} 
         onClick={e=>e.stopPropagation()}>
             {selectedProjectType 
-            ? <ProjectTypeDetails selectedProjectType={selectedProjectType} setSelectedProjectType={setSelectedProjectType} />
+            ? <ProjectTypeDetails selectedProjectType={selectedProjectType} 
+                setSelectedProjectType={setSelectedProjectType} 
+                setAddNewProjectMenuActive={setAddNewProjectMenuActive} />
             : <ProjectTypeItems selectedProjectType={selectedProjectType} setSelectedProjectType={setSelectedProjectType}/>
             }
         </div>    

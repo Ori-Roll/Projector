@@ -7,7 +7,7 @@ import defaults from "../../defaults";
 import Group from "./Group/Group";
 import ProjectLoader from "./ProjectLoader";
 
-import { setProjectGroupsDispatch } from "../../redux/rootReducer";
+import { setProjectGroupsDispatch, changeLoadedStateDispatch } from "../../redux/rootReducer";
 
 import { getProjectGroups } from "../../ServerProvider/groups";
 
@@ -18,9 +18,9 @@ function Project() {
 
 	const project = useSelector((state) => state?.project);
 	const setProjectGroups = (project) => dispatch(setProjectGroupsDispatch(project));
+	const projectLoadedState = useSelector((state) => state?.app.loaded.project);
+	const changeProjectLoadedState = (isLoaded) => dispatch(changeLoadedStateDispatch("project", isLoaded));
 
-	const [loadingGroups, setLoadingGroups] = useState(true);
-	
 	async function initGroups() {
 		try {
 			let groups = await getProjectGroups(project._id);
@@ -30,18 +30,19 @@ function Project() {
 			});
 			setProjectGroups(groups);
 			
-			setLoadingGroups(false);
+			changeProjectLoadedState(true);
 		} catch (error) {
 			console.error(error);
 		}
 	}
+	console.log(projectLoadedState);
 
 	useEffect(() => {
 		initGroups();
 	}, [project._id]);
 	return (
 		<>
-			{loadingGroups ? (
+			{!projectLoadedState ? (
 				<ProjectLoader />
 			) : (
 				<div className={style.project}>

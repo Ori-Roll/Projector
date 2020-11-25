@@ -22,6 +22,10 @@ const defaultAppValues = {
 		"--create-new-project-menu-position-left-pc": "5%",
   		"--create-new-project-menu-position-top-pc": "5%",
   		"--create-new-project-theme-color-a": '#db331d'
+	},
+	loaded: {
+		app: false,
+		project: false,
 	}
 }
 
@@ -37,6 +41,8 @@ function appReducer(state = defaultAppValues , action) {
 			case "CHANGE_APP_GLOBALS":
 				draft.globals = {...draft.globals, ...action.globalsToChange}
 				break;
+			case "CHANGE_LOADED_STATE":
+				draft.loaded[action.mainUnit] = action.isLoaded;
 			default:
 				return draft;
 		}
@@ -306,6 +312,14 @@ export function removeFromSelectedTasksDispatch(taskId) {
 export function clearSelectedTasksDispatch() {
 	return {
 		type: "CLEAR_SELECTED_TASKS",
+	}
+}
+
+export function changeLoadedStateDispatch(mainUnit, isLoaded){
+	return {
+		type: "CHANGE_LOADED_STATE",
+		mainUnit: mainUnit,
+		isLoaded: isLoaded
 	}
 }
 
