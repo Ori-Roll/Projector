@@ -59,7 +59,7 @@ function App() {
 		<div className='app' style={globals?.cssVariables}>
 			<header className='App-header'></header>
 			{loading && <Loader />}
-			{!loading && (!user._id ? <Login initApp={initApp} /> : <Layout />)}
+			{!loading &&  (!user || !user._id ? <Login initApp={initApp} /> : <Layout />)}
 		</div>
 	);
 }
