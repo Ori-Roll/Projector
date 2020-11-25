@@ -19,9 +19,9 @@ function ProjectSelect({projectSelectActive, setProjectSelectActive}) {
 
 	async function setSelectedProject(projectId) {
 		try {
+			setProjectSelectActive(false);
 			const newProjectRes = await getProject(projectId, true);
 			setProject(newProjectRes.data);
-			setProjectSelectActive(false);
 			// "TODO: This needs to control loader for project";
 		} catch (error) {
 			console.error(error.response.data);
@@ -31,7 +31,14 @@ function ProjectSelect({projectSelectActive, setProjectSelectActive}) {
 
 
 	return (
+		<>
+		<div 
+			style={{display: projectSelectActive ? "initial" : "none"}} 
+			className={style["add-new-project-menu-modal"]}
+			onClick={e=>{e.stopPropagation(); setProjectSelectActive(false)}}
+		/>
 		<div className={style["project-select-menu"]} style={{left: projectSelectActive ? "50px" : "-234px"}} onBlur={()=>setProjectSelectActive(false)}>
+			
 			{/* <div className={style["current-project-display"]}>{project?.name && project.name}</div> */}
 			<p className={style["vertical-side-header"]}>Select Project</p>
 			<AppIcon icon="app-icon-back-arrow.png" onClickCallback={() => setProjectSelectActive(false)} />
@@ -50,6 +57,7 @@ function ProjectSelect({projectSelectActive, setProjectSelectActive}) {
 					: " ! no projects ! "}
 				</div>
 			</div>
+		</>	
 			/* TODO: change so it will load a proj if no viewed proj */
 			
 	);
