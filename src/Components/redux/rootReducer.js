@@ -17,7 +17,11 @@ function userReducer(state = {}, action) {
 const defaultAppValues = {
 	cssVariables: {
 		"--task-height": "48px",
-		"--normal-checkbox-size": '20px'
+		"--normal-checkbox-size": '20px',
+
+		"--create-new-project-menu-position-left-pc": "5%",
+  		"--create-new-project-menu-position-top-pc": "5%",
+  		"--create-new-project-theme-color-a": '#db331d'
 	}
 }
 

@@ -7,6 +7,12 @@
   text-align: center;
 }
  */
+
+:root {
+  --create-new-project-menu-position-left-pc: 5%;
+  --create-new-project-menu-position-top-pc: 5%;
+}
+
 .add-new-project-menu-modal {
   position: fixed;
   width: 100%;
@@ -16,10 +22,21 @@
   background-color: rgba(133, 133, 133, 0.082);
 }
 
+.add-new-project-menu::after {
+  position: inherit;
+  top: Calc(var(--create-new-project-menu-position-top-pc) - 5px);
+  left: inherit;
+  width: inherit;
+  height: 5px;
+  background-color: var(--create-new-project-theme-color-a);
+  content: ' ';
+  z-index: 10001;
+}
+
 .add-new-project-menu {
   position: fixed;
-  left: calc(5%);
-  top: calc(5%);
+  left: var(--create-new-project-menu-position-left-pc);
+  top: var(--create-new-project-menu-position-top-pc);
   width: 90%;
   height: 90%;
   background-color: white;
