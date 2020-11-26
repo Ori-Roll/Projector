@@ -5,6 +5,7 @@ import _, { templateSettings } from "lodash";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import add from "date-fns/add";
+import {Portal} from "react-portal";
 
 import style from "./DueDate.module.css";
 import CellsStyle from "../CellsStyle.module.css";
@@ -24,7 +25,6 @@ function DueDate({cell, doCellChange, task, taskChange}) {
     const SETTINGS_DATE_FORMAT ="dd/MM/yy"
     
     function onChange(newDate) {
-        console.log("new Date is : ",newDate)
         setDate(newDate);
         taskChange({...task, dueDate: newDate})
     }
@@ -81,43 +81,39 @@ function DueDate({cell, doCellChange, task, taskChange}) {
                     `${date.toLocaleString("default", { weekday: "short" })}, ${date.getDate()}/${date.getMonth()}, ${date.getHours()}:${date.getMinutes()}` : "choose date" }
                 onChange={ e=> onChange(e.target.value)}
                 /> */}
-
-                
-                
             </div>
             <DatePicker
-                    // TODO: This might need localization support for other countries see documentation under Localization 
-                    selected={date} 
-                    onChange={newDate=>onChange(newDate)}
-                    showTimeSelect 
-                    placeholderText="Select a date"
-                    locale="pt-BR"
-                    dateFormat="Pp"
-                    timeFormat={SETTINGS_TIME_FORMAT}
-                    timeIntervals="30"
-                    dateFormat={`${SETTINGS_DATE_FORMAT} ${SETTINGS_TIME_FORMAT}`}
-                    shouldCloseOnSelect={true}
-                    calendarClassName={style["date-picker-costum"]}
-                    onChangeRaw={event => handleChangeRaw(event.target.value)}
-                    costumInput={<customInput />}
-                    popperModifiers={{
-                        offset: {
-                          enabled: true,
-                          offset: "5px, 5px"
-                        },
-                        preventOverflow: {
-                          enabled: true,
-                          escapeWithReference: false,
-                          boundariesElement: "viewport"
-                        }
-                      }}
-                    >
-                        <div className={style["specific-selectable-header"]}>Other options:</div>
-                        <div onClick={()=>setToNamedDate("today")} className={style["specific-selectable-date"]}>Today</div>
-                        <div onClick={()=>setToNamedDate("tomorrow")} className={style["specific-selectable-date"]}>Tomorrow</div>
-                        <div onClick={()=>setToNamedDate("inAweek")} className={style["specific-selectable-date"]}>In a week</div>
-                    </DatePicker>
-            
+                // TODO: This might need localization support for other countries see documentation under Localization 
+                selected={date} 
+                onChange={newDate=>onChange(newDate)}
+                showTimeSelect 
+                placeholderText="Select a date"
+                locale="pt-BR"
+                dateFormat="Pp"
+                timeFormat={SETTINGS_TIME_FORMAT}
+                timeIntervals="30"
+                dateFormat={`${SETTINGS_DATE_FORMAT} ${SETTINGS_TIME_FORMAT}`}
+                shouldCloseOnSelect={true}
+                calendarClassName={style["date-picker-costum"]}
+                onChangeRaw={event => handleChangeRaw(event.target.value)}
+                costumInput={<customInput />}
+                popperModifiers={{
+                    offset: {
+                        enabled: true,
+                        offset: "20px, 5px",
+                    },
+                    preventOverflow: {
+                        enabled: true,
+                        escapeWithReference: false,
+                        boundariesElement: "viewport",
+                        rootBoundary: 'document',
+                    }
+                }}>
+                <div className={style["specific-selectable-header"]}>Other options:</div>
+                <div onClick={()=>setToNamedDate("today")} className={style["specific-selectable-date"]}>Today</div>
+                <div onClick={()=>setToNamedDate("tomorrow")} className={style["specific-selectable-date"]}>Tomorrow</div>
+                <div onClick={()=>setToNamedDate("inAweek")} className={style["specific-selectable-date"]}>In a week</div>
+            </DatePicker>
         </div>
         
     )
