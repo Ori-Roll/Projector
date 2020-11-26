@@ -12,7 +12,6 @@ function SelectCheckbox({taskIsSelected ,setTaskIsSelected, taskId}) {
     useEffect(() => {
         if(!selected.includes(taskId)){
             setTaskIsSelected(false);
-            console.log("THISSS")
         }
     }, [selected])
 
@@ -22,7 +21,7 @@ function SelectCheckbox({taskIsSelected ,setTaskIsSelected, taskId}) {
     }
     
     function toggleSelected(){
-        
+        console.log("CHECK CHNAGE HAPPEN")
         if(taskIsSelected){
             changeSelectedTo.unSelected()
         } else {

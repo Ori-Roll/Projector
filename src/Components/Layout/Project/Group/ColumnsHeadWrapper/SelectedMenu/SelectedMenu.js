@@ -30,6 +30,8 @@ function SelectedMenu() {
         console.log("CHECK ALL")
     }
 
+    console.log("SELECT RENDER", selected.length);
+
     async function onDeleteSelected(){
         try{
             const deleteResGroup = await db_deleteTasks(selected, project._id);
@@ -52,13 +54,12 @@ function SelectedMenu() {
             </div> */}
             <div className={style["icon-wrapper"]}>
                 <AppIcon 
-                    icon="app-icon-arrow-notrail.png" 
+                    icon="app-icon-select-checkbox-checked.png" 
                     onClickCallback={()=>setMenuIsActive(!menuIsActive)}
-                    color={(selected.length > 0) ?  "#4078a8" : "#d9d9d9"} 
+                    color={(selected.length > 0) ?  "#3f84bf" : "#8aa4ba"} 
                     size={28}
                 />
             </div>
-            
             {menuIsActive && 
                 <div className={style["task-selected-menu"]}>
                     <div className={style["selected-action-btn"]}>
