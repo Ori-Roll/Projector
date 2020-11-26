@@ -18,8 +18,8 @@ function Project() {
 
 	const project = useSelector((state) => state?.project);
 	const setProjectGroups = (project) => dispatch(setProjectGroupsDispatch(project));
-	const projectLoadedState = useSelector((state) => state?.app.loaded.project);
-	const changeProjectLoadedState = (isLoaded) => dispatch(changeLoadedStateDispatch("project", isLoaded));
+	const projectLoadingState = useSelector((state) => state?.app.loaded.project);
+	const changeProjectLoadedState = (loadingState) => dispatch(changeLoadedStateDispatch("project", loadingState));
 
 	async function initGroups() {
 		try {
@@ -29,21 +29,20 @@ function Project() {
 				group.loaded = true;
 			});
 			setProjectGroups(groups);
-			
-			changeProjectLoadedState(true);
+			changeProjectLoadedState(null);
 		} catch (error) {
 			console.error(error);
 		}
 	}
-	console.log(projectLoadedState);
 
 	useEffect(() => {
 		initGroups();
 	}, [project._id]);
+
 	return (
 		<>
-			{!projectLoadedState ? (
-				<ProjectLoader />
+			{projectLoadingState ? (
+				<ProjectLoader message={projectLoadingState} />
 			) : (
 				<div className={style.project}>
 					{project.groups?.map((group, i) => {

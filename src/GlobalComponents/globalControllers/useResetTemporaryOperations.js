@@ -8,13 +8,17 @@ function useResetTemporaryOperations(operations = "all"){
     const dispatch = useDispatch();
 
     const selected = useSelector(state => state.project.selectedTasks);
-    const changeProjectLoadedState = (isLoaded) => dispatch(changeLoadedStateDispatch("project", isLoaded))
+    const changeProjectLoadedState = (loadingState) => dispatch(changeLoadedStateDispatch("project", loadingState))
 
     const reset = {
-        all: ()=>{
+        all: (options = {})=>{
             dispatch(clearSelectedTasksDispatch())
-            changeProjectLoadedState(false);
+            changeProjectLoadedState(options.projectLoadingMessage || "Loading project...");
+        },
+        selectedTasks: ()=>{
+            dispatch(clearSelectedTasksDispatch())
         }
+
     }
         
     return (reset[operations]);
@@ -22,4 +26,4 @@ function useResetTemporaryOperations(operations = "all"){
 
 
 
-export default useResetTemporaryOperations
+export default useResetTemporaryOperations;

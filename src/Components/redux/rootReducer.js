@@ -21,11 +21,12 @@ const defaultAppValues = {
 
 		"--create-new-project-menu-position-left-pc": "5%",
   		"--create-new-project-menu-position-top-pc": "5%",
-  		"--create-new-project-theme-color-a": '#db331d'
+		"--create-new-project-theme-color-a": '#db331d',
+		"--sidebar-width": "60px",  
 	},
 	loaded: {
-		app: false,
-		project: false,
+		app: null,
+		project: null,
 	}
 }
 
@@ -42,12 +43,12 @@ function appReducer(state = defaultAppValues , action) {
 				draft.globals = {...draft.globals, ...action.globalsToChange}
 				break;
 			case "CHANGE_LOADED_STATE":
-				draft.loaded[action.mainUnit] = action.isLoaded;
+				draft.loaded[action.forStage] = action.loadingState;
 			default:
 				return draft;
 		}
 	});
-}
+};
 
 function projectReducer(state = {}, action) {
 	function indexItemIdIn(id, Arr) {
@@ -108,6 +109,7 @@ function projectReducer(state = {}, action) {
 				break;
 			case "RESIZE_COLUMN":
 				draft.groups[action.groupIndex].columns[action.columnIndex].width = action.width;
+				break;
 			case "ADD_TO_SELECTED_TASKS":
 				draft.selectedTasks.push(action.taskId);
 				break;
@@ -287,6 +289,7 @@ export function editColumnFailedDispatch(groupIndex, columnIndex, column) {
 
 // TODO: Check if this can go under edit column
 export function resizeColumnDispatch(groupIndex, columnIndex, width) {
+	
 	return {
 		type: "RESIZE_COLUMN",
 		groupIndex: groupIndex,
@@ -296,6 +299,7 @@ export function resizeColumnDispatch(groupIndex, columnIndex, width) {
 }
 
 export function addToSelectedTasksDispatch(taskId) {
+	
 	return {
 		type: "ADD_TO_SELECTED_TASKS",
 		taskId: taskId
@@ -303,6 +307,7 @@ export function addToSelectedTasksDispatch(taskId) {
 }
 
 export function removeFromSelectedTasksDispatch(taskId) {
+	
 	return {
 		type: "REMOVE_FROM_SELECTED_TASKS",
 		taskId: taskId
@@ -315,11 +320,11 @@ export function clearSelectedTasksDispatch() {
 	}
 }
 
-export function changeLoadedStateDispatch(mainUnit, isLoaded){
+export function changeLoadedStateDispatch(forStage, loadingState){
 	return {
 		type: "CHANGE_LOADED_STATE",
-		mainUnit: mainUnit,
-		isLoaded: isLoaded
+		forStage: forStage,
+		loadingState: loadingState
 	}
 }
 

@@ -17,21 +17,25 @@ function ProjectSelect({projectSelectActive, setProjectSelectActive}) {
 	const project = useSelector((state) => state.project);
 	const setProject = (project) => dispatch(setProjectDispatch(project));
 
-	const resetTemporaryOperations = useResetTemporaryOperations();
+	const resetSelectedTasks = useResetTemporaryOperations("selectedTasks");
+	const resetTemporaryOperations = useResetTemporaryOperations("all");
 
 	async function setSelectedProject(projectId) {
+		// This prevents reloading the same project;
+		if (project._id === projectId) {
+			resetSelectedTasks();
+			return setProjectSelectActive(false);
+		};
+
 		try {
 			setProjectSelectActive(false);
+			resetTemporaryOperations();
 			const newProjectRes = await getProject(projectId, true);
 			setProject(newProjectRes.data);
-			resetTemporaryOperations();
-			// "TODO: This needs to control loader for project";
 		} catch (error) {
 			console.error(error.response.data);
 		}
 	}
-
-
 
 	return (
 		<>
