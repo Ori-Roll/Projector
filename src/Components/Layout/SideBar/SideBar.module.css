@@ -15,7 +15,7 @@
   box-shadow: rgba(0, 0, 0, 0.2) 5px 5px 20px;
   background-color: var(--side-general-bg-color);
   height: 100%;
-  width: 60px;
+  width: var(--sidebar-width);
   top: 0;
   padding: 10px 0;
   display: grid;
@@ -37,6 +37,39 @@
 .user-calendar-icon-wrapper {
   grid-row: 4/5;
   margin: auto;
+}
+
+@media only screen and (max-width: 400px) {
+  .side-bar {
+    height: calc(var(--sidebar-width) + 10px);
+    width: 100vw;
+  }
+
+  .general {
+    border-right: none;
+    background-color: yellow;
+    border-bottom: var(--side-general-border);
+    width: 100%;
+    top: 0;
+    padding: 10px 0;
+    grid-template-columns: 1fr 1fr 12fr 1fr 1fr 1fr;
+    grid-template-rows: none;
+  }
+
+  .project-select-icon-wrapper {
+    grid-column: 1/2;
+    grid-row: none;
+  }
+
+  .notifications-icon-wrapper {
+    grid-column: 5/6;
+    grid-row: none;
+  }
+
+  .user-calendar-icon-wrapper {
+    grid-column: 4/5;
+    grid-row: none;
+  }
 }
 
 /* .general-top {

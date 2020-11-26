@@ -2,17 +2,17 @@
   border-bottom: rgb(221, 221, 221) 1px dashed;
   border-radius: 2px;
   display: grid;
-  grid-template-columns: max-content 50px auto auto;
+  grid-template-columns: max-content 50px;
   grid-template-rows: 80px auto 20px;
   grid-template-areas:
-    'group-header-wrapper  group-header-wrapper . group-scroll-end-gradiant'
-    'group-content-wrapper group-right-control	. group-scroll-end-gradiant'
-    '. 					           .					          . .	';
+    'group-header-wrapper  group-header-wrapper'
+    'group-content-wrapper group-right-control'
+    '. 					           .';
   border-radius: 20px;
-  width: 80vw;
+  width: 98%;
+  height: 100%;
   padding: 5px;
   padding-left: 40px;
-  overflow-x: auto;
 }
 
 /* 

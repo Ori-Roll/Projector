@@ -1,30 +1,28 @@
 .layout {
   display: grid;
   height: 100vh;
-  grid-template-columns: 60px 110px 0px auto;
+  /* grid-template-columns: 60px 110px 0px auto;
   grid-template-rows: 100px auto;
   grid-template-areas:
     'project-head 	project-head			  project-head 		  project-head'
     '. 				      .		                project-wrapper 	project-wrapper';
+  overflow: hidden; */
+  grid-template-rows: 10px auto;
 }
 
 .project-head {
-  height: 100%;
-  grid-area: project-head;
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(172, 186, 214);
 }
 
 .side-bar-wrapper {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
 }
 
 .project-wrapper {
   height: 100%;
-  padding-top: 50px;
-  grid-area: project-wrapper;
+  width: 100%;
 }
 
 .welcome-page {
