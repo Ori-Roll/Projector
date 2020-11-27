@@ -30,8 +30,6 @@ function SelectedMenu() {
         console.log("CHECK ALL")
     }
 
-    console.log("SELECT RENDER", selected.length);
-
     async function onDeleteSelected(){
         try{
             const deleteResGroup = await db_deleteTasks(selected, project._id);

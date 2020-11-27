@@ -1,11 +1,12 @@
 :root {
-  --side-general-bg-color: rgb(34, 34, 34);
-  --side-general-border: rgb(100, 100, 100) 1px solid;
+  --side-general-border: rgb(145, 73, 173) 4px solid;
 }
 
 .side-bar {
   position: fixed;
   height: 100%;
+  width: calc(var(--sidebar-width)+76px);
+  box-shadow: inset rgb(238, 229, 98) -4px 0 0;
   z-index: 150;
 }
 
@@ -13,7 +14,7 @@
   position: absolute;
   border-right: var(--side-general-border);
   box-shadow: rgba(0, 0, 0, 0.2) 5px 5px 20px;
-  background-color: var(--side-general-bg-color);
+  background-color: var(--sidebar-bg-color);
   height: 100%;
   width: var(--sidebar-width);
   top: 0;
@@ -21,7 +22,7 @@
   display: grid;
   grid-template-rows: 1fr 1fr 12fr 1fr 1fr 1fr;
   gap: 10px;
-  z-index: 110;
+  z-index: 1000;
 }
 
 .project-select-icon-wrapper {

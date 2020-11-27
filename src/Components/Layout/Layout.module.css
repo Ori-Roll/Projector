@@ -1,5 +1,5 @@
 .layout {
-  display: grid;
+  /*  display: grid; */
   height: 100vh;
   /* grid-template-columns: 60px 110px 0px auto;
   grid-template-rows: 100px auto;
@@ -7,7 +7,7 @@
     'project-head 	project-head			  project-head 		  project-head'
     '. 				      .		                project-wrapper 	project-wrapper';
   overflow: hidden; */
-  grid-template-rows: 10px auto;
+  /* grid-template-rows: 10px auto; */
 }
 
 .project-head {

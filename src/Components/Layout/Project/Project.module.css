@@ -1,8 +1,8 @@
 .project {
   height: 100%;
   width: 100%;
-  background-color: white;
-  padding-left: calc(var(--sidebar-width)+100px);
+  padding-left: calc(var(--sidebar-width)+150px);
+  padding-top: var(--project-header-height);
 }
 
 .project-loader {

@@ -19,7 +19,7 @@ function ProjectTypeDetails({selectedProjectType, setSelectedProjectType, setAdd
     const loadingProjectMessage = 
         <div className={style["loading-project-message"]}>
             <p>Just a moment...</p>
-            <p>"Creating your new project."</p>
+            <p>"Setting up your new project."</p>
             <img src={ `http://localhost:5000/api/v0/projectTypes/${selectedProjectType.icon}`}/>
         </div>;
 

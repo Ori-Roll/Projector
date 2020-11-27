@@ -44,10 +44,12 @@ function ProjectSelect({projectSelectActive, setProjectSelectActive}) {
 			className={style["add-new-project-menu-modal"]}
 			onClick={e=>{e.stopPropagation(); setProjectSelectActive(false)}}
 		/>
-		<div className={style["project-select-menu"]} style={{left: projectSelectActive ? "50px" : "-234px"}} onBlur={()=>setProjectSelectActive(false)}>
+		<div className={style["project-select-menu"]} 
+			style={{left: projectSelectActive ? "50px" : "-232px"}} 
+			onBlur={()=>setProjectSelectActive(false)}>
 			
 			{/* <div className={style["current-project-display"]}>{project?.name && project.name}</div> */}
-			<p className={style["vertical-side-header"]}>Select Project</p>
+			{/* <p className={style["vertical-side-header"]}>Select Project</p> */}
 			<AppIcon icon="app-icon-back-arrow.png" onClickCallback={() => setProjectSelectActive(false)} />
 			<div className={style["project-select-list"]}>
 				{user.projects

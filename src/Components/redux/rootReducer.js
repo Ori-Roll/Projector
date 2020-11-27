@@ -22,7 +22,13 @@ const defaultAppValues = {
 		"--create-new-project-menu-position-left-pc": "5%",
   		"--create-new-project-menu-position-top-pc": "5%",
 		"--create-new-project-theme-color-a": '#db331d',
-		"--sidebar-width": "60px",  
+		
+		"--sidebar-width": "64px",
+		"--sidebar-bg-color": "white",
+		
+		"--project-header-height": "80px"
+		
+		//--side-general-bg-color: rgb(34, 34, 34);
 	},
 	loaded: {
 		app: null,

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
 
 import defaults from "../../defaults";
+import ProjectHeader from "./ProjectHeader/ProjectHeader";
 import Group from "./Group/Group";
 import ProjectLoader from "./ProjectLoader";
 
@@ -45,6 +46,7 @@ function Project() {
 				<ProjectLoader message={projectLoadingState} />
 			) : (
 				<div className={style.project}>
+					<ProjectHeader project={project}/>
 					{project.groups?.map((group, i) => {
 						return <Group key={group._id} group={group} groupIndex={i} />;
 					})}

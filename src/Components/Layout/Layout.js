@@ -22,7 +22,6 @@ function Layout() {
 				<div className={style["side-bar-wrapper"]}>
 					<SideBar user={user} />
 				</div>
-				<div className={style["project-head"]}>this</div>
 				<div className={style["project-wrapper"]}>
 					{project?._id ? <Project /> : <div>SELECT PROJECT!</div>}
 				</div>

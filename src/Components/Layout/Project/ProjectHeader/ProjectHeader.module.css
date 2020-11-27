@@ -1,0 +1,34 @@
+.project-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: var(--project-header-height);
+  background-color: white;
+  border-bottom: rgb(221, 221, 221) 1px solid;
+  padding: 0 50px;
+  padding-left: calc(var(--sidebar-width)+150px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+
+.project-header h1 {
+  font-size: 20px;
+  font-weight: 100;
+}
+
+.project-header-left {
+  width: 500px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.project-header-right {
+  width: 500px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
