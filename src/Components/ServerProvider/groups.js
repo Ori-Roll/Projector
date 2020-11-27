@@ -1,14 +1,12 @@
 import axios from "axios";
 
-async function createNewGroup(newGroup) {
-	/* try {
-		const response = await axios.get("http://localhost:5000/api/v0/projects", newProject, {
-			headers: { "Content-Type": "application/json" },
-		});
-		return response;
+async function db_createNewGroup(projectId) {
+	try {
+		const response = await axios.post(`http://localhost:5000/api/v0/projects/${projectId}/groups`);
+		return response.data.data;
 	} catch (error) {
 		console.error(error);
-	} */
+	}
 }
 
 async function getProjectGroups(projectId) {
@@ -19,7 +17,6 @@ async function getProjectGroups(projectId) {
 				if(task.dueDate) task.dueDate = new Date(task.dueDate);
 			})
 		});
-		console.log(response.data.data);
 		return response.data;
 	} catch (error) {
 		console.error(error.response.data);
@@ -27,4 +24,4 @@ async function getProjectGroups(projectId) {
 	
 }
 
-export { getProjectGroups };
+export { getProjectGroups, db_createNewGroup };
