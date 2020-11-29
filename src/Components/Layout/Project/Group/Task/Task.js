@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import _ from "lodash";
 import { useInView } from "react-intersection-observer";
 
-import { db_changeTask } from "../../../../ServerProvider/task";
+import { db_changeTask } from "../../../../ServerProvider/tasks";
 import { editTaskDispatch } from "../../../../redux/rootReducer";
 
 import { CellOfType } from "./Cells/CellTypes/CellTypes";
@@ -14,7 +14,7 @@ import CellWrapper from "./CellWrapper";
 import style from "./Task.module.css";
 import SelectCheckbox from "./SelectCheckbox/SelectCheckbox";
 
-function Task({ task, columns, taskIndex, groupIndex }) {
+function Task({ task, columns, taskIndex, groupIndex, addNewTask}) {
 	
 	const [taskWrapperRef, inView, entry] = useInView();
 
@@ -94,8 +94,15 @@ function Task({ task, columns, taskIndex, groupIndex }) {
 		}
 	}
 
+	function unMockTask(){
+		taskChange({...task, isMock: false});
+		addNewTask();
+	}
+
 	return inView ? ( // TODO: maby add this to a list of viewed on group and render there accordingly (no need to pass anything)
-		<div className={style["task"]} ref={taskWrapperRef}>
+		<div className={style["task"]} ref={taskWrapperRef} 
+			style={task.isMock ? {opacity: "50%"} : {}}
+			onFocus={task.isMock && unMockTask}>
 			<SelectCheckbox 
 				taskIsSelected={taskIsSelected} 
 				setTaskIsSelected={setTaskIsSelected}

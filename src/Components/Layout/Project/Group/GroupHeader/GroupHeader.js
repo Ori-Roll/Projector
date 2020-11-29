@@ -1,11 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
+
 import GroupArrow from "./GroupArrow/GroupArrow";
 import style from "./GroupHeader.module.css";
 import AddToGroup from "./AddToGroup/AddToGroup";
 
-function GroupHeader({ groupIsOpen, setGroupIsOpen, group, groupIndex }) {
+import GroupTitle from "./GroupTitle/GroupTitle";
 
+function GroupHeader({ groupIsOpen, setGroupIsOpen, group, groupIndex }) {
+	
 	const onHeaderClick = () => {
 		setGroupIsOpen(!groupIsOpen);
 	};
@@ -17,7 +20,7 @@ function GroupHeader({ groupIsOpen, setGroupIsOpen, group, groupIndex }) {
 				style={{ fontWeight: groupIsOpen ? "600" : "400" }}
 				onClick={onHeaderClick}>
 				<GroupArrow groupIsOpen={groupIsOpen} setGroupIsOpen={setGroupIsOpen} />
-				{group.title}
+				<GroupTitle group={group} />
 			</div>
 			<div className={style["group-header-right-menu"]}>
 				<AddToGroup group={group} groupIndex={groupIndex} />

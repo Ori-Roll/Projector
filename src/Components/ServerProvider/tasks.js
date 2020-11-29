@@ -1,6 +1,6 @@
 import axios from "axios";
 
-async function createNewTask(task) {
+async function db_createNewTask(task) {
 	try {
 		!task.project && console.error(`New task does not have a project`);
 		!task.group && console.error(`New task does not have a group`);
@@ -73,4 +73,4 @@ async function db_deleteTasks(tasks, project) {
 	}
 }
 
-export { createNewTask, db_changeTask, db_deleteTask, db_deleteTasks };
+export { db_createNewTask, db_changeTask, db_deleteTask, db_deleteTasks };

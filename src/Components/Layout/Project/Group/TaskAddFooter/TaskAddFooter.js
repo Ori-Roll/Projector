@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import { addTaskDispatch } from "../../../../redux/rootReducer";
 
-import { createNewTask } from "../../../../ServerProvider/task";
+import { db_createNewTask } from "../../../../ServerProvider/tasks";
 
 import style from "./TaskAddFooter.module.css";
 
@@ -21,11 +21,12 @@ function TaskAddFooter({ group, groupIndex }) {
 		setLoadingTask(true);
 
 		try {
-			let task = await createNewTask({
+			let task = await db_createNewTask({
 				title: "-",
 				assignedTo: [user._id],
 				project: group.project, //TODO: better get this from global/store
 				group: group._id,
+				isMock: true
 			});
 			task = task.data;
 			addTask(task, groupIndex);

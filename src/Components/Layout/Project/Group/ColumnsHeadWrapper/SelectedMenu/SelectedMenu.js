@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import style from "./SelectedMenu.module.css";
 import {clearSelectedTasksDispatch, setProjectGroupDispatch} from "./../../../../../redux/rootReducer"; 
 
-import {db_deleteTasks} from "../../../../../ServerProvider/task"
+import {db_deleteTasks} from "../../../../../ServerProvider/tasks"
 
 import {useSelector,useDispatch} from "react-redux";
 import {usePopper} from "react-popper"

@@ -1,16 +1,50 @@
 import React, { useState, useEffect } from "react";
-
 import PropTypes from "prop-types";
+import {useSelector, useDispatch} from "react-redux";
 import _ from "lodash";
+
+import {db_createNewTask} from "../../../../Components/ServerProvider/tasks"
+import {addTaskDispatch} from "../../../redux/rootReducer";
 
 import Task from "./Task/Task";
 import TaskAddFooter from "./TaskAddFooter/TaskAddFooter";
 import ColumnsHeadWrapper from "./ColumnsHeadWrapper/ColumnsHeadWrapper";
 import GroupHeader from "./GroupHeader/GroupHeader";
+
+
 import style from "./Group.module.css"; // TODO: rename file to lowercase, in my projects it's always style(s).module.css
 
 function Group({ group, groupIndex }) {
 	const [groupIsOpen, setGroupIsOpen] = useState(true); // TODO: (Ori) this needs to initially come from backend
+	
+	const user = useSelector(state => state.user)
+	const dispatch = useDispatch();
+	const addTask = (task, groupIndex) => dispatch(addTaskDispatch(task, groupIndex));
+
+	async function addNewTask() {
+		try {
+			let task = await db_createNewTask({
+				title: "-",
+				assignedTo: [user._id],
+				project: group.project, //TODO: better get this from global/store
+				group: group._id,
+				isMock: true
+			});
+			task = task.data;
+			addTask(task, groupIndex);
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	useEffect(() => {
+		if( group.tasks &&
+			group.tasks[group.tasks.length-1] 
+			&& (group.tasks[group.tasks.length-1].isMock === false)){
+			addNewTask();
+		}
+	}, [])
+
 	return (
 		/* TODO add classcat package:  */
 		<div className={style["group"]}>
@@ -35,15 +69,13 @@ function Group({ group, groupIndex }) {
 								columns={group.columns}
 								taskIndex={i}
 								groupIndex={groupIndex}
+								addNewTask={addNewTask}
 							/>
 						);
 					})
 				) : (
 					<div>LOADER</div>
 				)}
-				<div className={style["task-add-wrapper"]}>
-					<TaskAddFooter group={group} groupIndex={groupIndex} />
-				</div>
 			</div>
 		</div>
 	);

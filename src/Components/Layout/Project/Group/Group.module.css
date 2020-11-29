@@ -70,7 +70,3 @@
   );
   z-index: 5;
 }
-
-.task-add-wrapper {
-  position: sticky;
-}
