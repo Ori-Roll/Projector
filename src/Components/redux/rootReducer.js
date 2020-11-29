@@ -67,6 +67,9 @@ function projectReducer(state = {}, action) {
 		switch (action.type) {
 			case "CHANGE_PROJECT_TO":
 				return action.project;
+			case "SET_PROJECT_NAME":
+				draft.name = action.name;
+				break;
 			case "SET_PROJECT_GROUP":
 				const groupIndex = draft.groups.findIndex(group => group._id === action.group._id); 
 				draft.groups.splice(groupIndex ,1 ,action.group);
@@ -175,6 +178,13 @@ export function setProjectDispatch(project) {
 	return {
 		type: "CHANGE_PROJECT_TO",
 		project: project,
+	};
+}
+
+export function setProjectNameDispatch(name) {
+	return {
+		type: "SET_PROJECT_NAME",
+		name: name,
 	};
 }
 

@@ -11,7 +11,7 @@ async function createNewProject(newProject) {
 	}
 }
 
-async function getUserProjects(populate = false) {
+async function db_getUserProjects(populate = false) {
 	try {
 		const response = populate
 			? await axios.get("http://localhost:5000/api/v0/projects")
@@ -41,6 +41,17 @@ async function getProjectTypes(){
 		console.error("Could not get project types", error);
 	}
 }
+
+async function db_updateProject(project){
+	try {
+		const response = await axios.put(
+			`http://localhost:5000/api/v0/projects/${project._id}`,
+			project)
+		return response.data.data;
+	} catch(error) {
+		console.error("Could chane project", error);
+	}
+}
 /* 
 async function getProjectTypePhoto(photo){
 	try {
@@ -51,4 +62,4 @@ async function getProjectTypePhoto(photo){
 	}
 } */
 
-export { getUserProjects, getProject, createNewProject, getProjectTypes };
+export { db_getUserProjects, getProject, createNewProject, getProjectTypes, db_updateProject };

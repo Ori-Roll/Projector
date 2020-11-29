@@ -7,7 +7,7 @@ import Layout from "./Components/Layout/Layout";
 import Login from "./Components/Login/Login";
 import Loader from "./Components/Login/Loader";
 import { initUser } from "./Components/ServerProvider/config";
-import { getUserProjects, getProject, getProjectTypes } from "./Components/ServerProvider/projects";
+import { db_getUserProjects, getProject, getProjectTypes } from "./Components/ServerProvider/projects";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserDispatch, setProjectDispatch, changeAppGlobalsDispatch } from "./Components/redux/rootReducer";
 
@@ -34,7 +34,7 @@ function App() {
 			if (user) {
 				let projectTypesRes = await getProjectTypes();
 				changeAppGlobals({projectTypes: projectTypesRes})
-				let userProjects = await getUserProjects(false);
+				let userProjects = await db_getUserProjects(false);
 				userProjects = userProjects.data;
 				user.projects = userProjects;
 				const lastOpenedProject = user.lastOpenedProject

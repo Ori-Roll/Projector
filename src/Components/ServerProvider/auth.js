@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getUserProjects } from "./projects";
+import { db_getUserProjects } from "./projects";
 
 axios.defaults.withCredentials = true;
 

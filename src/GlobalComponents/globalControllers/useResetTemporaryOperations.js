@@ -18,7 +18,6 @@ function useResetTemporaryOperations(operations = "all"){
         selectedTasks: ()=>{
             dispatch(clearSelectedTasksDispatch())
         }
-
     }
         
     return (reset[operations]);
