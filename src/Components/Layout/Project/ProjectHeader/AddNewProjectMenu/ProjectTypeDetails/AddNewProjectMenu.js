@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 
 import ProjectTypeDetails from "./ProjectTypeDetails/ProjectTypeDetails";
-import ProjectTypeItems from "./ProjectTypeItems/ProjectTypeItems";
+import ProjectTypeItems from "../../Project/ProjectHeader/AddNewProjectMenu/ProjectTypeDetails/ProjectTypeItems/ProjectTypeItems";
 
 import style from "./AddNewProject.module.css"
 
