@@ -3,7 +3,7 @@
   border-radius: 2px;
   display: grid;
   /* grid-template-columns: max-content 50px; */
-  grid-template-rows: 80px auto 20px;
+  /* grid-template-rows: 80px auto 20px; */
   /*  grid-template-areas:
     'group-header-wrapper  group-header-wrapper'
     'group-content-wrapper group-right-control'

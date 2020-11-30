@@ -19,7 +19,7 @@
   z-index: 1;
 }
 
-.project-select-menu {
+.project-select {
   position: absolute;
   box-shadow: inset var(--side-project-select-bg-color) -3px 0 0;
   background-color: white;
@@ -36,16 +36,13 @@
   transition: ease-in-out 100ms;
   z-index: 100;
 }
-/* 
-.vertical-side-header {
-  position: absolute;
-  color: white;
-  font-size: 16px;
-  transform: rotate(90deg);
-  left: 188px;
-  top: 100px;
-  width: 200px;
-} */
+
+.project-select-header-menu {
+  grid-column: 1/3;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0 30px;
+}
 
 .current-project-display {
   position: absolute;
@@ -80,6 +77,16 @@
   background-color: var(--side-project-select-bg-color-hover);
 }
 
+/* 
+.vertical-side-header {
+  position: absolute;
+  color: white;
+  font-size: 16px;
+  transform: rotate(90deg);
+  left: 188px;
+  top: 100px;
+  width: 200px;
+} */
 /* 
 .project-select {
   position: absolute;

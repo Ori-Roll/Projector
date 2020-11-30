@@ -1,12 +1,11 @@
 :root {
-  --side-general-border: rgb(145, 73, 173) 4px solid;
+  --side-general-border: rgb(104, 104, 104) 1px solid;
 }
 
 .side-bar {
   position: fixed;
   height: 100%;
   width: calc(var(--sidebar-width)+76px);
-  box-shadow: inset rgb(238, 229, 98) -4px 0 0;
   z-index: 150;
 }
 
@@ -20,7 +19,7 @@
   top: 0;
   padding: 10px 0;
   display: grid;
-  grid-template-rows: 1fr 1fr 12fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 12fr 1fr 1fr 1fr;
   gap: 10px;
   z-index: 1000;
 }
@@ -30,14 +29,14 @@
   margin: auto;
 }
 
-.notifications-icon-wrapper {
+.user-calendar-icon-wrapper {
+  grid-row: 3/4;
   margin: auto;
-  grid-row: 5/6;
 }
 
-.user-calendar-icon-wrapper {
-  grid-row: 4/5;
+.notifications-icon-wrapper {
   margin: auto;
+  grid-row: 4/5;
 }
 
 @media only screen and (max-width: 400px) {

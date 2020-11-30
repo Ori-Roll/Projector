@@ -8,10 +8,13 @@ import {setProjectGroupsDispatch, setProjectNameDispatch, setUserDispatch} from 
 import AppIcon from '../../../../GlobalComponents/AppIcon/AppIcon'
 
 import style from "./ProjectHeader.module.css"
+import AddNewProjectBtn from '../../../../GlobalComponents/AddNewProject/AddNewProjectBtn'
 
 function ProjectHeader({project}) {
 
     const [isWorking, setIsWorking] = useState(false);
+
+    const [addNewActive, setAddNewActive] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -26,7 +29,7 @@ function ProjectHeader({project}) {
         )
     }
 
-    async function onCreateNewClick(){
+    async function onAddNewGroupClick(){
         try {
             setIsWorking(true);
             const newGroup = await db_createNewGroup(project._id);
@@ -75,8 +78,18 @@ function ProjectHeader({project}) {
                     icon={isWorking ? "app-icon-time.png" : "app-icon-plus.png" }
                     color="#87b0c4"
                     size={40}
-                    onClickCallback={onCreateNewClick}
+                    onClickCallback={()=>setAddNewActive(!addNewActive)}
                 />
+                {addNewActive && <div>
+                    <AppIcon
+                        icon={isWorking ? "app-icon-time.png" : "app-icon-plus.png" }
+                        color="#87b0c4"
+                        size={40}
+                        onClickCallback={onAddNewGroupClick}
+                    />
+                    <AddNewProjectBtn/>
+                </div>}
+                
            </div>
         </div>
     )

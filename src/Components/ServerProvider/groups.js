@@ -24,4 +24,28 @@ async function getProjectGroups(projectId) {
 	
 }
 
-export { getProjectGroups, db_createNewGroup };
+
+async function db_updateGroup(group) {
+	try {
+		!group.project && console.error(`New group does not have a project`);
+		!group._id && console.error(`New group does not have an _id`);
+
+		const response = await axios.put(
+			`http://localhost:5000/api/v0/projects/${group.project}/groups/${group._id}`,
+			group,
+			{
+				headers: { "Content-Type": "application/json" },
+			}
+		);
+		const updatedGroup = response.data.data;
+		if(updatedGroup.dueDate) updatedGroup.dueDate = new Date(updatedGroup.dueDate);
+		updatedGroup.loaded = true;
+		return updatedGroup;
+	} catch (error) {
+		console.error(error.response.data);
+	}
+}
+
+// @route     PUT /api/v0/projects/:projectId/groups/:groupId
+
+export { getProjectGroups, db_createNewGroup, db_updateGroup };

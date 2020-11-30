@@ -10,7 +10,7 @@ import Task from "./Task/Task";
 import TaskAddFooter from "./TaskAddFooter/TaskAddFooter";
 import ColumnsHeadWrapper from "./ColumnsHeadWrapper/ColumnsHeadWrapper";
 import GroupHeader from "./GroupHeader/GroupHeader";
-
+import Loader from "../../../../GlobalComponents/Loader/Loader"
 
 import style from "./Group.module.css"; // TODO: rename file to lowercase, in my projects it's always style(s).module.css
 
@@ -23,20 +23,21 @@ function Group({ group, groupIndex }) {
 
 	async function addNewTask() {
 		try {
-			let task = await db_createNewTask({
+			const newTask = {
 				title: "-",
 				assignedTo: [user._id],
 				project: group.project, //TODO: better get this from global/store
 				group: group._id,
 				isMock: true
-			});
+			};
+			let task = await db_createNewTask(newTask);
 			task = task.data;
 			addTask(task, groupIndex);
 		} catch (error) {
 			console.error(error);
 		}
 	}
-
+	
 	useEffect(() => {
 		if( group.tasks &&
 			group.tasks[group.tasks.length-1] 
@@ -74,7 +75,7 @@ function Group({ group, groupIndex }) {
 						);
 					})
 				) : (
-					<div>LOADER</div>
+					<Loader message={"Loading group"}/>
 				)}
 			</div>
 		</div>

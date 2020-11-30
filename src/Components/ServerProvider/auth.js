@@ -62,7 +62,7 @@ async function db_getLoggedInUser() {
 		const response = await axios.get("http://localhost:5000/api/v0/auth/me");
 		if (response) return response.data;
 	} catch (error) {
-		console.error("error is ", error.response);
+		console.error("error is ", error);
 	}
 }
 

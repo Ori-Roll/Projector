@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import ProjectSelect from "./ProjectSelect/ProjectSelect";
 
 import UserOptions from "./UserOptions/UserOptions";
-import AddNewProjectBtn from "./AddNewProject/AddNewProjectBtn"
 import Notifications from "./Notifications/Notifications";
 import style from "./SideBar.module.css";
 
@@ -26,7 +25,6 @@ function SideBar() {
 			<ProjectSelect projectSelectActive={projectSelectActive} setProjectSelectActive={setProjectSelectActive}/>
 			<Notifications notificationsMenuActive={notificationsMenuActive}/>
 			<div className={style["general"]}>
-				<AddNewProjectBtn/>
 				<div className={style["project-select-icon-wrapper"]}>
 					<AppIcon icon="app-icon-folder-closed.png" onClickCallback={() => setProjectSelectActive(!projectSelectActive)} />	
 				</div>

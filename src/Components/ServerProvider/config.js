@@ -7,6 +7,7 @@ async function initUser() {
 			const res = await db_getLoggedInUser();
 			user = res.data;
 		} catch (error) {
+			console.log("error.net",error)
 			// TODO: This needs to be addressed
 			user = null;
 			console.error("No user with that token", error);
