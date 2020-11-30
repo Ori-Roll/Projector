@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 
 import {useDispatch} from "react-redux"
 
-import { createNewProject } from '../../../../ServerProvider/projects';
-import { setProjectDispatch } from "../../../../redux/rootReducer";
-import useResetTemporaryOperations from "../../../../../GlobalComponents/globalControllers/useResetTemporaryOperations";
+import { createNewProject } from "../../../Components/ServerProvider/projects"
+import { setProjectDispatch } from "../../../Components/redux/rootReducer";
+import useResetTemporaryOperations from "../../globalControllers/useResetTemporaryOperations";
 
 import style from "./ProjectTypeDetails.module.css";
 

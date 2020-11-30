@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-import AppIcon from "../../../../GlobalComponents/AppIcon/AppIcon";
+import AppIcon from "../AppIcon/AppIcon";
 
 import style from "./AddNewProject.module.css";
 import AddNewProjectMenu from './AddNewProjectMenu';
