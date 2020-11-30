@@ -19,7 +19,7 @@ function TextCell({ cell, doCellChange, isTitle = false }) {
 	return (
 		<input
 			className={`${CellsStyle.cell} ${style["text-cell"]}`}
-			style={{...(isTitle && { backgroundColor: "#93cee6"})}}
+			style={{...(isTitle && { backgroundColor: "var(--task-title-default-background-color)"})}}
 			value={cell.content}
 			onChange={(e) => onInputChange(e.target.value)}
 			onBlur={(e) => onBlur(e.target.value)}

@@ -1,12 +1,9 @@
 .task {
   display: flex;
   height: var(--task-height);
-  /* background-color: rgb(222, 226, 228); */
-  /* background-image: linear-gradient(rgb(223, 223, 223), rgb(212, 212, 212)); */
-  /* border-bottom: rgb(240, 240, 240) 2px solid; */
-  border: rgb(245, 245, 245) 1px solid;
+  border: var(--task-title-default-background-color) 2px solid;
   border-radius: 2px;
-  margin-bottom: 5px;
+  margin-bottom: var(--task-margin-bottom);
   position: relative;
 }
 
@@ -18,14 +15,15 @@
 .cell-wrapper {
   height: 100%;
   border-right: white 2px solid;
+  border-radius: 2px;
   /* border-left: white 2px solid; */
   transition: ease 100ms;
   overflow: hidden;
 }
 
 .pseudo-task {
-  background-color: rgb(0, 255, 42);
-  height: 37px;
+  background-color: rgb(184, 184, 184);
+  height: Calc(var(--task-height) + var(--task-margin-bottom));
 }
 
 .task-handle {
