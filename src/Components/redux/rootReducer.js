@@ -16,18 +16,21 @@ function userReducer(state = {}, action) {
 
 const defaultAppValues = {
 	cssVariables: {
-		"--task-height": "48px",
-		"--normal-checkbox-size": '20px',
-
 		"--create-new-project-menu-position-left-pc": "5%",
   		"--create-new-project-menu-position-top-pc": "5%",
-		"--create-new-project-theme-color-a": '#db331d',
+		"--create-new-project-theme-color-a": '#7d93b5',
 		
 		"--sidebar-width": "64px",
 		"--sidebar-bg-color": "white",
 		
-		"--project-header-height": "80px"
+		"--project-header-height": "80px",
 		
+		"--task-height": "48px",
+		"--task-title-default-background-color": "#f0f2f5",
+		"--task-margin-bottom": "2px",
+		
+		"--normal-checkbox-size": '20px',
+
 		//--side-general-bg-color: rgb(34, 34, 34);
 	},
 	loaded: {
