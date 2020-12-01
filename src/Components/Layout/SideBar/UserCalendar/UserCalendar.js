@@ -1,19 +1,12 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import style from "./UserCalendar.module.css";
+import style from './UserCalendar.module.css';
 
 function UserCalendar(props) {
-    return (
-        <div className={style["user-calendar-wrapper"]}>
-            
-        </div>
-    )
+  return <div className={style['user-calendar-wrapper']}></div>;
 }
 
-UserCalendar.propTypes = {
+UserCalendar.propTypes = {};
 
-}
-
-export default UserCalendar
-
+export default UserCalendar;

@@ -1,122 +1,122 @@
 .color-top {
-	width: 100%;
-	height: 8px;
-	background-color: rgb(0, 174, 255);
-	margin-bottom: 10px;
-	border-radius: 3px 3px 0 0;
-	box-shadow: inset rgb(224, 116, 15) 0 -2px 0;
+  width: 100%;
+  height: 8px;
+  background-color: rgb(0, 174, 255);
+  margin-bottom: 10px;
+  border-radius: 3px 3px 0 0;
+  box-shadow: inset rgb(224, 116, 15) 0 -2px 0;
 }
 
 .login-page {
-	position: fixed;
-	left: calc(50% - 180px);
-	top: calc(50% - 250px);
-	width: 360px;
-	height: 500px;
-	background-color: rgb(255, 255, 255);
-	box-shadow: rgb(223, 223, 223) 2px 2px 25px;
-	z-index: 500;
-	border-radius: 0 0 3px 3px;
+  position: fixed;
+  left: calc(50% - 180px);
+  top: calc(50% - 250px);
+  width: 360px;
+  height: 500px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgb(223, 223, 223) 2px 2px 25px;
+  z-index: 500;
+  border-radius: 0 0 3px 3px;
 }
 
 .login-page form {
-	padding: 30px 40px;
+  padding: 30px 40px;
 }
 
 .input-group {
-	display: flex;
-	flex-flow: column;
-	padding: 0;
-	margin: 0 0 25px;
-	height: 40px;
+  display: flex;
+  flex-flow: column;
+  padding: 0;
+  margin: 0 0 25px;
+  height: 40px;
 }
 
 .input-group label {
-	font-size: 0.8em;
-	padding-bottom: 4px;
-	color: gray;
+  font-size: 0.8em;
+  padding-bottom: 4px;
+  color: gray;
 }
 
 .input-group input {
-	border-radius: 0;
-	border: rgb(240, 240, 240) 1px solid;
-	background-color: #ffffff;
-	font-size: 0.8em;
-	padding: 6px;
-	box-shadow: inset rgb(243, 243, 243) 4px 4px 12px;
+  border-radius: 0;
+  border: rgb(240, 240, 240) 1px solid;
+  background-color: #ffffff;
+  font-size: 0.8em;
+  padding: 6px;
+  box-shadow: inset rgb(243, 243, 243) 4px 4px 12px;
 }
 
 .input-warning {
-	font-size: 0.8em;
-	color: rgb(71, 71, 71);
-	padding: 4px 0;
-	margin: 0;
-	text-align: right;
+  font-size: 0.8em;
+  color: rgb(71, 71, 71);
+  padding: 4px 0;
+  margin: 0;
+  text-align: right;
 }
 
 .forgot-password-btn {
-	text-decoration: none;
-	font-size: 0.8em;
-	margin-bottom: 4px;
-	border: none;
-	color: rgb(145, 155, 175);
-	background: none;
-	margin: 5px 0 30px;
+  text-decoration: none;
+  font-size: 0.8em;
+  margin-bottom: 4px;
+  border: none;
+  color: rgb(145, 155, 175);
+  background: none;
+  margin: 5px 0 30px;
 }
 
 /* Buttons styles start */
 .login-btn {
-	display: inline-block;
-	border: none;
-	border: rgb(224, 224, 224) 1px solid;
-	padding: 0.6rem 0;
-	width: 100%;
-	margin: 40px 0 0;
-	text-decoration: none;
-	background: rgb(255, 255, 255);
-	color: #353535;
-	font-family: sans-serif;
-	font-size: 1rem;
-	line-height: 1;
-	cursor: pointer;
-	text-align: center;
-	transition: 250ms ease-in-out, transform 150ms ease;
-	box-shadow: #f1f1f1 4px 4px 5px;
-	-webkit-appearance: none;
-	-moz-appearance: none;
+  display: inline-block;
+  border: none;
+  border: rgb(224, 224, 224) 1px solid;
+  padding: 0.6rem 0;
+  width: 100%;
+  margin: 40px 0 0;
+  text-decoration: none;
+  background: rgb(255, 255, 255);
+  color: #353535;
+  font-family: sans-serif;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  text-align: center;
+  transition: 250ms ease-in-out, transform 150ms ease;
+  box-shadow: #f1f1f1 4px 4px 5px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 .login-btn:hover,
 .login-btn:focus {
-	background: #b5defa;
+  background: #b5defa;
 }
 
 .login-btn:focus {
-	outline: 1px solid #fff;
-	outline-offset: -4px;
+  outline: 1px solid #fff;
+  outline-offset: -4px;
 }
 
 .login-btn:active {
-	transform: scale(0.99);
+  transform: scale(0.99);
 }
 
 .login-btn-disabled {
-	display: inline-block;
-	border: none;
-	border: rgb(240, 240, 240) 1px solid;
-	padding: 0.6rem 0;
-	width: 100%;
-	margin: 40px 0 0;
-	text-decoration: none;
-	background: rgb(255, 255, 255);
-	color: #acacac;
-	font-family: sans-serif;
-	font-size: 1rem;
-	line-height: 1;
-	cursor: auto;
-	text-align: center;
-	-webkit-appearance: none;
-	-moz-appearance: none;
+  display: inline-block;
+  border: none;
+  border: rgb(240, 240, 240) 1px solid;
+  padding: 0.6rem 0;
+  width: 100%;
+  margin: 40px 0 0;
+  text-decoration: none;
+  background: rgb(255, 255, 255);
+  color: #acacac;
+  font-family: sans-serif;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: auto;
+  text-align: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 /* Button styles end */
 
@@ -125,14 +125,14 @@
 } */
 
 .loading-app {
-	width: 100%;
-	height: 100%;
-	font-size: 30px;
-	text-align: center;
-	display: flex;
-	align-items: center; /* Vertical */
-	justify-content: center; /* Horizontal */
-	background-color: white;
-	position: fixed;
-	z-index: 501;
+  width: 100%;
+  height: 100%;
+  font-size: 30px;
+  text-align: center;
+  display: flex;
+  align-items: center; /* Vertical */
+  justify-content: center; /* Horizontal */
+  background-color: white;
+  position: fixed;
+  z-index: 501;
 }

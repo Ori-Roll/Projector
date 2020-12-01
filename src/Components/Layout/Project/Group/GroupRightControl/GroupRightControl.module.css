@@ -1,14 +1,14 @@
 .group-right-control {
-	height: 100%;
-	border: rgb(216, 216, 216) 1px dashed;
-	border-radius: 2px;
-	background-color: white;
-	display: flex;
-	flex-flow: column;
-	align-items: center;
-	cursor: pointer;
+  height: 100%;
+  border: rgb(216, 216, 216) 1px dashed;
+  border-radius: 2px;
+  background-color: white;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  cursor: pointer;
 }
 .group-right-control * {
-	padding: 0;
-	text-align: center;
+  padding: 0;
+  text-align: center;
 }

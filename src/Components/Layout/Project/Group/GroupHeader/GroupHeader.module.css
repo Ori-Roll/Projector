@@ -1,21 +1,21 @@
 .group-header-wrapper {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	padding: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1em;
 }
 
 .group-header {
-	display: flex;
-	flex-direction: row;
-	padding: 15px 7px;
-	font-size: large;
-	font-weight: 600;
-	cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  padding: 15px 7px;
+  font-size: large;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .group-header-right-menu {
-	text-align: right;
-	color: rgb(100, 79, 52);
-	width: 40px;
+  text-align: right;
+  color: rgb(100, 79, 52);
+  width: 40px;
 }
