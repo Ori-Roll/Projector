@@ -1,18 +1,15 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import style from "./Loader.module.css"
+import React from 'react';
+import PropTypes from 'prop-types';
+import style from './Loader.module.css';
 
-function Loader({message = "Loading"}) {
-    return (
-        <div className={style["loader-wrapper"]}>
-            {message}
-        </div>
-    )
+function Loader({ message = 'Loading', cssOptions = {} }) {
+  return (
+    <div className={style['loader-wrapper']} style={{ ...cssOptions }}>
+      {message}
+    </div>
+  );
 }
 
-Loader.propTypes = {
+Loader.propTypes = {};
 
-}
-
-export default Loader
-
+export default Loader;
