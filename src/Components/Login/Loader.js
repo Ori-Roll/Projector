@@ -1,9 +1,9 @@
 import React from 'react';
-import { initser } from '../ServerProvider/config';
+import { initser } from '../../ServerProvider/config';
 
 import style from './Login.module.css';
 
-import useInitAppState from '../ServerProvider/config';
+import useInitAppState from '../../ServerProvider/config';
 
 function Loader() {
   return (

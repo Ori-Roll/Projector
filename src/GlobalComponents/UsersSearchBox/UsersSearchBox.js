@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
-import { db_getUsersByEmailQuery } from '../../Components/ServerProvider/users';
+import { db_getUsersByEmailQuery } from '../../ServerProvider/users';
 
 import style from './UsersSearchBox.module.css';
 import UsersListItem from '../UsersListItem/UsersListItem';

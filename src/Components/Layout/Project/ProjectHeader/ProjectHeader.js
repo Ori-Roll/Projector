@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { db_createNewGroup } from '../../../ServerProvider/groups';
+import { db_createNewGroup } from '../../../../ServerProvider/groups';
 import {
   db_updateProject,
   db_getUserProjects,
-} from '../../../ServerProvider/projects';
+} from '../../../../ServerProvider/projects';
 import {
   setProjectGroupsDispatch,
   setProjectNameDispatch,

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import _, { find } from 'lodash';
 
-import { db_getApprovingUsers } from '../../Components/ServerProvider/auth';
+import { db_getApprovingUsers } from '../../ServerProvider/auth';
 
 import UserIcon from '../UserIcon/UserIcon';
 import UsersListItem from '../UsersListItem/UsersListItem';

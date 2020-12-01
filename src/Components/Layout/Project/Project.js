@@ -12,7 +12,7 @@ import {
   changeLoadedStateDispatch,
 } from '../../redux/rootReducer';
 
-import { getProjectGroups } from '../../ServerProvider/groups';
+import { getProjectGroups } from '../../../ServerProvider/groups';
 
 import style from './Project.module.css'; // TODO: change from style to: import classes from '..';
 

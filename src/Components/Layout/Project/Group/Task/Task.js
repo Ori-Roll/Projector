@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import _ from 'lodash';
 import { useInView } from 'react-intersection-observer';
 
-import { db_changeTask } from '../../../../ServerProvider/tasks';
+import { db_changeTask } from '../../../../../ServerProvider/tasks';
 import { editTaskDispatch } from '../../../../redux/rootReducer';
 
 import { CellOfType } from './Cells/CellTypes/CellTypes';

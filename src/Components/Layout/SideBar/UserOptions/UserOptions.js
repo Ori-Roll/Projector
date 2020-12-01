@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { getCrappyServerData } from '../../../ServerProvider/old_index';
+import { getCrappyServerData } from '../../../../ServerProvider/old_index';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setUserDispatch } from '../../../redux/rootReducer';
 
-import { db_uploadUserPhoto } from '../../../ServerProvider/auth';
+import { db_uploadUserPhoto } from '../../../../ServerProvider/auth';
 
 import {
   db_loginUser,
@@ -13,7 +13,7 @@ import {
   db_getLoggedInUser,
   db_updateUserDetails,
   db_updateUserPassword,
-} from './../../../ServerProvider/auth';
+} from '../../../../ServerProvider/auth';
 import style from './UserOptions.module.css';
 
 import UserIcon from '../../../../GlobalComponents/UserIcon/UserIcon';

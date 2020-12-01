@@ -12,7 +12,7 @@ import {
   db_forgotUserPassword,
   db_resetUserPassword,
   db_uploadUserPhoto,
-} from '../ServerProvider/auth';
+} from '../../ServerProvider/auth';
 
 function Login({ initApp }) {
   const dispatch = useDispatch();

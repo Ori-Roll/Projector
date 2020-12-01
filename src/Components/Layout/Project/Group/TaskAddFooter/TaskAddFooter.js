@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { addTaskDispatch } from '../../../../redux/rootReducer';
 
-import { db_createNewTask } from '../../../../ServerProvider/tasks';
+import { db_createNewTask } from '../../../../../ServerProvider/tasks';
 
 import style from './TaskAddFooter.module.css';
 

@@ -6,7 +6,7 @@ import {
   setProjectGroupDispatch,
 } from './../../../../../redux/rootReducer';
 
-import { db_deleteTasks } from '../../../../../ServerProvider/tasks';
+import { db_deleteTasks } from '../../../../../../ServerProvider/tasks';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { usePopper } from 'react-popper';

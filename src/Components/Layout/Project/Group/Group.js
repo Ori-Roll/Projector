@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import _ from 'lodash';
 
-import { db_createNewTask } from '../../../../Components/ServerProvider/tasks';
+import { db_createNewTask } from '../../../../ServerProvider/tasks';
 import { addTaskDispatch } from '../../../redux/rootReducer';
 
 import Task from './Task/Task';

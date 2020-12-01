@@ -5,12 +5,12 @@ import es from 'date-fns/locale/es';
 import Layout from './Components/Layout/Layout';
 import Login from './Components/Login/Login';
 import Loader from './Components/Login/Loader';
-import { initUser } from './Components/ServerProvider/config';
+import { initUser } from './ServerProvider/config';
 import {
   db_getUserProjects,
   getProject,
   getProjectTypes,
-} from './Components/ServerProvider/projects';
+} from './ServerProvider/projects';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   setUserDispatch,

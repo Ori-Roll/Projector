@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { setProjectDispatch } from '../../../redux/rootReducer';
-import { getProject } from '../../../ServerProvider/projects';
+import { getProject } from '../../../../ServerProvider/projects';
 
 import AppIcon from '../../../../GlobalComponents/AppIcon/AppIcon';
 import useResetTemporaryOperations from '../../../../GlobalComponents/globalControllers/useResetTemporaryOperations';

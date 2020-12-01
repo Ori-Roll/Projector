@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { useDispatch } from 'react-redux';
 
-import { createNewProject } from '../../../Components/ServerProvider/projects';
+import { createNewProject } from '../../../ServerProvider/projects';
 import { setProjectDispatch } from '../../../Components/redux/rootReducer';
 import useResetTemporaryOperations from '../../globalControllers/useResetTemporaryOperations';
 

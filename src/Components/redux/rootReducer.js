@@ -19,6 +19,7 @@ const defaultAppValues = {
     '--create-new-project-menu-position-left-pc': '5%',
     '--create-new-project-menu-position-top-pc': '5%',
     '--create-new-project-theme-color-a': '#7d93b5',
+    '--create-new-group-theme-color-a': '#7d93b5',
 
     '--sidebar-width': '64px',
     '--sidebar-bg-color': 'white',
