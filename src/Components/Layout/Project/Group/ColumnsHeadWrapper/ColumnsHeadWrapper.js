@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { useDispatch } from 'react-redux';
-import { db_editColumn } from '../../../../ServerProvider/columns';
+import { db_editColumn } from '../../../../../ServerProvider/columns';
 
 import { ResizableBox } from 'react-resizable';
 

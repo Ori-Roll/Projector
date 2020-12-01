@@ -8,7 +8,7 @@ import {
   editColumnFailedDispatch,
 } from '../../../../../redux/rootReducer';
 
-import { db_editColumn } from '../../../../../ServerProvider/columns';
+import { db_editColumn } from '../../../../../../ServerProvider/columns';
 
 import ColumnHeadPopup from './ColumnHeadPopup';
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { createNewColumn } from '../../../../../ServerProvider/columns';
+import { db_createNewColumn } from '../../../../../../ServerProvider/columns';
 
 import { useDispatch } from 'react-redux';
 import {
@@ -11,6 +11,7 @@ import {
 } from '../../../../../redux/rootReducer';
 
 import style from './AddToGroup.module.css';
+import AppIcon from '../../../../../../GlobalComponents/AppIcon/AppIcon';
 
 function AddToGroup({ group, groupIndex }) {
   const dispatch = useDispatch();
@@ -31,8 +32,7 @@ function AddToGroup({ group, groupIndex }) {
     setIsMenuOpen(!isMenuOpen);
     addNewColumnInit();
     try {
-      let createColumnRes = await createNewColumn(group, type);
-      const updatedGroup = createColumnRes.data;
+      let updatedGroup = await db_createNewColumn(group, type);
       addNewColumnSuccess(updatedGroup, groupIndex);
     } catch (error) {
       addNewColumnFailed();
@@ -62,9 +62,11 @@ function AddToGroup({ group, groupIndex }) {
 
   return (
     <div>
-      <button className={style['add-to-gorup-btn']} onClick={onMenuClick}>
-        &#43;
-      </button>
+      <AppIcon
+        icon="app-icon-plus.png"
+        onClickCallback={onMenuClick}
+        color={'var(--create-new-group-theme-color-a)'}
+      />
       {isMenuOpen && (
         <ul className={style['add-to-group-menu']}>
           {menuItems.map((item) => item)}

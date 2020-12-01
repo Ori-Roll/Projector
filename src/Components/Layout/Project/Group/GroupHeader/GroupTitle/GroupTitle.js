@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
 import { setProjectGroupDispatch } from '../../../../../redux/rootReducer';
-import { db_updateGroup } from '../../../../../ServerProvider/groups';
+import { db_updateGroup } from '../../../../../../ServerProvider/groups';
 import style from './GroupTitle.module.css';
 
 function GroupTitle({ group }) {

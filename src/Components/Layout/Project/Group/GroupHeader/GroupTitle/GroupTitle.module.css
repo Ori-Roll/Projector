@@ -2,6 +2,8 @@
   padding: 2px 10px;
   border-radius: 5px;
   border: none;
+  display: flex;
+  flex-grow: 1;
 }
 
 .group-title:focus {
