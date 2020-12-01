@@ -17,8 +17,6 @@ import SelectedMenu from "./SelectedMenu/SelectedMenu";
 function ColumnsHeadWrapper({
 	columns,
 	groupIndex,
-	/* changeGroupData, */
-	/* setResizedColumn, */
 }) {
 	const dispatch = useDispatch();
 
@@ -49,7 +47,7 @@ function ColumnsHeadWrapper({
 							className={style["item-container"]}
 							handle={<div className={style["resize-handle"]}/>}
 							width={column.width ? column.width : 150}
-							height={40}
+							height={38}
 							minConstraints={[column.minWidth]}
 							maxConstraints={[column.maxWidth]}
 							onResize={(e, data) => onResize(data, columnIndex)}

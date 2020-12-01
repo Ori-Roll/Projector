@@ -2,7 +2,8 @@
   display: flex;
   margin-bottom: 2px;
   padding-left: 14px;
-  position: sticky;
+  position: relative;
+  z-index: 5;
 }
 
 /* .column-head-wrapper:hover {

@@ -9,6 +9,8 @@
   padding: 6px 12px;
   background-color: white;
   border: white 1px solid;
+  display: none;
+  z-index: 0;
 }
 
 .column-content-wrapper {
@@ -27,6 +29,7 @@
   color: #484848;
   z-index: 3;
 }
+
 .column-head-item:focus {
   color: black;
   outline: none;

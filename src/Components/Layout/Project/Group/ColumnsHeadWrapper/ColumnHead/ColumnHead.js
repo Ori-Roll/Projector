@@ -65,7 +65,9 @@ function ColumnHead({ column, columnIndex, groupIndex }) {
 				? "column-head-title-wrapper" 
 				: "column-head-wrapper")]}
 			onMouseOver={() => setHovered(true)}
-			onMouseLeave={() => setTimeout(() => setHovered(false), 200)}>
+			onMouseLeave={() => setTimeout(() => setHovered(false), 200)}
+			style={column.type && column.type!=="title" ? {backgroundColor: column.color} : {}}
+			>
 			{column.type && column.type!=="title" && 
 				<div className={style["column-drag-handle"]}>&#8942;&#8942;</div>
 			}
