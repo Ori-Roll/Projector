@@ -3,6 +3,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  background-color: #ede1e3;
 }
 
 .duedate-input {
@@ -33,14 +34,16 @@
   border-radius: 10px;
   background-color: rgb(235, 235, 235);
 }
+
 .specific-selectable-date:hover {
   background-color: rgb(206, 206, 206);
 }
 
 :global(.react-datepicker__input-container) > input {
   border: none;
+  background: none;
   width: 130px;
-  padding: 5px 8px 5px 10px;
+  padding: 8px 2px 8px 12px;
 } /* TODO: find the more specific input and change  */
 
 :global(.react-datepicker__input-container) > input:focus {
