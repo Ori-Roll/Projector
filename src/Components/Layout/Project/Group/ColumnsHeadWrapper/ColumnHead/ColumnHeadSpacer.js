@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import style from './ColumnHead.module.css';
-import defaults from '../../../../../defaults';
+import defaults from '../../../../../misc/000_OLD_defaults';
 
 function ColumnHeadSpacer({ column /* changeGroupData, setResizedColumn*/ }) {
   const [mouseOver, setMouseOver] = useState(false);

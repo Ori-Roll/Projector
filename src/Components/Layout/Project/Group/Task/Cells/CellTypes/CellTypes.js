@@ -8,8 +8,6 @@ import StatusCell from '../StatusCell/StatusCell';
 import AssignCell from '../AssignCell/AssignCell';
 import DueDate from '../DueDate/DueDate';
 
-import { NEW_COLUMN_DATA } from '../../../../../../defaults';
-
 // THIS LIST NEEDS TO MATCH knownCellTypes (see function below)
 
 const CellOfType = {

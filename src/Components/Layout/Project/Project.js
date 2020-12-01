@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import _ from 'lodash';
 
-import defaults from '../../defaults';
 import ProjectHeader from './ProjectHeader/ProjectHeader';
 import Group from './Group/Group';
 import ProjectLoader from './ProjectLoader';
