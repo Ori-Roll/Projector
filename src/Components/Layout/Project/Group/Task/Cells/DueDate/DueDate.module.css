@@ -4,12 +4,14 @@
   justify-content: center;
   align-items: center;
   background-color: #ede1e3;
+  cursor: pointer;
 }
 
 .duedate-input {
   width: calc(80% - 30px);
   border: none;
   text-align: center;
+  cursor: pointer;
 }
 
 .duedate-icon-wrapper {
@@ -24,6 +26,7 @@
   padding: 6px 8px;
   margin: 5px 0;
   width: 100%;
+  cursor: pointer;
 }
 
 .specific-selectable-date {
@@ -33,6 +36,7 @@
   margin: 5px 0 0;
   border-radius: 10px;
   background-color: rgb(235, 235, 235);
+  cursor: pointer;
 }
 
 .specific-selectable-date:hover {

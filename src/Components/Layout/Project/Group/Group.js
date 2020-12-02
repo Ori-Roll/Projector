@@ -62,7 +62,7 @@ function Group({ group, groupIndex }) {
       </div>
       <div
         className={style['group-content-wrapper']}
-        style={!groupIsOpen ? { backgroundColor: 'red', display: 'none' } : {}}
+        style={!groupIsOpen ? { display: 'none' } : {}}
       >
         <ColumnsHeadWrapper
           key={group._id}
