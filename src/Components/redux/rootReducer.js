@@ -19,7 +19,7 @@ const defaultAppValues = {
     '--create-new-project-menu-position-left-pc': '5%',
     '--create-new-project-menu-position-top-pc': '5%',
     '--create-new-project-theme-color-a': '#7d93b5',
-    '--create-new-group-theme-color-a': '#7d93b5',
+    '--create-new-group-theme-color-a': '#93a6c2',
 
     '--sidebar-width': '64px',
     '--sidebar-bg-color': 'white',
@@ -54,6 +54,9 @@ function appReducer(state = defaultAppValues, action) {
         break;
       case 'CHANGE_LOADED_STATE':
         draft.loaded[action.forStage] = action.loadingState;
+      case 'NEW_PROJECT_MENU_ACTIVE':
+        draft.newProjectMenuActive = action.isActive;
+        break;
       default:
         return draft;
     }
@@ -222,6 +225,13 @@ export function setAppStateDispatch(state) {
   return {
     type: 'SET_APP_STATE',
     state: state,
+  };
+}
+
+export function newProjectMenuActiveDispatch(isActive) {
+  return {
+    type: 'NEW_PROJECT_MENU_ACTIVE',
+    isActive: isActive,
   };
 }
 
