@@ -1,7 +1,7 @@
 .column-head-wrapper {
   display: flex;
   margin-bottom: 2px;
-  padding-left: 14px;
+  padding-left: 15px;
   position: relative;
   z-index: 5;
 }
