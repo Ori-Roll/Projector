@@ -80,6 +80,7 @@ function AddNewMenuBtn({ project, projectChange }) {
           {...attributes.popper}
         >
           <AppDefaultMenu
+            menuTitle={'Add new project or group'}
             menuItems={[
               {
                 text: 'Add a new group',
