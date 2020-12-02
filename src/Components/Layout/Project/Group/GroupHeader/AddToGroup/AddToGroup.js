@@ -116,6 +116,7 @@ function AddToGroup({ group, groupIndex }) {
             <AppDefaultMenu
               menuItems={addToGroupItems}
               menuTitle={'Add new columns to this group'}
+              setMenuActive={setIsMenuOpen}
             />
           </div>
         </Portal>

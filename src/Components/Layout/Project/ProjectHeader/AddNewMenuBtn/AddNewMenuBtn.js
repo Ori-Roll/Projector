@@ -89,6 +89,7 @@ function AddNewMenuBtn({ project, projectChange }) {
               },
               { text: 'Add a new project', icon: <p>&#43;</p> },
             ]}
+            setMenuActive={setAddNewActive}
           />
         </div>
       )}

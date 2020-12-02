@@ -11,6 +11,7 @@ import { db_deleteTasks } from '../../../../../../ServerProvider/tasks';
 import { useSelector, useDispatch } from 'react-redux';
 import { usePopper } from 'react-popper';
 import AppIcon from '../../../../../../GlobalComponents/AppIcon/AppIcon';
+import AppDefaultMenu from '../../../../../../GlobalComponents/AppDefaultMenu/AppDefaultMenu';
 
 function SelectedMenu() {
   const [menuIsActive, setMenuIsActive] = useState(false);
@@ -78,31 +79,35 @@ function SelectedMenu() {
       </button>
       <div ref={setPopperElement} style={styles.popper} {...attributes.popper}>
         {menuIsActive && (
-          <div
-            className={style['task-selected-menu']}
-            style={{ visibility: menuIsActive ? 'visible' : 'hidden' }}
-          >
-            <div className={style['selected-action-btn']}>
-              <AppIcon
-                id="select-all"
-                icon="app-icon-check-round.png"
-                onClickCallback={onCheckAll}
-                color="#4078a8"
-                size={28}
-              />
-              <label htmlFor="select-all">Select all tasks</label>
-            </div>
-            <div className={style['selected-action-btn']}>
-              <AppIcon
-                id="delete-selected"
-                icon="app-icon-trash-can.png"
-                onClickCallback={onDeleteSelected}
-                color="#4078a8"
-                size={28}
-              />
-              <label htmlFor="select-all">Delete selected tasks</label>
-            </div>
-          </div>
+          <AppDefaultMenu
+            setMenuActive={setMenuIsActive}
+            menuItems={[
+              {
+                text: 'Select all tasks',
+                icon: (
+                  <AppIcon
+                    id="select-all"
+                    icon="app-icon-check-round.png"
+                    color="#4078a8"
+                    size={20}
+                  />
+                ),
+                onClickCallback: onCheckAll,
+              },
+              {
+                text: 'Delete selected tasks',
+                icon: (
+                  <AppIcon
+                    id="select-all"
+                    icon="app-icon-trash-can.png"
+                    color="#4078a8"
+                    size={20}
+                  />
+                ),
+                onClickCallback: onDeleteSelected,
+              },
+            ]}
+          />
         )}
         {/* <div
           ref={setArrowElement}
@@ -128,3 +133,30 @@ function SelectedMenu() {
 SelectedMenu.propTypes = {};
 
 export default SelectedMenu;
+
+/* 
+<div
+            className={style['task-selected-menu']}
+            style={{ visibility: menuIsActive ? 'visible' : 'hidden' }}
+          >
+            <div className={style['selected-action-btn']}>
+              <AppIcon
+                id="select-all"
+                icon="app-icon-check-round.png"
+                onClickCallback={onCheckAll}
+                color="#4078a8"
+                size={28}
+              />
+              <label htmlFor="select-all">Select all tasks</label>
+            </div>
+            <div className={style['selected-action-btn']}>
+              <AppIcon
+                id="delete-selected"
+                icon="app-icon-trash-can.png"
+                onClickCallback={onDeleteSelected}
+                color="#4078a8"
+                size={28}
+              />
+              <label htmlFor="select-all">Delete selected tasks</label>
+            </div>
+          </div> */
