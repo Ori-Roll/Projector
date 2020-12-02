@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import style from './AppDefaultMenu.module.css';
 
-function AppDefaultMenu({ menuItems }) {
+function AppDefaultMenu({ menuTitle, menuItems }) {
   return (
     <div className={style['app-menu']}>
-      <h4>This is heading</h4>
+      <h4>{menuTitle}</h4>
       <ul className={style['app-menu-ul']}>
         {menuItems.map((item) => {
           return (
