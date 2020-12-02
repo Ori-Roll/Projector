@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { newProjectMenuActiveDispatch } from '../../Components/redux/rootReducer';
 import PropTypes from 'prop-types';
 
 import AppIcon from '../AppIcon/AppIcon';
@@ -7,7 +9,14 @@ import style from './AddNewProject.module.css';
 import AddNewProjectMenu from './AddNewProjectMenu';
 
 function AddNewProjectBtn() {
-  const [addNewProjectMenuActive, setAddNewProjectMenuActive] = useState(false);
+  const dispatch = useDispatch();
+
+  const setAddNewProjectMenuActive = (isActive) =>
+    dispatch(newProjectMenuActiveDispatch(isActive));
+
+  const addNewProjectMenuActive = useSelector(
+    (state) => state?.app?.newProjectMenuActive
+  );
 
   return (
     <div className={style['add-new-project-btn-wrapper']}>

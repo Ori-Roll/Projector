@@ -22,7 +22,7 @@ function ProjectTypeDetails({
 
   const loadingProjectMessage = (
     <div className={style['loading-project-message']}>
-      <p>Just a moment...</p>
+      <h3>Just a moment...</h3>
       <p>"Setting up your new project."</p>
       <img
         src={`http://localhost:5000/api/v0/projectTypes/${selectedProjectType.icon}`}
@@ -36,8 +36,6 @@ function ProjectTypeDetails({
     const newProjectRes = await createNewProject(
       selectedProjectType.projectProperties
     );
-    console.log('newProjectRes', newProjectRes);
-    debugger;
     setProjectToSelected(newProjectRes);
   }
 

@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
+import { useDispatch } from 'react-redux';
+import { newProjectMenuActiveDispatch } from '../../Components/redux/rootReducer';
 import ProjectTypeDetails from './ProjectTypeDetails/ProjectTypeDetails';
 import ProjectTypeItems from './ProjectTypeItems/ProjectTypeItems';
 
 import style from './AddNewProject.module.css';
 
-function AddNewProjectMenu({ setAddNewProjectMenuActive }) {
+function AddNewProjectMenu(props) {
+  const dispatch = useDispatch();
+  const setAddNewProjectMenuActive = (isActive) =>
+    dispatch(newProjectMenuActiveDispatch(isActive));
+
   const [selectedProjectType, setSelectedProjectType] = useState(null);
 
   return (

@@ -38,6 +38,7 @@ const defaultAppValues = {
     app: null,
     project: null,
   },
+  newProjectMenuActive: false,
 };
 
 function appReducer(state = defaultAppValues, action) {

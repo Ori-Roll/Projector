@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { usePopper } from 'react-popper';
 
 import { db_createNewGroup } from '../../../../../ServerProvider/groups';
@@ -11,6 +11,7 @@ import AppIcon from '../../../../../GlobalComponents/AppIcon/AppIcon';
 import style from './AddNewMenuBtn.module.css';
 import AddNewProjectBtn from '../../../../../GlobalComponents/AddNewProject/AddNewProjectBtn';
 import AppDefaultMenu from '../../../../../GlobalComponents/AppDefaultMenu/AppDefaultMenu';
+import AddNewProjectMenu from '../../../../../GlobalComponents/AddNewProject/AddNewProjectMenu';
 
 function AddNewMenuBtn({ project, projectChange }) {
   const [isWorking, setIsWorking] = useState(false);
@@ -62,6 +63,12 @@ function AddNewMenuBtn({ project, projectChange }) {
     }
   }
 
+  const newProjectMenuActive = useSelector(
+    (state) => state.app.newProjectMenuActive
+  );
+
+  console.log(newProjectMenuActive);
+
   return (
     <div>
       <div ref={setReferenceElement}>
@@ -93,6 +100,7 @@ function AddNewMenuBtn({ project, projectChange }) {
           />
         </div>
       )}
+      {newProjectMenuActive && <AddNewProjectMenu />}
     </div>
   );
 }
