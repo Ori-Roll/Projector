@@ -15,7 +15,10 @@
 }
 
 .add-to-group-menu {
-  position: relative;
+  z-index: 5;
+}
+/* 
+.add-to-group-menu {
   text-align: left;
   list-style-type: none;
   padding: 0.8em 1em;
@@ -57,3 +60,4 @@
   text-align: center;
   font-size: x-large;
 }
+ */

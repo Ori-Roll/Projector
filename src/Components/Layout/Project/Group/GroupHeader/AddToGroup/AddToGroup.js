@@ -14,6 +14,7 @@ import {
 
 import style from './AddToGroup.module.css';
 import AppIcon from '../../../../../../GlobalComponents/AppIcon/AppIcon';
+import AppDefaultMenu from '../../../../../../GlobalComponents/AppDefaultMenu/AppDefaultMenu';
 
 function AddToGroup({ group, groupIndex }) {
   const dispatch = useDispatch();
@@ -30,13 +31,13 @@ function AddToGroup({ group, groupIndex }) {
   const [popperElement, setPopperElement] = useState(null);
   const [arrowElement, setArrowElement] = useState(null);
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
-    placement: 'bottom-start',
+    placement: 'left-end',
     modifiers: [
       {
         name: 'offset',
         enabled: true,
         options: {
-          offset: [5, 5],
+          offset: [-8, 8],
           element: arrowElement,
         },
       },
@@ -71,25 +72,27 @@ function AddToGroup({ group, groupIndex }) {
       console.error(error);
     }
   }
-
-  const menuItems = [
-    //TODO: .map() for this
-    <li key={'menu1'} onClick={() => addColumnClick('text')}>
-      <div className={style['column-icon']}>T</div>
-      <p>New Text Column</p>
-    </li>,
-    <li key={'menu2'} onClick={() => addColumnClick('number')}>
-      <div className={style['column-icon']}>N</div>
-      <p>New Number Column</p>
-    </li>,
-    <li key={'menu3'} onClick={() => addColumnClick('assign')}>
-      <div className={style['column-icon']}>U</div>
-      <p>New Users Column</p>
-    </li>,
-    <li key={'menu4'} onClick={() => addColumnClick('dueDate')}>
-      <div className={style['column-icon']}>D</div>
-      <p>New due date Column</p>
-    </li>,
+  const addToGroupItems = [
+    {
+      text: 'New Text Column',
+      icon: 'T',
+      onClickCallback: () => addColumnClick('text'),
+    },
+    {
+      text: 'New Number Column',
+      icon: 'N',
+      onClickCallback: () => addColumnClick('number'),
+    },
+    {
+      text: 'New Users Column',
+      icon: 'U',
+      onClickCallback: () => addColumnClick('assign'),
+    },
+    {
+      text: 'New due date Column',
+      icon: 'D',
+      onClickCallback: () => addColumnClick('dueDate'),
+    },
   ];
 
   return (
@@ -104,14 +107,17 @@ function AddToGroup({ group, groupIndex }) {
       </div>
       {isMenuOpen && (
         <Portal>
-          <ul
-            className={style['add-to-group-menu']}
+          <div
             ref={setPopperElement}
+            className={style['add-to-group-menu']}
             style={styles.popper}
             {...attributes.popper}
           >
-            {menuItems.map((item) => item)}
-          </ul>
+            <AppDefaultMenu
+              menuItems={addToGroupItems}
+              menuTitle={'Add new columns to this group'}
+            />
+          </div>
         </Portal>
       )}
     </div>
@@ -121,3 +127,39 @@ function AddToGroup({ group, groupIndex }) {
 AddToGroup.propTypes = {};
 
 export default AddToGroup;
+/* 
+<Portal>
+          <AppDefaultMenu
+            menuItems={addToGroupItems}
+            menuTitle={'Add new columns to this group'}
+          />
+          <ul
+            className={style['add-to-group-menu']}
+            ref={setPopperElement}
+            style={styles.popper}
+            {...attributes.popper}
+          >
+            {menuItems.map((item) => item)}
+          </ul>
+		</Portal> */
+
+/* 		const menuItems = [
+			//TODO: .map() for this
+			<li key={'menu1'} onClick={() => addColumnClick('text')}>
+			  <div className={style['column-icon']}>T</div>
+			  <p>New Text Column</p>
+			</li>,
+			<li key={'menu2'} onClick={() => addColumnClick('number')}>
+			  <div className={style['column-icon']}>N</div>
+			  <p>New Number Column</p>
+			</li>,
+			<li key={'menu3'} onClick={() => addColumnClick('assign')}>
+			  <div className={style['column-icon']}>U</div>
+			  <p>New Users Column</p>
+			</li>,
+			<li key={'menu4'} onClick={() => addColumnClick('dueDate')}>
+			  <div className={style['column-icon']}>D</div>
+			  <p>New due date Column</p>
+			</li>,
+		  ];
+ */
