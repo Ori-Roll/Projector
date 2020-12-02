@@ -15,7 +15,7 @@ function AppIcon({
   return (
     <div
       className={style['icon-wrapper']}
-      onClick={onClickCallback}
+      onClick={onClickCallback ? onClickCallback : null}
       style={{
         backgroundColor: color,
         width: `${size}px`,
