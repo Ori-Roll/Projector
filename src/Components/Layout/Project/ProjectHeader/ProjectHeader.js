@@ -1,51 +1,31 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+
 import { useSelector, useDispatch } from 'react-redux';
 
-import { db_createNewGroup } from '../../../../ServerProvider/groups';
 import {
   db_updateProject,
   db_getUserProjects,
 } from '../../../../ServerProvider/projects';
+
 import {
+  setUserDispatch,
   setProjectGroupsDispatch,
   setProjectNameDispatch,
-  setUserDispatch,
 } from '../../../redux/rootReducer';
-import AppIcon from '../../../../GlobalComponents/AppIcon/AppIcon';
 
+import AddNewMenuBtn from './AddNewMenuBtn/AddNewMenuBtn';
 import style from './ProjectHeader.module.css';
-import AddNewProjectBtn from '../../../../GlobalComponents/AddNewProject/AddNewProjectBtn';
 
 function ProjectHeader({ project }) {
-  const [isWorking, setIsWorking] = useState(false);
-
-  const [addNewActive, setAddNewActive] = useState(false);
+  const user = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
-
   const projectChange = {
     addNewGroup: (newGroup) =>
       dispatch(setProjectGroupsDispatch([...project.groups, newGroup])),
     name: (name) => dispatch(setProjectNameDispatch(name)),
   };
-
-  async function onAddNewGroupClick() {
-    try {
-      setIsWorking(true);
-      const newGroup = await db_createNewGroup(project._id);
-      newGroup.loaded = true;
-      newGroup.getsFocus = true;
-      projectChange.addNewGroup(newGroup);
-
-      setIsWorking(false);
-    } catch (error) {
-      setIsWorking(false);
-      console.error(error);
-    }
-  }
-
-  const user = useSelector((state) => state.user);
 
   async function onNameChange() {
     try {
@@ -72,27 +52,13 @@ function ProjectHeader({ project }) {
         onBlur={onNameChange}
       />
       <div className={style['project-header-right']}>
-        <AppIcon
-          icon={isWorking ? 'app-icon-time.png' : 'app-icon-plus.png'}
-          color="#87b0c4"
-          size={40}
-          onClickCallback={() => setAddNewActive(!addNewActive)}
-        />
-        {addNewActive && (
-          <div>
-            <AppIcon
-              icon={isWorking ? 'app-icon-time.png' : 'app-icon-plus.png'}
-              color="#87b0c4"
-              size={40}
-              onClickCallback={onAddNewGroupClick}
-            />
-            <AddNewProjectBtn />
-          </div>
-        )}
+        <AddNewMenuBtn project={project} projectChange={projectChange} />
       </div>
     </div>
   );
 }
+
+//<AddNewProjectBtn />
 
 ProjectHeader.propTypes = {};
 
