@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import { usePopper } from 'react-popper';
+import { Portal } from 'react-portal';
 import { db_createNewColumn } from '../../../../../../ServerProvider/columns';
 
 import { useDispatch } from 'react-redux';
@@ -22,6 +24,36 @@ function AddToGroup({ group, groupIndex }) {
     dispatch(addNewColumnFailedDispatch(groupIndex));
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Popper setup
+  const [referenceElement, setReferenceElement] = useState(null);
+  const [popperElement, setPopperElement] = useState(null);
+  const [arrowElement, setArrowElement] = useState(null);
+  const { styles, attributes } = usePopper(referenceElement, popperElement, {
+    placement: 'bottom-start',
+    modifiers: [
+      {
+        name: 'offset',
+        enabled: true,
+        options: {
+          offset: [5, 5],
+          element: arrowElement,
+        },
+      },
+      {
+        name: 'preventOverflow',
+        options: {
+          enabled: true,
+          escapeWithReference: true,
+          boundary: 'viewport',
+          altBoundary: true,
+          tether: false,
+          rootBoundary: 'document',
+          mainAxis: false,
+        },
+      },
+    ],
+  });
 
   function onMenuClick() {
     setIsMenuOpen(!isMenuOpen);
@@ -61,16 +93,26 @@ function AddToGroup({ group, groupIndex }) {
   ];
 
   return (
-    <div>
-      <AppIcon
-        icon="app-icon-plus.png"
-        onClickCallback={onMenuClick}
-        color={'var(--create-new-group-theme-color-a)'}
-      />
+    <div className={style['add-to-group-wrapper']}>
+      <div ref={setReferenceElement}>
+        <AppIcon
+          icon="app-icon-plus.png"
+          onClickCallback={onMenuClick}
+          color={'var(--create-new-group-theme-color-a)'}
+          size={35}
+        />
+      </div>
       {isMenuOpen && (
-        <ul className={style['add-to-group-menu']}>
-          {menuItems.map((item) => item)}
-        </ul>
+        <Portal>
+          <ul
+            className={style['add-to-group-menu']}
+            ref={setPopperElement}
+            style={styles.popper}
+            {...attributes.popper}
+          >
+            {menuItems.map((item) => item)}
+          </ul>
+        </Portal>
       )}
     </div>
   );
