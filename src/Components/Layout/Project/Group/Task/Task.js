@@ -109,7 +109,7 @@ function Task({ task, columns, taskIndex, groupIndex, addNewTask }) {
     addNewTask();
   }
 
-  return inView ? ( // TODO: maby add this to a list of viewed on group and render there accordingly (no need to pass anything)
+  return inView ? ( // TODO: maybe add this to a list of viewed on group and render there accordingly (no need to pass anything)
     <div
       className={style['task']}
       ref={taskWrapperRef}

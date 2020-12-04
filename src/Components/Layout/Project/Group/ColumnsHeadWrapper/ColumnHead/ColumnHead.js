@@ -40,7 +40,6 @@ function ColumnHead({ column, columnIndex, groupIndex }) {
   }
 
   function onMouseDown() {
-    console.log('MOUSE DOWN CLICK');
     /* 	changeGroupData({
 			editedColumn: {
 				//editedColumn need to be renamed changedColumn or maby just column

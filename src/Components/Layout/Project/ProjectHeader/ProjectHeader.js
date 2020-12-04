@@ -35,7 +35,7 @@ function ProjectHeader({ project }) {
       // Change project names on project names list
       let userProjects = await db_getUserProjects();
       //userProjects = userProjects.data.map(project => project.name);
-      console.log('userPeojects ', userProjects);
+      console.log('userProjects ', userProjects);
       dispatch(setUserDispatch({ ...user, projects: userProjects.data }));
       // TODO: This needs to change the array of user project names for the projects menu to change
     } catch (error) {

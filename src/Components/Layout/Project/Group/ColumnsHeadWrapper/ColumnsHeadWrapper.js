@@ -27,7 +27,7 @@ function ColumnsHeadWrapper({ columns, groupIndex }) {
     const editedColumn = { ...column, width: data.size.width };
     try {
       const resColumn = await db_editColumn(editedColumn);
-      console.log(resColumn);
+      // TODO: This needs to update the store
     } catch (error) {
       console.error(error);
     }

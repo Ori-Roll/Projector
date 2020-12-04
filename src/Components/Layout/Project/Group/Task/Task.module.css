@@ -1,7 +1,7 @@
 .task {
   display: flex;
   height: var(--task-height);
-  border: var(--task-title-default-background-color) 2px solid;
+  border: var(--task-title-default-border-color) 2px solid;
   border-radius: 2px;
   margin-bottom: var(--task-margin-bottom);
   position: relative;

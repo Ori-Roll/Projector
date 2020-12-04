@@ -63,7 +63,7 @@ function ProjectSelect({ projectSelectActive, setProjectSelectActive }) {
 
         <div className={style['project-select-list']}>
           {user.projects
-            ? user.projects.map((project) => {
+            ? user.projects?.map((project) => {
                 return (
                   <button
                     className={style['project-select-btn']}

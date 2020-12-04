@@ -25,7 +25,7 @@ function GroupTitle({ group }) {
   async function onGroupTitleSet() {
     try {
       const updatedGroup = await db_updateGroup(group);
-      console.log('updatedGroup', updatedGroup);
+      // TODO:
     } catch (error) {
       // TODO: This needs to update back to the old name if this fails
 

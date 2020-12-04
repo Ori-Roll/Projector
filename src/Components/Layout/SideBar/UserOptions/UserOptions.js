@@ -56,7 +56,7 @@ function UserOptions() {
   async function logoutClick() {
     const logoutUserRes = await db_logoutUser();
     // HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    document.cookie = null; // TODO: Is this how to do this?
+    document.cookie = null; // TODO: Is this how to do this? Do it like this: https://stackoverflow.com/questions/2144386/how-to-delete-a-cookie
     setUser(null);
   }
 

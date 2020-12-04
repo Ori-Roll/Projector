@@ -27,7 +27,7 @@ const defaultAppValues = {
     '--project-header-height': '80px',
 
     '--task-height': '48px',
-    '--task-title-default-background-color': '#f0f2f5',
+    '--task-title-default-border-color': '#f5f7fa',
     '--task-margin-bottom': '2px',
 
     '--normal-checkbox-size': '20px',

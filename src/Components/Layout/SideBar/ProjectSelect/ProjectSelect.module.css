@@ -23,7 +23,7 @@
   position: absolute;
   box-shadow: inset var(--side-project-select-bg-color) -3px 0 0;
   background-color: white;
-  padding: 20px;
+  padding: 25px 15px;
   top: 0;
   left: -200px;
   width: 300px;
@@ -33,14 +33,14 @@
   grid-template-rows: 40px auto;
   gap: 20px 2px;
   border-right: rgb(155, 155, 155) 1px solid;
-  transition: ease-in-out 100ms;
+  transition: ease-out 150ms;
   z-index: 100;
 }
 
 .project-select-header-menu {
   grid-column: 1/3;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   padding: 0 30px;
 }
 
