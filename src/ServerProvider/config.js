@@ -4,6 +4,7 @@ async function initUser() {
   let user = null;
   if (document.cookie && document.cookie.startsWith('token')) {
     try {
+      console.log('Attempting db_getLoggedInUser');
       const res = await db_getLoggedInUser();
       user = res.data;
     } catch (error) {

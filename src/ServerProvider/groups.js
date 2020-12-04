@@ -1,9 +1,10 @@
 import axios from 'axios';
+import { serverPort } from '../misc/defaults/defaults';
 
 async function db_createNewGroup(projectId) {
   try {
     const response = await axios.post(
-      `http://localhost:5000/api/v0/projects/${projectId}/groups`
+      `${serverPort}/api/v0/projects/${projectId}/groups`
     );
     return response.data.data;
   } catch (error) {
@@ -14,7 +15,7 @@ async function db_createNewGroup(projectId) {
 async function getProjectGroups(projectId) {
   try {
     const response = await axios.get(
-      `http://localhost:5000/api/v0/projects/${projectId}/groups`
+      `${serverPort}/api/v0/projects/${projectId}/groups`
     );
     response.data.data.forEach((group) => {
       group.tasks.forEach((task) => {
@@ -33,7 +34,7 @@ async function db_updateGroup(group) {
     !group._id && console.error(`New group does not have an _id`);
 
     const response = await axios.put(
-      `http://localhost:5000/api/v0/projects/${group.project}/groups/${group._id}`,
+      `${serverPort}/api/v0/projects/${group.project}/groups/${group._id}`,
       group,
       {
         headers: { 'Content-Type': 'application/json' },

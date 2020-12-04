@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { serverPort } from '../misc/defaults/defaults';
 
 async function db_createNewColumn(group, type = 'text') {
   //This gets a group in return !
@@ -11,7 +12,7 @@ async function db_createNewColumn(group, type = 'text') {
 
   try {
     const response = await axios.post(
-      `http://localhost:5000/api/v0/projects/${group.project}/columns`,
+      `${serverPort}/api/v0/projects/${group.project}/columns`,
       reqBodyToSend,
       {
         headers: { 'Content-Type': 'application/json' },
@@ -35,7 +36,7 @@ async function db_editColumn(column) {
   console.log('attempting column ', column);
   try {
     const response = await axios.put(
-      `http://localhost:5000/api/v0/projects/${column.project}/columns/${column._id}`,
+      `${serverPort}/api/v0/projects/${column.project}/columns/${column._id}`,
       column,
       {
         headers: { 'Content-Type': 'application/json' },
