@@ -13,7 +13,11 @@ function AppDefaultMenu({ menuTitle, menuItems, setMenuActive }) {
       <ul className={style['app-menu-ul']}>
         {menuItems.map((item) => {
           return (
-            <li className={style['app-menu-li']} onClick={item.onClickCallback}>
+            <li
+              key={item.text}
+              className={style['app-menu-li']}
+              onClick={item.onClickCallback}
+            >
               {typeof item.icon === 'string' ? (
                 <div>{item.icon}</div>
               ) : (

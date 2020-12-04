@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { setDefaultLocale } from 'react-datepicker';
 import es from 'date-fns/locale/es';
 
+import axios from 'axios';
+
 import Layout from './Components/Layout/Layout';
 import Login from './Components/Login/Login';
 import Loader from './Components/Login/Loader';
@@ -33,7 +35,7 @@ function App() {
 
   async function initApp(withUser) {
     /* setDefaultLocale('es', es) */
-
+    axios.defaults.withCredentials = true;
     try {
       const user = withUser ? { ...withUser } : await initUser();
       if (user) {
@@ -42,9 +44,14 @@ function App() {
         let userProjects = await db_getUserProjects(false);
         userProjects = userProjects.data;
         user.projects = userProjects;
-        const lastOpenedProject = user.lastOpenedProject
-          ? user.lastOpenedProject
-          : userProjects[0]._id;
+        let lastOpenedProject;
+        if (user.lastOpenedProject) {
+          lastOpenedProject = user.lastOpenedProject;
+        } else if (userProjects[0]) {
+          lastOpenedProject = userProjects[0]._id;
+        } else {
+          lastOpenedProject = null;
+        }
         let projectToOpen = userProjects.find(
           (project) => project._id === lastOpenedProject
         ); // await getProject(lastProject._id, true);

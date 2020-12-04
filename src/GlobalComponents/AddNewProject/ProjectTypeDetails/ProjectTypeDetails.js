@@ -8,7 +8,7 @@ import { setProjectDispatch } from '../../../Components/redux/rootReducer';
 import useResetTemporaryOperations from '../../globalControllers/useResetTemporaryOperations';
 
 import style from './ProjectTypeDetails.module.css';
-import { serverPort } from '../../../misc/defaults/defaults';
+import { serverURI } from '../../../misc/defaults/defaults';
 
 function ProjectTypeDetails({
   selectedProjectType,
@@ -26,7 +26,7 @@ function ProjectTypeDetails({
       <h3>Just a moment...</h3>
       <p>"Setting up your new project."</p>
       <img
-        src={`${serverPort}/api/v0/projectTypes/${selectedProjectType.icon}`}
+        src={`${serverURI}/api/v0/projectTypes/${selectedProjectType.icon}`}
       />
     </div>
   );

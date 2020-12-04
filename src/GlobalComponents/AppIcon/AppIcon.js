@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import style from './AppIcon.module.css';
-import { serverPort } from '../../misc/defaults/defaults';
+import { serverURI } from '../../misc/defaults/defaults';
 
 function AppIcon({
   icon,
@@ -11,7 +11,7 @@ function AppIcon({
   size = 38,
   cssOptions = {},
 }) {
-  const photoUrl = `${serverPort}/api/v0/assets/icons/${icon}`;
+  const photoUrl = `${serverURI}/api/v0/assets/icons/${icon}`;
 
   return (
     <div

@@ -1,3 +1,3 @@
-const serverPort = 'https://salty-shore-75415.herokuapp.com';
+const serverURI = 'https://salty-shore-75415.herokuapp.com';
 
-export { serverPort };
+export { serverURI };

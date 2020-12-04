@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { serverPort } from '../misc/defaults/defaults';
+import { serverURI } from '../misc/defaults/defaults';
 
 async function createNewProject(newProject) {
   try {
     const response = await axios.post(
-      `${serverPort}/api/v0/projects`,
+      `${serverURI}/api/v0/projects`,
       newProject,
       {
         headers: { 'Content-Type': 'application/json' },
@@ -20,10 +20,10 @@ async function db_getUserProjects(populate = false) {
   try {
     console.log('on Get User Projects token is ', document.cookie);
     const response = populate
-      ? await axios.get(`${serverPort}/api/v0/projects`, {
+      ? await axios.get(`${serverURI}/api/v0/projects`, {
           withCredentials: true,
         })
-      : await axios.get(`${serverPort}/api/v0/projects?nopopulate=true`, {
+      : await axios.get(`${serverURI}/api/v0/projects?nopopulate=true`, {
           withCredentials: true,
         });
     return response.data;
@@ -35,9 +35,9 @@ async function db_getUserProjects(populate = false) {
 async function getProject(projectId, populate = true) {
   try {
     const response = populate
-      ? await axios.get(`${serverPort}/api/v0/projects/${projectId}`)
+      ? await axios.get(`${serverURI}/api/v0/projects/${projectId}`)
       : await axios.get(
-          `${serverPort}/api/v0/projects/${projectId}?nopopulate=true`
+          `${serverURI}/api/v0/projects/${projectId}?nopopulate=true`
         );
     return response.data;
   } catch (error) {
@@ -47,7 +47,7 @@ async function getProject(projectId, populate = true) {
 
 async function getProjectTypes() {
   try {
-    const response = await axios.get(`${serverPort}/api/v0/projecttypes`);
+    const response = await axios.get(`${serverURI}/api/v0/projecttypes`);
     return response.data.data;
   } catch (error) {
     console.error('Could not get project types', error);
@@ -57,7 +57,7 @@ async function getProjectTypes() {
 async function db_updateProject(project) {
   try {
     const response = await axios.put(
-      `${serverPort}/api/v0/projects/${project._id}`,
+      `${serverURI}/api/v0/projects/${project._id}`,
       project
     );
     return response.data.data;
@@ -68,7 +68,7 @@ async function db_updateProject(project) {
 /* 
 async function getProjectTypePhoto(photo){
 	try {
-		const response = await axios.get(`${serverPort}/api/v0/projectTypes/${photo}`)
+		const response = await axios.get(`${serverURI}/api/v0/projectTypes/${photo}`)
 		return response.data;
 	} catch (error){
 		console.error(error)

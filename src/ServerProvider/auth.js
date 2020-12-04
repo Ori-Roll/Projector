@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { db_getUserProjects } from './projects';
-import { serverPort } from '../misc/defaults/defaults';
+import { serverURI } from '../misc/defaults/defaults';
 
 axios.defaults.withCredentials = true;
 
@@ -9,7 +9,7 @@ axios.defaults.withCredentials = true;
 async function db_registerUser(name, email, password) {
   try {
     const response = await axios.post(
-      `${serverPort}/api/v0/auth/register`,
+      `${serverURI}/api/v0/auth/register`,
       {
         name: name,
         email: email,
@@ -34,7 +34,7 @@ async function db_registerUser(name, email, password) {
 async function db_loginUser(email, password) {
   try {
     const response = await axios.post(
-      `${serverPort}/api/v0/auth/login`,
+      `${serverURI}/api/v0/auth/login`,
       {
         email: email,
         password: password,
@@ -52,7 +52,7 @@ async function db_loginUser(email, password) {
 // TODO: Theres an issue here sometimes after register - fix this
 async function db_logoutUser() {
   try {
-    const response = await axios.get(`${serverPort}/api/v0/auth/logout`);
+    const response = await axios.get(`${serverURI}/api/v0/auth/logout`);
     return response.data;
   } catch (error) {
     console.error(error.response.data);
@@ -62,7 +62,7 @@ async function db_logoutUser() {
 async function db_getLoggedInUser() {
   console.log('token on send is ', document.cookie);
   try {
-    const response = await axios.get(`${serverPort}/api/v0/auth/me`);
+    const response = await axios.get(`${serverURI}/api/v0/auth/me`);
     if (response) return response.data;
   } catch (error) {
     console.error('error is ', error);
@@ -72,7 +72,7 @@ async function db_getLoggedInUser() {
 async function db_forgotUserPassword(email) {
   try {
     const response = await axios.post(
-      `${serverPort}/api/v0/auth/forgotpassword`,
+      `${serverURI}/api/v0/auth/forgotpassword`,
       {
         email: email,
       },
@@ -88,7 +88,7 @@ async function db_resetUserPassword(resetPasswordToken, newPassword) {
   // resetPasswordToken was sent by mail
   try {
     const response = await axios.put(
-      `${serverPort}/api/v0/auth/resetpassword/${resetPasswordToken}`,
+      `${serverURI}/api/v0/auth/resetpassword/${resetPasswordToken}`,
       {
         password: newPassword,
       },
@@ -103,7 +103,7 @@ async function db_resetUserPassword(resetPasswordToken, newPassword) {
 async function db_updateUserDetails(newDetails) {
   try {
     const response = await axios.put(
-      `${serverPort}/api/v0/auth/updatedetails`,
+      `${serverURI}/api/v0/auth/updatedetails`,
       newDetails,
       { headers: { 'Content-Type': 'application/json' } }
     );
@@ -119,7 +119,7 @@ async function db_uploadUserPhoto(photo) {
 
   try {
     const response = await axios.put(
-      `${serverPort}/api/v0/auth/userPhotoUpload`,
+      `${serverURI}/api/v0/auth/userPhotoUpload`,
       formData,
       { headers: { 'Content-Type': 'multipart/form-data' } }
     );
@@ -132,7 +132,7 @@ async function db_uploadUserPhoto(photo) {
 async function db_updateUserPassword(currentPassword, newPassword) {
   try {
     const response = await axios.put(
-      `${serverPort}/api/v0/auth/updatepassword`,
+      `${serverURI}/api/v0/auth/updatepassword`,
       {
         currentPassword: currentPassword,
         newPassword: newPassword,
@@ -148,7 +148,7 @@ async function db_updateUserPassword(currentPassword, newPassword) {
 async function db_getApprovingUsers() {
   try {
     const response = await axios.get(
-      `${serverPort}/api/v0/auth/getApprovingUsers`
+      `${serverURI}/api/v0/auth/getApprovingUsers`
     );
     if (response) return response.data.data;
   } catch (error) {

@@ -15,6 +15,7 @@ import {
 import { getProjectGroups } from '../../../ServerProvider/groups';
 
 import style from './Project.module.css'; // TODO: change from style to: import classes from '..';
+import Loader from '../../../GlobalComponents/Loader/Loader';
 
 function Project() {
   const dispatch = useDispatch();
@@ -52,7 +53,16 @@ function Project() {
         <div className={style.project}>
           <ProjectHeader project={project} />
           {project.groups?.map((group, i) => {
-            return <Group key={group._id} group={group} groupIndex={i} />;
+            if (typeof group !== 'object') {
+              return (
+                <Loader
+                  key={typeof group === 'string' ? group : Math.random()}
+                  message={'Loading groups'}
+                />
+              );
+            } else {
+              return <Group key={group._id} group={group} groupIndex={i} />;
+            }
           })}
         </div>
       )}

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { serverPort } from '../misc/defaults/defaults';
+import { serverURI } from '../misc/defaults/defaults';
 
 async function db_createNewTask(task) {
   try {
@@ -7,16 +7,14 @@ async function db_createNewTask(task) {
     !task.group && console.error(`New task does not have a group`);
     if (!task.title) task.title = ' ';
     const response = await axios.post(
-      `${serverPort}/api/v0/projects/${task.project}/tasks`,
+      `${serverURI}/api/v0/projects/${task.project}/tasks`,
       task,
       {
         headers: { 'Content-Type': 'application/json' },
       }
     );
-    console.log('ADDED NEW TASK');
     let dueDate = response.data.data.dueDate;
     if (dueDate) {
-      console.log('dueDate', dueDate);
       dueDate = new Date(dueDate);
     }
 
@@ -32,7 +30,7 @@ async function db_changeTask(task) {
     !task.group && console.error(`New task does not have a group`);
     !task._id && console.error(`New task does not have an _id`);
     const response = await axios.put(
-      `${serverPort}/api/v0/projects/${task.project}/tasks/${task._id}`,
+      `${serverURI}/api/v0/projects/${task.project}/tasks/${task._id}`,
       task,
       {
         headers: { 'Content-Type': 'application/json' },
@@ -49,7 +47,7 @@ async function db_changeTask(task) {
 async function db_deleteTask(task) {
   try {
     const response = await axios.delete(
-      `${serverPort}/api/v0/projects/${task.project}/tasks/${task._id}`,
+      `${serverURI}/api/v0/projects/${task.project}/tasks/${task._id}`,
       task,
       {
         headers: { 'Content-Type': 'application/json' },
@@ -62,14 +60,9 @@ async function db_deleteTask(task) {
 }
 
 async function db_deleteTasks(tasks, project) {
-  console.log('tasks are ', tasks);
-  console.log('project is ', project);
-  /* const config = document.cookie.getAuthentication(); // AxiosRequestConfig
-	config.data = {payload: tasks}; */
-
   try {
     const response = await axios.delete(
-      `${serverPort}/api/v0/projects/${project}/tasks/${tasks}`
+      `${serverURI}/api/v0/projects/${project}/tasks/${tasks}`
     );
     const groupRes = response.data.data;
     groupRes.tasks = groupRes.tasks.map((task) => {

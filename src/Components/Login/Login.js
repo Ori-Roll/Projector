@@ -36,8 +36,8 @@ function Login({ initApp }) {
     try {
       const registeredUserRes = await db_registerUser(
         'ori',
-        'david2@gmail.com',
-        '123456'
+        'ori123456789@gmail.com',
+        '123456bla'
       );
       if (registeredUserRes) {
         try {

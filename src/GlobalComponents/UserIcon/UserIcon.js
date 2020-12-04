@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import style from './UserIcon.module.css';
+import { serverURI } from '../../misc/defaults/defaults';
 
 function UserIcon({
   onClickCallback,
@@ -12,7 +13,7 @@ function UserIcon({
     console.error('no remove action');
   },
 }) {
-  const photoUrl = `http://localhost:5000/api/v0/auth/getUserPhoto/${userId}`;
+  const photoUrl = `${serverURI}/api/v0/auth/getUserPhoto/${userId}`;
 
   const [mouseIsOver, setMouseIsOver] = useState(false);
 
