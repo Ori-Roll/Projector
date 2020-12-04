@@ -1,9 +1,9 @@
 .task {
   display: flex;
-  height: var(--task-height);
-  border: var(--task-title-default-border-color) 2px solid;
+  height: 40px; /* var(--task-height); */
+  border: gray 1px solid; /* var(--task-title-default-border-color) 2px solid; */
   border-radius: 2px;
-  margin-bottom: var(--task-margin-bottom);
+  margin-bottom: 2px; /* var(--task-margin-bottom); */
   position: relative;
 }
 
