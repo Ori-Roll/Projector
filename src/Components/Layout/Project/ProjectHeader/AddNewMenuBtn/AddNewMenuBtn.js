@@ -67,7 +67,7 @@ function AddNewMenuBtn({ project, projectChange }) {
     (state) => state.app.newProjectMenuActive
   );
 
-  console.log(newProjectMenuActive);
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -92,9 +92,14 @@ function AddNewMenuBtn({ project, projectChange }) {
               {
                 text: 'Add a new group',
                 icon: <p>&#43;</p>,
-                onClickCallback: { onAddNewGroupClick },
+                onClickCallback: onAddNewGroupClick,
               },
-              { text: 'Add a new project', icon: <p>&#43;</p> },
+              {
+                text: 'Add a new project',
+                icon: <p>&#43;</p>,
+                onClickCallback: () =>
+                  dispatch(newProjectMenuActiveDispatch(true)),
+              },
             ]}
             setMenuActive={setAddNewActive}
           />
